@@ -40,7 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3420455830302121201}
-  - component: {fileID: 1960879651536909089}
+  - component: {fileID: 2319667027976707329}
+  - component: {fileID: 2374363946476612154}
   m_Layer: 0
   m_Name: Robot Tower
   m_TagString: Untagged
@@ -64,7 +65,7 @@ Transform:
   - {fileID: 1462319006939486089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1960879651536909089
+--- !u!114 &2319667027976707329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,12 +74,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 4203490919423690591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b2493f4aa726b4ebb460968f5f0f09, type: 3}
+  m_Script: {fileID: 11500000, guid: f8193d5287576fb42944a6767562b5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookTargetIK: {fileID: 2186108587107294153}
-  currentTarget: {fileID: 0}
-  lookSpeed: 5
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _showDebugRays: 0
+  _debugDuration: 1
+  _limbTargets: []
+  _stepSize: 2
+  _stepHeight: 0.5
+  _smoothness: 2
+  _raycastRange: 1
+  _feetOffset: 0.05
+  _stepLeadMultiplier: 5
+  _gaitPairings: 
+  _lookTargetIK: {fileID: 2186108587107294153}
+  _lookSpeed: 5
+  _lookAtTag: Player
+--- !u!114 &2374363946476612154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203490919423690591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53fc8404f899bc4f8011058824ecfa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5746305474044706250
 GameObject:
   m_ObjectHideFlags: 0

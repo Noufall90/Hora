@@ -631,6 +631,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1526967351966648122, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: _gaitPairings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3615260487417050502, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
       propertyPath: currentTarget
@@ -644,7 +649,7 @@ PrefabInstance:
     - target: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436111636910311274, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
@@ -893,7 +898,7 @@ GameObject:
   - component: {fileID: 1891961692}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -607,8 +607,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8436111636910311274}
   - component: {fileID: 3264374018967953968}
-  - component: {fileID: 2004523582260348116}
-  - component: {fileID: 3615260487417050502}
+  - component: {fileID: 1526967351966648122}
+  - component: {fileID: 6124269049039922087}
   m_Layer: 0
   m_Name: Robot Shooter
   m_TagString: Untagged
@@ -648,7 +648,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _speed: 10
---- !u!114 &2004523582260348116
+--- !u!114 &1526967351966648122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -657,12 +657,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7900282994099321564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ec6a7a271854741829ea27aae937bb, type: 3}
+  m_Script: {fileID: 11500000, guid: f8193d5287576fb42944a6767562b5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _showDebugRays: 0
+  _debugDuration: 1
   _limbTargets:
   - {fileID: 4028286936877779408}
   - {fileID: 6124955843049832767}
@@ -675,9 +677,10 @@ MonoBehaviour:
   _feetOffset: 0.05
   _stepLeadMultiplier: 5
   _gaitPairings: 
-  _showDebugRays: 0
-  _debugDuration: 1
---- !u!114 &3615260487417050502
+  _lookTargetIK: {fileID: 7734949739647701565}
+  _lookSpeed: 5
+  _lookAtTag: Player
+--- !u!114 &6124269049039922087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -686,12 +689,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7900282994099321564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b2493f4aa726b4ebb460968f5f0f09, type: 3}
+  m_Script: {fileID: 11500000, guid: f53fc8404f899bc4f8011058824ecfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookTargetIK: {fileID: 7734949739647701565}
-  currentTarget: {fileID: 0}
-  lookSpeed: 5
 --- !u!1 &8552647944932691302
 GameObject:
   m_ObjectHideFlags: 0

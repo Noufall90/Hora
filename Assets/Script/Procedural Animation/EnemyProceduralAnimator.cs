@@ -3,18 +3,16 @@ using UnityEngine;
 
 namespace procedural_animation
 {
-    public class ProceduralAnimator : MonoBehaviour
+    public class EnemyProceduralAnimator : EnemyProceduralBase
     {
-        class ProceduralLimb
+
+        private class ProceduralLimb
         {
             public Transform IKTarget;
             public Vector3 defaultPosition;
             public Vector3 lastPosition;
             public bool moving;
         }
-
-        [Header("Global")]
-        [SerializeField] private LayerMask _groundLayerMask = default;
 
         [Header("Steps")]
         [SerializeField] private Transform[] _limbTargets;
@@ -29,9 +27,10 @@ namespace procedural_animation
         [Tooltip("Tentukan indeks kaki mana saja yang tidak boleh melangkah bersamaan. Contoh: Kiri Depan tidak boleh bareng Kanan Belakang.")]
         [SerializeField] private int[] _gaitPairings;
 
-        [Header("Debug")]
-        [SerializeField] private bool _showDebugRays = true;
-        [SerializeField] private float _debugDuration = 0.1f;
+        [Header("Look At")]
+        [SerializeField] private Transform _lookTargetIK;
+        [SerializeField] private float _lookSpeed = 5f;
+        [SerializeField] private string _lookAtTag = "Player";
 
         private int _nLimbs;
         private ProceduralLimb[] _limbs;
@@ -40,7 +39,12 @@ namespace procedural_animation
         private Vector3 _velocity;
         private bool _allLimbsResting;
 
-        private void Start()
+        private Transform _currentTarget;
+        public override bool IsMoving => !_allLimbsResting;
+        public override void SetLookTarget(Transform target) => _currentTarget = target;
+        public override void ClearLookTarget() => _currentTarget = null;
+
+        protected override void Initialize()
         {
             _nLimbs = _limbTargets.Length;
             _limbs = new ProceduralLimb[_nLimbs];
@@ -66,9 +70,16 @@ namespace procedural_animation
 
             _lastBodyPosition = transform.position;
             _allLimbsResting = true;
+
+            // Auto-find look target by tag
+            GameObject taggedTarget = GameObject.FindGameObjectWithTag(_lookAtTag);
+            if (taggedTarget != null)
+                _currentTarget = taggedTarget.transform;
         }
 
-        private void FixedUpdate()
+        // ─── Lifecycle: Tick (FixedUpdate) ───────────────────────────────────────
+
+        protected override void Tick()
         {
             _velocity = transform.position - _lastBodyPosition;
 
@@ -81,6 +92,21 @@ namespace procedural_animation
                 _BackToRestPosition();
             }
         }
+
+        // ─── Lifecycle: Update (Look At) ─────────────────────────────────────────
+
+        protected virtual void Update()
+        {
+            if (_currentTarget != null && _lookTargetIK != null)
+            {
+                _lookTargetIK.position = Vector3.Lerp(
+                    _lookTargetIK.position,
+                    _currentTarget.position,
+                    Time.deltaTime * _lookSpeed);
+            }
+        }
+
+        // ─── Gait / Stepping Logic ───────────────────────────────────────────────
 
         private void _HandleMovement()
         {
@@ -99,7 +125,6 @@ namespace procedural_animation
                     continue;
 
                 Vector3 desiredPosition = transform.TransformPoint(_limbs[i].defaultPosition);
-
                 Vector3 predictedPos = desiredPosition + (_velocity * _stepLeadMultiplier);
                 float dist = (predictedPos - _limbs[i].lastPosition).magnitude;
 
@@ -119,21 +144,20 @@ namespace procedural_animation
             if (limbToMove != -1)
             {
                 Vector3 baseTarget = transform.TransformPoint(_limbs[limbToMove].defaultPosition);
-
                 Vector3 targetPoint = baseTarget + (_velocity * _stepLeadMultiplier);
 
                 targetPoint = _RaycastToGround(targetPoint, transform.up);
                 targetPoint += transform.up * _feetOffset;
 
 #if UNITY_EDITOR
-            if (_showDebugRays)
-            {
-                Debug.DrawLine(
-                    _limbs[limbToMove].lastPosition,
-                    targetPoint,
-                    Color.cyan,
-                    _debugDuration);
-            }
+                if (_showDebugRays)
+                {
+                    Debug.DrawLine(
+                        _limbs[limbToMove].lastPosition,
+                        targetPoint,
+                        Color.cyan,
+                        _debugDuration);
+                }
 #endif
 
                 _allLimbsResting = false;
@@ -179,13 +203,14 @@ namespace procedural_animation
                 point = hit.point;
 
 #if UNITY_EDITOR
-            if (_showDebugRays)
-            {
-                Debug.DrawRay(rayOrigin, rayDirection * hit.distance, Color.green, _debugDuration);
-                Debug.DrawLine(hit.point, hit.point + hit.normal * 0.2f, Color.blue, _debugDuration);
-            }
+                if (_showDebugRays)
+                {
+                    Debug.DrawRay(rayOrigin, rayDirection * hit.distance, Color.green, _debugDuration);
+                    Debug.DrawLine(hit.point, hit.point + hit.normal * 0.2f, Color.blue, _debugDuration);
+                }
 #endif
             }
+
             return point;
         }
 

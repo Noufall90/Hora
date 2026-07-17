@@ -217,8 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5981425255106668268}
   - component: {fileID: 8399699651938492354}
-  - component: {fileID: 3770547549457360100}
-  - component: {fileID: 5309865115229838728}
+  - component: {fileID: 8186342157387264187}
+  - component: {fileID: 864793392895660663}
   m_Layer: 0
   m_Name: Robot Meele
   m_TagString: Untagged
@@ -258,7 +258,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _speed: 10
---- !u!114 &3770547549457360100
+--- !u!114 &8186342157387264187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,12 +267,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026242789895780203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ec6a7a271854741829ea27aae937bb, type: 3}
+  m_Script: {fileID: 11500000, guid: f8193d5287576fb42944a6767562b5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _showDebugRays: 0
+  _debugDuration: 1
   _limbTargets:
   - {fileID: 1195160378693262000}
   - {fileID: 6269492209608051597}
@@ -285,9 +287,10 @@ MonoBehaviour:
   _feetOffset: 0.05
   _stepLeadMultiplier: 5
   _gaitPairings: 
-  _showDebugRays: 0
-  _debugDuration: 1
---- !u!114 &5309865115229838728
+  _lookTargetIK: {fileID: 634471090052055999}
+  _lookSpeed: 5
+  _lookAtTag: Player
+--- !u!114 &864793392895660663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,12 +299,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026242789895780203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b2493f4aa726b4ebb460968f5f0f09, type: 3}
+  m_Script: {fileID: 11500000, guid: f53fc8404f899bc4f8011058824ecfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookTargetIK: {fileID: 634471090052055999}
-  currentTarget: {fileID: 0}
-  lookSpeed: 5
 --- !u!1 &2373476866826438194
 GameObject:
   m_ObjectHideFlags: 0

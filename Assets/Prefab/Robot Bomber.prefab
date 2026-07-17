@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 6863708707215447293}
   - component: {fileID: 2089413928382430538}
   - component: {fileID: 1490862086111987644}
-  - component: {fileID: 2649080327315314886}
+  - component: {fileID: 9027476749162694949}
   m_Layer: 0
   m_Name: Robot Bomber
   m_TagString: Untagged
@@ -296,12 +296,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5399323257696844442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ec6a7a271854741829ea27aae937bb, type: 3}
+  m_Script: {fileID: 11500000, guid: f8193d5287576fb42944a6767562b5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _showDebugRays: 0
+  _debugDuration: 1
   _limbTargets:
   - {fileID: 4144468137929170183}
   - {fileID: 4220716582057830520}
@@ -314,9 +316,10 @@ MonoBehaviour:
   _feetOffset: 0.05
   _stepLeadMultiplier: 5
   _gaitPairings: 
-  _showDebugRays: 0
-  _debugDuration: 1
---- !u!114 &2649080327315314886
+  _lookTargetIK: {fileID: 8226699882911509597}
+  _lookSpeed: 5
+  _lookAtTag: Player
+--- !u!114 &9027476749162694949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,12 +328,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5399323257696844442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b2493f4aa726b4ebb460968f5f0f09, type: 3}
+  m_Script: {fileID: 11500000, guid: f53fc8404f899bc4f8011058824ecfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookTargetIK: {fileID: 8226699882911509597}
-  currentTarget: {fileID: 0}
-  lookSpeed: 5
 --- !u!1 &5492332311271648218
 GameObject:
   m_ObjectHideFlags: 0

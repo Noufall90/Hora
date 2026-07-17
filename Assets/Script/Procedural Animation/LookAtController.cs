@@ -59,8 +59,8 @@ public class LookAtController : MonoBehaviour
         if (other.CompareTag("Face"))
         {
             isActive = false;
-            lastTarget = objectToLookAt; // simpan dulu
-            objectToLookAt = null;       // kosongkan target aktif
+            lastTarget = objectToLookAt;
+            objectToLookAt = null;
         }
     }
 }
