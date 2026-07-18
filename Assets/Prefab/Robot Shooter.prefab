@@ -606,9 +606,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8436111636910311274}
-  - component: {fileID: 3264374018967953968}
   - component: {fileID: 1526967351966648122}
   - component: {fileID: 6124269049039922087}
+  - component: {fileID: 298099782682721964}
+  - component: {fileID: 6477940304345368035}
   m_Layer: 0
   m_Name: Robot Shooter
   m_TagString: Untagged
@@ -632,22 +633,6 @@ Transform:
   - {fileID: 5911670244345106207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3264374018967953968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7900282994099321564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdf9143257262ab4cbe9b475d878e8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _speed: 10
 --- !u!114 &1526967351966648122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +677,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53fc8404f899bc4f8011058824ecfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &298099782682721964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900282994099321564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c0f2dd9eda4d845894e0813968b6ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &6477940304345368035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900282994099321564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9089434f24052414ca93a3ca44fcf4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  configData: {fileID: 11400000, guid: 75ba5fc135634944ab031fff39192bd8, type: 2}
+  fireRate: 1.5
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
 --- !u!1 &8552647944932691302
 GameObject:
   m_ObjectHideFlags: 0
