@@ -48,6 +48,8 @@ namespace procedural_animation
         private bool _playerDetected;
         private float _scanTimer;
 
+        public bool PlayerDetected => _playerDetected;
+
         public override bool IsMoving => !_allLimbsResting;
         public override void SetLookTarget(Transform target) => _currentTarget = target;
         public override void ClearLookTarget() => _currentTarget = null;

@@ -25,7 +25,6 @@ namespace HFSM.Combat
 
             if (!IsPlayerInDistance(brain.AttackRange))
             {
-                // Jika player menjauh dan objeknya bukan Tower (bisa bergerak), kejar kembali
                 if (brain.MoveSpeed > 0)
                 {
                     stateMachine.ChangeState(new ChasingState(brain, stateMachine));
@@ -33,7 +32,6 @@ namespace HFSM.Combat
                 return;
             }
 
-            // Hadapkan badan/senjata ke arah target (dapat digabung dengan Look IK)
             if (brain.PlayerTarget != null)
             {
                 brain.transform.LookAt(new Vector3(brain.PlayerTarget.position.x, brain.transform.position.y, brain.PlayerTarget.position.z));

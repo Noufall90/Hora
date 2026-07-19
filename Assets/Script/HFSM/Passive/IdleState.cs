@@ -1,4 +1,5 @@
 using HFSM.Core;
+using HFSM.Combat;
 using Enemy;
 using UnityEngine;
 
@@ -7,22 +8,26 @@ namespace HFSM.Passive
     public class IdleState : EnemyBaseState
     {
         private float idleTimer;
-        private float idleDuration = 2f;
+        private float idleDuration = 0.5f;
 
         public IdleState(EnemyBrain brain, HierarchicalStateMachine stateMachine) : base(brain, stateMachine) { }
 
         public override void Enter()
         {
             idleTimer = 0f;
-            Debug.Log($"{brain.gameObject.name} memasuki IdleState");
+            if (brain.Agent != null)
+            {
+                brain.Agent.isStopped = true;
+            }
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (IsPlayerInDistance(brain.DetectRange))
+            if (brain.IsPlayerDetected())
             {
+                stateMachine.ChangeState(new ChasingState(brain, stateMachine));
                 return;
             }
 

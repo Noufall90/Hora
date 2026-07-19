@@ -665,9 +665,9 @@ MonoBehaviour:
   _lookTargetIK: {fileID: 7734949739647701565}
   _lookSpeed: 5
   _scanSpeed: 2
-  _scanAngle: 80
-  _viewDistance: 25
-  _fovAngle: 120
+  _scanAngle: 50
+  _viewDistance: 30
+  _fovAngle: 140
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -699,7 +699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089434f24052414ca93a3ca44fcf4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 10
+  patrolRange: 30
+  patrolCentrePoint: {fileID: 0}
   attackDamage: 0
   detectRange: 0
   attackRange: 0

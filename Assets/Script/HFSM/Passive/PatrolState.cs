@@ -1,43 +1,56 @@
 using HFSM.Core;
+using HFSM.Combat;
 using Enemy;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace HFSM.Passive
 {
     public class PatrolState : EnemyBaseState
     {
-        private Vector3 patrolTarget;
-
         public PatrolState(EnemyBrain brain, HierarchicalStateMachine stateMachine) : base(brain, stateMachine) { }
 
         public override void Enter()
         {
-            Debug.Log($"{brain.gameObject.name} memasuki PatrolState");
-            GenerateNewPatrolPoint();
+            brain.Agent.isStopped = false;
+            brain.Agent.speed = brain.MoveSpeed;
+            TrySetNewDestination();
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (IsPlayerInDistance(brain.DetectRange))
+            if (brain.IsPlayerDetected())
             {
+                stateMachine.ChangeState(new ChasingState(brain, stateMachine));
                 return;
             }
 
-            brain.transform.position = Vector3.MoveTowards(brain.transform.position, patrolTarget, brain.MoveSpeed * Time.deltaTime);
-
-            if (Vector3.Distance(brain.transform.position, patrolTarget) < 0.2f)
+            if (!brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
             {
                 stateMachine.ChangeState(new IdleState(brain, stateMachine));
             }
         }
 
-        private void GenerateNewPatrolPoint()
+        public override void Exit()
         {
-            float randomX = Random.Range(-5f, 5f);
-            float randomZ = Random.Range(-5f, 5f);
-            patrolTarget = brain.transform.position + new Vector3(randomX, 0, randomZ);
+            brain.Agent.ResetPath();
+        }
+
+        private bool TrySetNewDestination()
+        {
+            Vector3 centre = brain.PatrolCentrePoint.position;
+            Vector3 randomPoint = centre + Random.insideUnitSphere * brain.PatrolRange;
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                brain.Agent.SetDestination(hit.position);
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -1,4 +1,5 @@
 using HFSM.Core;
+using HFSM.Passive;
 using Enemy;
 using UnityEngine;
 
@@ -10,7 +11,11 @@ namespace HFSM.Combat
 
         public override void Enter()
         {
-            Debug.Log($"{brain.gameObject.name} mengejar target");
+            if (brain.Agent != null)
+            {
+                brain.Agent.isStopped = false;
+                brain.Agent.speed = brain.MoveSpeed;
+            }
         }
 
         public override void Update()
@@ -19,7 +24,17 @@ namespace HFSM.Combat
 
             if (brain.PlayerTarget == null) return;
 
-            brain.transform.position = Vector3.MoveTowards(brain.transform.position, brain.PlayerTarget.position, brain.MoveSpeed * Time.deltaTime);
+            if (!brain.IsPlayerDetected())
+            {
+                stateMachine.ChangeState(new InvestigateState(brain, stateMachine, brain.PlayerTarget.position));
+                return;
+            }
+
+            if (brain.Agent != null)
+            {
+                brain.Agent.SetDestination(brain.PlayerTarget.position);
+            }
+
             brain.transform.LookAt(new Vector3(brain.PlayerTarget.position.x, brain.transform.position.y, brain.PlayerTarget.position.z));
 
             if (IsPlayerInDistance(brain.AttackRange))
@@ -32,6 +47,14 @@ namespace HFSM.Combat
                 {
                     stateMachine.ChangeState(new ShooterAttackState(brain, stateMachine));
                 }
+            }
+        }
+
+        public override void Exit()
+        {
+            if (brain.Agent != null)
+            {
+                brain.Agent.ResetPath();
             }
         }
     }
