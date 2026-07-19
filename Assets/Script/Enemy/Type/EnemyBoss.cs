@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyBoss : EnemyBrain, IMeele, IShooter, IBomber
+    public class EnemyBoss : EnemyBrain, IMeele, IShooter
     {
         [Header("Meele Capability")]
         [SerializeField] private float meeleAttackRange = 4f;

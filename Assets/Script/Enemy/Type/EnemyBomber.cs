@@ -2,19 +2,16 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyBomber : EnemyBrain, IBomber
+    public class EnemyBomber : EnemyBrain
     {
         [Header("Bomber Settings")]
-        [SerializeField] private float explosionRadius = 3f;
+        [SerializeField] private float upwardForce = 3f;
 
-        public float ExplosionRadius => explosionRadius;
+        public float UpwardForce => upwardForce;
 
         public void Explode()
         {
-            // Logika area damage ledakan di sekitar musuh
-            Debug.Log($"{gameObject.name} meledakkan diri!");
             
-            // Panggil fungsi kematian lewat komponen health setelah meledak
             health.TakeDamage(health.MaxHealth);
         }
     }

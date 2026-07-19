@@ -15,10 +15,4 @@ namespace Enemy
         GameObject BulletPrefab { get; }
         void ShootAttack();
     }
-
-    public interface IBomber
-    {
-        float ExplosionRadius { get; }
-        void Explode();
-    }
 }

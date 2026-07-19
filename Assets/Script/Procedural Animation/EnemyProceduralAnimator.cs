@@ -33,23 +33,19 @@ namespace procedural_animation
         [SerializeField] private float _scanAngle = 80f;
         [SerializeField] private float _viewDistance = 15f;
         [Range(0, 360)]
-        [SerializeField] private float _fovAngle = 120f; // Sudut total pandangan (Line of Sight)
+        [SerializeField] private float _fovAngle = 120f;
         [SerializeField] private LayerMask _playerLayer;
         [SerializeField] private LayerMask _obstacleLayer;
 
         private int _nLimbs;
         private ProceduralLimb[] _limbs;
-
         private Vector3 _lastBodyPosition;
         private Vector3 _velocity;
         private bool _allLimbsResting;
-
         private Transform _currentTarget;
         private bool _playerDetected;
         private float _scanTimer;
-
         public bool PlayerDetected => _playerDetected;
-
         public override bool IsMoving => !_allLimbsResting;
         public override void SetLookTarget(Transform target) => _currentTarget = target;
         public override void ClearLookTarget() => _currentTarget = null;
@@ -93,7 +89,6 @@ namespace procedural_animation
                 _BackToRestPosition();
             }
 
-            // Pengecekan Line of Sight di FixedUpdate frame
             _CheckLineOfSight();
         }
 
@@ -103,7 +98,6 @@ namespace procedural_animation
 
             if (_playerDetected && _currentTarget != null)
             {
-                // Mengunci target Player secara presisi
                 _lookTargetIK.position = Vector3.Lerp(
                     _lookTargetIK.position,
                     _currentTarget.position,
@@ -111,14 +105,11 @@ namespace procedural_animation
             }
             else
             {
-                // Scan dinamis berbasis arah hadap saat ini (transform.forward)
                 _scanTimer += Time.deltaTime * _scanSpeed;
                 float currentAngle = Mathf.Sin(_scanTimer) * _scanAngle;
                 
-                // Menghitung deviasi arah relatif terhadap orientasi hadap instan NPC
                 Vector3 scanDirection = Quaternion.AngleAxis(currentAngle, transform.up) * transform.forward;
                 
-                // Menentukan target posisi IK di depan mata sesuai arah pandang scan
                 Vector3 targetScanPos = transform.position + (transform.up * 1f) + (scanDirection * 3f);
 
                 _lookTargetIK.position = Vector3.Lerp(
@@ -130,7 +121,6 @@ namespace procedural_animation
 
         private void _CheckLineOfSight()
         {
-            // Ambil objek potensial di sekitar radius deteksi luar terlebih dahulu
             Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, _viewDistance, _playerLayer);
 
             if (targetsInRadius.Length > 0)
@@ -138,12 +128,10 @@ namespace procedural_animation
                 Transform target = targetsInRadius[0].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-                // Hitung apakah sudut posisi target masuk dalam batasan Cone FOV
                 if (Vector3.Angle(transform.forward, dirToTarget) < _fovAngle / 2f)
                 {
                     float dstToTarget = Vector3.Distance(transform.position, target.position);
 
-                    // Lakukan raycast untuk memastikan tidak terhalang rintangan lingkungan
                     if (!Physics.Raycast(transform.position + transform.up * 1f, dirToTarget, dstToTarget, _obstacleLayer))
                     {
                         _playerDetected = true;
@@ -153,7 +141,6 @@ namespace procedural_animation
                 }
             }
 
-            // Gagal deteksi (di luar sudut, terlalu jauh, atau terhalang)
             _playerDetected = false;
             _currentTarget = null;
         }
@@ -252,7 +239,6 @@ namespace procedural_animation
             _limbs[limbIdx].moving = false;
         }
 
-        // Bantuan Arah Vektor untuk Menggambar Sudut FOV
         private Vector3 _DirFromAngle(float angleInDegrees, bool angleIsGlobal)
         {
             if (!angleIsGlobal)
@@ -262,15 +248,12 @@ namespace procedural_animation
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
         }
 
-        // Menggambar Semua Representasi Visual Debug Gizmos
         private void OnDrawGizmos()
         {
-            // Validasi apakah debug ray/gizmo diaktifkan dari Base Class
             if (!_showDebugRays) return;
 
             Vector3 eyePos = transform.position + transform.up * 1f;
 
-            // 1. MENGGAMBAR CONE LINE OF SIGHT AREA
             Gizmos.color = Color.yellow;
             Vector3 viewAngleA = _DirFromAngle(-_fovAngle / 2f, false);
             Vector3 viewAngleB = _DirFromAngle(_fovAngle / 2f, false);
@@ -278,7 +261,6 @@ namespace procedural_animation
             Gizmos.DrawLine(eyePos, eyePos + viewAngleA * _viewDistance);
             Gizmos.DrawLine(eyePos, eyePos + viewAngleB * _viewDistance);
 
-            // Menggambar outline sirkular luar area pandang
             int segments = 20;
             Vector3 lastPoint = eyePos + _DirFromAngle(-_fovAngle / 2f, false) * _viewDistance;
             for (int i = 1; i <= segments; i++)
@@ -289,7 +271,6 @@ namespace procedural_animation
                 lastPoint = nextPoint;
             }
 
-            // 2. MENGGAMBAR GARIS LASER MATA / KEPALA
             if (_lookTargetIK != null)
             {
                 Gizmos.color = _playerDetected ? Color.green : Color.red;

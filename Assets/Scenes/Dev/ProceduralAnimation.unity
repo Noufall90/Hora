@@ -2862,9 +2862,34 @@ PrefabInstance:
       objectReference: {fileID: 1891961691}
     - target: {fileID: 6477940304345368035, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
+      propertyPath: fovAngle
+      value: 91.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477940304345368035, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: attackRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477940304345368035, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: detectRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477940304345368035, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: fieldOfView
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477940304345368035, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
       propertyPath: patrolCentrePoint
       value: 
       objectReference: {fileID: 611180473}
+    - target: {fileID: 6477940304345368035, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: targetLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
       propertyPath: m_Name
@@ -3376,7 +3401,7 @@ Transform:
   m_GameObject: {fileID: 1785204586}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.18, y: 0.75, z: 13.38}
+  m_LocalPosition: {x: 0.86, y: 0.75, z: 11.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3847,7 +3872,7 @@ Transform:
   m_GameObject: {fileID: 1891961690}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.51, y: 0.75, z: -24.73}
+  m_LocalPosition: {x: -2.97, y: 0.75, z: -44.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
