@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 2664714538838816604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0135, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -607,9 +607,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8436111636910311274}
   - component: {fileID: 1526967351966648122}
-  - component: {fileID: 6124269049039922087}
   - component: {fileID: 298099782682721964}
   - component: {fileID: 6477940304345368035}
+  - component: {fileID: 5687712599703399074}
   m_Layer: 0
   m_Name: Robot Shooter
   m_TagString: Untagged
@@ -648,7 +648,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  _showDebugRays: 0
+  _showDebugRays: 1
   _debugDuration: 1
   _limbTargets:
   - {fileID: 4028286936877779408}
@@ -664,19 +664,16 @@ MonoBehaviour:
   _gaitPairings: 
   _lookTargetIK: {fileID: 7734949739647701565}
   _lookSpeed: 5
-  _lookAtTag: Player
---- !u!114 &6124269049039922087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7900282994099321564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53fc8404f899bc4f8011058824ecfa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _scanSpeed: 2
+  _scanAngle: 80
+  _viewDistance: 25
+  _fovAngle: 120
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 375
 --- !u!114 &298099782682721964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,10 +699,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089434f24052414ca93a3ca44fcf4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 11400000, guid: 75ba5fc135634944ab031fff39192bd8, type: 2}
+  moveSpeed: 8
+  attackDamage: 0
+  detectRange: 0
+  attackRange: 0
   fireRate: 1.5
   firePoint: {fileID: 0}
   bulletPrefab: {fileID: 0}
+--- !u!195 &5687712599703399074
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7900282994099321564}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.5
+  m_Speed: 8
+  m_Acceleration: 15
+  avoidancePriority: 50
+  m_AngularSpeed: 180
+  m_StoppingDistance: 0.1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 3
 --- !u!1 &8552647944932691302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1041,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -3113058195477675387, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -1856902806203956751, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}

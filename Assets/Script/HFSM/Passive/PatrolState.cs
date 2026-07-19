@@ -22,14 +22,11 @@ namespace HFSM.Passive
 
             if (IsPlayerInDistance(brain.DetectRange))
             {
-                // Transisi ke combat jika mendeteksi player
                 return;
             }
 
-            // Gerakkan musuh ke arah titik patroli
             brain.transform.position = Vector3.MoveTowards(brain.transform.position, patrolTarget, brain.MoveSpeed * Time.deltaTime);
 
-            // Jika sampai di titik patroli, kembali ke Idle
             if (Vector3.Distance(brain.transform.position, patrolTarget) < 0.2f)
             {
                 stateMachine.ChangeState(new IdleState(brain, stateMachine));

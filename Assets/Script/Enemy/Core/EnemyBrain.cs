@@ -7,7 +7,7 @@ namespace Enemy
     public abstract class EnemyBrain : MonoBehaviour
     {
         [Header("Base Movement Settings")]
-        [SerializeField] protected float moveSpeed;
+        [SerializeField] protected float moveSpeed = 10f;
         
         [Header("Base Combat Settings")]
         [SerializeField] protected float attackDamage;

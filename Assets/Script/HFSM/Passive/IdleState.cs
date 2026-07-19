@@ -21,14 +21,11 @@ namespace HFSM.Passive
         {
             base.Update();
 
-            // Cek transisi ke Combat jika player terdeteksi
             if (IsPlayerInDistance(brain.DetectRange))
             {
-                // stateMachine.ChangeState(new ChasingState(brain, stateMachine)); // Buka ini jika menggunakan FSM biasa
                 return;
             }
 
-            // Patrol setelah durasi waktu tertentu habis
             idleTimer += Time.deltaTime;
             if (idleTimer >= idleDuration)
             {

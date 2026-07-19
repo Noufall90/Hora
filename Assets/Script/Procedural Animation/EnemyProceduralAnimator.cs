@@ -5,7 +5,6 @@ namespace procedural_animation
 {
     public class EnemyProceduralAnimator : EnemyProceduralBase
     {
-
         private class ProceduralLimb
         {
             public Transform IKTarget;
@@ -24,13 +23,19 @@ namespace procedural_animation
         [SerializeField] private float _stepLeadMultiplier = 5f;
 
         [Header("Gait Control")]
-        [Tooltip("Tentukan indeks kaki mana saja yang tidak boleh melangkah bersamaan. Contoh: Kiri Depan tidak boleh bareng Kanan Belakang.")]
+        [Tooltip("Tentukan indeks kaki mana saja yang tidak boleh melangkah bersamaan.")]
         [SerializeField] private int[] _gaitPairings;
 
-        [Header("Look At")]
+        [Header("Look At & Detection (LOS)")]
         [SerializeField] private Transform _lookTargetIK;
         [SerializeField] private float _lookSpeed = 5f;
-        [SerializeField] private string _lookAtTag = "Player";
+        [SerializeField] private float _scanSpeed = 2f;
+        [SerializeField] private float _scanAngle = 80f;
+        [SerializeField] private float _viewDistance = 15f;
+        [Range(0, 360)]
+        [SerializeField] private float _fovAngle = 120f; // Sudut total pandangan (Line of Sight)
+        [SerializeField] private LayerMask _playerLayer;
+        [SerializeField] private LayerMask _obstacleLayer;
 
         private int _nLimbs;
         private ProceduralLimb[] _limbs;
@@ -40,6 +45,9 @@ namespace procedural_animation
         private bool _allLimbsResting;
 
         private Transform _currentTarget;
+        private bool _playerDetected;
+        private float _scanTimer;
+
         public override bool IsMoving => !_allLimbsResting;
         public override void SetLookTarget(Transform target) => _currentTarget = target;
         public override void ClearLookTarget() => _currentTarget = null;
@@ -52,7 +60,6 @@ namespace procedural_animation
             for (int i = 0; i < _nLimbs; i++)
             {
                 Transform t = _limbTargets[i];
-
                 _limbs[i] = new ProceduralLimb()
                 {
                     IKTarget = t,
@@ -62,7 +69,6 @@ namespace procedural_animation
                 };
             }
 
-            // Default pairing jika tidak diisi di Inspector (Asumsi 4 kaki)
             if (_gaitPairings == null || _gaitPairings.Length != _nLimbs)
             {
                 _gaitPairings = new int[] { 3, 2, 1, 0 };
@@ -70,14 +76,7 @@ namespace procedural_animation
 
             _lastBodyPosition = transform.position;
             _allLimbsResting = true;
-
-            // Auto-find look target by tag
-            GameObject taggedTarget = GameObject.FindGameObjectWithTag(_lookAtTag);
-            if (taggedTarget != null)
-                _currentTarget = taggedTarget.transform;
         }
-
-        // ─── Lifecycle: Tick (FixedUpdate) ───────────────────────────────────────
 
         protected override void Tick()
         {
@@ -91,22 +90,71 @@ namespace procedural_animation
             {
                 _BackToRestPosition();
             }
-        }
 
-        // ─── Lifecycle: Update (Look At) ─────────────────────────────────────────
+            // Pengecekan Line of Sight di FixedUpdate frame
+            _CheckLineOfSight();
+        }
 
         protected virtual void Update()
         {
-            if (_currentTarget != null && _lookTargetIK != null)
+            if (_lookTargetIK == null) return;
+
+            if (_playerDetected && _currentTarget != null)
             {
+                // Mengunci target Player secara presisi
                 _lookTargetIK.position = Vector3.Lerp(
                     _lookTargetIK.position,
                     _currentTarget.position,
                     Time.deltaTime * _lookSpeed);
             }
+            else
+            {
+                // Scan dinamis berbasis arah hadap saat ini (transform.forward)
+                _scanTimer += Time.deltaTime * _scanSpeed;
+                float currentAngle = Mathf.Sin(_scanTimer) * _scanAngle;
+                
+                // Menghitung deviasi arah relatif terhadap orientasi hadap instan NPC
+                Vector3 scanDirection = Quaternion.AngleAxis(currentAngle, transform.up) * transform.forward;
+                
+                // Menentukan target posisi IK di depan mata sesuai arah pandang scan
+                Vector3 targetScanPos = transform.position + (transform.up * 1f) + (scanDirection * 3f);
+
+                _lookTargetIK.position = Vector3.Lerp(
+                    _lookTargetIK.position,
+                    targetScanPos,
+                    Time.deltaTime * _lookSpeed);
+            }
         }
 
-        // ─── Gait / Stepping Logic ───────────────────────────────────────────────
+        private void _CheckLineOfSight()
+        {
+            // Ambil objek potensial di sekitar radius deteksi luar terlebih dahulu
+            Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, _viewDistance, _playerLayer);
+
+            if (targetsInRadius.Length > 0)
+            {
+                Transform target = targetsInRadius[0].transform;
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+
+                // Hitung apakah sudut posisi target masuk dalam batasan Cone FOV
+                if (Vector3.Angle(transform.forward, dirToTarget) < _fovAngle / 2f)
+                {
+                    float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+                    // Lakukan raycast untuk memastikan tidak terhalang rintangan lingkungan
+                    if (!Physics.Raycast(transform.position + transform.up * 1f, dirToTarget, dstToTarget, _obstacleLayer))
+                    {
+                        _playerDetected = true;
+                        _currentTarget = target;
+                        return;
+                    }
+                }
+            }
+
+            // Gagal deteksi (di luar sudut, terlalu jauh, atau terhalang)
+            _playerDetected = false;
+            _currentTarget = null;
+        }
 
         private void _HandleMovement()
         {
@@ -117,12 +165,10 @@ namespace procedural_animation
 
             for (int i = 0; i < _nLimbs; i++)
             {
-                if (_limbs[i].moving)
-                    continue;
+                if (_limbs[i].moving) continue;
 
                 int partnerIndex = _gaitPairings[i];
-                if (partnerIndex < _nLimbs && _limbs[partnerIndex].moving)
-                    continue;
+                if (partnerIndex < _nLimbs && _limbs[partnerIndex].moving) continue;
 
                 Vector3 desiredPosition = transform.TransformPoint(_limbs[i].defaultPosition);
                 Vector3 predictedPos = desiredPosition + (_velocity * _stepLeadMultiplier);
@@ -149,17 +195,6 @@ namespace procedural_animation
                 targetPoint = _RaycastToGround(targetPoint, transform.up);
                 targetPoint += transform.up * _feetOffset;
 
-#if UNITY_EDITOR
-                if (_showDebugRays)
-                {
-                    Debug.DrawLine(
-                        _limbs[limbToMove].lastPosition,
-                        targetPoint,
-                        Color.cyan,
-                        _debugDuration);
-                }
-#endif
-
                 _allLimbsResting = false;
                 StartCoroutine(_Stepping(limbToMove, targetPoint));
             }
@@ -169,15 +204,9 @@ namespace procedural_animation
         {
             for (int i = 0; i < _nLimbs; i++)
             {
-                if (_limbs[i].moving)
-                    continue;
+                if (_limbs[i].moving) continue;
 
-                Vector3 targetPoint =
-                    _RaycastToGround(
-                        transform.TransformPoint(_limbs[i].defaultPosition),
-                        transform.up)
-                    + transform.up * _feetOffset;
-
+                Vector3 targetPoint = _RaycastToGround(transform.TransformPoint(_limbs[i].defaultPosition), transform.up) + transform.up * _feetOffset;
                 float dist = (targetPoint - _limbs[i].lastPosition).magnitude;
 
                 if (dist > 0.005f)
@@ -186,7 +215,6 @@ namespace procedural_animation
                     return;
                 }
             }
-
             _allLimbsResting = true;
         }
 
@@ -201,16 +229,7 @@ namespace procedural_animation
             if (Physics.Raycast(ray, out RaycastHit hit, 2f * _raycastRange, _groundLayerMask))
             {
                 point = hit.point;
-
-#if UNITY_EDITOR
-                if (_showDebugRays)
-                {
-                    Debug.DrawRay(rayOrigin, rayDirection * hit.distance, Color.green, _debugDuration);
-                    Debug.DrawLine(hit.point, hit.point + hit.normal * 0.2f, Color.blue, _debugDuration);
-                }
-#endif
             }
-
             return point;
         }
 
@@ -222,17 +241,59 @@ namespace procedural_animation
             for (int i = 1; i <= _smoothness; i++)
             {
                 float t = i / (_smoothness + 1f);
-
-                _limbs[limbIdx].IKTarget.position =
-                    Vector3.Lerp(startPosition, targetPosition, t)
-                    + transform.up * Mathf.Sin(t * Mathf.PI) * _stepHeight;
-
+                _limbs[limbIdx].IKTarget.position = Vector3.Lerp(startPosition, targetPosition, t) + transform.up * Mathf.Sin(t * Mathf.PI) * _stepHeight;
                 yield return new WaitForFixedUpdate();
             }
 
             _limbs[limbIdx].IKTarget.position = targetPosition;
             _limbs[limbIdx].lastPosition = targetPosition;
             _limbs[limbIdx].moving = false;
+        }
+
+        // Bantuan Arah Vektor untuk Menggambar Sudut FOV
+        private Vector3 _DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+        {
+            if (!angleIsGlobal)
+            {
+                angleInDegrees += transform.eulerAngles.y;
+            }
+            return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        }
+
+        // Menggambar Semua Representasi Visual Debug Gizmos
+        private void OnDrawGizmos()
+        {
+            // Validasi apakah debug ray/gizmo diaktifkan dari Base Class
+            if (!_showDebugRays) return;
+
+            Vector3 eyePos = transform.position + transform.up * 1f;
+
+            // 1. MENGGAMBAR CONE LINE OF SIGHT AREA
+            Gizmos.color = Color.yellow;
+            Vector3 viewAngleA = _DirFromAngle(-_fovAngle / 2f, false);
+            Vector3 viewAngleB = _DirFromAngle(_fovAngle / 2f, false);
+
+            Gizmos.DrawLine(eyePos, eyePos + viewAngleA * _viewDistance);
+            Gizmos.DrawLine(eyePos, eyePos + viewAngleB * _viewDistance);
+
+            // Menggambar outline sirkular luar area pandang
+            int segments = 20;
+            Vector3 lastPoint = eyePos + _DirFromAngle(-_fovAngle / 2f, false) * _viewDistance;
+            for (int i = 1; i <= segments; i++)
+            {
+                float stepAngle = (-_fovAngle / 2f) + (_fovAngle / segments) * i;
+                Vector3 nextPoint = eyePos + _DirFromAngle(stepAngle, false) * _viewDistance;
+                Gizmos.DrawLine(lastPoint, nextPoint);
+                lastPoint = nextPoint;
+            }
+
+            // 2. MENGGAMBAR GARIS LASER MATA / KEPALA
+            if (_lookTargetIK != null)
+            {
+                Gizmos.color = _playerDetected ? Color.green : Color.red;
+                Gizmos.DrawLine(eyePos, _lookTargetIK.position);
+                Gizmos.DrawWireSphere(_lookTargetIK.position, 0.15f);
+            }
         }
     }
 }

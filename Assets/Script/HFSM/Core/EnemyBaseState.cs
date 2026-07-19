@@ -12,7 +12,6 @@ namespace HFSM.Core
             this.brain = brain;
         }
 
-        // Fungsi utilitas untuk mendeteksi apakah Player berada di dalam jangkauan tertentu
         protected bool IsPlayerInDistance(float range)
         {
             if (brain.PlayerTarget == null) return false;

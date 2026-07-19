@@ -19,11 +19,9 @@ namespace HFSM.Combat
 
             if (brain.PlayerTarget == null) return;
 
-            // Kejar player menggunakan data speed dari brain
             brain.transform.position = Vector3.MoveTowards(brain.transform.position, brain.PlayerTarget.position, brain.MoveSpeed * Time.deltaTime);
             brain.transform.LookAt(new Vector3(brain.PlayerTarget.position.x, brain.transform.position.y, brain.PlayerTarget.position.z));
 
-            // Polimorfisme Interface: Tentukan jenis serangan berdasarkan kapabilitas class runtime saat ini
             if (IsPlayerInDistance(brain.AttackRange))
             {
                 if (brain is IMeele)

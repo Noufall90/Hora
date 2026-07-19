@@ -18,7 +18,6 @@ namespace HFSM.Core
         public virtual void FixedUpdate() { subState?.FixedUpdate(); }
         public virtual void Exit() { subState?.Exit(); }
 
-        // Fungsi internal untuk mengatur sub-state (hierarki bertingkat)
         protected void SetSubState(State newSubState)
         {
             subState?.Exit();
