@@ -80,13 +80,41 @@ namespace procedural_animation
         {
             _velocity = transform.position - _lastBodyPosition;
 
-            if (_velocity.magnitude > 0.001f)
+            bool isBodyMovingOrRotating = _velocity.magnitude > 0.001f;
+
+            // Cek apakah ada kaki yang terlalu jauh karena rotasi badan
+            if (!isBodyMovingOrRotating)
+            {
+                for (int i = 0; i < _nLimbs; i++)
+                {
+                    if (!_limbs[i].moving)
+                    {
+                        Vector3 desiredPosition = transform.TransformPoint(_limbs[i].defaultPosition);
+                        if (Vector3.Distance(desiredPosition, _limbs[i].lastPosition) > _stepSize)
+                        {
+                            isBodyMovingOrRotating = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (isBodyMovingOrRotating)
             {
                 _HandleMovement();
             }
             else if (!_allLimbsResting)
             {
                 _BackToRestPosition();
+            }
+
+            // Kunci posisi kaki yang diam agar tidak bergeser mengikuti badan
+            for (int i = 0; i < _nLimbs; i++)
+            {
+                if (!_limbs[i].moving)
+                {
+                    _limbs[i].IKTarget.position = _limbs[i].lastPosition;
+                }
             }
 
             _CheckLineOfSight();
@@ -170,11 +198,7 @@ namespace procedural_animation
                 }
             }
 
-            for (int i = 0; i < _nLimbs; i++)
-            {
-                if (i != limbToMove && !_limbs[i].moving)
-                    _limbs[i].IKTarget.position = _limbs[i].lastPosition;
-            }
+            // Pinning posisi dipindah ke Tick() agar selalu dieksekusi
 
             if (limbToMove != -1)
             {

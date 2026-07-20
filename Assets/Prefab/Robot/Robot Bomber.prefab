@@ -358,10 +358,8 @@ MonoBehaviour:
   detectRange: 30
   attackRange: 28
   fieldOfView: 140
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
   showDebugGizmos: 1
+  fireRate: 2
   granadePrefab: {fileID: 2547927897477736483, guid: 0308f5d676870014ead4a52452b4c09a,
     type: 3}
   throwPosition: {fileID: 8761354757296189072}
@@ -398,8 +396,8 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5399323257696844442}
-  m_Enabled: 1
-  m_CastShadows: 1
+  m_Enabled: 0
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -437,7 +435,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:

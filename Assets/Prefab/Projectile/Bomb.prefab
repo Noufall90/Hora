@@ -149,7 +149,7 @@ MonoBehaviour:
   explosionEffectPrefab: {fileID: 1910340192122342534, guid: f3cdff52300b9a642a17bd889e38e3e2,
     type: 3}
   explosionParticleOffset: {x: 0, y: 1, z: 0}
-  explosionDelay: 2
+  explosionDelay: 0.1
   explosionForce: 10
   explosionRadius: 4
   upwardsModifier: 1
