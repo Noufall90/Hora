@@ -735,7 +735,7 @@ MonoBehaviour:
     m_Bits: 8
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 375
+    m_Bits: 503
 --- !u!114 &298099782682721964
 MonoBehaviour:
   m_ObjectHideFlags: 0

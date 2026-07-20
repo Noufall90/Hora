@@ -47,6 +47,10 @@ namespace HFSM.Combat
                 {
                     stateMachine.ChangeState(new ShooterAttackState(brain, stateMachine));
                 }
+                else if (brain is IBomber)
+                {
+                    stateMachine.ChangeState(new BomberAttackState(brain, stateMachine));
+                }
             }
         }
 

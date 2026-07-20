@@ -15,4 +15,13 @@ namespace Enemy
         GameObject BulletPrefab { get; }
         void ShootAttack();
     }
+
+    public interface IBomber
+    {
+        float FireRate { get; }
+        float ThrowForce { get; }
+        Transform ThrowPosition { get; }
+        GameObject GranadePrefab { get; }
+        void ThrowGranade();
+    }
 }

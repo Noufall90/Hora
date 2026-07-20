@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2889022055675048601}
   - component: {fileID: 2285583225538002236}
   - component: {fileID: 4061387717636278774}
-  - component: {fileID: 1051568576706177622}
+  - component: {fileID: 1604249896372772420}
   - component: {fileID: 4936558368642713642}
-  - component: {fileID: 1933182284247245835}
+  - component: {fileID: 7312096348054750092}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Peluru
@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 10.216026, y: 11.11972, z: 11.074681}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 11, y: 11.9730425, z: 11.924547}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86,14 +86,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1051568576706177622
-BoxCollider:
+--- !u!135 &1604249896372772420
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2547927897477736483}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 11188f6a270915b419393a4400ee10fe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -101,11 +101,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01732051, y: 0.019999996, z: 0.023657938}
+  m_Radius: 0.011828969
   m_Center: {x: 0.0000081793405, y: -0.00016289015, z: -0.0021191838}
 --- !u!54 &4936558368642713642
 Rigidbody:
@@ -116,8 +116,8 @@ Rigidbody:
   m_GameObject: {fileID: 2547927897477736483}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.05
+  m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1933182284247245835
+--- !u!114 &7312096348054750092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,10 +143,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2547927897477736483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b83527d54710154fafc8eca4bc7666c, type: 3}
+  m_Script: {fileID: 11500000, guid: ac667e12fa2c50d49baf1767bda59bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  targetLayer:
+  explosionEffectPrefab: {fileID: 1910340192122342534, guid: f3cdff52300b9a642a17bd889e38e3e2,
+    type: 3}
+  explosionParticleOffset: {x: 0, y: 1, z: 0}
+  explosionDelay: 2
+  explosionForce: 10
+  explosionRadius: 4
+  upwardsModifier: 1
+  explosionDamage: 50
+  damageLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  physicsLayerMask:
+    serializedVersion: 2
+    m_Bits: 456
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 320

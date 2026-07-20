@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.antigravity.ide": {
+      "version": "https://github.com/billythekidz/UnityAntigravityIDE.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3520075082911bf236ade261e544078a3f9bed65"
+    },
     "com.autodesk.fbx": {
       "version": "4.2.1",
       "depth": 1,
