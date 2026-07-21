@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1496520390653390745}
   - component: {fileID: 702645963703419791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8781563768527762286}
   - component: {fileID: 3595944121967899906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6835085330662151477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677381824585409077}
   - component: {fileID: 2471561105165115119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4210578586771890415}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 5661085278259881968}
   - component: {fileID: 8125551064291930740}
   - component: {fileID: 7866817730707204946}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Robot Bomber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4220716582057830520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9089081922589597783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9159110594143667943}
   - component: {fileID: 7430892787826530461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rig 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2636813557935814952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8761354757296189072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PointShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6847282383094890861}
   - component: {fileID: 8664365529014344742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7808202115579316432}
   - component: {fileID: 7036960834624275166}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8226699882911509597}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660972828215682253}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1871190131571716830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4144468137929170183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,15 +1058,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8618663847047047248, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8017449571587430431, guid: dd0c0cde9de59e344a52abed73ae8b8d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e99f4c1e407ad314994444ad6dafbff7, type: 2}
+    - target: {fileID: -7162627411066416872, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6195682479679079286, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4321643559760182654, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4069349161350299345, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3906703486257510691, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 454481839767047324, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 805736199766248615, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 904680165268617682, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd0c0cde9de59e344a52abed73ae8b8d,
         type: 3}
       propertyPath: m_Name
       value: Robot Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1792017040253704043, guid: dd0c0cde9de59e344a52abed73ae8b8d,
         type: 3}
@@ -1082,6 +1132,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151451874852003304, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039928134909014495, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4101161180453605438, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402759673996819554, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109835549950395608, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829891385941147483, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043096713822229042, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335942816802443480, guid: dd0c0cde9de59e344a52abed73ae8b8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

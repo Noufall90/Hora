@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4765602798703853346}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5438809199634239146}
   - component: {fileID: 4548863139373386221}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6124955843049832767}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7734949739647701565}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8485715130071705421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shoot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6134343305088191134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5293797403347929553}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7405533842624130965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 799068162161949210}
   - component: {fileID: 3828104020802153591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rig 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4028286936877779408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 857095301684333907}
   - component: {fileID: 6368302478330690029}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281374779829589224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shoot Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2358677780726687368}
   - component: {fileID: 6434978724013043495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3213271615537093954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,7 +637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4171685897990929976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 298099782682721964}
   - component: {fileID: 6477940304345368035}
   - component: {fileID: 5687712599703399074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Robot Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4418274908971868070}
   - component: {fileID: 2007090312915680033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3492290803864199249}
   - component: {fileID: 6118035914716500951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Foot IK (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,6 +1009,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8380463750829143384, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -7405561023644951361, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1034,6 +1039,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e99f4c1e407ad314994444ad6dafbff7, type: 2}
+    - target: {fileID: -6279308502424296128, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -5980681763877751400, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1053,6 +1063,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.000000044703487
+      objectReference: {fileID: 0}
+    - target: {fileID: -5417376748801597835, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -5298329099699835583, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
@@ -1074,6 +1089,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.2269738
       objectReference: {fileID: 0}
+    - target: {fileID: -4472727485410197602, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -4300216104801188659, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1094,6 +1114,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.68930984
       objectReference: {fileID: 0}
+    - target: {fileID: -4258411891960909470, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -4128383740851021839, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1109,7 +1134,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -3265272435467593657, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -3113058195477675387, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2634009008174638161, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1164,10 +1199,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -835137915635994905, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_Name
       value: Robot Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426930390695991081, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594732495236292197, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3310083526361138146, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3332846564715258097, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
@@ -1209,6 +1269,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.32038784
       objectReference: {fileID: 0}
+    - target: {fileID: 4472580182714309080, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5579372310280620751, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1248,6 +1313,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.28584006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817030905184700495, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824243264934589365, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185132120425049697, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367473181674845448, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9102040665355718043, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
         type: 3}

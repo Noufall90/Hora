@@ -54,8 +54,6 @@ public class Granade : MonoBehaviour
 
     private void Explode()
     {
-        Debug.Log("BOOM!");
-
         if (explosionEffectPrefab != null)
         {
             GameObject effect = Instantiate(explosionEffectPrefab, transform.position + explosionParticleOffset, Quaternion.identity);

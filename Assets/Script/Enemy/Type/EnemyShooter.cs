@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Enemy
@@ -5,14 +6,13 @@ namespace Enemy
     public class EnemyShooter : EnemyBrain, IShooter
     {
         [Header("Shooter Settings")]
-        [SerializeField] private float fireRate = 1.5f;
+        [SerializeField] private float fireRate = 1f;
         [SerializeField] private Transform firePoint;
         [SerializeField] private Transform firePoint2;
         [SerializeField] private GameObject bulletPrefab;
 
         private Transform target;
         private float nextFireTime;
-        private bool useFirstFirePoint = true;
 
         public float FireRate => fireRate;
         public Transform FirePoint => firePoint;
@@ -22,7 +22,6 @@ namespace Enemy
         {
             base.Update();
 
-            // Gunakan metode deteksi dari base class (sudah pakai view cone)
             if (IsPlayerDetected())
             {
                 target = playerTarget;
@@ -33,36 +32,47 @@ namespace Enemy
                 return;
             }
 
-            // Menghadap ke target (hanya rotasi Y)
+            // Menghadap player
             Vector3 lookPos = target.position - transform.position;
             lookPos.y = 0;
+
             if (lookPos != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(lookPos);
 
-            // Gunakan IsPlayerInAttackRange() untuk menembak (view cone + jarak)
+            // Mulai satu siklus tembakan
             if (IsPlayerInAttackRange() && Time.time >= nextFireTime)
             {
                 nextFireTime = Time.time + fireRate;
-                ShootAttack();
+                StartCoroutine(ShootSequence());
             }
+        }
+
+        private IEnumerator ShootSequence()
+        {
+            Shoot(firePoint);
+
+            yield return new WaitForSeconds(fireRate * 0.5f);
+
+            Shoot(firePoint2);
+        }
+
+        private void Shoot(Transform point)
+        {
+            if (bulletPrefab == null || point == null || target == null)
+                return;
+
+            Quaternion rotation = Quaternion.LookRotation(
+                target.position - point.position);
+
+            Instantiate(
+                bulletPrefab,
+                point.position,
+                rotation);
         }
 
         public void ShootAttack()
         {
-            if (bulletPrefab == null || target == null)
-                return;
-
-            Transform currentFirePoint = useFirstFirePoint ? firePoint : firePoint2;
-            if (currentFirePoint == null)
-                currentFirePoint = firePoint != null ? firePoint : firePoint2;
-
-            if (currentFirePoint != null)
-            {
-                Quaternion rotation = Quaternion.LookRotation(target.position - currentFirePoint.position);
-                Instantiate(bulletPrefab, currentFirePoint.position, rotation);
-            }
-
-            useFirstFirePoint = !useFirstFirePoint;
+            StartCoroutine(ShootSequence());
         }
     }
 }
