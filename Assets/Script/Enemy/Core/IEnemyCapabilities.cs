@@ -4,7 +4,6 @@ namespace Enemy
 {
     public interface IMeele
     {
-        float MeeleAttackRange { get; }
         void MeeleAttack();
     }
 
@@ -12,6 +11,7 @@ namespace Enemy
     {
         float FireRate { get; }
         Transform FirePoint { get; }
+        Transform FirePoint2 { get; }
         GameObject BulletPrefab { get; }
         void ShootAttack();
     }
@@ -23,5 +23,14 @@ namespace Enemy
         Transform ThrowPosition { get; }
         GameObject GranadePrefab { get; }
         void ThrowGranade();
+    }
+
+    public interface ITower
+    {
+        float FireRate { get; }
+        Transform FirePoint { get; }
+        Transform FirePoint2 { get; }
+        GameObject BulletPrefab { get; }
+        void ShootAttack();
     }
 }

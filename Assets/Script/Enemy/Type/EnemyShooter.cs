@@ -16,6 +16,7 @@ namespace Enemy
 
         public float FireRate => fireRate;
         public Transform FirePoint => firePoint;
+        public Transform FirePoint2 => firePoint2;
         public GameObject BulletPrefab => bulletPrefab;
 
         protected override void Update()
@@ -32,14 +33,8 @@ namespace Enemy
                 return;
             }
 
-            // Menghadap player
-            Vector3 lookPos = target.position - transform.position;
-            lookPos.y = 0;
+            RotateTowardsPlayer();
 
-            if (lookPos != Vector3.zero)
-                transform.rotation = Quaternion.LookRotation(lookPos);
-
-            // Mulai satu siklus tembakan
             if (IsPlayerInAttackRange() && Time.time >= nextFireTime)
             {
                 nextFireTime = Time.time + fireRate;
@@ -61,13 +56,9 @@ namespace Enemy
             if (bulletPrefab == null || point == null || target == null)
                 return;
 
-            Quaternion rotation = Quaternion.LookRotation(
-                target.position - point.position);
+            Quaternion rotation = Quaternion.LookRotation(target.position - point.position);
 
-            Instantiate(
-                bulletPrefab,
-                point.position,
-                rotation);
+            Instantiate(bulletPrefab, point.position,rotation);
         }
 
         public void ShootAttack()

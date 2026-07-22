@@ -12,14 +12,25 @@ namespace HFSM.Passive
 
         public override void Enter()
         {
-            brain.Agent.isStopped = false;
-            brain.Agent.speed = brain.MoveSpeed;
-            TrySetNewDestination();
+            if (!brain.CanMove) return;
+
+            if (brain.HasActiveNavMeshAgent)
+            {
+                brain.Agent.isStopped = false;
+                brain.Agent.speed = brain.MoveSpeed;
+                TrySetNewDestination();
+            }
         }
 
         public override void Update()
         {
             base.Update();
+
+            if (!brain.CanMove)
+            {
+                stateMachine.ChangeState(new IdleState(brain, stateMachine));
+                return;
+            }
 
             if (brain.IsPlayerDetected())
             {
@@ -27,7 +38,7 @@ namespace HFSM.Passive
                 return;
             }
 
-            if (!brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
+            if (brain.HasActiveNavMeshAgent && !brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
             {
                 stateMachine.ChangeState(new IdleState(brain, stateMachine));
             }
@@ -35,11 +46,16 @@ namespace HFSM.Passive
 
         public override void Exit()
         {
-            brain.Agent.ResetPath();
+            if (brain.HasActiveNavMeshAgent)
+            {
+                brain.Agent.ResetPath();
+            }
         }
 
         private bool TrySetNewDestination()
         {
+            if (!brain.HasActiveNavMeshAgent) return false;
+
             Vector3 centre = brain.PatrolCentrePoint.position;
             Vector3 randomPoint = centre + Random.insideUnitSphere * brain.PatrolRange;
             NavMeshHit hit;

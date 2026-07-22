@@ -314,7 +314,7 @@ MonoBehaviour:
     m_Bits: 8
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 465
 --- !u!114 &9027476749162694949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  rotationSpeed: 50
   patrolRange: 10
   patrolCentrePoint: {fileID: 0}
   detectRange: 30

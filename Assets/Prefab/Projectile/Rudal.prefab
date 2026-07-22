@@ -153,6 +153,10 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 264
+  explosionEffectPrefab: {fileID: 1910340192122342534, guid: f3cdff52300b9a642a17bd889e38e3e2,
+    type: 3}
+  explosionOffset: {x: 0, y: 0, z: 0}
+  explosionLifeTime: 3
   trailRenderer: {fileID: 3099768448153013291}
 --- !u!96 &3099768448153013291
 TrailRenderer:

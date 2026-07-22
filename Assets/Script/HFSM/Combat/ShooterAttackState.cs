@@ -25,17 +25,14 @@ namespace HFSM.Combat
 
             if (!IsPlayerInDistance(brain.AttackRange))
             {
-                if (brain.MoveSpeed > 0)
+                if (brain.CanMove)
                 {
                     stateMachine.ChangeState(new ChasingState(brain, stateMachine));
                 }
                 return;
             }
 
-            if (brain.PlayerTarget != null)
-            {
-                brain.transform.LookAt(new Vector3(brain.PlayerTarget.position.x, brain.transform.position.y, brain.PlayerTarget.position.z));
-            }
+            brain.RotateTowardsPlayer();
 
             cooldownTimer += Time.deltaTime;
             if (shooterCapability != null && cooldownTimer >= shooterCapability.FireRate)

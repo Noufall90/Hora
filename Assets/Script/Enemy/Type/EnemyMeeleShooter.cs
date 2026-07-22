@@ -10,11 +10,13 @@ namespace Enemy
         [Header("Shooter Capability")]
         [SerializeField] private float fireRate = 2f;
         [SerializeField] private Transform firePoint;
+        [SerializeField] private Transform firePoint2;
         [SerializeField] private GameObject bulletPrefab;
 
         public float MeeleAttackRange => meeleAttackRange;
         public float FireRate => fireRate;
         public Transform FirePoint => firePoint;
+        public Transform FirePoint2 => firePoint2;
         public GameObject BulletPrefab => bulletPrefab;
 
         public void MeeleAttack()

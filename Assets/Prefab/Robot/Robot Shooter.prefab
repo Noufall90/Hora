@@ -762,13 +762,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  rotationSpeed: 50
   patrolRange: 30
   patrolCentrePoint: {fileID: 0}
   detectRange: 30
   attackRange: 25
   fieldOfView: 140
   showDebugGizmos: 1
-  fireRate: 1
+  fireRate: 2
   firePoint: {fileID: 8485715130071705421}
   firePoint2: {fileID: 281374779829589224}
   bulletPrefab: {fileID: 4988657591272314698, guid: 1d9b26362106d9a488b740189ac12e28,

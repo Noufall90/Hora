@@ -11,7 +11,7 @@ namespace HFSM.Combat
 
         public override void Enter()
         {
-            if (brain.Agent != null)
+            if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.isStopped = false;
                 brain.Agent.speed = brain.MoveSpeed;
@@ -30,14 +30,14 @@ namespace HFSM.Combat
                 return;
             }
 
-            if (brain.Agent != null)
+            if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.SetDestination(brain.PlayerTarget.position);
             }
 
-            brain.transform.LookAt(new Vector3(brain.PlayerTarget.position.x, brain.transform.position.y, brain.PlayerTarget.position.z));
+            brain.RotateTowardsPlayer();
 
-            if (IsPlayerInDistance(brain.AttackRange))
+            if (!brain.CanMove || IsPlayerInDistance(brain.AttackRange))
             {
                 if (brain is IMeele)
                 {
@@ -56,7 +56,7 @@ namespace HFSM.Combat
 
         public override void Exit()
         {
-            if (brain.Agent != null)
+            if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.ResetPath();
             }

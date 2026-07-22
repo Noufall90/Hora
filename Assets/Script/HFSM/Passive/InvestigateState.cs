@@ -16,7 +16,7 @@ namespace HFSM.Passive
 
         public override void Enter()
         {
-            if (brain.Agent != null)
+            if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.isStopped = false;
                 brain.Agent.speed = brain.MoveSpeed;
@@ -34,7 +34,13 @@ namespace HFSM.Passive
                 return;
             }
 
-            if (brain.Agent != null)
+            if (!brain.CanMove)
+            {
+                stateMachine.ChangeState(new IdleState(brain, stateMachine));
+                return;
+            }
+
+            if (brain.HasActiveNavMeshAgent)
             {
                 if (!brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
                 {
@@ -45,7 +51,7 @@ namespace HFSM.Passive
 
         public override void Exit()
         {
-            if (brain.Agent != null)
+            if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.ResetPath();
             }

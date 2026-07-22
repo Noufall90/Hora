@@ -5,11 +5,11 @@ using HFSM.Core;
 namespace Enemy
 {
     [RequireComponent(typeof(EnemyHealth))]
-    [RequireComponent(typeof(NavMeshAgent))]
     public abstract class EnemyBrain : MonoBehaviour
     {
         [Header("Base Movement Settings")]
         [SerializeField] protected float moveSpeed;
+        [SerializeField] protected float rotationSpeed = 50f;
 
         [Header("Base Patrol Settings")]
         [SerializeField] protected float patrolRange = 10f;
@@ -31,12 +31,34 @@ namespace Enemy
         protected EnemyHealth health;
 
         public float MoveSpeed => moveSpeed;
+        public float RotationSpeed => rotationSpeed;
         public float PatrolRange => patrolRange;
         public float DetectRange => detectRange;
         public float AttackRange => attackRange;
         public float FieldOfView => fieldOfView;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
+        public bool HasActiveNavMeshAgent => agent != null && agent.enabled && agent.isOnNavMesh;
+        public bool CanMove => moveSpeed > 0f && HasActiveNavMeshAgent;
+
+        public virtual void RotateTowardsTarget(Vector3 targetPosition)
+        {
+            Vector3 direction = targetPosition - transform.position;
+            direction.y = 0f;
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
+        }
+
+        public virtual void RotateTowardsPlayer()
+        {
+            if (playerTarget != null)
+            {
+                RotateTowardsTarget(playerTarget.position);
+            }
+        }
 
         public Transform PatrolCentrePoint => patrolCentrePoint != null ? patrolCentrePoint : transform;
 
@@ -48,7 +70,7 @@ namespace Enemy
 
         protected virtual void Start()
         {
-            if (agent != null)
+            if (HasActiveNavMeshAgent)
                 agent.speed = moveSpeed;
 
             GameObject player = GameObject.FindWithTag("Player");
@@ -76,7 +98,7 @@ namespace Enemy
             return IsPlayerInViewCone(detectRange);
         }
 
-        protected bool IsPlayerInViewCone(float maxDistance)
+        protected virtual bool IsPlayerInViewCone(float maxDistance)
         {
             if (playerTarget == null) return false;
 
@@ -99,7 +121,7 @@ namespace Enemy
 
         protected virtual void Update()
         {
-            if (agent != null) agent.speed = moveSpeed;
+            if (HasActiveNavMeshAgent) agent.speed = moveSpeed;
             hfsm.Update();
         }
 

@@ -26,15 +26,29 @@ namespace HFSM.Combat
 
             if (!IsPlayerInDistance(brain.AttackRange))
             {
-                stateMachine.ChangeState(new ChasingState(brain, stateMachine));
+                if (brain.CanMove)
+                {
+                    stateMachine.ChangeState(new ChasingState(brain, stateMachine));
+                }
                 return;
             }
+
+            brain.RotateTowardsPlayer();
 
             cooldownTimer += Time.deltaTime;
             if (cooldownTimer >= attackCooldown)
             {
                 meeleCapability?.MeeleAttack();
                 cooldownTimer = 0f;
+            }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            if (brain is EnemyMeele enemyMeele)
+            {
+                enemyMeele.StopAttack();
             }
         }
     }

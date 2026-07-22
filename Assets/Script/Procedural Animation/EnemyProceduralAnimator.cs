@@ -45,13 +45,28 @@ namespace procedural_animation
         private Transform _currentTarget;
         private bool _playerDetected;
         private float _scanTimer;
+        private bool _isAttacking;
+        private Enemy.EnemyBrain _brain;
+
         public bool PlayerDetected => _playerDetected;
         public override bool IsMoving => !_allLimbsResting;
+        public bool IsAttacking { get => _isAttacking; set => _isAttacking = value; }
+
+        public void SetAttacking(bool attacking, Transform target = null)
+        {
+            _isAttacking = attacking;
+            if (target != null)
+            {
+                _currentTarget = target;
+            }
+        }
+
         public override void SetLookTarget(Transform target) => _currentTarget = target;
         public override void ClearLookTarget() => _currentTarget = null;
 
         protected override void Initialize()
         {
+            _brain = GetComponentInParent<Enemy.EnemyBrain>() ?? GetComponent<Enemy.EnemyBrain>();
             _nLimbs = _limbTargets.Length;
             _limbs = new ProceduralLimb[_nLimbs];
 
@@ -124,11 +139,17 @@ namespace procedural_animation
         {
             if (_lookTargetIK == null) return;
 
-            if (_playerDetected && _currentTarget != null)
+            Transform targetToLook = _currentTarget;
+            if (targetToLook == null && _brain != null)
+            {
+                targetToLook = _brain.PlayerTarget;
+            }
+
+            if ((_isAttacking || _playerDetected) && targetToLook != null)
             {
                 _lookTargetIK.position = Vector3.Lerp(
                     _lookTargetIK.position,
-                    _currentTarget.position,
+                    targetToLook.position,
                     Time.deltaTime * _lookSpeed);
             }
             else
