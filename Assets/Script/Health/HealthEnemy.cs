@@ -6,8 +6,6 @@ namespace Enemy
     {
         protected override void Die()
         {
-            // Tambahkan efek mati enemy di sini
-
             base.Die();
         }
     }

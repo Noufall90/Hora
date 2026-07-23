@@ -33,6 +33,12 @@ namespace HFSM.Combat
                 return;
             }
 
+            if (brain is EnemyMeeleShooter meeleShooterCheck && meeleShooterCheck.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Shooter)
+            {
+                stateMachine.ChangeState(new ShooterAttackState(brain, stateMachine));
+                return;
+            }
+
             brain.RotateTowardsPlayer();
 
             cooldownTimer += Time.deltaTime;
@@ -49,6 +55,10 @@ namespace HFSM.Combat
             if (brain is EnemyMeele enemyMeele)
             {
                 enemyMeele.StopAttack();
+            }
+            else if (brain is EnemyMeeleShooter enemyMeeleShooter)
+            {
+                enemyMeeleShooter.StopAttack();
             }
         }
     }

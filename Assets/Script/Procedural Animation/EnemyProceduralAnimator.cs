@@ -145,7 +145,9 @@ namespace procedural_animation
                 targetToLook = _brain.PlayerTarget;
             }
 
-            if ((_isAttacking || _playerDetected) && targetToLook != null)
+            bool isTargeting = (_isAttacking || _playerDetected || _currentTarget != null || (_brain != null && _brain.IsPlayerDetected())) && targetToLook != null;
+
+            if (isTargeting)
             {
                 _lookTargetIK.position = Vector3.Lerp(
                     _lookTargetIK.position,

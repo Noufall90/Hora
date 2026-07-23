@@ -32,6 +32,12 @@ namespace HFSM.Combat
                 return;
             }
 
+            if (brain is EnemyMeeleShooter meeleShooterCheck && meeleShooterCheck.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Meele)
+            {
+                stateMachine.ChangeState(new MeeleAttackState(brain, stateMachine));
+                return;
+            }
+
             brain.RotateTowardsPlayer();
 
             cooldownTimer += Time.deltaTime;

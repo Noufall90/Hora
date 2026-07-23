@@ -18,6 +18,7 @@ namespace Enemy
         [Header("Base Combat Settings")]
         [SerializeField] protected float detectRange;
         [SerializeField] protected float attackRange;
+        [SerializeField] protected float meeleRange;
         [SerializeField] [Range(0f, 180f)] protected float fieldOfView = 60f; // dibatasi 0-180
 
         [Header("Debug")]
@@ -35,6 +36,7 @@ namespace Enemy
         public float PatrolRange => patrolRange;
         public float DetectRange => detectRange;
         public float AttackRange => attackRange;
+        public float MeeleRange => meeleRange;
         public float FieldOfView => fieldOfView;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
@@ -119,6 +121,13 @@ namespace Enemy
             return distance <= attackRange && IsPlayerInViewCone(attackRange);
         }
 
+        public bool IsPlayerInMeeleRange()
+        {
+            if (playerTarget == null) return false;
+            float distance = Vector3.Distance(transform.position, playerTarget.position);
+            return distance <= meeleRange && IsPlayerInViewCone(meeleRange);
+        }
+
         protected virtual void Update()
         {
             if (HasActiveNavMeshAgent) agent.speed = moveSpeed;
@@ -138,6 +147,11 @@ namespace Enemy
             DrawViewCone(detectRange, Color.yellow);
             Gizmos.color = Color.red;
             DrawViewCone(attackRange, Color.red);
+            if (meeleRange > 0f)
+            {
+                Gizmos.color = Color.cyan;
+                DrawViewCone(meeleRange, Color.cyan);
+            }
         }
 
         private void DrawViewCone(float range, Color color)

@@ -39,7 +39,18 @@ namespace HFSM.Combat
 
             if (!brain.CanMove || IsPlayerInDistance(brain.AttackRange))
             {
-                if (brain is IMeele)
+                if (brain is EnemyMeeleShooter meeleShooter)
+                {
+                    if (meeleShooter.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Meele)
+                    {
+                        stateMachine.ChangeState(new MeeleAttackState(brain, stateMachine));
+                    }
+                    else
+                    {
+                        stateMachine.ChangeState(new ShooterAttackState(brain, stateMachine));
+                    }
+                }
+                else if (brain is IMeele)
                 {
                     stateMachine.ChangeState(new MeeleAttackState(brain, stateMachine));
                 }
