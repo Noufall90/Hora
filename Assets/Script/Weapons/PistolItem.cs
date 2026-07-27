@@ -8,7 +8,6 @@ namespace PlayerWeapons
     {
         public string weaponName;
         public GameObject weaponPrefab;
-        public GameObject bulletPrefab;
         public float fireRate;
         public float magazineEnergy;
         public float energyReloadRate;

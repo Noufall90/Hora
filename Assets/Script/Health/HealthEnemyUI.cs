@@ -3,7 +3,7 @@ using System;
 
 namespace Enemy
 {
-    public class HealthUI : MonoBehaviour
+    public class HealthEnemyUI : MonoBehaviour
     {
         
     }

@@ -195,8 +195,7 @@ namespace PlayerWeapons
 
         public void Shoot()
         {
-            PistolData currentPistol = CurrentPistolData;
-            GameObject prefabToSpawn = currentPistol.bulletPrefab != null ? currentPistol.bulletPrefab : bulletPrefab;
+            GameObject prefabToSpawn = bulletPrefab;
 
             Transform spawnPoint = GetActiveFirePoint();
             if (spawnPoint == null)
