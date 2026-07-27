@@ -12,11 +12,18 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.useGravity = false;
+        }
     }
 
     private void Start()
     {
-        rb.velocity = transform.forward * speed;
+        if (rb != null)
+        {
+            rb.velocity = transform.forward * speed;
+        }
         Destroy(gameObject, lifeTime);
     }
 

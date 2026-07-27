@@ -68,6 +68,7 @@ namespace PlayerData
         private void HandleInputAttack()
         {
             if (_playerAnimAttack == null) return;
+            if (_isRolling) return;
 
             // Attack / Slash Input (Left Click Mouse atau Tombol J)
             bool isAttackPressed = (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) ||
@@ -75,7 +76,6 @@ namespace PlayerData
 
             if (isAttackPressed)
             {
-                if (_isRolling) StopRoll();
                 _playerAnimAttack.HandleAttack();
             }
 
@@ -85,7 +85,6 @@ namespace PlayerData
 
             if (isShootPressed)
             {
-                if (_isRolling) StopRoll();
                 _playerAnimAttack.HandleShoot();
             }
         }

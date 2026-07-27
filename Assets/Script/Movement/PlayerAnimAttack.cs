@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerWeapons;
 
 namespace PlayerData
 {
@@ -21,7 +22,14 @@ namespace PlayerData
         [SerializeField] private float reverseTimeBeforeAction = 0.2f;
         [SerializeField] private float reverseTimeAfterAction = 0.2f;
 
+        [Header("Weapon Data Providers")]
+        [SerializeField] private WeaponsManager weaponsManager;
+        [SerializeField] private PistolItem pistolItem;
+        [SerializeField] private MeeleItem meeleItem;
+
         private static readonly int DissolveHash = Shader.PropertyToID("_Dissolve");
+
+        public static PlayerAnimAttack Instance { get; private set; }
 
         private PlayerController _playerController;
         private Animator _animator => (_playerController != null ? _playerController.Animator : (PlayerController.Instance != null ? PlayerController.Instance.Animator : null));
@@ -45,9 +53,32 @@ namespace PlayerData
         public bool IsAttackingOrShooting => _isAttacking || _isShooting;
         public bool IsAttackingOrShielding => IsAttackingOrShooting;
 
+        public GameObject GetActiveMeleeObject()
+        {
+            if (weaponsManager != null && weaponsManager.CurrentMeleeObject != null)
+                return weaponsManager.CurrentMeleeObject;
+            if (WeaponsManager.Instance != null && WeaponsManager.Instance.CurrentMeleeObject != null)
+                return WeaponsManager.Instance.CurrentMeleeObject;
+            return dissolvePedang;
+        }
+
+        public GameObject GetActivePistolObject()
+        {
+            if (weaponsManager != null && weaponsManager.CurrentPistolObject != null)
+                return weaponsManager.CurrentPistolObject;
+            if (WeaponsManager.Instance != null && WeaponsManager.Instance.CurrentPistolObject != null)
+                return WeaponsManager.Instance.CurrentPistolObject;
+            return dissolvePistol;
+        }
+
         private void Awake()
         {
+            if (Instance == null) Instance = this;
             _playerController = GetComponent<PlayerController>();
+            if (weaponsManager == null) weaponsManager = GetComponent<WeaponsManager>();
+            if (weaponsManager == null) weaponsManager = GetComponentInParent<WeaponsManager>();
+            if (pistolItem == null) pistolItem = GetComponentInChildren<PistolItem>();
+            if (meeleItem == null) meeleItem = GetComponentInChildren<MeeleItem>();
         }
 
         private void Start()
@@ -60,20 +91,35 @@ namespace PlayerData
             InitializeDissolveObjects();
         }
 
+        public void InitializeWeaponDissolve(GameObject weaponObj, bool isActive = false)
+        {
+            if (weaponObj == null) return;
+            float initialVal = isActive ? 1f : 0f;
+            SetDissolveValue(weaponObj, initialVal);
+            _currentDissolveValues[weaponObj] = initialVal;
+            weaponObj.SetActive(isActive);
+        }
+
         private void InitializeDissolveObjects()
         {
-            if (dissolvePedang != null)
+            GameObject activeMelee = GetActiveMeleeObject();
+            if (activeMelee != null)
             {
-                SetDissolveValue(dissolvePedang, 0f);
-                _currentDissolveValues[dissolvePedang] = 0f;
-                dissolvePedang.SetActive(false);
+                InitializeWeaponDissolve(activeMelee, false);
+            }
+            if (dissolvePedang != null && dissolvePedang != activeMelee)
+            {
+                InitializeWeaponDissolve(dissolvePedang, false);
             }
 
-            if (dissolvePistol != null)
+            GameObject activePistol = GetActivePistolObject();
+            if (activePistol != null)
             {
-                SetDissolveValue(dissolvePistol, 0f);
-                _currentDissolveValues[dissolvePistol] = 0f;
-                dissolvePistol.SetActive(false);
+                InitializeWeaponDissolve(activePistol, false);
+            }
+            if (dissolvePistol != null && dissolvePistol != activePistol)
+            {
+                InitializeWeaponDissolve(dissolvePistol, false);
             }
 
             if (dissolveObjects != null)
@@ -104,9 +150,11 @@ namespace PlayerData
         public void HandleAttack()
         {
             if (_animator == null) return;
+            if (_playerController != null && _playerController.IsRolling) return;
 
             _isAttacking = true;
-            TriggerDissolveIn(dissolvePedang);
+            GameObject activeMelee = GetActiveMeleeObject();
+            TriggerDissolveIn(activeMelee);
 
             _animator.SetBool(PlayerController.IsIdleBoolHash, false);
 
@@ -141,14 +189,18 @@ namespace PlayerData
         public void HandleShoot()
         {
             if (_animator == null) return;
+            if (_playerController != null && _playerController.IsRolling) return;
 
             _isShooting = true;
-            TriggerDissolveIn(dissolvePistol);
+            GameObject activePistol = GetActivePistolObject();
+            TriggerDissolveIn(activePistol);
 
             _animator.SetBool(PlayerController.IsIdleBoolHash, false);
 
             _animator.ResetTrigger(PlayerController.ShootTriggerHash);
             _animator.SetTrigger(PlayerController.ShootTriggerHash);
+
+            FireBullet();
 
             if (_shootResetCoroutine != null)
             {
@@ -157,9 +209,22 @@ namespace PlayerData
             _shootResetCoroutine = StartCoroutine(ResetIdleAfterShoot(shootDuration));
         }
 
+        public void FireBullet()
+        {
+            if (weaponsManager != null)
+            {
+                weaponsManager.Shoot();
+            }
+            else if (WeaponsManager.Instance != null)
+            {
+                WeaponsManager.Instance.Shoot();
+            }
+        }
+
         public void OnShootComplete()
         {
             _isShooting = false;
+            GameObject activePistol = GetActivePistolObject();
 
             if (_shootResetCoroutine != null)
             {
@@ -173,11 +238,11 @@ namespace PlayerData
                 {
                     _animator.SetBool(PlayerController.IsIdleBoolHash, true);
                 }
-                TriggerDissolveOut(dissolvePistol);
+                TriggerDissolveOut(activePistol);
             }
             else
             {
-                StartDissolveOutSingle(dissolvePistol);
+                StartDissolveOutSingle(activePistol);
             }
         }
 
@@ -190,6 +255,7 @@ namespace PlayerData
         public void OnAttackComplete()
         {
             _isAttacking = false;
+            GameObject activeMelee = GetActiveMeleeObject();
 
             if (_attackResetCoroutine != null)
             {
@@ -203,11 +269,11 @@ namespace PlayerData
                 {
                     _animator.SetBool(PlayerController.IsIdleBoolHash, true);
                 }
-                TriggerDissolveOut(dissolvePedang);
+                TriggerDissolveOut(activeMelee);
             }
             else
             {
-                StartDissolveOutSingle(dissolvePedang);
+                StartDissolveOutSingle(activeMelee);
             }
         }
 
@@ -248,21 +314,28 @@ namespace PlayerData
         {
             TriggerReverseDissolveIn();
 
+            GameObject activeMelee = GetActiveMeleeObject();
+            GameObject activePistol = GetActivePistolObject();
+
             // Sembunyikan senjata lawan secara langsung agar tidak pernah muncul bersamaan
-            if (targetWeapon == dissolvePedang)
+            if (targetWeapon == activeMelee || targetWeapon == dissolvePedang)
             {
-                ForceHideWeapon(dissolvePistol);
-                if (dissolvePedang != null)
+                ForceHideWeapon(activePistol);
+                if (dissolvePistol != null && dissolvePistol != activePistol) ForceHideWeapon(dissolvePistol);
+
+                if (activeMelee != null)
                 {
-                    StartDissolveInSingle(dissolvePedang);
+                    StartDissolveInSingle(activeMelee);
                 }
             }
-            else if (targetWeapon == dissolvePistol)
+            else if (targetWeapon == activePistol || targetWeapon == dissolvePistol)
             {
-                ForceHideWeapon(dissolvePedang);
-                if (dissolvePistol != null)
+                ForceHideWeapon(activeMelee);
+                if (dissolvePedang != null && dissolvePedang != activeMelee) ForceHideWeapon(dissolvePedang);
+
+                if (activePistol != null)
                 {
-                    StartDissolveInSingle(dissolvePistol);
+                    StartDissolveInSingle(activePistol);
                 }
             }
 
@@ -272,7 +345,7 @@ namespace PlayerData
                 foreach (var obj in dissolveObjects)
                 {
                     if (obj == null) continue;
-                    if (obj == dissolvePedang || obj == dissolvePistol) continue;
+                    if (obj == activeMelee || obj == activePistol || obj == dissolvePedang || obj == dissolvePistol) continue;
 
                     StartDissolveInSingle(obj);
                 }
@@ -293,7 +366,7 @@ namespace PlayerData
                 foreach (var obj in dissolveObjects)
                 {
                     if (obj == null) continue;
-                    if (obj == dissolvePedang || obj == dissolvePistol) continue;
+                    if (obj == GetActiveMeleeObject() || obj == GetActivePistolObject() || obj == dissolvePedang || obj == dissolvePistol) continue;
 
                     StartDissolveOutSingle(obj);
                 }
