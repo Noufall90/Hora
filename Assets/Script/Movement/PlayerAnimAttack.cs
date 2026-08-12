@@ -10,7 +10,6 @@ namespace PlayerData
         [Header("Components")]
         public float maxComboDelay = 0.5f;
         private float slashDuration = 0.4f;
-        [SerializeField] private float shootDuration = 0.4f;
 
         [Header("Barang Dissolve")]
         [SerializeField] private GameObject dissolvePedang;
@@ -24,6 +23,7 @@ namespace PlayerData
 
         [Header("Weapon Data Providers")]
         [SerializeField] private WeaponsManager weaponsManager;
+        [SerializeField] private WeaponsActions weaponsActions;
         [SerializeField] private PistolItem pistolItem;
         [SerializeField] private MeeleItem meeleItem;
 
@@ -41,6 +41,7 @@ namespace PlayerData
 
         private bool _isAttacking;
         private bool _isShooting;
+        private Transform _currentTargetEnemy;
 
         private Dictionary<GameObject, Coroutine> _activeDissolveCoroutines = new Dictionary<GameObject, Coroutine>();
         private Dictionary<GameObject, float> _currentDissolveValues = new Dictionary<GameObject, float>();
@@ -77,6 +78,9 @@ namespace PlayerData
             _playerController = GetComponent<PlayerController>();
             if (weaponsManager == null) weaponsManager = GetComponent<WeaponsManager>();
             if (weaponsManager == null) weaponsManager = GetComponentInParent<WeaponsManager>();
+            if (weaponsActions == null) weaponsActions = GetComponent<WeaponsActions>();
+            if (weaponsActions == null) weaponsActions = GetComponentInParent<WeaponsActions>();
+            if (weaponsActions == null) weaponsActions = GetComponentInChildren<WeaponsActions>();
             if (pistolItem == null) pistolItem = GetComponentInChildren<PistolItem>();
             if (meeleItem == null) meeleItem = GetComponentInChildren<MeeleItem>();
         }
@@ -173,6 +177,15 @@ namespace PlayerData
                 _comboStep = 0;
             }
 
+            if (weaponsActions != null)
+            {
+                weaponsActions.StartMeleeAttack();
+            }
+            else if (WeaponsActions.Instance != null)
+            {
+                WeaponsActions.Instance.StartMeleeAttack();
+            }
+
             if (_attackResetCoroutine != null)
             {
                 StopCoroutine(_attackResetCoroutine);
@@ -200,30 +213,81 @@ namespace PlayerData
             _animator.ResetTrigger(PlayerController.ShootTriggerHash);
             _animator.SetTrigger(PlayerController.ShootTriggerHash);
 
-            FireBullet();
+            WeaponsActions wa = weaponsActions != null ? weaponsActions : WeaponsActions.Instance;
+            _currentTargetEnemy = wa != null ? wa.GetTargetInFov(transform) : null;
+
+            if (_currentTargetEnemy != null)
+            {
+                RotateTowardsEnemy(_currentTargetEnemy);
+            }
 
             if (_shootResetCoroutine != null)
             {
                 StopCoroutine(_shootResetCoroutine);
             }
-            _shootResetCoroutine = StartCoroutine(ResetIdleAfterShoot(shootDuration));
+
+            float delay = wa != null ? wa.shootDelay : 0.5f;
+            float duration = wa != null ? wa.shootDuration : 0.4f;
+
+            _shootResetCoroutine = StartCoroutine(PerformShootRoutine(delay, duration));
         }
 
-        public void FireBullet()
+        private void RotateTowardsEnemy(Transform target)
         {
-            if (weaponsManager != null)
+            if (target == null) return;
+            Vector3 dir = target.position - transform.position;
+            dir.y = 0f;
+            if (dir.sqrMagnitude > 0.001f)
             {
-                weaponsManager.Shoot();
+                transform.rotation = Quaternion.LookRotation(dir.normalized);
             }
-            else if (WeaponsManager.Instance != null)
+        }
+
+        private IEnumerator PerformShootRoutine(float delay, float duration)
+        {
+            float elapsed = 0f;
+            while (elapsed < delay)
             {
-                WeaponsManager.Instance.Shoot();
+                elapsed += Time.deltaTime;
+                if (_currentTargetEnemy != null)
+                {
+                    RotateTowardsEnemy(_currentTargetEnemy);
+                }
+                yield return null;
+            }
+
+            if (_currentTargetEnemy != null)
+            {
+                RotateTowardsEnemy(_currentTargetEnemy);
+            }
+
+            FireBullet(_currentTargetEnemy);
+
+            // Durasi setelah menembak sebelum kembali ke idle
+            if (duration > 0f)
+            {
+                yield return new WaitForSeconds(duration);
+            }
+
+            OnShootComplete();
+        }
+
+        public void FireBullet(Transform targetEnemy = null)
+        {
+            if (weaponsActions != null)
+            {
+                weaponsActions.Shoot(targetEnemy);
+            }
+            else if (WeaponsActions.Instance != null)
+            {
+                WeaponsActions.Instance.Shoot(targetEnemy);
             }
         }
 
         public void OnShootComplete()
         {
             _isShooting = false;
+            _currentTargetEnemy = null;
             GameObject activePistol = GetActivePistolObject();
 
             if (_shootResetCoroutine != null)
@@ -246,16 +310,20 @@ namespace PlayerData
             }
         }
 
-        private IEnumerator ResetIdleAfterShoot(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            OnShootComplete();
-        }
 
         public void OnAttackComplete()
         {
             _isAttacking = false;
             GameObject activeMelee = GetActiveMeleeObject();
+
+            if (weaponsActions != null)
+            {
+                weaponsActions.EndMeleeAttack();
+            }
+            else if (WeaponsActions.Instance != null)
+            {
+                WeaponsActions.Instance.EndMeleeAttack();
+            }
 
             if (_attackResetCoroutine != null)
             {
@@ -281,6 +349,16 @@ namespace PlayerData
         {
             _isAttacking = false;
             _isShooting = false;
+            _currentTargetEnemy = null;
+
+            if (weaponsActions != null)
+            {
+                weaponsActions.EndMeleeAttack();
+            }
+            else if (WeaponsActions.Instance != null)
+            {
+                WeaponsActions.Instance.EndMeleeAttack();
+            }
 
             if (_attackResetCoroutine != null)
             {

@@ -159,6 +159,86 @@ Transform:
   - {fileID: 2973562309774358936}
   m_Father: {fileID: 6617817418752385025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &511817136942118290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 484588751516585283}
+  - component: {fileID: 2469373089392427831}
+  - component: {fileID: 1943724071381680637}
+  m_Layer: 3
+  m_Name: Action
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &484588751516585283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511817136942118290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7056152357741028784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2469373089392427831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511817136942118290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0c4b45208c12445b149d621b0499f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 6407337154767272089}
+  bulletPrefab: {fileID: 1165864016431649122, guid: 2e787d083c7117d479336d071ad2cc65,
+    type: 3}
+  shootDuration: 0.2
+  shootDelay: 0.3
+  enableAutoAim: 1
+  autoAimFov: 50
+  autoAimMaxDistance: 18
+  meleeCollider: {fileID: 1943724071381680637}
+  meleeDamage: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  weaponsManager: {fileID: 6629220465977109419}
+--- !u!65 &1943724071381680637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511817136942118290}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 4, z: 3.41178}
+  m_Center: {x: 0, y: 1.5355258, z: 1.6520878}
 --- !u!1 &623671537856441677
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +314,6 @@ GameObject:
   - component: {fileID: 7439808206929240747}
   - component: {fileID: 4646497112138578381}
   - component: {fileID: 4133936639242573327}
-  - component: {fileID: 26549735626897629}
   - component: {fileID: 7642048338210925454}
   - component: {fileID: 694428792362304716}
   - component: {fileID: 2516911115299982655}
@@ -262,6 +341,7 @@ Transform:
   - {fileID: 6314290399832118579}
   - {fileID: 1659763873604128765}
   - {fileID: 4008993487766158108}
+  - {fileID: 484588751516585283}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7439808206929240747
@@ -328,20 +408,6 @@ MonoBehaviour:
   sheildPower: 100
   sheildPowerRegenRate: 20
   shieldRegenDelay: 3
---- !u!114 &26549735626897629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165603993820912088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 453aa469bd6dce0448d3b5d14e7eef96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractorSource: {fileID: 6314290399832118579}
-  InteractRange: 1.5
 --- !u!114 &7642048338210925454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxComboDelay: 0.5
-  shootDuration: 0.4
   dissolvePedang: {fileID: 8342780303230557682}
   dissolvePistol: {fileID: 8342780303230557682}
   dissolveObjects:
@@ -387,6 +452,7 @@ MonoBehaviour:
   reverseTimeBeforeAction: 1
   reverseTimeAfterAction: 3
   weaponsManager: {fileID: 6629220465977109419}
+  weaponsActions: {fileID: 2469373089392427831}
   pistolItem: {fileID: 701465394581208547}
   meeleItem: {fileID: 7544468995513480646}
 --- !u!114 &2516911115299982655
@@ -1448,6 +1514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6314290399832118579}
+  - component: {fileID: 1533916217547627455}
   m_Layer: 3
   m_Name: Interactor
   m_TagString: Untagged
@@ -1470,6 +1537,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7056152357741028784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533916217547627455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198557224183029672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453aa469bd6dce0448d3b5d14e7eef96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractorSource: {fileID: 6314290399832118579}
+  InteractRange: 1.5
 --- !u!1 &6480093496118573032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,7 +1869,7 @@ GameObject:
   - component: {fileID: 7005499308510855429}
   - component: {fileID: 6239547155586469536}
   - component: {fileID: 8175058470934362730}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Topeng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2404,12 +2485,6 @@ MonoBehaviour:
     type: 3}
   currentMeleeObject: {fileID: 2988335952726315416, guid: 5f422ba6b3879d44eb8bf6bdfdbda5da,
     type: 3}
-  firePoint: {fileID: 6407337154767272089}
-  bulletPrefab: {fileID: 4988657591272314698, guid: 94a13a82c6cb0e34a89d122a7fb5c6bb,
-    type: 3}
-  attackDistance: 2.5
-  attackRange: 120
-  showDebugGizmos: 1
 --- !u!1 &8383779271196794840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,7 +2859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6801783845477225717
 Transform:
   m_ObjectHideFlags: 0
@@ -2945,7 +3020,7 @@ GameObject:
   - component: {fileID: 8515869812388635333}
   - component: {fileID: 4720240719680941408}
   - component: {fileID: 7378407627765209514}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Topeng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2974,7 +3049,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9035807263810779263}
-  m_Mesh: {fileID: 1418983209722285180, guid: c2ac2862d8fc08a4eb9bcce6460c71ce, type: 3}
+  m_Mesh: {fileID: 1418983209722285180, guid: a11eec4fdb3cf0a4facd740cd9a88e94, type: 3}
 --- !u!23 &7378407627765209514
 MeshRenderer:
   m_ObjectHideFlags: 0

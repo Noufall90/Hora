@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   speed: 30
-  lifeTime: 2
+  lifeTime: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 264

@@ -149,8 +149,8 @@ namespace PlayerData
 
             _currentVelocity = Vector3.ClampMagnitude(_currentVelocity, targetSpeed);
 
-            // 6. Rotasi Karakter
-            if (inputDirection.sqrMagnitude > 0.01f)
+            // 6. Rotasi Karakter (Jangan timpa arah rotasi jika sedang shooting/lock-on target)
+            if (inputDirection.sqrMagnitude > 0.01f && (_playerAnimAttack == null || !_playerAnimAttack.IsShooting))
             {
                 Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);

@@ -24,17 +24,6 @@ namespace PlayerWeapons
         [SerializeField] private GameObject currentPistolObject;
         [SerializeField] private GameObject currentMeleeObject;
 
-        [Header("Projectile Settings")]
-        public Transform firePoint;
-        public GameObject bulletPrefab;
-
-        [Header("Melee Settings")]
-        public float attackDistance = 2.5f;
-        [SerializeField] [Range(0f, 180f)] public float attackRange = 60f; // seperti field of view
-
-        [Header("Debug")]
-        [SerializeField] protected bool showDebugGizmos = true;
-
         public GameObject CurrentPistolObject => currentPistolObject;
         public GameObject CurrentMeleeObject => currentMeleeObject;
 
@@ -173,56 +162,6 @@ namespace PlayerWeapons
             if (provider == null || provider.Count == 0) return;
             int prevIndex = (activeMeleeIndex - 1 + provider.Count) % provider.Count;
             EquipMelee(prevIndex);
-        }
-
-        public Transform GetActiveFirePoint()
-        {
-            if (currentPistolObject != null)
-            {
-                Transform childFP = currentPistolObject.transform.Find("FirePoint");
-                if (childFP != null) return childFP;
-
-                Transform[] children = currentPistolObject.GetComponentsInChildren<Transform>();
-                foreach (var t in children)
-                {
-                    if (t.name.ToLower().Contains("firepoint")) return t;
-                }
-            }
-
-            if (firePoint != null) return firePoint;
-            return transform;
-        }
-
-        public void Shoot()
-        {
-            GameObject prefabToSpawn = bulletPrefab;
-
-            Transform spawnPoint = GetActiveFirePoint();
-            if (spawnPoint == null)
-            {
-                Debug.LogWarning("[WeaponsManager] FirePoint tidak ditemukan atau belum di-assign!");
-                return;
-            }
-
-            if (prefabToSpawn != null)
-            {
-                // Hitung arah lurus mendatar (sejajar tanah / bidang horizontal XZ)
-                Vector3 fireDirection = spawnPoint.forward;
-                fireDirection.y = 0f;
-
-                if (fireDirection.sqrMagnitude < 0.001f)
-                {
-                    fireDirection = transform.forward;
-                    fireDirection.y = 0f;
-                }
-
-                Quaternion straightRotation = Quaternion.LookRotation(fireDirection.normalized);
-                Instantiate(prefabToSpawn, spawnPoint.position, straightRotation);
-            }
-            else
-            {
-                Debug.LogWarning("[WeaponsManager] BulletPrefab belum di-assign di WeaponsManager atau PistolItem!");
-            }
         }
     }
 }

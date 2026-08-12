@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2186108587107294153}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Head IK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1333846873431345885}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1350382585730353019}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 2374363946476612154}
   - component: {fileID: 1473155996382389299}
   - component: {fileID: 504333307313231592}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Robot Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,12 +209,13 @@ MonoBehaviour:
   patrolCentrePoint: {fileID: 0}
   detectRange: 35
   attackRange: 30
+  meeleRange: 0
   fieldOfView: 180
   showDebugGizmos: 1
   fireRate: 2
   firePoint: {fileID: 1350382585730353019}
   firePoint2: {fileID: 1333846873431345885}
-  bulletPrefab: {fileID: 4988657591272314698, guid: 1d9b26362106d9a488b740189ac12e28,
+  bulletPrefab: {fileID: 6191936454889072601, guid: dffb623856fe61d449d12a2045d17d87,
     type: 3}
   headIKTarget: {fileID: 2186108587107294153}
 --- !u!1 &5746305474044706250
@@ -227,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3604799086182521313}
   - component: {fileID: 4781223257184115668}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Rig 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8954079023204853257}
   - component: {fileID: 57953636220900984}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Head IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +413,7 @@ PrefabInstance:
     - target: {fileID: -3688647788962921854, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
@@ -422,17 +423,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1502877291743220047, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5521015425000701418, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7831909060113432234, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
@@ -442,12 +443,12 @@ PrefabInstance:
     - target: {fileID: 7913602940188786901, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8020099300814030323, guid: 6febaf2ea5033eb44b151a2831cd39fb,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
