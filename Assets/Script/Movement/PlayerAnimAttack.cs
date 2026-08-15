@@ -221,10 +221,8 @@ namespace PlayerData
                 RotateTowardsEnemy(_currentTargetEnemy);
             }
 
-            if (_shootResetCoroutine != null)
-            {
-                StopCoroutine(_shootResetCoroutine);
-            }
+            FireBullet(_currentTargetEnemy);
+            OnShootComplete();
         }
 
         private void RotateTowardsEnemy(Transform target)
@@ -236,35 +234,6 @@ namespace PlayerData
             {
                 transform.rotation = Quaternion.LookRotation(dir.normalized);
             }
-        }
-
-        private IEnumerator PerformShootRoutine(float delay, float duration)
-        {
-            float elapsed = 0f;
-            while (elapsed < delay)
-            {
-                elapsed += Time.deltaTime;
-                if (_currentTargetEnemy != null)
-                {
-                    RotateTowardsEnemy(_currentTargetEnemy);
-                }
-                yield return null;
-            }
-
-            if (_currentTargetEnemy != null)
-            {
-                RotateTowardsEnemy(_currentTargetEnemy);
-            }
-
-            FireBullet(_currentTargetEnemy);
-
-            // Durasi setelah menembak sebelum kembali ke idle
-            if (duration > 0f)
-            {
-                yield return new WaitForSeconds(duration);
-            }
-
-            OnShootComplete();
         }
 
         public void FireBullet(Transform targetEnemy = null)

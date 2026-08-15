@@ -70,18 +70,16 @@ namespace PlayerData
             if (_playerAnimAttack == null) return;
             if (_isRolling) return;
 
-            // Attack / Slash Input (Left Click Mouse atau Tombol J)
-            bool isAttackPressed = (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) ||
-                                   (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame);
+            // Attack / Slash Input (Left Click Mouse)
+            bool isAttackPressed = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
 
             if (isAttackPressed)
             {
                 _playerAnimAttack.HandleAttack();
             }
 
-            // Shoot Input (Right Click Mouse atau Tombol K)
-            bool isShootPressed = (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) ||
-                                  (Keyboard.current != null && Keyboard.current.kKey.wasPressedThisFrame);
+            // Shoot Input (Right Click Mouse)
+            bool isShootPressed = Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame;
 
             if (isShootPressed)
             {

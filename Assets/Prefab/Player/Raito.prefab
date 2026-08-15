@@ -207,10 +207,8 @@ MonoBehaviour:
   firePoint: {fileID: 6407337154767272089}
   bulletPrefab: {fileID: 1165864016431649122, guid: 2e787d083c7117d479336d071ad2cc65,
     type: 3}
-  shootDuration: 0
-  shootDelay: 0
   enableAutoAim: 1
-  autoAimFov: 50
+  autoAimFov: 70
   autoAimMaxDistance: 18
   meleeCollider: {fileID: 1943724071381680637}
   meleeDamage: 10
@@ -405,9 +403,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   _animator: {fileID: 7439808206929240747}
+  shieldVisual: {fileID: 8857258956309261747}
   sheildPower: 100
-  sheildPowerRegenRate: 20
+  sheildPowerRegenRate: 3
   shieldRegenDelay: 3
+  playerRenderers: []
+  dissolveDuration: 2
 --- !u!114 &7642048338210925454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,6 +1304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24951b24bddfde4458e923562d200685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 4133936639242573327}
+  healthBar: {fileID: 0}
+  shieldBar: {fileID: 0}
 --- !u!1 &4935271641525050895
 GameObject:
   m_ObjectHideFlags: 0
