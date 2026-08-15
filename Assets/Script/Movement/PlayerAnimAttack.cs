@@ -225,11 +225,6 @@ namespace PlayerData
             {
                 StopCoroutine(_shootResetCoroutine);
             }
-
-            float delay = wa != null ? wa.shootDelay : 0.5f;
-            float duration = wa != null ? wa.shootDuration : 0.4f;
-
-            _shootResetCoroutine = StartCoroutine(PerformShootRoutine(delay, duration));
         }
 
         private void RotateTowardsEnemy(Transform target)

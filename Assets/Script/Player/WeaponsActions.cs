@@ -11,8 +11,6 @@ namespace PlayerWeapons
         [Header("Pistol")]
         public Transform firePoint;
         public GameObject bulletPrefab;
-        public float shootDuration = 0.4f;
-        public float shootDelay = 0.5f;
 
         [Header("Pistol - Auto Aim / Target Lock")]
         public bool enableAutoAim = true;
