@@ -790,6 +790,7 @@ GameObject:
   - component: {fileID: 8245812717927247833}
   - component: {fileID: 9092786387584808664}
   - component: {fileID: 3462524565438936832}
+  - component: {fileID: 2833660911522949315}
   m_Layer: 9
   m_Name: Health Canvas
   m_TagString: Untagged
@@ -881,6 +882,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2833660911522949315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619696394663347507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4b01165be02ab4a99181908f75cf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: {fileID: 298099782682721964}
+  healthBar: {fileID: 8961636416539491367}
+  healthBarBackground: {fileID: 7621869872931540068}
 --- !u!1 &7197356486310458194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1019,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  enemyRenderers:
+  - {fileID: 5322364214662209884}
+  dissolveDuration: 1
 --- !u!114 &6477940304345368035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,6 +1781,12 @@ Transform:
 --- !u!4 &4162006106676632706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1422386267695008650, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6161137292465580276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5322364214662209884 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7179837641156490840, guid: 498dd752a5d6bca4ca55cf5a24e56bf2,
     type: 3}
   m_PrefabInstance: {fileID: 6161137292465580276}
   m_PrefabAsset: {fileID: 0}

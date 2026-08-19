@@ -30,9 +30,39 @@ namespace PlayerData
             base.OnEnable();
             _currentShieldPower = sheildPower;
             _regenTimer = shieldRegenDelay;
+            ResetDissolveValue();
             UpdateShieldVisual();
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
             OnShieldChanged?.Invoke(_currentShieldPower, sheildPower);
+        }
+
+        private void ResetDissolveValue()
+        {
+            if (playerRenderers == null || playerRenderers.Length == 0)
+            {
+                playerRenderers = GetComponentsInChildren<Renderer>();
+            }
+
+            if (playerRenderers != null)
+            {
+                foreach (Renderer rend in playerRenderers)
+                {
+                    if (rend == null) continue;
+
+                    MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+                    rend.GetPropertyBlock(mpb);
+                    mpb.SetFloat(DissolvePropertyHash, 1f);
+                    rend.SetPropertyBlock(mpb);
+
+                    foreach (Material mat in rend.materials)
+                    {
+                        if (mat != null && mat.HasProperty(DissolvePropertyHash))
+                        {
+                            mat.SetFloat(DissolvePropertyHash, 1f);
+                        }
+                    }
+                }
+            }
         }
 
         private void Update()

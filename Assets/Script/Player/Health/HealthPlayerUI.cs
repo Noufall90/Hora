@@ -47,11 +47,11 @@ namespace PlayerData
             if (playerHealth == null) return;
 
             // Testing Health (J = -10 HP (Direct), K = +10 HP)
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 playerHealth.TakeDirectHealthDamage(10);
             }
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 playerHealth.Heal(10);
             }
