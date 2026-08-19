@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4957132101857323076}
   - component: {fileID: 7122936230671606547}
   - component: {fileID: 6092885827933369276}
-  - component: {fileID: 3029221024495067729}
+  - component: {fileID: 7338137636783066903}
   - component: {fileID: 3725144275983994040}
   m_Layer: 0
   m_Name: Peluru Player 2
@@ -135,7 +135,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1.129838}
   m_Center: {x: 0, y: 0, z: 0.13255821}
---- !u!114 &3029221024495067729
+--- !u!114 &7338137636783066903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,15 +144,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1165864016431649122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b83527d54710154fafc8eca4bc7666c, type: 3}
+  m_Script: {fileID: 11500000, guid: b757c0ca018d262448e131c73b961800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
-  speed: 30
-  lifeTime: 1
+  damage: 10
+  speed: 20
+  lifeTime: 3
   targetLayer:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
 --- !u!96 &3725144275983994040
 TrailRenderer:
   serializedVersion: 3

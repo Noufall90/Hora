@@ -207,6 +207,8 @@ MonoBehaviour:
   firePoint: {fileID: 6407337154767272089}
   bulletPrefab: {fileID: 1165864016431649122, guid: 2e787d083c7117d479336d071ad2cc65,
     type: 3}
+  pistolBar: {fileID: 0}
+  energyRechargeRate: 0.2
   enableAutoAim: 1
   autoAimFov: 70
   autoAimMaxDistance: 18
@@ -407,8 +409,18 @@ MonoBehaviour:
   sheildPower: 100
   sheildPowerRegenRate: 3
   shieldRegenDelay: 3
-  playerRenderers: []
-  dissolveDuration: 2
+  playerRenderers:
+  - {fileID: 1068535271888249357}
+  - {fileID: 6613361013219670510}
+  - {fileID: 1570001547174222062}
+  - {fileID: 8822010804211256342}
+  - {fileID: 2109330009789385720}
+  - {fileID: 5232464362748404025}
+  - {fileID: 7648415137536655701}
+  - {fileID: 7378407627765209514}
+  - {fileID: 7101363234153379801}
+  - {fileID: 6281164784373695679}
+  dissolveDuration: 1.5
 --- !u!114 &7642048338210925454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,18 +452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa06d548043e484390538953e82b5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxComboDelay: 0.5
+  slashDuration: 0.4
+  shootDelay: 0.3
   dissolvePedang: {fileID: 8342780303230557682}
   dissolvePistol: {fileID: 8342780303230557682}
-  dissolveObjects:
-  - {fileID: 7670571542865550271}
-  timeBeforeAction: 0.2
-  timeAfterAction: 2
-  reverseDissolveObject:
-  - {fileID: 9035807263810779263}
-  - {fileID: 7032149559470372541}
-  reverseTimeBeforeAction: 1
-  reverseTimeAfterAction: 3
+  dissolveTimeBeforeUse: 0.5
+  dissolveTimeAfterUse: 1
+  pistolBar: {fileID: 0}
   weaponsManager: {fileID: 6629220465977109419}
   weaponsActions: {fileID: 2469373089392427831}
   pistolItem: {fileID: 701465394581208547}
@@ -2301,94 +2308,68 @@ MonoBehaviour:
   - weaponName: Dull Pistol
     weaponPrefab: {fileID: 4805079765310453490, guid: 41daf7aed6659224ab6952fbacd8900b,
       type: 3}
-    fireRate: 1
+    damagePistol: 5
     magazineEnergy: 4
-    energyReloadRate: 1
-    energyReloadInterval: 1
   - weaponName: Iron Fang
     weaponPrefab: {fileID: 2721314371494048945, guid: ae33af41e6d42744ab38342e5cd84894,
       type: 3}
-    fireRate: 1
+    damagePistol: 5
     magazineEnergy: 6
-    energyReloadRate: 10
-    energyReloadInterval: 2
   - weaponName: Steel Breaker
     weaponPrefab: {fileID: 5877593513925317978, guid: 10e865b3c9ae48b4f9076d7c8be99557,
       type: 3}
-    fireRate: 1
+    damagePistol: 5
     magazineEnergy: 7
-    energyReloadRate: 10
-    energyReloadInterval: 2
   - weaponName: Steel Breaker
     weaponPrefab: {fileID: 3526702102094747916, guid: 60ac191fb4f1da6459aa83df38806fe7,
       type: 3}
-    fireRate: 1
+    damagePistol: 5
     magazineEnergy: 8
-    energyReloadRate: 10
-    energyReloadInterval: 2
   - weaponName: Blue Torrent
     weaponPrefab: {fileID: 3183180783198553939, guid: 3515b66a50d1e1546b25f90c0cf22f34,
       type: 3}
-    fireRate: 1.2
+    damagePistol: 8
     magazineEnergy: 9
-    energyReloadRate: 15
-    energyReloadInterval: 1.8
   - weaponName: Glacier Spire
     weaponPrefab: {fileID: 4674072360729682370, guid: efd5d4ba8b507c94c8981bd69f0694e4,
       type: 3}
-    fireRate: 1.2
+    damagePistol: 8
     magazineEnergy: 10
-    energyReloadRate: 15
-    energyReloadInterval: 1.8
   - weaponName: Azure Twin
     weaponPrefab: {fileID: 5569431215006366333, guid: cc1caad4ede649b4aac4e64526f1389c,
       type: 3}
-    fireRate: 1.2
+    damagePistol: 8
     magazineEnergy: 11
-    energyReloadRate: 15
-    energyReloadInterval: 1.8
   - weaponName: Golden Eclipse
     weaponPrefab: {fileID: 4508937560557775069, guid: 1cbf38542ca18a54a9876835eb12deab,
       type: 3}
-    fireRate: 1.5
+    damagePistol: 10
     magazineEnergy: 12
-    energyReloadRate: 20
-    energyReloadInterval: 1.5
   - weaponName: "Sol\u2019s Embrace"
     weaponPrefab: {fileID: 7325928592821188989, guid: 115c4b3cc7651924caf08eadba1ca326,
       type: 3}
-    fireRate: 1.5
+    damagePistol: 10
     magazineEnergy: 13
-    energyReloadRate: 20
-    energyReloadInterval: 1.5
   - weaponName: "Dawn\u2019s Herald"
     weaponPrefab: {fileID: 2838928105714342432, guid: 361b79c401c37d94a81ce533fb9d0346,
       type: 3}
-    fireRate: 1.5
+    damagePistol: 10
     magazineEnergy: 14
-    energyReloadRate: 20
-    energyReloadInterval: 1.5
   - weaponName: Violet Calamity
     weaponPrefab: {fileID: 5587532506979419022, guid: 6bec0b3cc7d7a71498b825c1f4f892e5,
       type: 3}
-    fireRate: 2
+    damagePistol: 13
     magazineEnergy: 15
-    energyReloadRate: 30
-    energyReloadInterval: 1
   - weaponName: Void Needle
     weaponPrefab: {fileID: 7086318134087324769, guid: 9c06d56d3bf542d46a4ccccf390c4146,
       type: 3}
-    fireRate: 2
+    damagePistol: 13
     magazineEnergy: 16
-    energyReloadRate: 30
-    energyReloadInterval: 1
   - weaponName: Stardust Singularity
     weaponPrefab: {fileID: 7086318134087324769, guid: 9c06d56d3bf542d46a4ccccf390c4146,
       type: 3}
-    fireRate: 2
+    damagePistol: 13
     magazineEnergy: 17
-    energyReloadRate: 30
-    energyReloadInterval: 1
 --- !u!114 &7544468995513480646
 MonoBehaviour:
   m_ObjectHideFlags: 0

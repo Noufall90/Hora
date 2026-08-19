@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PlayerWeapons
 {
@@ -11,6 +12,16 @@ namespace PlayerWeapons
         [Header("Pistol")]
         public Transform firePoint;
         public GameObject bulletPrefab;
+
+        [Header("Pistol Energy & UI")]
+        [SerializeField] private Image pistolBar;
+        [SerializeField] private float energyRechargeRate = 3f;
+        private float _currentPistolEnergy = -1f;
+        private float _maxPistolEnergy = 10f;
+
+        public Image PistolBar { get => pistolBar; set { pistolBar = value; UpdatePistolBarUI(); } }
+        public float CurrentPistolEnergy => _currentPistolEnergy;
+        public float MaxPistolEnergy => _maxPistolEnergy;
 
         [Header("Pistol - Auto Aim / Target Lock")]
         public bool enableAutoAim = true;
@@ -54,6 +65,64 @@ namespace PlayerWeapons
         private void Start()
         {
             SetupMeleeCollider();
+            SyncPistolEnergyWithData();
+        }
+
+        private void Update()
+        {
+            RechargePistolEnergy();
+        }
+
+        public void SyncPistolEnergyWithData()
+        {
+            WeaponsManager manager = GetWeaponsManager();
+            if (manager != null)
+            {
+                PistolData data = manager.CurrentPistolData;
+                float mag = data.magazineEnergy > 0 ? data.magazineEnergy : 10f;
+                if (_currentPistolEnergy < 0f)
+                {
+                    _maxPistolEnergy = mag;
+                    _currentPistolEnergy = mag;
+                    UpdatePistolBarUI();
+                }
+                else if (Mathf.Abs(_maxPistolEnergy - mag) > 0.01f)
+                {
+                    _maxPistolEnergy = mag;
+                    _currentPistolEnergy = Mathf.Min(_currentPistolEnergy, mag);
+                    UpdatePistolBarUI();
+                }
+            }
+        }
+
+        private void RechargePistolEnergy()
+        {
+            SyncPistolEnergyWithData();
+            if (_currentPistolEnergy < _maxPistolEnergy)
+            {
+                _currentPistolEnergy = Mathf.Min(_maxPistolEnergy, _currentPistolEnergy + energyRechargeRate * Time.deltaTime);
+                UpdatePistolBarUI();
+            }
+        }
+
+        public bool CanShoot()
+        {
+            SyncPistolEnergyWithData();
+            return _currentPistolEnergy >= 1f;
+        }
+
+        public void ConsumeShootEnergy()
+        {
+            _currentPistolEnergy = Mathf.Max(0f, _currentPistolEnergy - 1f);
+            UpdatePistolBarUI();
+        }
+
+        public void UpdatePistolBarUI()
+        {
+            if (pistolBar != null && _maxPistolEnergy > 0f)
+            {
+                pistolBar.fillAmount = Mathf.Clamp01(_currentPistolEnergy / _maxPistolEnergy);
+            }
         }
 
         private WeaponsManager GetWeaponsManager()
@@ -137,6 +206,9 @@ namespace PlayerWeapons
 
         public void Shoot(Transform targetEnemy = null)
         {
+            if (!CanShoot()) return;
+            ConsumeShootEnergy();
+
             GameObject prefabToSpawn = bulletPrefab;
 
             Transform spawnPoint = GetActiveFirePoint();

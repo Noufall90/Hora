@@ -8,10 +8,8 @@ namespace PlayerWeapons
     {
         public string weaponName;
         public GameObject weaponPrefab;
-        public float fireRate;
+        public float damagePistol;
         public float magazineEnergy;
-        public float energyReloadRate;
-        public float energyReloadInterval;
     }
 
     public class PistolItem : MonoBehaviour
