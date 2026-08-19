@@ -269,9 +269,24 @@ namespace PlayerWeapons
             }
         }
 
+        public float GetActiveMeleeDamage()
+        {
+            WeaponsManager manager = GetWeaponsManager();
+            if (manager != null)
+            {
+                MeeleData data = manager.CurrentMeleeData;
+                if (data.damage > 0)
+                {
+                    return data.damage;
+                }
+            }
+
+            return meleeDamage;
+        }
+
         public void StartMeleeAttack(float damage = -1f)
         {
-            _currentMeleeDamage = damage >= 0f ? damage : meleeDamage;
+            _currentMeleeDamage = damage >= 0f ? damage : GetActiveMeleeDamage();
             _hitEnemies.Clear();
             _isMeleeAttacking = true;
 

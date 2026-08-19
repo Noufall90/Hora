@@ -218,6 +218,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   weaponsManager: {fileID: 6629220465977109419}
+  meeleItem: {fileID: 7544468995513480646}
 --- !u!65 &1943724071381680637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2387,67 +2388,54 @@ MonoBehaviour:
     weaponPrefab: {fileID: 2988335952726315416, guid: 5f422ba6b3879d44eb8bf6bdfdbda5da,
       type: 3}
     damage: 3
-    attackSpeed: 1
   - weaponName: Iron Fang
     weaponPrefab: {fileID: 2066787103205337676, guid: 6f195267f969b9147b19e8fb3d25c75c,
       type: 3}
     damage: 5
-    attackSpeed: 1
   - weaponName: Steel Cutter
     weaponPrefab: {fileID: 5426769471815995289, guid: 97fbf1a0c225f444fbc4f106cd20ebcc,
       type: 3}
     damage: 6
-    attackSpeed: 1
   - weaponName: Shadow Blade
     weaponPrefab: {fileID: 7484038768899359820, guid: 4d404198c5deeb04c80b55cd237fc208,
       type: 3}
     damage: 7
-    attackSpeed: 1
   - weaponName: Green Saber
     weaponPrefab: {fileID: 429964296487058002, guid: d19bfd94bcec4f6448289fb76ac62c8b,
       type: 3}
     damage: 8
-    attackSpeed: 1.2
   - weaponName: Frost Edge
     weaponPrefab: {fileID: 5035706905415684049, guid: c464d083798868c46ad50a2a923f4c45,
       type: 3}
     damage: 9
-    attackSpeed: 1.2
   - weaponName: Azure Fang
     weaponPrefab: {fileID: 8303229536053819770, guid: 61ba235b9d044014c81d1ed9e953cf31,
       type: 3}
     damage: 10
-    attackSpeed: 1.2
   - weaponName: Golden Katana
     weaponPrefab: {fileID: 1770497472736014790, guid: 5896b1b314c22014aaa457ca95b8ebc7,
       type: 3}
     damage: 11
-    attackSpeed: 1.5
   - weaponName: Sunblade
     weaponPrefab: {fileID: 3788387592457708742, guid: 378e3879e646e9840a8dbc91f46091d3,
       type: 3}
     damage: 12
-    attackSpeed: 1.5
   - weaponName: Dawnfang
     weaponPrefab: {fileID: 8064820244953371752, guid: 2c404bc4cbd047d43a5a7776c945f582,
       type: 3}
     damage: 13
-    attackSpeed: 1.5
   - weaponName: Violet Reaper
     weaponPrefab: {fileID: 8016652603112445616, guid: c35e4cd67a99b8d4d93fe1365df3a555,
       type: 3}
     damage: 14
-    attackSpeed: 2
   - weaponName: Nightfall
     weaponPrefab: {fileID: 2463838725198866879, guid: 70aafe80f2593794eb82e6e18cf3c8dd,
       type: 3}
     damage: 15
-    attackSpeed: 2
   - weaponName: Celestial Fang
     weaponPrefab: {fileID: 1432582040965643846, guid: ae0bd5742b9d11449b14e907ce5984c1,
       type: 3}
     damage: 16
-    attackSpeed: 2
 --- !u!114 &6629220465977109419
 MonoBehaviour:
   m_ObjectHideFlags: 0

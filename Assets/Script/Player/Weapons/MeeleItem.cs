@@ -9,7 +9,6 @@ namespace PlayerWeapons
         public string weaponName;
         public GameObject weaponPrefab;
         public float damage;
-        public float attackSpeed;
     }
 
     public class MeeleItem : MonoBehaviour
