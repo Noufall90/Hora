@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c30385d57fd66149980f07539f53187
+guid: 22f196bab309bc945b1667fb9054ac6e
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Echo Ridge Free
+  - Belanosima
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
