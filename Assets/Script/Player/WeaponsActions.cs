@@ -15,7 +15,6 @@ namespace PlayerWeapons
 
         [Header("Pistol Energy & UI")]
         [SerializeField] private Image pistolBar;
-        [SerializeField] private float energyRechargeRate = 3f;
         private float _currentPistolEnergy = -1f;
         private float _maxPistolEnergy = 10f;
 
@@ -30,8 +29,6 @@ namespace PlayerWeapons
 
         [Header("Meele")]
         [SerializeField] private Collider meleeCollider;
-        public float meleeDamage = 10f;
-        public LayerMask enemyLayer;
 
         [Header("References")]
         [SerializeField] private WeaponsManager weaponsManager;
@@ -51,10 +48,6 @@ namespace PlayerWeapons
                 Destroy(gameObject);
             }
 
-            if (enemyLayer.value == 0)
-            {
-                enemyLayer = LayerMask.GetMask("Enemy");
-            }
 
             if (meleeCollider == null) meleeCollider = GetComponent<Collider>();
             if (weaponsManager == null) weaponsManager = GetComponent<WeaponsManager>();
@@ -95,12 +88,27 @@ namespace PlayerWeapons
             }
         }
 
+        public float GetActivePistolRechargeRate()
+        {
+            WeaponsManager manager = GetWeaponsManager();
+            if (manager != null)
+            {
+                PistolData data = manager.CurrentPistolData;
+                if (data.pistolRechargeRate > 0)
+                {
+                    return data.pistolRechargeRate;
+                }
+            }
+            return 3f;
+        }
+
         private void RechargePistolEnergy()
         {
             SyncPistolEnergyWithData();
             if (_currentPistolEnergy < _maxPistolEnergy)
             {
-                _currentPistolEnergy = Mathf.Min(_maxPistolEnergy, _currentPistolEnergy + energyRechargeRate * Time.deltaTime);
+                float rechargeRate = GetActivePistolRechargeRate();
+                _currentPistolEnergy = Mathf.Min(_maxPistolEnergy, _currentPistolEnergy + rechargeRate * Time.deltaTime);
                 UpdatePistolBarUI();
             }
         }
@@ -161,7 +169,7 @@ namespace PlayerWeapons
             if (forward.sqrMagnitude < 0.001f) forward = Vector3.forward;
             forward.Normalize();
 
-            Collider[] colliders = Physics.OverlapSphere(originPos, autoAimMaxDistance, enemyLayer);
+            Collider[] colliders = Physics.OverlapSphere(originPos, autoAimMaxDistance, LayerMask.GetMask("Enemy"));
             if (colliders == null || colliders.Length == 0) return null;
 
             Transform bestTarget = null;
@@ -275,13 +283,10 @@ namespace PlayerWeapons
             if (manager != null)
             {
                 MeeleData data = manager.CurrentMeleeData;
-                if (data.damage > 0)
-                {
-                    return data.damage;
-                }
+                return data.damage;
             }
 
-            return meleeDamage;
+            return 0f;
         }
 
         public void StartMeleeAttack(float damage = -1f)
@@ -317,7 +322,7 @@ namespace PlayerWeapons
 
             Transform checkOrigin = meleeCollider != null ? meleeCollider.transform : transform;
             Vector3 center = checkOrigin.position + checkOrigin.forward * 0.8f;
-            Collider[] overlaps = Physics.OverlapSphere(center, 1.5f, enemyLayer);
+            Collider[] overlaps = Physics.OverlapSphere(center, 1.5f, LayerMask.GetMask("Enemy"));
 
             foreach (var col in overlaps)
             {
@@ -331,8 +336,9 @@ namespace PlayerWeapons
 
             if (other.CompareTag("Player") || other.transform.root == transform.root) return;
 
-            bool isEnemyLayer = ((enemyLayer.value & (1 << other.gameObject.layer)) != 0) ||
-                                ((enemyLayer.value & (1 << other.transform.root.gameObject.layer)) != 0);
+            int enemyLayerMask = LayerMask.GetMask("Enemy");
+            bool isEnemyLayer = ((enemyLayerMask & (1 << other.gameObject.layer)) != 0) ||
+                                ((enemyLayerMask & (1 << other.transform.root.gameObject.layer)) != 0);
             if (!isEnemyLayer) return;
 
             Health targetHealth = other.GetComponent<Health>() ?? other.GetComponentInParent<Health>();

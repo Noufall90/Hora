@@ -208,17 +208,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1165864016431649122, guid: 2e787d083c7117d479336d071ad2cc65,
     type: 3}
   pistolBar: {fileID: 0}
-  energyRechargeRate: 0.2
   enableAutoAim: 1
   autoAimFov: 70
   autoAimMaxDistance: 18
   meleeCollider: {fileID: 1943724071381680637}
-  meleeDamage: 10
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
   weaponsManager: {fileID: 6629220465977109419}
-  meeleItem: {fileID: 7544468995513480646}
 --- !u!65 &1943724071381680637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2311,66 +2305,79 @@ MonoBehaviour:
       type: 3}
     damagePistol: 5
     magazineEnergy: 4
+    pistolRechargeRate: 0.1
   - weaponName: Iron Fang
     weaponPrefab: {fileID: 2721314371494048945, guid: ae33af41e6d42744ab38342e5cd84894,
       type: 3}
-    damagePistol: 5
-    magazineEnergy: 6
+    damagePistol: 6
+    magazineEnergy: 5
+    pistolRechargeRate: 0.3
   - weaponName: Steel Breaker
     weaponPrefab: {fileID: 5877593513925317978, guid: 10e865b3c9ae48b4f9076d7c8be99557,
       type: 3}
-    damagePistol: 5
-    magazineEnergy: 7
+    damagePistol: 7
+    magazineEnergy: 5
+    pistolRechargeRate: 0.3
   - weaponName: Steel Breaker
     weaponPrefab: {fileID: 3526702102094747916, guid: 60ac191fb4f1da6459aa83df38806fe7,
       type: 3}
-    damagePistol: 5
-    magazineEnergy: 8
+    damagePistol: 8
+    magazineEnergy: 5
+    pistolRechargeRate: 0.3
   - weaponName: Blue Torrent
     weaponPrefab: {fileID: 3183180783198553939, guid: 3515b66a50d1e1546b25f90c0cf22f34,
       type: 3}
-    damagePistol: 8
-    magazineEnergy: 9
+    damagePistol: 10
+    magazineEnergy: 8
+    pistolRechargeRate: 0.5
   - weaponName: Glacier Spire
     weaponPrefab: {fileID: 4674072360729682370, guid: efd5d4ba8b507c94c8981bd69f0694e4,
       type: 3}
-    damagePistol: 8
-    magazineEnergy: 10
+    damagePistol: 11
+    magazineEnergy: 8
+    pistolRechargeRate: 0.5
   - weaponName: Azure Twin
     weaponPrefab: {fileID: 5569431215006366333, guid: cc1caad4ede649b4aac4e64526f1389c,
       type: 3}
-    damagePistol: 8
-    magazineEnergy: 11
+    damagePistol: 12
+    magazineEnergy: 8
+    pistolRechargeRate: 0.5
   - weaponName: Golden Eclipse
     weaponPrefab: {fileID: 4508937560557775069, guid: 1cbf38542ca18a54a9876835eb12deab,
       type: 3}
-    damagePistol: 10
-    magazineEnergy: 12
+    damagePistol: 14
+    magazineEnergy: 10
+    pistolRechargeRate: 0.8
   - weaponName: "Sol\u2019s Embrace"
     weaponPrefab: {fileID: 7325928592821188989, guid: 115c4b3cc7651924caf08eadba1ca326,
       type: 3}
-    damagePistol: 10
-    magazineEnergy: 13
+    damagePistol: 15
+    magazineEnergy: 10
+    pistolRechargeRate: 0.8
   - weaponName: "Dawn\u2019s Herald"
     weaponPrefab: {fileID: 2838928105714342432, guid: 361b79c401c37d94a81ce533fb9d0346,
       type: 3}
-    damagePistol: 10
-    magazineEnergy: 14
+    damagePistol: 16
+    magazineEnergy: 10
+    pistolRechargeRate: 0.8
   - weaponName: Violet Calamity
     weaponPrefab: {fileID: 5587532506979419022, guid: 6bec0b3cc7d7a71498b825c1f4f892e5,
       type: 3}
-    damagePistol: 13
-    magazineEnergy: 15
+    damagePistol: 18
+    magazineEnergy: 14
+    pistolRechargeRate: 1
   - weaponName: Void Needle
     weaponPrefab: {fileID: 7086318134087324769, guid: 9c06d56d3bf542d46a4ccccf390c4146,
       type: 3}
     damagePistol: 13
-    magazineEnergy: 16
+    magazineEnergy: 19
+    pistolRechargeRate: 1
   - weaponName: Stardust Singularity
     weaponPrefab: {fileID: 7086318134087324769, guid: 9c06d56d3bf542d46a4ccccf390c4146,
       type: 3}
     damagePistol: 13
-    magazineEnergy: 17
+    magazineEnergy: 20
+    pistolRechargeRate: 1
 --- !u!114 &7544468995513480646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,55 +2394,55 @@ MonoBehaviour:
   - weaponName: Dull blade
     weaponPrefab: {fileID: 2988335952726315416, guid: 5f422ba6b3879d44eb8bf6bdfdbda5da,
       type: 3}
-    damage: 3
-  - weaponName: Iron Fang
+    damage: 5
+  - weaponName: Sword Fang
     weaponPrefab: {fileID: 2066787103205337676, guid: 6f195267f969b9147b19e8fb3d25c75c,
       type: 3}
-    damage: 5
+    damage: 8
   - weaponName: Steel Cutter
     weaponPrefab: {fileID: 5426769471815995289, guid: 97fbf1a0c225f444fbc4f106cd20ebcc,
       type: 3}
-    damage: 6
+    damage: 10
   - weaponName: Shadow Blade
     weaponPrefab: {fileID: 7484038768899359820, guid: 4d404198c5deeb04c80b55cd237fc208,
       type: 3}
-    damage: 7
+    damage: 11
   - weaponName: Green Saber
     weaponPrefab: {fileID: 429964296487058002, guid: d19bfd94bcec4f6448289fb76ac62c8b,
       type: 3}
-    damage: 8
+    damage: 13
   - weaponName: Frost Edge
     weaponPrefab: {fileID: 5035706905415684049, guid: c464d083798868c46ad50a2a923f4c45,
       type: 3}
-    damage: 9
+    damage: 15
   - weaponName: Azure Fang
     weaponPrefab: {fileID: 8303229536053819770, guid: 61ba235b9d044014c81d1ed9e953cf31,
       type: 3}
-    damage: 10
+    damage: 16
   - weaponName: Golden Katana
     weaponPrefab: {fileID: 1770497472736014790, guid: 5896b1b314c22014aaa457ca95b8ebc7,
       type: 3}
-    damage: 11
+    damage: 19
   - weaponName: Sunblade
     weaponPrefab: {fileID: 3788387592457708742, guid: 378e3879e646e9840a8dbc91f46091d3,
       type: 3}
-    damage: 12
+    damage: 20
   - weaponName: Dawnfang
     weaponPrefab: {fileID: 8064820244953371752, guid: 2c404bc4cbd047d43a5a7776c945f582,
       type: 3}
-    damage: 13
+    damage: 21
   - weaponName: Violet Reaper
     weaponPrefab: {fileID: 8016652603112445616, guid: c35e4cd67a99b8d4d93fe1365df3a555,
       type: 3}
-    damage: 14
+    damage: 23
   - weaponName: Nightfall
     weaponPrefab: {fileID: 2463838725198866879, guid: 70aafe80f2593794eb82e6e18cf3c8dd,
       type: 3}
-    damage: 15
+    damage: 25
   - weaponName: Celestial Fang
     weaponPrefab: {fileID: 1432582040965643846, guid: ae0bd5742b9d11449b14e907ce5984c1,
       type: 3}
-    damage: 16
+    damage: 30
 --- !u!114 &6629220465977109419
 MonoBehaviour:
   m_ObjectHideFlags: 0

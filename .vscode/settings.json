@@ -1,6 +1,6 @@
 {
     "dotnet.defaultSolution": "Hora.sln",
-    "dotnet.dotnetPath": "C:/Program Files/dotnet/dotnet.exe",
+    "dotnet.dotnetPath": "C:/Program Files/dotnet",
     "dotrush.roslyn.dotnetSdkDirectory": "C:/Program Files/dotnet/sdk/10.0.302",
     "dotrush.msbuildProperties": {
         "DefineConstants": "UNITY_EDITOR"
