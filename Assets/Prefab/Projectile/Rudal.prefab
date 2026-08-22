@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000037748954, y: -1.110223e-16, z: 1.11022296e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.703197, y: 12.703197, z: 11.690742}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 9.2029915}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -147,16 +147,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44c0e9bec975204aaaf8dfd747841b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   speed: 20
   lifeTime: 3
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 264
   explosionEffectPrefab: {fileID: 1910340192122342534, guid: f3cdff52300b9a642a17bd889e38e3e2,
     type: 3}
-  explosionOffset: {x: 0, y: 0, z: 0}
-  explosionLifeTime: 3
+  explosionParticleOffset: {x: 0, y: 1, z: 0}
+  explosionEffectLifeTime: 3
+  explosionForce: 10
+  explosionRadius: 2
+  upwardsModifier: 1
+  explosionDamage: 15
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  damageLayerMask:
+    serializedVersion: 2
+    m_Bits: 456
+  physicsLayerMask:
+    serializedVersion: 2
+    m_Bits: 320
   trailRenderer: {fileID: 3099768448153013291}
 --- !u!96 &3099768448153013291
 TrailRenderer:
@@ -204,7 +213,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.3
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:

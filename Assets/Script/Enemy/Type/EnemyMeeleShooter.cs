@@ -18,10 +18,10 @@ namespace Enemy
         [SerializeField] private BoxCollider damageCollider;
 
         [Header("Shooter Capability")]
-        [SerializeField] private float fireRate = 2.0f;
-        [SerializeField] private Transform firePoint;
-        [SerializeField] private Transform firePoint2;
-        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] protected float fireRate = 2.0f;
+        [SerializeField] protected Transform firePoint;
+        [SerializeField] protected Transform firePoint2;
+        [SerializeField] protected GameObject bulletPrefab;
 
         private Health playerHealthInBox;
         private float damageTimer;
@@ -50,6 +50,8 @@ namespace Enemy
 
         public void MeeleAttack()
         {
+            if (isKnockedBack) return;
+
             if (animator != null)
             {
                 animator.SetTrigger("Attack");
@@ -77,6 +79,8 @@ namespace Enemy
 
         public void ShootAttack()
         {
+            if (isKnockedBack) return;
+
             if (proceduralAnimator != null && playerTarget != null)
             {
                 proceduralAnimator.SetLookTarget(playerTarget);
@@ -84,7 +88,7 @@ namespace Enemy
             StartCoroutine(ShootSequence());
         }
 
-        private IEnumerator ShootSequence()
+        protected virtual IEnumerator ShootSequence()
         {
             Shoot(firePoint);
 
@@ -95,7 +99,7 @@ namespace Enemy
             }
         }
 
-        private void Shoot(Transform point)
+        protected virtual void Shoot(Transform point)
         {
             if (bulletPrefab == null || point == null || playerTarget == null)
                 return;
@@ -107,6 +111,8 @@ namespace Enemy
         protected override void Update()
         {
             base.Update();
+
+            if (isKnockedBack) return;
 
             UpdateModeBasedOnDistance();
 

@@ -24,13 +24,4 @@ namespace Enemy
         GameObject GranadePrefab { get; }
         void ThrowGranade();
     }
-
-    public interface ITower
-    {
-        float FireRate { get; }
-        Transform FirePoint { get; }
-        Transform FirePoint2 { get; }
-        GameObject BulletPrefab { get; }
-        void ShootAttack();
-    }
 }

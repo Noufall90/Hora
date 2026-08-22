@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using HFSM.Core;
@@ -22,6 +23,13 @@ namespace Enemy
         [SerializeField] [Range(0f, 180f)] protected float fieldOfView = 60f; // dibatasi 0-180
         [SerializeField] protected LayerMask obstacleLayer;
 
+        [Header("Knockback Settings")]
+        [SerializeField] protected bool enableKnockback = true;
+        [SerializeField] protected int requiredComboHits = 3;
+        [SerializeField] protected float comboResetTime = 1.5f;
+        [SerializeField] protected float knockbackForce = 15f;
+        [SerializeField] protected float knockbackDuration = 0.3f;
+
         [Header("Debug")]
         [SerializeField] protected bool showDebugGizmos = true;
 
@@ -32,6 +40,10 @@ namespace Enemy
         protected Transform playerTarget;
         protected EnemyHealth health;
         protected Vector3 lastKnownPlayerPosition;
+
+        protected int currentComboHits = 0;
+        protected float comboResetTimer = 0f;
+        protected bool isKnockedBack = false;
 
         public float MoveSpeed => moveSpeed;
         public float RotationSpeed => rotationSpeed;
@@ -45,6 +57,7 @@ namespace Enemy
         public Transform PlayerTarget => playerTarget;
         public State CurrentState => hfsm?.CurrentState;
         public bool IsInvestigating => hfsm?.CurrentState is HFSM.Passive.InvestigateState;
+        public bool IsKnockedBack => isKnockedBack;
         public Vector3 LastKnownPlayerPosition
         {
             get
@@ -144,6 +157,71 @@ namespace Enemy
                     hfsm.ChangeState(new HFSM.Passive.InvestigateState(this, hfsm, lastKnownPlayerPosition));
                 }
             }
+
+            if (enableKnockback)
+            {
+                currentComboHits++;
+                comboResetTimer = comboResetTime;
+
+                if (currentComboHits >= requiredComboHits)
+                {
+                    currentComboHits = 0;
+                    ApplyKnockback();
+                }
+            }
+        }
+
+        protected virtual void ApplyKnockback()
+        {
+            if (isKnockedBack) return;
+
+            Vector3 knockbackDir = Vector3.zero;
+            if (playerTarget != null)
+            {
+                knockbackDir = (transform.position - playerTarget.position);
+                knockbackDir.y = 0f;
+            }
+
+            if (knockbackDir.sqrMagnitude < 0.001f)
+            {
+                knockbackDir = -transform.forward;
+                knockbackDir.y = 0f;
+            }
+
+            knockbackDir.Normalize();
+            StartCoroutine(KnockbackRoutine(knockbackDir));
+        }
+
+        protected virtual IEnumerator KnockbackRoutine(Vector3 direction)
+        {
+            isKnockedBack = true;
+            float elapsed = 0f;
+
+            Animator anim = GetComponentInChildren<Animator>() ?? GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetTrigger("Hit");
+            }
+
+            while (elapsed < knockbackDuration)
+            {
+                elapsed += Time.deltaTime;
+                float currentForce = Mathf.Lerp(knockbackForce, 0f, elapsed / knockbackDuration);
+                Vector3 moveStep = direction * currentForce * Time.deltaTime;
+
+                if (HasActiveNavMeshAgent)
+                {
+                    agent.Move(moveStep);
+                }
+                else
+                {
+                    transform.position += moveStep;
+                }
+
+                yield return null;
+            }
+
+            isKnockedBack = false;
         }
 
         public bool IsPlayerDetected()
@@ -210,6 +288,16 @@ namespace Enemy
         protected virtual void Update()
         {
             if (HasActiveNavMeshAgent) agent.speed = moveSpeed;
+
+            if (enableKnockback && currentComboHits > 0)
+            {
+                comboResetTimer -= Time.deltaTime;
+                if (comboResetTimer <= 0f)
+                {
+                    currentComboHits = 0;
+                }
+            }
+
             hfsm.Update();
         }
 

@@ -27,6 +27,8 @@ namespace Enemy
 
         public void MeeleAttack()
         {
+            if (isKnockedBack) return;
+
             if (animator != null)
             {
                 animator.SetTrigger("Attack");
@@ -55,6 +57,8 @@ namespace Enemy
         protected override void Update()
         {
             base.Update();
+
+            if (isKnockedBack) return;
 
             // Deal 10 damage every 2 seconds if player is inside damageCollider
             if (playerHealthInBox != null)

@@ -17,116 +17,19 @@ namespace Enemy
         [Header("Trajectory Line")]
         [SerializeField] private LineRenderer trajectoryLine;
 
-        [Header("Knockback Settings")]
-        [SerializeField] private int requiredComboHits = 3;
-        [SerializeField] private float comboResetTime = 1.5f;
-        [SerializeField] private float knockbackForce = 10f;
-        [SerializeField] private float knockbackDuration = 0.3f;
-
-        private int currentComboHits = 0;
-        private float comboResetTimer = 0f;
-        private bool isKnockedBack = false;
-
         public float FireRate => fireRate;
         public float ThrowForce => throwForce;
         public Transform ThrowPosition => throwPosition;
         public GameObject GranadePrefab => granadePrefab;
-        public bool IsKnockedBack => isKnockedBack;
 
-        protected override void Start()
+        protected override IEnumerator KnockbackRoutine(Vector3 direction)
         {
-            base.Start();
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            if (currentComboHits > 0)
-            {
-                comboResetTimer -= Time.deltaTime;
-                if (comboResetTimer <= 0f)
-                {
-                    currentComboHits = 0;
-                }
-            }
-        }
-
-        protected override void OnDamageTakenHandler(int damageAmount)
-        {
-            base.OnDamageTakenHandler(damageAmount);
-
-            currentComboHits++;
-            comboResetTimer = comboResetTime;
-
-            if (currentComboHits >= requiredComboHits)
-            {
-                currentComboHits = 0;
-                ApplyKnockback();
-            }
-        }
-
-        private void ApplyKnockback()
-        {
-            if (isKnockedBack) return;
-
-            Vector3 knockbackDir = Vector3.zero;
-            if (playerTarget != null)
-            {
-                knockbackDir = (transform.position - playerTarget.position);
-                knockbackDir.y = 0f;
-            }
-
-            if (knockbackDir.sqrMagnitude < 0.001f)
-            {
-                knockbackDir = -transform.forward;
-                knockbackDir.y = 0f;
-            }
-
-            knockbackDir.Normalize();
-            StartCoroutine(KnockbackRoutine(knockbackDir));
-        }
-
-        private IEnumerator KnockbackRoutine(Vector3 direction)
-        {
-            isKnockedBack = true;
-            float elapsed = 0f;
-
             if (trajectoryLine != null)
             {
                 trajectoryLine.enabled = false;
             }
 
-            Animator anim = GetComponentInChildren<Animator>() ?? GetComponent<Animator>();
-            if (anim != null)
-            {
-                anim.SetTrigger("Hit");
-            }
-
-            while (elapsed < knockbackDuration)
-            {
-                elapsed += Time.deltaTime;
-                float currentForce = Mathf.Lerp(knockbackForce, 0f, elapsed / knockbackDuration);
-                Vector3 moveStep = direction * currentForce * Time.deltaTime;
-
-                if (HasActiveNavMeshAgent)
-                {
-                    agent.Move(moveStep);
-                }
-                else
-                {
-                    transform.position += moveStep;
-                }
-
-                yield return null;
-            }
-
-            isKnockedBack = false;
+            return base.KnockbackRoutine(direction);
         }
 
         public void ThrowGranade()

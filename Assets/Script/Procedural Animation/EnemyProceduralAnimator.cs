@@ -35,7 +35,8 @@ namespace procedural_animation
         [Range(0, 360)]
         [SerializeField] private float _fovAngle = 120f;
         [SerializeField] private LayerMask _playerLayer;
-        [SerializeField] private LayerMask _obstacleLayer;
+
+        private LayerMask ObstacleLayer => _brain != null ? _brain.ObstacleLayer : default;
 
         private int _nLimbs;
         private ProceduralLimb[] _limbs;
@@ -214,7 +215,8 @@ namespace procedural_animation
                 {
                     if (Vector3.Angle(transform.forward, dirToTarget) <= _fovAngle * 0.5f)
                     {
-                        if (_obstacleLayer.value == 0 || !Physics.Raycast(eyePos, dirToTarget, dstToTarget, _obstacleLayer))
+                        LayerMask obsMask = ObstacleLayer;
+                        if (obsMask.value == 0 || !Physics.Raycast(eyePos, dirToTarget, dstToTarget, obsMask))
                         {
                             _playerDetected = true;
                             _currentTarget = target;
