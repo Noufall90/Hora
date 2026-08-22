@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 2052339989042532082}
   m_Layer: 9
   m_Name: Health Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 4261707394407316341}
   m_Layer: 9
   m_Name: Robot Meele
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -456,7 +456,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  _showDebugRays: 0
+  _showDebugRays: 1
   _debugDuration: 1
   _limbTargets:
   - {fileID: 1195160378693262000}
@@ -474,7 +474,7 @@ MonoBehaviour:
   _lookSpeed: 5
   _scanSpeed: 2
   _scanAngle: 50
-  _viewDistance: 30
+  _viewDistance: 25
   _fovAngle: 140
   _playerLayer:
     serializedVersion: 2
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   rotationSpeed: 50
-  patrolRange: 30
+  patrolRange: 20
   patrolCentrePoint: {fileID: 0}
-  detectRange: 30
+  detectRange: 25
   attackRange: 6
   meeleRange: 0
   fieldOfView: 140
@@ -1328,6 +1328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d53e4df9d012284fa26fe189eb7363e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2253642204691711036, guid: 6d53e4df9d012284fa26fe189eb7363e,
         type: 3}

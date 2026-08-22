@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 3090434300748340106}
   m_Layer: 9
   m_Name: Health Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 7201969637409931330}
   m_Layer: 9
   m_Name: Robot Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1346,6 +1346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a4f5a33a56ec2c42aab8c8e9882af7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 950600388584848794, guid: 4a4f5a33a56ec2c42aab8c8e9882af7f,
         type: 3}

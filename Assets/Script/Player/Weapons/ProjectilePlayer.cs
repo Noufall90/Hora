@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerWeapons
 {
     public class ProjectilePlayer : MonoBehaviour
     {
+        [Header("Projectile Settings")]
         [SerializeField] private float speed = 20f;
         [SerializeField] private float lifeTime = 3f;
-        [SerializeField] private LayerMask targetLayer;
+        [SerializeField] private int defaultDamage = 10;
 
         private Rigidbody rb;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+
             if (rb != null)
             {
                 rb.useGravity = false;
@@ -32,30 +32,58 @@ namespace PlayerWeapons
 
         private void OnTriggerEnter(Collider other)
         {
-            int otherLayer = 1 << other.gameObject.layer;
-            int rootLayer = 1 << other.transform.root.gameObject.layer;
-            if ((targetLayer.value & otherLayer) == 0 && (targetLayer.value & rootLayer) == 0)
+            if (!IsEnemy(other))
                 return;
 
-            Health health = other.GetComponent<Health>() ?? other.GetComponentInParent<Health>();
+            Health health = other.GetComponent<Health>();
+            if (health == null)
+            {
+                health = other.GetComponentInParent<Health>();
+            }
 
             if (health != null)
             {
-                int damage = 10;
-                if (WeaponsManager.Instance != null)
-                {
-                    float pistolDmg = WeaponsManager.Instance.CurrentPistolData.damagePistol;
-                    if (pistolDmg > 0)
-                    {
-                        damage = Mathf.RoundToInt(pistolDmg);
-                    }
-                }
+                int damage = GetDamage();
 
                 health.TakeDamage(damage);
-                Debug.Log("Bullet hit " + other.name);
+            }
+            Destroy(gameObject);
+        }
+
+        private bool IsEnemy(Collider other)
+        {
+            int enemyLayer = LayerMask.NameToLayer("Enemy");
+
+            if (enemyLayer == -1)
+            {
+                return false;
             }
 
-            Destroy(gameObject);
+            if (other.gameObject.layer == enemyLayer)
+                return true;
+
+            if (other.transform.root.gameObject.layer == enemyLayer)
+                return true;
+
+            return false;
+        }
+
+        private int GetDamage()
+        {
+            int damage = defaultDamage;
+
+            if (WeaponsManager.Instance != null)
+            {
+                float pistolDamage =
+                    WeaponsManager.Instance.CurrentPistolData.damagePistol;
+
+                if (pistolDamage > 0)
+                {
+                    damage = Mathf.RoundToInt(pistolDamage);
+                }
+            }
+
+            return damage;
         }
     }
 }
