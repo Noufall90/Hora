@@ -802,7 +802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c0f2dd9eda4d845894e0813968b6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 160
+  coinValue: 35
   enemyRenderers:
   - {fileID: 5944074237872320154}
   dissolveDuration: 1

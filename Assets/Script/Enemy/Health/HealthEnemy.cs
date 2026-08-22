@@ -8,6 +8,7 @@ namespace Enemy
     public class EnemyHealth : Health
     {
         [Header("Death Dissolve Settings")]
+        [SerializeField] private int coinValue;
         [SerializeField] private Renderer[] enemyRenderers;
         [SerializeField] private float dissolveDuration = 2f;
         private static readonly int DissolvePropertyHash = Shader.PropertyToID("_Dissolve");
@@ -34,6 +35,11 @@ namespace Enemy
         {
             if (isDead) return;
             isDead = true;
+
+            if (CoinCounter.Instance != null)
+            {
+                CoinCounter.Instance.IncreaseCoin(coinValue);
+            }
 
             StopEnemy();
 

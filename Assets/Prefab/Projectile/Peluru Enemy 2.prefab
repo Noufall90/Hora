@@ -150,9 +150,6 @@ MonoBehaviour:
   damage: 2
   speed: 30
   lifeTime: 1
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 264
 --- !u!96 &1702438826596192077
 TrailRenderer:
   serializedVersion: 3

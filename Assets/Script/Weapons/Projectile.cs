@@ -5,7 +5,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int damage = 10;
     [SerializeField] private float speed = 20f;
     [SerializeField] private float lifeTime = 3f;
-    [SerializeField] private LayerMask targetLayer;
 
     private Rigidbody rb;
 
@@ -29,14 +28,23 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((targetLayer.value & (1 << other.gameObject.layer)) == 0)
+        // Focus check specifically on "Player" tag or "Player" layer
+        int playerLayer = LayerMask.NameToLayer("Player");
+        bool isPlayer = other.CompareTag("Player") || 
+                        other.transform.root.CompareTag("Player") || 
+                        other.gameObject.layer == playerLayer || 
+                        other.transform.root.gameObject.layer == playerLayer;
+
+        if (!isPlayer)
             return;
 
-        Health health = other.GetComponent<Health>();
+        Health health = other.GetComponent<Health>() ?? other.GetComponentInParent<Health>();
 
         if (health != null)
+        {
             health.TakeDamage(damage);
-            Debug.Log("Bullet hit " + other.name);
+            Debug.Log("Bullet hit " + other.name + " causing " + damage + " damage");
+        }
 
         Destroy(gameObject);
     }

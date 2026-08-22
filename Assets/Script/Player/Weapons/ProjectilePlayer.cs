@@ -32,10 +32,12 @@ namespace PlayerWeapons
 
         private void OnTriggerEnter(Collider other)
         {
-            if ((targetLayer.value & (1 << other.gameObject.layer)) == 0)
+            int otherLayer = 1 << other.gameObject.layer;
+            int rootLayer = 1 << other.transform.root.gameObject.layer;
+            if ((targetLayer.value & otherLayer) == 0 && (targetLayer.value & rootLayer) == 0)
                 return;
 
-            Health health = other.GetComponent<Health>();
+            Health health = other.GetComponent<Health>() ?? other.GetComponentInParent<Health>();
 
             if (health != null)
             {

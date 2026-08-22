@@ -12,8 +12,6 @@ namespace PlayerWeapons
         [Header("Pistol")]
         public Transform firePoint;
         public GameObject bulletPrefab;
-
-        [Header("Pistol Energy & UI")]
         [SerializeField] private Image pistolBar;
         private float _currentPistolEnergy = -1f;
         private float _maxPistolEnergy = 10f;
@@ -64,6 +62,11 @@ namespace PlayerWeapons
         private void Update()
         {
             RechargePistolEnergy();
+
+            if (_isMeleeAttacking)
+            {
+                CheckOverlapDamage();
+            }
         }
 
         public void SyncPistolEnergyWithData()
@@ -169,11 +172,16 @@ namespace PlayerWeapons
             if (forward.sqrMagnitude < 0.001f) forward = Vector3.forward;
             forward.Normalize();
 
-            Collider[] colliders = Physics.OverlapSphere(originPos, autoAimMaxDistance, LayerMask.GetMask("Enemy"));
+            int enemyLayerMask = LayerMask.GetMask("Enemy");
+            Collider[] colliders = enemyLayerMask != 0 
+                ? Physics.OverlapSphere(originPos, autoAimMaxDistance, enemyLayerMask) 
+                : Physics.OverlapSphere(originPos, autoAimMaxDistance);
+
             if (colliders == null || colliders.Length == 0) return null;
 
             Transform bestTarget = null;
             float bestScore = float.MaxValue;
+            int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
 
             foreach (var col in colliders)
             {
@@ -182,7 +190,12 @@ namespace PlayerWeapons
                 if (col.CompareTag("Player") || col.transform.root == transform.root) continue;
 
                 Health targetHealth = col.GetComponent<Health>() ?? col.GetComponentInParent<Health>();
-                if (targetHealth == null || targetHealth.CurrentHealth <= 0) continue;
+                if (targetHealth == null || targetHealth.CurrentHealth <= 0 || targetHealth is PlayerData.PlayerHealth) continue;
+
+                bool isEnemy = (enemyLayerIndex != -1 && (col.gameObject.layer == enemyLayerIndex || col.transform.root.gameObject.layer == enemyLayerIndex)) ||
+                               col.CompareTag("Enemy") || col.transform.root.CompareTag("Enemy") || targetHealth is Enemy.EnemyHealth;
+
+                if (!isEnemy && enemyLayerMask != 0) continue;
 
                 Transform enemyTransform = targetHealth.transform;
 
@@ -321,33 +334,47 @@ namespace PlayerWeapons
             if (!_isMeleeAttacking) return;
 
             Transform checkOrigin = meleeCollider != null ? meleeCollider.transform : transform;
-            Vector3 center = checkOrigin.position + checkOrigin.forward * 0.8f;
-            Collider[] overlaps = Physics.OverlapSphere(center, 1.5f, LayerMask.GetMask("Enemy"));
+            Vector3 center = checkOrigin.position + checkOrigin.forward * 1.0f + Vector3.up * 0.5f;
+
+            int enemyLayerMask = LayerMask.GetMask("Enemy");
+            Collider[] overlaps = enemyLayerMask != 0 
+                ? Physics.OverlapSphere(center, 2.0f, enemyLayerMask) 
+                : Physics.OverlapSphere(center, 2.0f);
 
             foreach (var col in overlaps)
             {
-                OnTriggerEnter(col);
+                ProcessMeleeHit(col);
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void ProcessMeleeHit(Collider other)
         {
             if (!_isMeleeAttacking || other == null) return;
 
             if (other.CompareTag("Player") || other.transform.root == transform.root) return;
 
-            int enemyLayerMask = LayerMask.GetMask("Enemy");
-            bool isEnemyLayer = ((enemyLayerMask & (1 << other.gameObject.layer)) != 0) ||
-                                ((enemyLayerMask & (1 << other.transform.root.gameObject.layer)) != 0);
-            if (!isEnemyLayer) return;
+            int enemyLayerIndex = LayerMask.NameToLayer("Enemy");
+            bool isEnemy = (enemyLayerIndex != -1 && (other.gameObject.layer == enemyLayerIndex || other.transform.root.gameObject.layer == enemyLayerIndex)) ||
+                           other.CompareTag("Enemy") ||
+                           other.transform.root.CompareTag("Enemy");
 
             Health targetHealth = other.GetComponent<Health>() ?? other.GetComponentInParent<Health>();
-            if (targetHealth != null && !_hitEnemies.Contains(targetHealth))
+            if (targetHealth == null && isEnemy)
+            {
+                targetHealth = other.GetComponentInChildren<Health>();
+            }
+
+            if (targetHealth != null && !(targetHealth is PlayerData.PlayerHealth) && !_hitEnemies.Contains(targetHealth))
             {
                 _hitEnemies.Add(targetHealth);
                 targetHealth.TakeDamage((int)_currentMeleeDamage);
-                Debug.Log("Attack damage");
+                Debug.Log("Melee attack hit " + targetHealth.gameObject.name + " causing " + _currentMeleeDamage + " damage");
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            ProcessMeleeHit(other);
         }
 
         #endregion
