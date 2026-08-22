@@ -26,7 +26,7 @@ namespace HFSM.Combat
 
             if (!brain.IsPlayerDetected())
             {
-                stateMachine.ChangeState(new InvestigateState(brain, stateMachine, brain.PlayerTarget.position));
+                stateMachine.ChangeState(new InvestigateState(brain, stateMachine, brain.LastKnownPlayerPosition));
                 return;
             }
 

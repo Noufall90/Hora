@@ -76,15 +76,6 @@ namespace Enemy
                 }
             }
 
-            // Freeze Rigidbody physics
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true;
-            }
-
             // Disable colliders so it won't block player or bullets while dissolving
             Collider[] colliders = GetComponentsInChildren<Collider>();
             foreach (var col in colliders)

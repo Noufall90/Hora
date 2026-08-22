@@ -20,6 +20,7 @@ namespace Enemy
         [SerializeField] protected float attackRange;
         [SerializeField] protected float meeleRange;
         [SerializeField] [Range(0f, 180f)] protected float fieldOfView = 60f; // dibatasi 0-180
+        [SerializeField] protected LayerMask obstacleLayer;
 
         [Header("Debug")]
         [SerializeField] protected bool showDebugGizmos = true;
@@ -30,6 +31,7 @@ namespace Enemy
         protected NavMeshAgent agent;
         protected Transform playerTarget;
         protected EnemyHealth health;
+        protected Vector3 lastKnownPlayerPosition;
 
         public float MoveSpeed => moveSpeed;
         public float RotationSpeed => rotationSpeed;
@@ -38,8 +40,19 @@ namespace Enemy
         public float AttackRange => attackRange;
         public float MeeleRange => meeleRange;
         public float FieldOfView => fieldOfView;
+        public LayerMask ObstacleLayer => obstacleLayer;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
+        public Vector3 LastKnownPlayerPosition
+        {
+            get
+            {
+                if (lastKnownPlayerPosition == Vector3.zero && playerTarget != null)
+                    return playerTarget.position;
+                return lastKnownPlayerPosition;
+            }
+            set => lastKnownPlayerPosition = value;
+        }
         public bool HasActiveNavMeshAgent => agent != null && agent.enabled && agent.isOnNavMesh;
         public bool CanMove => moveSpeed > 0f && HasActiveNavMeshAgent;
 
@@ -79,6 +92,7 @@ namespace Enemy
             if (player != null)
             {
                 playerTarget = player.transform;
+                lastKnownPlayerPosition = player.transform.position;
             }
             hfsm = new HierarchicalStateMachine();
             hfsm.Initialize(new HFSM.Passive.IdleState(this, hfsm));
@@ -86,32 +100,49 @@ namespace Enemy
 
         public bool IsPlayerDetected()
         {
-            var proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>();
+            var proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
+            bool detected = false;
             if (proceduralAnimator != null)
             {
-                // Jika ingin menggabungkan, bisa tambahkan logika di sini
+                detected = proceduralAnimator.PlayerDetected;
+            }
+            else if (playerTarget != null && Vector3.Distance(transform.position, playerTarget.position) <= detectRange)
+            {
+                detected = IsPlayerInViewCone(detectRange);
             }
 
-            if (playerTarget == null) return false;
+            if (detected && playerTarget != null)
+            {
+                lastKnownPlayerPosition = playerTarget.position;
+            }
 
-            float distance = Vector3.Distance(transform.position, playerTarget.position);
-            if (distance > detectRange) return false;
-
-            return IsPlayerInViewCone(detectRange);
+            return detected;
         }
 
         protected virtual bool IsPlayerInViewCone(float maxDistance)
         {
             if (playerTarget == null) return false;
 
-            Vector3 directionToPlayer = (playerTarget.position - transform.position).normalized;
-            
-            // Pastikan pemain berada di depan (dot > 0)
+            Vector3 eyePos = transform.position + Vector3.up * 1f;
+            Vector3 targetEyePos = playerTarget.position + Vector3.up * 1f;
+
+            Vector3 directionToPlayer = (targetEyePos - eyePos).normalized;
+            float distanceToPlayer = Vector3.Distance(eyePos, targetEyePos);
+
+            if (distanceToPlayer > maxDistance) return false;
+
             float dot = Vector3.Dot(transform.forward, directionToPlayer);
             if (dot <= 0f) return false;
 
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
-            return angle <= fieldOfView * 0.5f;
+            if (angle > fieldOfView * 0.5f) return false;
+
+            if (obstacleLayer.value != 0 && Physics.Raycast(eyePos, directionToPlayer, distanceToPlayer, obstacleLayer))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public bool IsPlayerInAttackRange()

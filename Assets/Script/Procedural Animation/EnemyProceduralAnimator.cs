@@ -154,6 +154,14 @@ namespace procedural_animation
                     targetToLook.position,
                     Time.deltaTime * _lookSpeed);
             }
+            else if (_brain != null && _brain.HasActiveNavMeshAgent && _brain.Agent.hasPath && _brain.Agent.remainingDistance > 0.3f)
+            {
+                Vector3 targetPos = _brain.LastKnownPlayerPosition != Vector3.zero ? _brain.LastKnownPlayerPosition : _brain.Agent.destination;
+                _lookTargetIK.position = Vector3.Lerp(
+                    _lookTargetIK.position,
+                    targetPos + Vector3.up * 1f,
+                    Time.deltaTime * _lookSpeed);
+            }
             else
             {
                 _scanTimer += Time.deltaTime * _scanSpeed;
@@ -172,22 +180,38 @@ namespace procedural_animation
 
         private void _CheckLineOfSight()
         {
-            Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, _viewDistance, _playerLayer);
-
-            if (targetsInRadius.Length > 0)
+            Transform target = null;
+            if (_brain != null && _brain.PlayerTarget != null)
             {
-                Transform target = targetsInRadius[0].transform;
-                Vector3 dirToTarget = (target.position - transform.position).normalized;
-
-                if (Vector3.Angle(transform.forward, dirToTarget) < _fovAngle / 2f)
+                target = _brain.PlayerTarget;
+            }
+            else
+            {
+                LayerMask searchMask = _playerLayer.value != 0 ? _playerLayer : Physics.DefaultRaycastLayers;
+                Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, _viewDistance, searchMask);
+                if (targetsInRadius != null && targetsInRadius.Length > 0)
                 {
-                    float dstToTarget = Vector3.Distance(transform.position, target.position);
+                    target = targetsInRadius[0].transform;
+                }
+            }
 
-                    if (!Physics.Raycast(transform.position + transform.up * 1f, dirToTarget, dstToTarget, _obstacleLayer))
+            if (target != null)
+            {
+                Vector3 eyePos = transform.position + transform.up * 1f;
+                Vector3 targetEyePos = target.position + Vector3.up * 1f;
+                Vector3 dirToTarget = (targetEyePos - eyePos).normalized;
+                float dstToTarget = Vector3.Distance(eyePos, targetEyePos);
+
+                if (dstToTarget <= _viewDistance)
+                {
+                    if (Vector3.Angle(transform.forward, dirToTarget) <= _fovAngle * 0.5f)
                     {
-                        _playerDetected = true;
-                        _currentTarget = target;
-                        return;
+                        if (_obstacleLayer.value == 0 || !Physics.Raycast(eyePos, dirToTarget, dstToTarget, _obstacleLayer))
+                        {
+                            _playerDetected = true;
+                            _currentTarget = target;
+                            return;
+                        }
                     }
                 }
             }

@@ -987,7 +987,7 @@ MonoBehaviour:
   - {fileID: 6124955843049832767}
   - {fileID: 4171685897990929976}
   - {fileID: 3213271615537093954}
-  _stepSize: 2
+  _stepSize: 1.2
   _stepHeight: 0.5
   _smoothness: 2
   _raycastRange: 1
@@ -1043,8 +1043,11 @@ MonoBehaviour:
   attackRange: 17
   meeleRange: 0
   fieldOfView: 140
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   showDebugGizmos: 1
-  fireRate: 2
+  fireRate: 0.5
   firePoint: {fileID: 8485715130071705421}
   firePoint2: {fileID: 281374779829589224}
   bulletPrefab: {fileID: 6191936454889072601, guid: dffb623856fe61d449d12a2045d17d87,

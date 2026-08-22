@@ -24,7 +24,7 @@ namespace HFSM.Combat
         {
             base.Update();
 
-            if (!IsPlayerInDistance(brain.AttackRange))
+            if (!brain.IsPlayerDetected() || !IsPlayerInDistance(brain.AttackRange))
             {
                 if (brain.CanMove)
                 {

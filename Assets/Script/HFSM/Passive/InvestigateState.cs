@@ -34,6 +34,8 @@ namespace HFSM.Passive
                 return;
             }
 
+            brain.RotateTowardsTarget(lastKnownPosition);
+
             if (!brain.CanMove)
             {
                 stateMachine.ChangeState(new IdleState(brain, stateMachine));
