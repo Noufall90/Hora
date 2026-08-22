@@ -140,7 +140,7 @@ namespace procedural_animation
             if (_lookTargetIK == null) return;
 
             Transform targetToLook = _currentTarget;
-            if (targetToLook == null && _brain != null)
+            if (targetToLook == null && _brain != null && _brain.IsPlayerDetected())
             {
                 targetToLook = _brain.PlayerTarget;
             }
@@ -151,15 +151,23 @@ namespace procedural_animation
             {
                 _lookTargetIK.position = Vector3.Lerp(
                     _lookTargetIK.position,
-                    targetToLook.position,
+                    targetToLook.position + Vector3.up * 1f,
+                    Time.deltaTime * _lookSpeed);
+            }
+            else if (_brain != null && _brain.IsInvestigating)
+            {
+                Vector3 targetPos = _brain.LastKnownPlayerPosition;
+                _lookTargetIK.position = Vector3.Lerp(
+                    _lookTargetIK.position,
+                    targetPos + Vector3.up * 1f,
                     Time.deltaTime * _lookSpeed);
             }
             else if (_brain != null && _brain.HasActiveNavMeshAgent && _brain.Agent.hasPath && _brain.Agent.remainingDistance > 0.3f)
             {
-                Vector3 targetPos = _brain.LastKnownPlayerPosition != Vector3.zero ? _brain.LastKnownPlayerPosition : _brain.Agent.destination;
+                Vector3 moveTargetPos = _brain.Agent.destination + Vector3.up * 1f;
                 _lookTargetIK.position = Vector3.Lerp(
                     _lookTargetIK.position,
-                    targetPos + Vector3.up * 1f,
+                    moveTargetPos,
                     Time.deltaTime * _lookSpeed);
             }
             else

@@ -43,6 +43,8 @@ namespace Enemy
         public LayerMask ObstacleLayer => obstacleLayer;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
+        public State CurrentState => hfsm?.CurrentState;
+        public bool IsInvestigating => hfsm?.CurrentState is HFSM.Passive.InvestigateState;
         public Vector3 LastKnownPlayerPosition
         {
             get
@@ -94,8 +96,54 @@ namespace Enemy
                 playerTarget = player.transform;
                 lastKnownPlayerPosition = player.transform.position;
             }
+
+            if (health != null)
+            {
+                health.OnDamageTaken += OnDamageTakenHandler;
+            }
+
             hfsm = new HierarchicalStateMachine();
             hfsm.Initialize(new HFSM.Passive.IdleState(this, hfsm));
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if (health != null)
+            {
+                health.OnDamageTaken -= OnDamageTakenHandler;
+            }
+        }
+
+        protected virtual void OnDamageTakenHandler(int damageAmount)
+        {
+            if (playerTarget == null) return;
+
+            lastKnownPlayerPosition = playerTarget.position;
+
+            Vector3 dirToAttacker = (playerTarget.position - transform.position);
+            dirToAttacker.y = 0f;
+            if (dirToAttacker.sqrMagnitude > 0.001f)
+            {
+                transform.rotation = Quaternion.LookRotation(dirToAttacker.normalized);
+            }
+
+            var proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
+            if (proceduralAnimator != null)
+            {
+                proceduralAnimator.SetLookTarget(playerTarget);
+            }
+
+            if (hfsm != null && (hfsm.CurrentState is HFSM.Passive.IdleState || hfsm.CurrentState is HFSM.Passive.PatrolState))
+            {
+                if (IsPlayerDetected())
+                {
+                    hfsm.ChangeState(new HFSM.Combat.ChasingState(this, hfsm));
+                }
+                else
+                {
+                    hfsm.ChangeState(new HFSM.Passive.InvestigateState(this, hfsm, lastKnownPlayerPosition));
+                }
+            }
         }
 
         public bool IsPlayerDetected()
