@@ -957,6 +957,7 @@ MonoBehaviour:
   firePoint: {fileID: 6407337154767272089}
   bulletPrefab: {fileID: 1165864016431649122, guid: 2e787d083c7117d479336d071ad2cc65,
     type: 3}
+  meleeCollider: {fileID: 1943724071381680637}
   pistolBar: {fileID: 4414988292593202069}
   enableAutoAim: 1
   autoAimFov: 70
@@ -964,7 +965,6 @@ MonoBehaviour:
   enableMeleeAutoAim: 1
   meleeAutoAimFov: 80
   meleeAutoAimMaxDistance: 3
-  meleeCollider: {fileID: 1943724071381680637}
   weaponsManager: {fileID: 6629220465977109419}
 --- !u!65 &1943724071381680637
 BoxCollider:
@@ -7188,7 +7188,7 @@ GameObject:
   - component: {fileID: 5544532063622359022}
   m_Layer: 3
   m_Name: Raito3D
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

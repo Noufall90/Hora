@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class LookAtController : MonoBehaviour
 {
-    public Transform objectToLookAt;
+    [Header("Target Settings")]
+    public LayerMask targetLayer;
     public float headWeight = 1f;
     public float bodyWeight = 0.5f;
 
@@ -17,6 +18,7 @@ public class LookAtController : MonoBehaviour
 
     private float currentLookWeight = 0f;
 
+    private Transform currentTarget;
     private Transform lastTarget;
 
     void Start()
@@ -26,15 +28,15 @@ public class LookAtController : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-        float targetWeight = (isActive && objectToLookAt != null) ? 1f : 0f;
+        float targetWeight = (isActive && currentTarget != null) ? 1f : 0f;
 
         currentLookWeight = Mathf.Lerp(currentLookWeight, targetWeight, Time.deltaTime * smoothSpeed);
 
         animator.SetLookAtWeight(currentLookWeight, bodyWeight, headWeight);
 
-        if ((objectToLookAt != null || lastTarget != null) && currentLookWeight > 0.01f)
+        if ((currentTarget != null || lastTarget != null) && currentLookWeight > 0.01f)
         {
-            Transform target = objectToLookAt != null ? objectToLookAt : lastTarget;
+            Transform target = currentTarget != null ? currentTarget : lastTarget;
             animator.SetLookAtPosition(target.position);
         }
 
@@ -46,21 +48,24 @@ public class LookAtController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Face"))
+        if ((targetLayer.value & (1 << other.gameObject.layer)) != 0)
         {
             isActive = true;
-            objectToLookAt = other.transform;
-            lastTarget = objectToLookAt;
+            currentTarget = other.transform;
+            lastTarget = currentTarget;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Face"))
+        if ((targetLayer.value & (1 << other.gameObject.layer)) != 0)
         {
-            isActive = false;
-            lastTarget = objectToLookAt;
-            objectToLookAt = null;
+            if (currentTarget == other.transform)
+            {
+                isActive = false;
+                lastTarget = currentTarget;
+                currentTarget = null;
+            }
         }
     }
 }

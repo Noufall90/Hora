@@ -12,6 +12,7 @@ namespace PlayerWeapons
         [Header("Pistol")]
         public Transform firePoint;
         public GameObject bulletPrefab;
+        [SerializeField] private Collider meleeCollider;
         [SerializeField] private Image pistolBar;
         private float _currentPistolEnergy = -1f;
         private float _maxPistolEnergy = 10f;
@@ -29,9 +30,6 @@ namespace PlayerWeapons
         public bool enableMeleeAutoAim = true;
         [Range(0f, 180f)] public float meleeAutoAimFov = 120f;
         public float meleeAutoAimMaxDistance = 5f;
-
-        [Header("Meele")]
-        [SerializeField] private Collider meleeCollider;
 
         [Header("References")]
         [SerializeField] private WeaponsManager weaponsManager;

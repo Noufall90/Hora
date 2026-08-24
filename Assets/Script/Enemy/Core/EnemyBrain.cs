@@ -29,6 +29,7 @@ namespace Enemy
         [SerializeField] protected float comboResetTime = 1.5f;
         [SerializeField] protected float knockbackForce = 15f;
         [SerializeField] protected float knockbackDuration = 0.3f;
+        [SerializeField] protected bool enableComboCameraShake = true;
 
         [Header("Debug")]
         [SerializeField] protected bool showDebugGizmos = true;
@@ -174,6 +175,11 @@ namespace Enemy
         protected virtual void ApplyKnockback()
         {
             if (isKnockedBack) return;
+
+            if (enableComboCameraShake && CamerShake.Instance != null)
+            {
+                CamerShake.Instance.CameraShake();
+            }
 
             Vector3 knockbackDir = Vector3.zero;
             if (playerTarget != null)
