@@ -961,6 +961,9 @@ MonoBehaviour:
   enableAutoAim: 1
   autoAimFov: 70
   autoAimMaxDistance: 18
+  enableMeleeAutoAim: 1
+  meleeAutoAimFov: 80
+  meleeAutoAimMaxDistance: 3
   meleeCollider: {fileID: 1943724071381680637}
   weaponsManager: {fileID: 6629220465977109419}
 --- !u!65 &1943724071381680637
@@ -1745,12 +1748,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c87b64e4c99284cb8c515decd63197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   _animator: {fileID: 7439808206929240747}
   shieldVisual: {fileID: 8857258956309261747}
   sheildPower: 100
-  sheildPowerRegenRate: 3
-  shieldRegenDelay: 3
+  sheildPowerRegenRate: 0.5
+  shieldRegenDelay: 4
   playerRenderers:
   - {fileID: 1068535271888249357}
   - {fileID: 6613361013219670510}
@@ -1800,7 +1803,6 @@ MonoBehaviour:
   dissolvePistol: {fileID: 8342780303230557682}
   dissolveTimeBeforeUse: 0.5
   dissolveTimeAfterUse: 1
-  pistolBar: {fileID: 4414988292593202069}
   weaponsManager: {fileID: 6629220465977109419}
   weaponsActions: {fileID: 2469373089392427831}
   pistolItem: {fileID: 701465394581208547}
@@ -5627,8 +5629,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.5000001, y: 0.49999994, z: 0.5000001, w: 0.49999994}
   m_LocalPosition: {x: 0.04500024, y: 0.11000002, z: 0.20000017}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5966485821135519693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

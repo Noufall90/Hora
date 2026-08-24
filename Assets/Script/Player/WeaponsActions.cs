@@ -20,10 +20,15 @@ namespace PlayerWeapons
         public float CurrentPistolEnergy => _currentPistolEnergy;
         public float MaxPistolEnergy => _maxPistolEnergy;
 
-        [Header("Pistol - Auto Aim / Target Lock")]
+        [Header("Pistol Target Lock")]
         public bool enableAutoAim = true;
         [Range(0f, 180f)] public float autoAimFov = 90f;
         public float autoAimMaxDistance = 15f;
+
+        [Header("Melee Target Lock")]
+        public bool enableMeleeAutoAim = true;
+        [Range(0f, 180f)] public float meleeAutoAimFov = 120f;
+        public float meleeAutoAimMaxDistance = 5f;
 
         [Header("Meele")]
         [SerializeField] private Collider meleeCollider;
@@ -164,7 +169,17 @@ namespace PlayerWeapons
         public Transform GetTargetInFov(Transform originTransform = null)
         {
             if (!enableAutoAim) return null;
+            return FindTargetInFov(originTransform, autoAimFov, autoAimMaxDistance);
+        }
 
+        public Transform GetMeleeTargetInFov(Transform originTransform = null)
+        {
+            if (!enableMeleeAutoAim) return null;
+            return FindTargetInFov(originTransform, meleeAutoAimFov, meleeAutoAimMaxDistance);
+        }
+
+        private Transform FindTargetInFov(Transform originTransform, float fov, float maxDistance)
+        {
             Transform origin = originTransform != null ? originTransform : transform;
             Vector3 originPos = origin.position;
             Vector3 forward = origin.forward;
@@ -174,8 +189,8 @@ namespace PlayerWeapons
 
             int enemyLayerMask = LayerMask.GetMask("Enemy");
             Collider[] colliders = enemyLayerMask != 0 
-                ? Physics.OverlapSphere(originPos, autoAimMaxDistance, enemyLayerMask) 
-                : Physics.OverlapSphere(originPos, autoAimMaxDistance);
+                ? Physics.OverlapSphere(originPos, maxDistance, enemyLayerMask) 
+                : Physics.OverlapSphere(originPos, maxDistance);
 
             if (colliders == null || colliders.Length == 0) return null;
 
@@ -203,14 +218,14 @@ namespace PlayerWeapons
                 dirToEnemy.y = 0f;
                 float distance = dirToEnemy.magnitude;
 
-                if (distance < 0.1f || distance > autoAimMaxDistance) continue;
+                if (distance < 0.1f || distance > maxDistance) continue;
 
                 dirToEnemy.Normalize();
 
                 float angle = Vector3.Angle(forward, dirToEnemy);
 
                 // Khusus jika musuh berada di depan player di dalam sudut FOV
-                if (angle <= autoAimFov * 0.5f)
+                if (angle <= fov * 0.5f)
                 {
                     // Prioritaskan musuh yang paling lurus di hadapan player
                     float score = angle + (distance * 2f);
@@ -382,8 +397,6 @@ namespace PlayerWeapons
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
-            if (!enableAutoAim) return;
-
             Vector3 pos = transform.position + Vector3.up * 0.5f;
 
             Vector3 forward = transform.forward;
@@ -391,13 +404,27 @@ namespace PlayerWeapons
             if (forward.sqrMagnitude < 0.001f) forward = Vector3.forward;
             forward.Normalize();
 
-            Vector3 leftRay = Quaternion.Euler(0, -autoAimFov * 0.5f, 0) * forward * autoAimMaxDistance;
-            Vector3 rightRay = Quaternion.Euler(0, autoAimFov * 0.5f, 0) * forward * autoAimMaxDistance;
+            if (enableAutoAim)
+            {
+                Vector3 leftRay = Quaternion.Euler(0, -autoAimFov * 0.5f, 0) * forward * autoAimMaxDistance;
+                Vector3 rightRay = Quaternion.Euler(0, autoAimFov * 0.5f, 0) * forward * autoAimMaxDistance;
 
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(pos, pos + leftRay);
-            Gizmos.DrawLine(pos, pos + rightRay);
-            Gizmos.DrawLine(pos, pos + forward * autoAimMaxDistance);
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(pos, pos + leftRay);
+                Gizmos.DrawLine(pos, pos + rightRay);
+                Gizmos.DrawLine(pos, pos + forward * autoAimMaxDistance);
+            }
+
+            if (enableMeleeAutoAim)
+            {
+                Vector3 leftRayMelee = Quaternion.Euler(0, -meleeAutoAimFov * 0.5f, 0) * forward * meleeAutoAimMaxDistance;
+                Vector3 rightRayMelee = Quaternion.Euler(0, meleeAutoAimFov * 0.5f, 0) * forward * meleeAutoAimMaxDistance;
+
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(pos, pos + leftRayMelee);
+                Gizmos.DrawLine(pos, pos + rightRayMelee);
+                Gizmos.DrawLine(pos, pos + forward * meleeAutoAimMaxDistance);
+            }
         }
 #endif
     }

@@ -44,6 +44,7 @@ namespace PlayerData
         public static readonly int IsRollHash = Animator.StringToHash("IsRoll");
         public static readonly int AttackTriggerHash = Animator.StringToHash("IsSlash");
         public static readonly int AttackTriggerHash2 = Animator.StringToHash("IsSlash2");
+        public static readonly int AttackTriggerHash3 = Animator.StringToHash("IsSlash3");
         public static readonly int ShootTriggerHash = Animator.StringToHash("IsShooting");
         public static readonly int IsIdleBoolHash = Animator.StringToHash("IsIdling");
 

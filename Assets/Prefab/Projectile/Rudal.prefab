@@ -156,7 +156,7 @@ MonoBehaviour:
   explosionForce: 10
   explosionRadius: 2
   upwardsModifier: 1
-  explosionDamage: 15
+  explosionDamage: 20
   targetLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -1,0 +1,1733 @@
+fileFormatVersion: 2
+guid: 2df739cea88eab04c8c071068f97ab2c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pistol Jenis 3_0
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 2081
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c1fee2b9426dc44a7b43b66a837d87
+      internalID: 1744383328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_1
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 1709
+        width: 1183
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a36a3d0856216964c99812224c689da1
+      internalID: -1496538353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_2
+      rect:
+        serializedVersion: 2
+        x: 1385
+        y: 1708
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 038374fcfe0cf394bba5f037e1906fc6
+      internalID: 388655382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_3
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 1713
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea85e1bee66a6784f936d58c4c6af57b
+      internalID: -767121057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_4
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 1691
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79db89b5bd377c944844c9afd2cc95fb
+      internalID: -1744553207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_5
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 1563
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7bd0506a573df341ac73241cea725e5
+      internalID: 1888447266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_6
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 1543
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ab26404bea40ff41bcdfc4caf57ecfd
+      internalID: -167881967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_7
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 1533
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f2938c2d22d396448267cd19165bc07
+      internalID: 85100689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_8
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 1513
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1600fce89273a5741b8fa3cbce52c869
+      internalID: 1451188845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_9
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1413
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d02c895b4ee924eb90006936ae1630
+      internalID: 169003793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_10
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 1409
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a476525f2ad2c94488281dd81a6adab
+      internalID: -2066079586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_11
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 1375
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d297861edb9b1cb46a91de0b0bc826b4
+      internalID: -1131269654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_12
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 1384
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fde9b04906268045b9db3f35d393b6a
+      internalID: -1766405799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_13
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 1391
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c96d88a8ddf489b4386ff29909981765
+      internalID: 1406785014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_14
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 1384
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e57e95a99219b4542bf7b0396b792c62
+      internalID: -1493677589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_15
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 1391
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0625e0cf7dc67e642a8a1493e68cddea
+      internalID: 2072222779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_16
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 1385
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 217e889a1e2226346952f40059f84449
+      internalID: 858256080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_17
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 1393
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fa55af0af8d3654ea8e690a0a77aadf
+      internalID: 358638950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_18
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 1379
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5824ecc6761cdf443aa56cd415b85510
+      internalID: -1340587208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_19
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 1379
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d827797beee26d478e36e895b8ed8fb
+      internalID: 1718010785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_20
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 1371
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd3af4cc2e7bca7429c471ae01c79afb
+      internalID: -1073668679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_21
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 1357
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10bf1bf458d436f439706c82599b02e1
+      internalID: -1035290966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_22
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 1371
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0535df34d7a0d54ab3999d59dd863b6
+      internalID: -854675234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_23
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 1363
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50a661c76f79ce40a5d13ae7e36f02c
+      internalID: -1481045815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_24
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 1357
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d539d9178e2e14b9e8e7a25f49e213
+      internalID: -1240307814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_25
+      rect:
+        serializedVersion: 2
+        x: 1215
+        y: 1365
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34d730e8db4091478afc51b83c97192
+      internalID: -1431749415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_26
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 877
+        width: 1324
+        height: 488
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfcf99864b3ed934aaafae37396fab48
+      internalID: 1008398066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_27
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 1359
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44f7aeef9ab6a1045be3ff7755db6c1e
+      internalID: 813701321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_28
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 1357
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a95f08ba30f1374a8b53b9318e6712d
+      internalID: 1720626689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_29
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 1149
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94a7721d131ad94897290ee3765b934
+      internalID: -1766830683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_30
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 1127
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcc1e24dc40434a4e8f47f6e490a4ca1
+      internalID: -1661775683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_31
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 1097
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a843821b746ef4e90eb628f9c6d5e4
+      internalID: 821050729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_32
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 1087
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2362db205777fea428af075361a8b0cd
+      internalID: -1538693973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_33
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 1071
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f328dec743494642924e7083edf21c2
+      internalID: -95794766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_34
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 1041
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 867fcbeb8c7217d439e65593ef5dc061
+      internalID: 1386367369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_35
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 933
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1db7156b9fcf0649b0b0dc83a9e5ef9
+      internalID: 1150657598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_36
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 917
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7770003b95191c0438226d15b0000702
+      internalID: -245229410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_37
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 877
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1103477c521c44c95961a3caafeb19
+      internalID: 1752181574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_38
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 879
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6bbde198a46ae740ab5b7072835d12e
+      internalID: -2016286132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_39
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 875
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d845d11de1b26664e9a2bf44b984aaff
+      internalID: -305202870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_40
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 879
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c9967d7471a7f48a3fa96a257b05c5
+      internalID: -58828795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_41
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 875
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f92ffed51fd9a04d87a01fad0bf88ee
+      internalID: 2006987773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_42
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 875
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a2d8c991f89544aad3e077a6ce9ae2
+      internalID: -2012750020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_43
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 727
+        width: 49
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a57678ab4e25744ca3ec5c72174d3c5
+      internalID: 1527678415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_44
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 741
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20cbe9be8933b2249911902280cbf331
+      internalID: -1651784529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_45
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 739
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f056b1c89bcc7164093f9c0a35e72e2f
+      internalID: 463455977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_46
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 725
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98ce97db02ff2804a83536cba14b9dc6
+      internalID: -1098249723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_47
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 573
+        width: 27
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2227aab8c457a741a00dcffa8e7558d
+      internalID: 1332601611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_48
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 7
+        width: 1055
+        height: 593
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9ce437574f30c44abbe870c0a10b52
+      internalID: 1636355548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_49
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 419
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe616c4278739240a40fba472864910
+      internalID: 1689890790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_50
+      rect:
+        serializedVersion: 2
+        x: 1375
+        y: 95
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e57fb05183054d4ea6548c43b36ad2a
+      internalID: 2069065349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_51
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 93
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b4c52cbba20135408a5c7cfa8b54c52
+      internalID: -260358569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_52
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 95
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1a297c2de10d964ea8a24111ff2109e
+      internalID: 1859036755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_53
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 87
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73131d8ba8bfad344ad05877cc9b121c
+      internalID: -243897447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_54
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 91
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8116d4e9f26bd034b874e8fdb6bfc51e
+      internalID: -1828136245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_55
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 85
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8621a00ba4e7c3849944d6d39cc12c01
+      internalID: 315336686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_56
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 75
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42b246032eda10a448a572b624afef22
+      internalID: 1281756080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_57
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 77
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f750cb03c55520a4691b4ae6e67bb121
+      internalID: 2035443359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_58
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 69
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1463fc2924dda9c4189baa55975a798d
+      internalID: -424993245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_59
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 65
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda52bbbe3509724681e015f1c4c5bf9
+      internalID: 192241262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_60
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 63
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbd6545e7c58a6642a25669706c58ce9
+      internalID: 774689646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_61
+      rect:
+        serializedVersion: 2
+        x: 1576
+        y: 61
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61cde950d08a7a4ba77fd76dc44b238
+      internalID: -2058640544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_62
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 59
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28682a868de63c48b9e9b84f1bea360
+      internalID: 1888901078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_63
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 48
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5102cb0b9e8c2e643906864baff2f704
+      internalID: -592437643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_64
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 51
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d39567e56abc34fa2c81649aa87d4b
+      internalID: 746107479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_65
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 47
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 326f870343799e84fb50884a668d23af
+      internalID: -499586130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_66
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 33
+        width: 14
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51423e163b718fd4da69c652f134e96e
+      internalID: 129511348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_67
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 29
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd8380720b5d2648bd8f1702164f527
+      internalID: 1869581852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_68
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 29
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c5a5bf0d573f549b4fa42ddfbdb3ad
+      internalID: -579432550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_69
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 27
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df2a325525e9b5448f7a032e59d1cfd
+      internalID: 1520683530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_70
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 15
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95e646ea16a4fe4e9d55c4335cc95a0
+      internalID: -1378041706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_71
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 7
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ebb9dc8e39397a4db07af19905d1021
+      internalID: -1368476228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistol Jenis 3_72
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 1
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa94ed050a85f944a89a5590ecc1fd37
+      internalID: 1792121246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 54921e5497955d94786d1d34455c2065
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Pistol Jenis 3_0: 1744383328
+      Pistol Jenis 3_1: -1496538353
+      Pistol Jenis 3_10: -2066079586
+      Pistol Jenis 3_11: -1131269654
+      Pistol Jenis 3_12: -1766405799
+      Pistol Jenis 3_13: 1406785014
+      Pistol Jenis 3_14: -1493677589
+      Pistol Jenis 3_15: 2072222779
+      Pistol Jenis 3_16: 858256080
+      Pistol Jenis 3_17: 358638950
+      Pistol Jenis 3_18: -1340587208
+      Pistol Jenis 3_19: 1718010785
+      Pistol Jenis 3_2: 388655382
+      Pistol Jenis 3_20: -1073668679
+      Pistol Jenis 3_21: -1035290966
+      Pistol Jenis 3_22: -854675234
+      Pistol Jenis 3_23: -1481045815
+      Pistol Jenis 3_24: -1240307814
+      Pistol Jenis 3_25: -1431749415
+      Pistol Jenis 3_26: 1008398066
+      Pistol Jenis 3_27: 813701321
+      Pistol Jenis 3_28: 1720626689
+      Pistol Jenis 3_29: -1766830683
+      Pistol Jenis 3_3: -767121057
+      Pistol Jenis 3_30: -1661775683
+      Pistol Jenis 3_31: 821050729
+      Pistol Jenis 3_32: -1538693973
+      Pistol Jenis 3_33: -95794766
+      Pistol Jenis 3_34: 1386367369
+      Pistol Jenis 3_35: 1150657598
+      Pistol Jenis 3_36: -245229410
+      Pistol Jenis 3_37: 1752181574
+      Pistol Jenis 3_38: -2016286132
+      Pistol Jenis 3_39: -305202870
+      Pistol Jenis 3_4: -1744553207
+      Pistol Jenis 3_40: -58828795
+      Pistol Jenis 3_41: 2006987773
+      Pistol Jenis 3_42: -2012750020
+      Pistol Jenis 3_43: 1527678415
+      Pistol Jenis 3_44: -1651784529
+      Pistol Jenis 3_45: 463455977
+      Pistol Jenis 3_46: -1098249723
+      Pistol Jenis 3_47: 1332601611
+      Pistol Jenis 3_48: 1636355548
+      Pistol Jenis 3_49: 1689890790
+      Pistol Jenis 3_5: 1888447266
+      Pistol Jenis 3_50: 2069065349
+      Pistol Jenis 3_51: -260358569
+      Pistol Jenis 3_52: 1859036755
+      Pistol Jenis 3_53: -243897447
+      Pistol Jenis 3_54: -1828136245
+      Pistol Jenis 3_55: 315336686
+      Pistol Jenis 3_56: 1281756080
+      Pistol Jenis 3_57: 2035443359
+      Pistol Jenis 3_58: -424993245
+      Pistol Jenis 3_59: 192241262
+      Pistol Jenis 3_6: -167881967
+      Pistol Jenis 3_60: 774689646
+      Pistol Jenis 3_61: -2058640544
+      Pistol Jenis 3_62: 1888901078
+      Pistol Jenis 3_63: -592437643
+      Pistol Jenis 3_64: 746107479
+      Pistol Jenis 3_65: -499586130
+      Pistol Jenis 3_66: 129511348
+      Pistol Jenis 3_67: 1869581852
+      Pistol Jenis 3_68: -579432550
+      Pistol Jenis 3_69: 1520683530
+      Pistol Jenis 3_7: 85100689
+      Pistol Jenis 3_70: -1378041706
+      Pistol Jenis 3_71: -1368476228
+      Pistol Jenis 3_72: 1792121246
+      Pistol Jenis 3_8: 1451188845
+      Pistol Jenis 3_9: 169003793
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -17,9 +17,6 @@ namespace PlayerData
         [SerializeField] private float dissolveTimeBeforeUse = 0.5f;
         [SerializeField] private float dissolveTimeAfterUse = 0.5f;
 
-        [Header("UI References")]
-        [SerializeField] private UnityEngine.UI.Image pistolBar;
-
         [Header("Weapon Data Providers")]
         [SerializeField] private WeaponsManager weaponsManager;
         [SerializeField] private WeaponsActions weaponsActions;
@@ -37,6 +34,7 @@ namespace PlayerData
         private Coroutine _shootResetCoroutine;
         private Coroutine _comboResetCoroutine;
         private int _comboStep = 0;
+        private bool _hasQueuedAttack = false;
 
         private bool _isAttacking;
         private bool _isShooting;
@@ -88,12 +86,6 @@ namespace PlayerData
                 _animator.SetBool(PlayerController.IsIdleBoolHash, true);
             }
 
-            WeaponsActions wa = weaponsActions != null ? weaponsActions : WeaponsActions.Instance;
-            if (pistolBar != null && wa != null && wa.PistolBar == null)
-            {
-                wa.PistolBar = pistolBar;
-            }
-
             InitializeDissolveObjects();
         }
 
@@ -134,34 +126,59 @@ namespace PlayerData
             if (_animator == null) return;
             if (_playerController != null && _playerController.IsRolling) return;
 
+            if (_isAttacking)
+            {
+                // Jika sedang menyerang dan belum mencapai slash ke-3, catat input combo berikutnya
+                if (_comboStep < 3)
+                {
+                    _hasQueuedAttack = true;
+                }
+                return;
+            }
+
+            // Memulai combo dari Slash 1
+            ExecuteAttackStep(1);
+        }
+
+        private void ExecuteAttackStep(int step)
+        {
             _isAttacking = true;
+            _comboStep = step;
+            _hasQueuedAttack = false;
+
             GameObject activeMelee = GetActiveMeleeObject();
             TriggerDissolveIn(activeMelee);
 
-            _animator.SetBool(PlayerController.IsIdleBoolHash, false);
-
-            if (_comboStep == 0)
+            if (_animator != null)
             {
+                _animator.SetBool(PlayerController.IsIdleBoolHash, false);
                 _animator.ResetTrigger(PlayerController.AttackTriggerHash);
                 _animator.ResetTrigger(PlayerController.AttackTriggerHash2);
-                _animator.SetTrigger(PlayerController.AttackTriggerHash);
-                _comboStep = 1;
-            }
-            else
-            {
-                _animator.ResetTrigger(PlayerController.AttackTriggerHash);
-                _animator.ResetTrigger(PlayerController.AttackTriggerHash2);
-                _animator.SetTrigger(PlayerController.AttackTriggerHash2);
-                _comboStep = 0;
+                _animator.ResetTrigger(PlayerController.AttackTriggerHash3);
+
+                if (step == 1)
+                {
+                    _animator.SetTrigger(PlayerController.AttackTriggerHash);
+                }
+                else if (step == 2)
+                {
+                    _animator.SetTrigger(PlayerController.AttackTriggerHash2);
+                }
+                else if (step == 3)
+                {
+                    _animator.SetTrigger(PlayerController.AttackTriggerHash3);
+                }
             }
 
-            if (weaponsActions != null)
+            WeaponsActions wa = weaponsActions != null ? weaponsActions : WeaponsActions.Instance;
+            if (wa != null)
             {
-                weaponsActions.StartMeleeAttack();
-            }
-            else if (WeaponsActions.Instance != null)
-            {
-                WeaponsActions.Instance.StartMeleeAttack();
+                Transform meleeTarget = wa.GetMeleeTargetInFov(transform);
+                if (meleeTarget != null)
+                {
+                    RotateTowardsEnemy(meleeTarget);
+                }
+                wa.StartMeleeAttack();
             }
 
             if (_attackResetCoroutine != null)
@@ -169,12 +186,6 @@ namespace PlayerData
                 StopCoroutine(_attackResetCoroutine);
             }
             _attackResetCoroutine = StartCoroutine(ResetIdleAfterAttack(slashDuration));
-
-            if (_comboResetCoroutine != null)
-            {
-                StopCoroutine(_comboResetCoroutine);
-            }
-            _comboResetCoroutine = StartCoroutine(ResetComboAfterDelay(slashDuration));
         }
 
         public void HandleShoot()
@@ -260,24 +271,54 @@ namespace PlayerData
         }
 
 
+        public void OnAttackStepFinished()
+        {
+            if (_attackResetCoroutine != null)
+            {
+                StopCoroutine(_attackResetCoroutine);
+                _attackResetCoroutine = null;
+            }
+
+            // Jika player menekan serangan saat animasi berlangsung dan belum mencapai Slash 3, lanjut ke Slash berikutnya
+            if (_hasQueuedAttack && _comboStep < 3)
+            {
+                ExecuteAttackStep(_comboStep + 1);
+            }
+            else
+            {
+                FinishAttack();
+            }
+        }
+
         public void OnAttackComplete()
         {
+            OnAttackStepFinished();
+        }
+
+        private void FinishAttack()
+        {
             _isAttacking = false;
+            _comboStep = 0;
+            _hasQueuedAttack = false;
+
             GameObject activeMelee = GetActiveMeleeObject();
 
-            if (weaponsActions != null)
+            WeaponsActions wa = weaponsActions != null ? weaponsActions : WeaponsActions.Instance;
+            if (wa != null)
             {
-                weaponsActions.EndMeleeAttack();
-            }
-            else if (WeaponsActions.Instance != null)
-            {
-                WeaponsActions.Instance.EndMeleeAttack();
+                wa.EndMeleeAttack();
             }
 
             if (_attackResetCoroutine != null)
             {
                 StopCoroutine(_attackResetCoroutine);
                 _attackResetCoroutine = null;
+            }
+
+            if (_comboResetCoroutine != null)
+            {
+                StopCoroutine(_comboResetCoroutine);
+                _comboResetCoroutine = null;
             }
 
             if (!_isShooting)
@@ -298,15 +339,22 @@ namespace PlayerData
         {
             _isAttacking = false;
             _isShooting = false;
+            _hasQueuedAttack = false;
+            _comboStep = 0;
             _currentTargetEnemy = null;
 
-            if (weaponsActions != null)
+            if (_animator != null)
             {
-                weaponsActions.EndMeleeAttack();
+                _animator.ResetTrigger(PlayerController.AttackTriggerHash);
+                _animator.ResetTrigger(PlayerController.AttackTriggerHash2);
+                _animator.ResetTrigger(PlayerController.AttackTriggerHash3);
+                _animator.ResetTrigger(PlayerController.ShootTriggerHash);
             }
-            else if (WeaponsActions.Instance != null)
+
+            WeaponsActions wa = weaponsActions != null ? weaponsActions : WeaponsActions.Instance;
+            if (wa != null)
             {
-                WeaponsActions.Instance.EndMeleeAttack();
+                wa.EndMeleeAttack();
             }
 
             if (_attackResetCoroutine != null)
@@ -321,13 +369,19 @@ namespace PlayerData
                 _shootResetCoroutine = null;
             }
 
+            if (_comboResetCoroutine != null)
+            {
+                StopCoroutine(_comboResetCoroutine);
+                _comboResetCoroutine = null;
+            }
+
             TriggerDissolveOut();
         }
 
         private IEnumerator ResetIdleAfterAttack(float delay)
         {
             yield return new WaitForSeconds(delay);
-            OnAttackComplete();
+            OnAttackStepFinished();
         }
 
         private IEnumerator ExecuteShootWithDelay(Transform targetEnemy, bool isInitialShot)
