@@ -138,10 +138,10 @@ Material:
     - _Main_Textire_Triplanar_Blend: 0.5
     - _Main_Texuter_Scale: 0.5
     - _Metallic: 0
-    - _Moss_End_Y: 0.82
+    - _Moss_End_Y: 0.67
     - _Moss_Intensity: 1
     - _Moss_Scale: 0.48
-    - _Moss_Start_Y: -0.08
+    - _Moss_Start_Y: 0.28
     - _Moss_Texture_Black_Mask: 0.11
     - _Moss_Triplanar_Blend: 5
     - _OcclusionStrength: 1

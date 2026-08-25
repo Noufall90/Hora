@@ -2720,7 +2720,7 @@ RectTransform:
   m_GameObject: {fileID: 1632863103002179977}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7674134727553637737}
@@ -5627,13 +5627,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3929958037532639849}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5000001, y: 0.49999994, z: 0.5000001, w: 0.49999994}
-  m_LocalPosition: {x: 0.04500024, y: 0.11000002, z: 0.20000017}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalRotation: {x: 0.5863224, y: 0.39522, z: -0.39509854, w: 0.5864507}
+  m_LocalPosition: {x: 0.036, y: 0.11, z: 0.247}
+  m_LocalScale: {x: 13, y: 13, z: 13}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5966485821135519693}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -67.937}
 --- !u!1 &3947544183426049819
 GameObject:
   m_ObjectHideFlags: 0
@@ -6054,7 +6054,7 @@ RectTransform:
   m_GameObject: {fileID: 4076477728423663241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1997800880085508009}
@@ -10119,7 +10119,7 @@ MonoBehaviour:
     magazineEnergy: 19
     pistolRechargeRate: 1
   - weaponName: Stardust Singularity
-    weaponPrefab: {fileID: 7086318134087324769, guid: 9c06d56d3bf542d46a4ccccf390c4146,
+    weaponPrefab: {fileID: 1499222369023351165, guid: 7ebd6c1200dcbed43a88cea6ac11036f,
       type: 3}
     damagePistol: 13
     magazineEnergy: 20

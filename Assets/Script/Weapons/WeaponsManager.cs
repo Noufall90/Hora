@@ -44,26 +44,34 @@ namespace PlayerWeapons
 
         private void Start()
         {
-            EquipPistol(activeShooterIndex);
-            EquipMelee(activeMeleeIndex);
+            EquipPistol(activeShooterIndex, false);
+            EquipMelee(activeMeleeIndex, false);
         }
 
         private PistolItem GetPistolProvider()
         {
             if (pistolItem != null) return pistolItem;
-            return PistolItem.Instance;
+            if (PistolItem.Instance != null) return PistolItem.Instance;
+            pistolItem = FindObjectOfType<PistolItem>();
+            return pistolItem;
         }
 
         private MeeleItem GetMeleeProvider()
         {
             if (meeleItem != null) return meeleItem;
-            return MeeleItem.Instance;
+            if (MeeleItem.Instance != null) return MeeleItem.Instance;
+            meeleItem = FindObjectOfType<MeeleItem>();
+            return meeleItem;
         }
 
-        public void EquipPistol(int index)
+        public void EquipPistol(int index, bool forceShow = true)
         {
             PistolItem provider = GetPistolProvider();
-            if (provider == null || provider.Count == 0) return;
+            if (provider == null || provider.Count == 0)
+            {
+                Debug.LogWarning("[WeaponsManager] PistolItem provider tidak ditemukan atau meeleItems/pistolItems kosong!");
+                return;
+            }
 
             activeShooterIndex = Mathf.Clamp(index, 0, provider.Count - 1);
             PistolData data = provider.GetWeapon(activeShooterIndex);
@@ -83,23 +91,41 @@ namespace PlayerWeapons
                 currentPistolObject = Instantiate(data.weaponPrefab, parent);
                 currentPistolObject.transform.localPosition = Vector3.zero;
                 currentPistolObject.transform.localRotation = Quaternion.identity;
+                currentPistolObject.transform.localScale = Vector3.one;
 
                 PlayerData.PlayerAnimAttack animAttack = PlayerData.PlayerAnimAttack.Instance != null ? PlayerData.PlayerAnimAttack.Instance : GetComponentInParent<PlayerData.PlayerAnimAttack>();
+                if (animAttack == null) animAttack = FindObjectOfType<PlayerData.PlayerAnimAttack>();
+
                 if (animAttack != null)
                 {
-                    animAttack.InitializeWeaponDissolve(currentPistolObject, false);
+                    animAttack.HideDefaultDissolvePistol();
+                    animAttack.InitializeWeaponDissolve(currentPistolObject, forceShow);
                 }
                 else
                 {
-                    currentPistolObject.SetActive(false);
+                    currentPistolObject.SetActive(forceShow);
                 }
+                Debug.Log($"[WeaponsManager] Berhasil Equip Pistol Index {activeShooterIndex} ({data.weaponName})");
+            }
+            else
+            {
+                Debug.LogWarning($"[WeaponsManager] Prefab Pistol Index {activeShooterIndex} ({data.weaponName}) masih NULL di PistolItem script!");
+            }
+
+            if (WeaponsActions.Instance != null)
+            {
+                WeaponsActions.Instance.SyncPistolEnergyWithData();
             }
         }
 
-        public void EquipMelee(int index)
+        public void EquipMelee(int index, bool forceShow = true)
         {
             MeeleItem provider = GetMeleeProvider();
-            if (provider == null || provider.Count == 0) return;
+            if (provider == null || provider.Count == 0)
+            {
+                Debug.LogWarning("[WeaponsManager] MeeleItem provider tidak ditemukan atau meeleItems array kosong!");
+                return;
+            }
 
             activeMeleeIndex = Mathf.Clamp(index, 0, provider.Count - 1);
             MeeleData data = provider.GetWeapon(activeMeleeIndex);
@@ -119,16 +145,25 @@ namespace PlayerWeapons
                 currentMeleeObject = Instantiate(data.weaponPrefab, parent);
                 currentMeleeObject.transform.localPosition = Vector3.zero;
                 currentMeleeObject.transform.localRotation = Quaternion.identity;
+                currentMeleeObject.transform.localScale = Vector3.one;
 
                 PlayerData.PlayerAnimAttack animAttack = PlayerData.PlayerAnimAttack.Instance != null ? PlayerData.PlayerAnimAttack.Instance : GetComponentInParent<PlayerData.PlayerAnimAttack>();
+                if (animAttack == null) animAttack = FindObjectOfType<PlayerData.PlayerAnimAttack>();
+
                 if (animAttack != null)
                 {
-                    animAttack.InitializeWeaponDissolve(currentMeleeObject, false);
+                    animAttack.HideDefaultDissolvePedang();
+                    animAttack.InitializeWeaponDissolve(currentMeleeObject, forceShow);
                 }
                 else
                 {
-                    currentMeleeObject.SetActive(false);
+                    currentMeleeObject.SetActive(forceShow);
                 }
+                Debug.Log($"[WeaponsManager] Berhasil Equip Melee Index {activeMeleeIndex} ({data.weaponName})");
+            }
+            else
+            {
+                Debug.LogWarning($"[WeaponsManager] Prefab Melee Index {activeMeleeIndex} ({data.weaponName}) masih NULL di MeeleItem script!");
             }
         }
 
@@ -137,7 +172,7 @@ namespace PlayerWeapons
             PistolItem provider = GetPistolProvider();
             if (provider == null || provider.Count == 0) return;
             int nextIndex = (activeShooterIndex + 1) % provider.Count;
-            EquipPistol(nextIndex);
+            EquipPistol(nextIndex, true);
         }
 
         public void PreviousPistol()
@@ -145,7 +180,7 @@ namespace PlayerWeapons
             PistolItem provider = GetPistolProvider();
             if (provider == null || provider.Count == 0) return;
             int prevIndex = (activeShooterIndex - 1 + provider.Count) % provider.Count;
-            EquipPistol(prevIndex);
+            EquipPistol(prevIndex, true);
         }
 
         public void NextMelee()
@@ -153,7 +188,7 @@ namespace PlayerWeapons
             MeeleItem provider = GetMeleeProvider();
             if (provider == null || provider.Count == 0) return;
             int nextIndex = (activeMeleeIndex + 1) % provider.Count;
-            EquipMelee(nextIndex);
+            EquipMelee(nextIndex, true);
         }
 
         public void PreviousMelee()
@@ -161,7 +196,7 @@ namespace PlayerWeapons
             MeeleItem provider = GetMeleeProvider();
             if (provider == null || provider.Count == 0) return;
             int prevIndex = (activeMeleeIndex - 1 + provider.Count) % provider.Count;
-            EquipMelee(prevIndex);
+            EquipMelee(prevIndex, true);
         }
     }
 }

@@ -13,7 +13,14 @@ public class CoinCounter : MonoBehaviour
     
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private Coroutine coinNambahCoroutine;
@@ -35,6 +42,24 @@ public class CoinCounter : MonoBehaviour
         }
     }
     
+    public int Coin
+    {
+        get => coin;
+        set
+        {
+            coin = value;
+            if (coinText != null)
+            {
+                coinText.text = coin.ToString();
+            }
+        }
+    }
+
+    public void SetCoin(int amount)
+    {
+        Coin = amount;
+    }
+
     public void IncreaseCoin(int v)
     {
         coin += v;
@@ -48,6 +73,22 @@ public class CoinCounter : MonoBehaviour
             StopCoroutine(coinNambahCoroutine);
         }
         coinNambahCoroutine = StartCoroutine(ShowCoinNambahRoutine(v));
+    }
+
+    public bool DecreaseCoin(int v)
+    {
+        if (coin >= v)
+        {
+            coin -= v;
+            if (coinText != null)
+            {
+                coinText.text = coin.ToString();
+            }
+            Debug.Log($"[CoinCounter] Berhasil mengurangi {v} koin. Sisa koin: {coin}");
+            return true;
+        }
+        Debug.LogWarning($"[CoinCounter] Koin tidak cukup! Koin saat ini: {coin}, dibutuhkan: {v}");
+        return false;
     }
 
     private IEnumerator ShowCoinNambahRoutine(int addedAmount)

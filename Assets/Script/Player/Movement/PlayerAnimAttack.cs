@@ -450,6 +450,22 @@ namespace PlayerData
             obj.SetActive(false);
         }
 
+        public void HideDefaultDissolvePedang()
+        {
+            if (dissolvePedang != null && dissolvePedang != GetActiveMeleeObject())
+            {
+                ForceHideWeapon(dissolvePedang);
+            }
+        }
+
+        public void HideDefaultDissolvePistol()
+        {
+            if (dissolvePistol != null && dissolvePistol != GetActivePistolObject())
+            {
+                ForceHideWeapon(dissolvePistol);
+            }
+        }
+
         private void StartDissolveInSingle(GameObject obj, float? duration = null)
         {
             if (obj == null) return;

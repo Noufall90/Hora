@@ -4,7 +4,6 @@ public class InteractPanel : MonoBehaviour
 {
     [SerializeField] private GameObject openPanel;
     [SerializeField] private GameObject quadObject;
-    public Collider triggerCollider;
     
     private bool playerInRange = false;
     private bool isOpen = false;
@@ -30,7 +29,7 @@ public class InteractPanel : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -39,7 +38,7 @@ public class InteractPanel : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {

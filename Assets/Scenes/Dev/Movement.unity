@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 190
+  m_text: 130
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -829,7 +829,6 @@ Transform:
   m_Children:
   - {fileID: 1025010122}
   - {fileID: 1900604457}
-  - {fileID: 783521223}
   - {fileID: 1667744826}
   - {fileID: 2070338756}
   m_Father: {fileID: 0}
@@ -1091,7 +1090,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 58793304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &58793304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,7 +1444,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 67812581}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &67812581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2384,7 +2407,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 115693668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &115693668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,7 +2669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 150
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -2769,7 +2804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1090
+  m_text: 730
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -3187,7 +3222,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 167039069}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &167039069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3902,7 +3949,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 201269671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &201269671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5468,7 +5527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 230
+  m_text: 170
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -6146,7 +6205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 297087956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &297087956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6623,7 +6694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 317874460}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &317874460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6989,7 +7072,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1580
+  m_text: 880
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -7149,7 +7232,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 334563216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &334563216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8195,7 +8290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 361736747}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &361736747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9404,7 +9511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 475
+  m_text: 320
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -9820,7 +9927,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 445593080}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &445593080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10519,7 +10638,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 468233273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &468233273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11463,12 +11594,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5658196732385579063, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1546590510}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5029996726991063693, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1636490571}
   m_SourcePrefab: {fileID: 100100000, guid: 97e09ba3c5995cd4bad43a7a0f024d13, type: 3}
 --- !u!4 &531671174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4503876545495135526, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
+    type: 3}
+  m_PrefabInstance: {fileID: 531671173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &531671175 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5658196732385579063, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
     type: 3}
   m_PrefabInstance: {fileID: 531671173}
   m_PrefabAsset: {fileID: 0}
@@ -12279,7 +12424,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 870
+  m_text: 520
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -13293,7 +13438,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 636044138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &636044138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13657,6 +13814,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648390290}
   m_CullTransparentMesh: 1
+--- !u!1 &659808468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 659808469}
+  - component: {fileID: 659808472}
+  - component: {fileID: 659808471}
+  - component: {fileID: 659808470}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &659808469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659808468}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.0000059306612, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.45187998, z: 0.85216004}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1909615613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &659808470
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659808468}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &659808471
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659808468}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f449fde5b5062a54d8ee34e47327cc42, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &659808472
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659808468}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &660672780
 GameObject:
   m_ObjectHideFlags: 0
@@ -13943,7 +14206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 663376943}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &663376943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14240,6 +14515,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707053809}
+  - component: {fileID: 707053810}
   m_Layer: 5
   m_Name: Buy Pedang
   m_TagString: Untagged
@@ -14271,6 +14547,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &707053810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707053808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2310282fe3b07f4eaa2a59bbe6d4956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyMeeleItems:
+  - buyButtonItem: {fileID: 1205760097}
+    price: 100
+    meleeIndex: 1
+  - buyButtonItem: {fileID: 361736744}
+    price: 150
+    meleeIndex: 2
+  - buyButtonItem: {fileID: 167039066}
+    price: 200
+    meleeIndex: 3
+  - buyButtonItem: {fileID: 445593077}
+    price: 260
+    meleeIndex: 4
+  - buyButtonItem: {fileID: 1384690351}
+    price: 330
+    meleeIndex: 5
+  - buyButtonItem: {fileID: 58793301}
+    price: 400
+    meleeIndex: 6
+  - buyButtonItem: {fileID: 888102956}
+    price: 480
+    meleeIndex: 7
+  - buyButtonItem: {fileID: 334563213}
+    price: 580
+    meleeIndex: 8
+  - buyButtonItem: {fileID: 1694618892}
+    price: 680
+    meleeIndex: 9
+  - buyButtonItem: {fileID: 1589776991}
+    price: 780
+    meleeIndex: 10
+  - buyButtonItem: {fileID: 468233270}
+    price: 900
+    meleeIndex: 11
+  - buyButtonItem: {fileID: 964506860}
+    price: 1000
+    meleeIndex: 12
 --- !u!1 &709300227
 GameObject:
   m_ObjectHideFlags: 0
@@ -15184,13 +15509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openPanel: {fileID: 2046387919}
   quadObject: {fileID: 434284947}
-  triggerCollider: {fileID: 743579105}
---- !u!65 &743579105 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 922832131015674941, guid: 757a205824a7d4343a13fa4f4cc91fde,
-    type: 3}
-  m_PrefabInstance: {fileID: 161377046}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &744437270
 GameObject:
   m_ObjectHideFlags: 0
@@ -15536,6 +15854,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753049234}
   m_CullTransparentMesh: 1
+--- !u!1 &760542153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6429603326495352259, guid: ad3f99caa40e9ea4c8b7ff4b717cb2b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1909615611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &766742208
 GameObject:
   m_ObjectHideFlags: 0
@@ -15881,125 +16205,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780320847}
   m_CullTransparentMesh: 1
---- !u!1 &783521222
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 783521223}
-  - component: {fileID: 783521226}
-  - component: {fileID: 783521225}
-  - component: {fileID: 783521224}
-  - component: {fileID: 783521227}
-  m_Layer: 0
-  m_Name: Coin Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &783521223
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783521222}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.35, y: 0.667, z: 1.99}
-  m_LocalScale: {x: 1, y: 1.3617, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 34903050}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &783521224
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783521222}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &783521225
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783521222}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &783521226
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783521222}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &783521227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783521222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bade9b4af6df654795b47329402915f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 10
 --- !u!1 &795617347
 GameObject:
   m_ObjectHideFlags: 0
@@ -16082,7 +16287,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 795617350}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &795617350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17555,7 +17772,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 550
+  m_text: 390
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -17961,7 +18178,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 888102959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &888102959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18573,6 +18802,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7797882922252888767, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4,
+        type: 3}
+      propertyPath: coin
+      value: 10000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18883,7 +19117,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1750
+  m_text: 980
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -19296,8 +19530,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5637120354183721017, guid: 87e8849909c2b9b48b08bba7d8e80511,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1316068361}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5003714367922825859, guid: 87e8849909c2b9b48b08bba7d8e80511,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 963280536}
   m_SourcePrefab: {fileID: 100100000, guid: 87e8849909c2b9b48b08bba7d8e80511, type: 3}
 --- !u!4 &963280533 stripped
 Transform:
@@ -19305,6 +19547,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 963280532}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &963280534 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5637120354183721017, guid: 87e8849909c2b9b48b08bba7d8e80511,
+    type: 3}
+  m_PrefabInstance: {fileID: 963280532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &963280535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5003714367922825859, guid: 87e8849909c2b9b48b08bba7d8e80511,
+    type: 3}
+  m_PrefabInstance: {fileID: 963280532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &963280536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963280535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c3c156f6a64824db2146cd7c0a3a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openPanel: {fileID: 707053808}
+  quadObject: {fileID: 1316068360}
 --- !u!1 &964506860
 GameObject:
   m_ObjectHideFlags: 0
@@ -19387,7 +19655,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 964506863}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 11
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &964506863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23853,7 +24133,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1205760100}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1205760100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25835,7 +26127,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1900
+  m_text: 1100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -26170,6 +26462,112 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00016154208, y: 0}
   m_SizeDelta: {x: 0, y: 2103.5066}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &1316068360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1316068361}
+  - component: {fileID: 1316068364}
+  - component: {fileID: 1316068363}
+  - component: {fileID: 1316068362}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1316068361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316068360}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.000006020069, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.79999983, y: 0.45187998, z: 0.85215986}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 963280534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1316068362
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316068360}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1316068363
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316068360}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f449fde5b5062a54d8ee34e47327cc42, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1316068364
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316068360}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1319913021
 GameObject:
   m_ObjectHideFlags: 0
@@ -27540,7 +27938,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1384690354}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1384690354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27983,7 +28393,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 80
   m_Viewport: {fileID: 2130144524}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 603680168}
@@ -30159,7 +30569,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1544886427}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1544886427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30198,6 +30620,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544886424}
   m_CullTransparentMesh: 1
+--- !u!1 &1546590509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546590510}
+  - component: {fileID: 1546590513}
+  - component: {fileID: 1546590512}
+  - component: {fileID: 1546590511}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1546590510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546590509}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071132, z: -0, w: -0.70710045}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.45187998, z: 0.85216004}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 531671175}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1546590511
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546590509}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1546590512
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546590509}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f449fde5b5062a54d8ee34e47327cc42, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1546590513
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546590509}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1548654228
 GameObject:
   m_ObjectHideFlags: 0
@@ -30590,7 +31118,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1575150225}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1575150225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31243,7 +31783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1589776994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1589776994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32140,6 +32692,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627981458}
   m_CullTransparentMesh: 1
+--- !u!1 &1636490570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5029996726991063693, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
+    type: 3}
+  m_PrefabInstance: {fileID: 531671173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1636490571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636490570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c3c156f6a64824db2146cd7c0a3a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openPanel: {fileID: 316944729}
+  quadObject: {fileID: 1546590509}
 --- !u!1 &1639448610
 GameObject:
   m_ObjectHideFlags: 0
@@ -32467,7 +33039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 975
+  m_text: 620
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -33600,7 +34172,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1677627243}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1677627243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33760,7 +34344,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1680316673}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2046387921}
+        m_TargetAssemblyTypeName: BuyPistol, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1680316673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34316,7 +34912,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1694618895}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 707053810}
+        m_TargetAssemblyTypeName: BuyMeele, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1694618895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35473,7 +36081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 400
+  m_text: 260
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -37874,8 +38482,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5940628908219875193, guid: ad3f99caa40e9ea4c8b7ff4b717cb2b0,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 659808469}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6429603326495352259, guid: ad3f99caa40e9ea4c8b7ff4b717cb2b0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1909615614}
   m_SourcePrefab: {fileID: 100100000, guid: ad3f99caa40e9ea4c8b7ff4b717cb2b0, type: 3}
 --- !u!4 &1909615612 stripped
 Transform:
@@ -37883,6 +38499,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1909615611}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1909615613 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5940628908219875193, guid: ad3f99caa40e9ea4c8b7ff4b717cb2b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1909615611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1909615614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760542153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c3c156f6a64824db2146cd7c0a3a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openPanel: {fileID: 316944729}
+  quadObject: {fileID: 659808468}
 --- !u!1 &1910562820
 GameObject:
   m_ObjectHideFlags: 0
@@ -37991,7 +38627,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 80
   m_Viewport: {fileID: 1681722745}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1041458346}
@@ -40098,6 +40734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2046387920}
+  - component: {fileID: 2046387921}
   m_Layer: 5
   m_Name: Buy Pistol
   m_TagString: Untagged
@@ -40129,6 +40766,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2046387921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046387919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a899deb7c4b79249ac1e4e6533ccdc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyPistolItems:
+  - buyButtonItem: {fileID: 297087953}
+    price: 100
+    pistolIndex: 1
+  - buyButtonItem: {fileID: 1677627240}
+    price: 130
+    pistolIndex: 2
+  - buyButtonItem: {fileID: 317874457}
+    price: 170
+    pistolIndex: 3
+  - buyButtonItem: {fileID: 1544886424}
+    price: 260
+    pistolIndex: 4
+  - buyButtonItem: {fileID: 795617347}
+    price: 320
+    pistolIndex: 5
+  - buyButtonItem: {fileID: 1575150222}
+    price: 390
+    pistolIndex: 6
+  - buyButtonItem: {fileID: 636044135}
+    price: 870
+    pistolIndex: 7
+  - buyButtonItem: {fileID: 67812578}
+    price: 620
+    pistolIndex: 8
+  - buyButtonItem: {fileID: 115693665}
+    price: 730
+    pistolIndex: 9
+  - buyButtonItem: {fileID: 1680316670}
+    price: 880
+    pistolIndex: 10
+  - buyButtonItem: {fileID: 663376940}
+    price: 980
+    pistolIndex: 11
+  - buyButtonItem: {fileID: 201269668}
+    price: 1100
+    pistolIndex: 12
 --- !u!1 &2049915537
 GameObject:
   m_ObjectHideFlags: 0
@@ -40787,7 +41473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1200
+  m_text: 1000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
