@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb21e1785759be84a89aa273042cf7bd, type: 3}
+  m_Name: Sunblade
+  m_EditorClassIdentifier: 
+  itemType: 0
+  indexWeapons: 8
+  itemName: Sunblade
+  descriptionItem: Menyimpan serpihan api matahari fajar, membakar apa pun yang dilewatinya
+    dengan panas yang tak pernah padam.
+  statsItem: 'Damage : 20'
+  icon: {fileID: 2014886012, guid: e79f439dae0640247a52246838d6ed03, type: 3}

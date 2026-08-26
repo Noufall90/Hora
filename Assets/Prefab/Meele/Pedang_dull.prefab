@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2464422392097114914}
   - component: {fileID: 1557322493595255943}
   - component: {fileID: 3636744416920105037}
+  - component: {fileID: 7704695500675873076}
   m_Layer: 10
   m_Name: Pedang_dull
   m_TagString: Player
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7704695500675873076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2988335952726315416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 3183374de76a570409e66b17b762b4d4, type: 2}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3639633186187829903}
   - component: {fileID: 8046778536057265692}
   - component: {fileID: 1970856584694372527}
+  - component: {fileID: 1963562759064381355}
   m_Layer: 0
   m_Name: Frost edge
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1963562759064381355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5035706905415684049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 8ea3c080848b5bc40b0b6cd71846f397, type: 2}

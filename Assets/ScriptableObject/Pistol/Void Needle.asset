@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb21e1785759be84a89aa273042cf7bd, type: 3}
+  m_Name: Void Needle
+  m_EditorClassIdentifier: 
+  itemType: 1
+  indexWeapons: 11
+  itemName: Void Needle
+  descriptionItem: Senjata ramping penembak cepat tanpa jeda, menembakkan jarum ruang
+    hampa yang menembus pertahanan tertebal sekalipun.
+  statsItem: 'Damage : 19
+
+    Magazine : 14
+
+    Energy Reload : 1s'
+  icon: {fileID: 1585606152, guid: 8721b8f837cb63f4ca32e5e04d191d1a, type: 3}

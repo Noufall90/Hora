@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8178020599988130469}
   - component: {fileID: 5875554344455580913}
   - component: {fileID: 4985503078022194733}
+  - component: {fileID: 5987603639290637369}
   m_Layer: 0
   m_Name: Void Needle
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5987603639290637369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7086318134087324769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: dee05e1cafaf3b04b87bc41b926e51c5, type: 2}

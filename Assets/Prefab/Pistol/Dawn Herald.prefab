@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3496037301889553506}
   - component: {fileID: 8616449096332084648}
   - component: {fileID: 5528797741698337180}
+  - component: {fileID: 2538548374792022041}
   m_Layer: 0
   m_Name: Dawn Herald
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2538548374792022041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838928105714342432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 06feeb59a8ba8da4198fd51c5e4eeb6e, type: 2}

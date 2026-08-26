@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel;
 
@@ -24,12 +24,21 @@ public class Inventory : MonoBehaviour
     public void InventoryOpen()
     {
         inventoryPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Time.timeScale = 0f;
+
+        if (InventoryManager.instance != null)
+        {
+            InventoryManager.instance.ListItems();
+        }
     }
 
     public void InventoryClose()
     {
         inventoryPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Time.timeScale = 1f;
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2078840018362263864}
   - component: {fileID: 3348989595193390435}
   - component: {fileID: 7698624300706516242}
+  - component: {fileID: 4299401922292555412}
   m_Layer: 0
   m_Name: Violet Clamity
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4299401922292555412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5587532506979419022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 42d0760d70f4677469efe3f02075752b, type: 2}

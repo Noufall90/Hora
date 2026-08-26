@@ -7,6 +7,7 @@ public struct BuyMeeleData
     public GameObject buyButtonItem;
     public int price;
     public int meleeIndex;
+    public Item item;
 }
 
 public class BuyMeele : MonoBehaviour
@@ -26,24 +27,35 @@ public class BuyMeele : MonoBehaviour
             return;
         }
 
-        BuyMeeleData item = buyMeeleItems[index];
+        BuyMeeleData itemData = buyMeeleItems[index];
 
         if (CoinCounter.Instance != null)
         {
-            if (!CoinCounter.Instance.DecreaseCoin(item.price))
+            if (!CoinCounter.Instance.DecreaseCoin(itemData.price))
             {
                 return;
             }
         }
 
-        if (WeaponsManager.Instance != null)
+        if (itemData.item == null)
         {
-            WeaponsManager.Instance.EquipMelee(item.meleeIndex);
+            Debug.LogWarning($"[BuyMeele] Field 'item' pada index {index} belum di-assign di Unity Inspector!");
         }
 
-        if (item.buyButtonItem != null)
+        if (InventoryManager.Instance == null)
         {
-            Destroy(item.buyButtonItem);
+            Debug.LogWarning("[BuyMeele] InventoryManager.Instance tidak ditemukan di Scene!");
+        }
+
+        if (itemData.item != null && InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.Add(itemData.item);
+            Debug.Log($"[BuyMeele] Berhasil membeli {itemData.item.itemName} dan ditambahkan ke Inventory!");
+        }
+
+        if (itemData.buyButtonItem != null)
+        {
+            Destroy(itemData.buyButtonItem);
         }
     }
 

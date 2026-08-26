@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6778094327899113922}
   - component: {fileID: 5911438821624927142}
   - component: {fileID: 9165629593730818160}
+  - component: {fileID: 2654406608339002246}
   m_Layer: 0
   m_Name: NightFall
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2654406608339002246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463838725198866879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: ce311147d42b7294d9d4e4f5e57a527a, type: 2}

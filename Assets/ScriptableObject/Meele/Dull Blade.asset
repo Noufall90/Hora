@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb21e1785759be84a89aa273042cf7bd, type: 3}
+  m_Name: Dull Blade
+  m_EditorClassIdentifier: 
+  itemType: 0
+  indexWeapons: 0
+  itemName: Dull Blade
+  descriptionItem: Pedang latihan tua berkarat dengan bilah yang tumpul. Senjata
+    seadanya yang lebih sering diandalkan untuk bertahan hidup daripada berburu.
+  statsItem: 'Damage : 5'
+  icon: {fileID: -1269259976, guid: fc9e9a605531c9a4ba32c16b29a2e8c1, type: 3}

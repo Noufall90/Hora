@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3237936345334940712}
   - component: {fileID: 5888866172035226566}
   - component: {fileID: 7155192553080311598}
+  - component: {fileID: 7671430893266354924}
   m_Layer: 0
   m_Name: Green saber
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7671430893266354924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429964296487058002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: a57025e3f94a78849a45816c709cd13d, type: 2}

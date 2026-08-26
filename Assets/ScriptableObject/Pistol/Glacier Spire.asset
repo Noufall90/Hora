@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb21e1785759be84a89aa273042cf7bd, type: 3}
+  m_Name: Glacier Spire
+  m_EditorClassIdentifier: 
+  itemType: 1
+  indexWeapons: 5
+  itemName: Glacier Spire
+  descriptionItem: Laras panjang berujung kristal es beku yang menembakkan jarum-jarum
+    energi bersuhu nol mutlak.
+  statsItem: 'Damage : 11
+
+    Magazine : 8
+
+    Energy Reload : 0.5s'
+  icon: {fileID: -1957291559, guid: 7df2b668100030a438b725ea34c879a4, type: 3}

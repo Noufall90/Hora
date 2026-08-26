@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3535783212418371109}
   - component: {fileID: 2632481604168518183}
   - component: {fileID: 6380072808551493135}
+  - component: {fileID: 2876057385518211642}
   m_Layer: 0
   m_Name: Azure fang
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2876057385518211642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303229536053819770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c040f03060fd60468427524e5489650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 1f1bb9bde610ad14e908be1f1ffc3cb8, type: 2}

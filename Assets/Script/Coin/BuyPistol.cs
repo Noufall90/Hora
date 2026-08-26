@@ -7,6 +7,7 @@ public struct BuyPistolData
     public GameObject buyButtonItem;
     public int price;
     public int pistolIndex;
+    public Item item;
 }
 
 public class BuyPistol : MonoBehaviour
@@ -26,24 +27,35 @@ public class BuyPistol : MonoBehaviour
             return;
         }
 
-        BuyPistolData item = buyPistolItems[index];
+        BuyPistolData itemData = buyPistolItems[index];
 
         if (CoinCounter.Instance != null)
         {
-            if (!CoinCounter.Instance.DecreaseCoin(item.price))
+            if (!CoinCounter.Instance.DecreaseCoin(itemData.price))
             {
                 return;
             }
         }
 
-        if (WeaponsManager.Instance != null)
+        if (itemData.item == null)
         {
-            WeaponsManager.Instance.EquipPistol(item.pistolIndex);
+            Debug.LogWarning($"[BuyPistol] Field 'item' pada index {index} belum di-assign di Unity Inspector!");
         }
 
-        if (item.buyButtonItem != null)
+        if (InventoryManager.Instance == null)
         {
-            Destroy(item.buyButtonItem);
+            Debug.LogWarning("[BuyPistol] InventoryManager.Instance tidak ditemukan di Scene!");
+        }
+
+        if (itemData.item != null && InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.Add(itemData.item);
+            Debug.Log($"[BuyPistol] Berhasil membeli {itemData.item.itemName} dan ditambahkan ke Inventory!");
+        }
+
+        if (itemData.buyButtonItem != null)
+        {
+            Destroy(itemData.buyButtonItem);
         }
     }
 
