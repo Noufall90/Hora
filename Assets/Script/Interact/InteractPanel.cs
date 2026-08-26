@@ -16,13 +16,11 @@ public class InteractPanel : MonoBehaviour
 
     private void Update()
     {
-        // Tekan E untuk membuka
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isOpen)
         {
             OpenPanel();
         }
 
-        // Tekan ESC untuk menutup
         if (isOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();

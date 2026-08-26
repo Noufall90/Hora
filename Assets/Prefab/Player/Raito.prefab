@@ -3242,7 +3242,7 @@ MonoBehaviour:
   coinText: {fileID: 4062637032137803824}
   panelCoin: {fileID: 6951521224914309812}
   coinNambah: {fileID: 7541839436955185005}
-  coin: 10000
+  coin: 0
 --- !u!1 &4663611282537435824
 GameObject:
   m_ObjectHideFlags: 0
