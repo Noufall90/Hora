@@ -50,25 +50,17 @@ public class InteractPanel : MonoBehaviour
 
     public void OpenPanel()
     {
-        if (openPanel != null) openPanel.SetActive(true);
+        if (openPanel == null) return;
 
         isOpen = true;
-        Time.timeScale = 0f;
-
-        // Mouse bisa digunakan untuk UI
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        UIHandler.OpenWindow(openPanel);
     }
 
     public void ClosePanel()
     {
-        if (openPanel != null) openPanel.SetActive(false);
+        if (openPanel == null) return;
 
         isOpen = false;
-        Time.timeScale = 1f;
-
-        // Jika game kamu menggunakan cursor terkunci
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        UIHandler.CloseWindow(openPanel);
     }
 }

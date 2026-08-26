@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -10,7 +8,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (inventoryPanel.activeSelf)
+            if (inventoryPanel != null && inventoryPanel.activeSelf)
             {
                 InventoryClose();
             }
@@ -23,22 +21,20 @@ public class InventoryUI : MonoBehaviour
 
     public void InventoryOpen()
     {
-        inventoryPanel.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
+        if (inventoryPanel == null) return;
 
-        if (InventoryManager.instance != null)
+        UIHandler.OpenWindow(inventoryPanel);
+
+        if (InventoryManager.Instance != null)
         {
-            InventoryManager.instance.ListItems();
+            InventoryManager.Instance.ListItems();
         }
     }
 
     public void InventoryClose()
     {
-        inventoryPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Time.timeScale = 1f;
+        if (inventoryPanel == null) return;
+
+        UIHandler.CloseWindow(inventoryPanel);
     }
 }

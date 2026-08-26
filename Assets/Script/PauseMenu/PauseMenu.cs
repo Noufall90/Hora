@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        pausePanel.SetActive(false);
+        if (pausePanel != null) pausePanel.SetActive(false);
     }
 
     private void Update()
@@ -29,29 +29,27 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenPause()
     {
-        isPaused = true;
+        if (pausePanel == null) return;
 
-        Time.timeScale = 0f;
+        isPaused = true;
         Pause.On();
-        pausePanel.SetActive(true);
+        UIHandler.OpenWindow(pausePanel);
     }
 
     public void Resume()
     {
-        isPaused = false;
+        if (pausePanel == null) return;
 
-        Time.timeScale = 1f;
+        isPaused = false;
         Pause.Off();
-        pausePanel.SetActive(false);
+        UIHandler.CloseWindow(pausePanel);
     }
 
-     public void QuitToMainMenu()
+    public void QuitToMainMenu()
     {
         isPaused = false;
-
-        Time.timeScale = 1f;
         Pause.ForceResume();
-        pausePanel.SetActive(false);
+        UIHandler.CloseWindow(pausePanel);
 
         if (SceneLoader.Instance != null)
             SceneLoader.Instance.LoadScene(mainMenuScene);
