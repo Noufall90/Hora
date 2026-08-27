@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1791095426213177923}
-  idleDuration: 10
+  idleDuration: 14
   talkingDuration: 2
   isTalkingTriggerName: IsTalking
   isIdleBoolName: IsIdle
