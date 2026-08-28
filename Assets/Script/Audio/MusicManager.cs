@@ -1,27 +1,43 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+ 
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
-
+ 
     [SerializeField]
     private MusicLibrary musicLibrary;
     [SerializeField]
     private AudioSource musicSource;
 
+    private Coroutine crossfadeCoroutine;
+ 
     private void Awake()
     {
         if (Instance != null)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {
             Instance = this;
+
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
+
+        if (musicLibrary == null)
+        {
+            musicLibrary = GetComponent<MusicLibrary>();
+        }
+
+        if (musicSource == null)
+        {
+            musicSource = GetComponent<AudioSource>();
+        }
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
@@ -33,57 +49,75 @@ public class MusicManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (musicLibrary == null) return;
-
-        AudioClip clip = musicLibrary.GetClipFromScene(scene.name);
-        if (clip != null)
-        {
-            PlayMusic(clip);
-        }
+        PlayMusic(scene.name);
     }
-
-    public void PlayMusic(string trackName, float fadeDuration = 0.5f)
+ 
+    public void PlayMusic(string trackOrSceneName, float fadeDuration = 0.5f)
     {
-        if (musicLibrary == null) return;
-
-        AudioClip clip = musicLibrary.GetClipFromName(trackName) ?? musicLibrary.GetClipFromScene(trackName);
-        if (clip != null)
+        if (musicLibrary == null)
         {
-            PlayMusic(clip, fadeDuration);
+            musicLibrary = GetComponent<MusicLibrary>();
+            if (musicLibrary == null)
+            {
+                return;
+            }
         }
+
+        AudioClip clip = musicLibrary.GetClipFromSceneName(trackOrSceneName);
+        if (clip == null)
+        {
+            clip = musicLibrary.GetClipFromName(trackOrSceneName);
+        }
+
+        if (clip == null)
+        {
+            Debug.LogWarning($"[MusicManager] Musik/Audio untuk scene atau track '{trackOrSceneName}' tidak ditemukan di MusicLibrary!");
+            return;
+        }
+
+        if (musicSource == null)
+        {
+            musicSource = GetComponent<AudioSource>();
+            if (musicSource == null)
+            {
+                return;
+            }
+        }
+
+        if (musicSource.clip == clip && musicSource.isPlaying)
+        {
+            return;
+        }
+
+        if (crossfadeCoroutine != null)
+        {
+            StopCoroutine(crossfadeCoroutine);
+        }
+        crossfadeCoroutine = StartCoroutine(AnimateMusicCrossfade(clip, fadeDuration));
     }
-
-    public void PlayMusic(AudioClip clip, float fadeDuration = 0.5f)
-    {
-        if (clip == null || musicSource == null) return;
-
-        // Jangan restart jika clip yang sama sedang diputar
-        if (musicSource.clip == clip && musicSource.isPlaying) return;
-
-        StartCoroutine(AnimateMusicCrossfade(clip, fadeDuration));
-    }
-
+ 
     IEnumerator AnimateMusicCrossfade(AudioClip nextTrack, float fadeDuration = 0.5f)
     {
         float percent = 0;
-        float startVolume = musicSource.volume > 0 ? musicSource.volume : 1f;
-
+        float startVolume = musicSource.volume;
         while (percent < 1)
         {
-            percent += Time.deltaTime * (1f / fadeDuration);
+            percent += Time.deltaTime / fadeDuration;
             musicSource.volume = Mathf.Lerp(startVolume, 0, percent);
             yield return null;
         }
-
+ 
         musicSource.clip = nextTrack;
         musicSource.Play();
-
+ 
         percent = 0;
         while (percent < 1)
         {
-            percent += Time.deltaTime * (1f / fadeDuration);
-            musicSource.volume = Mathf.Lerp(0, startVolume, percent);
+            percent += Time.deltaTime / fadeDuration;
+            musicSource.volume = Mathf.Lerp(0, 1f, percent);
             yield return null;
         }
+
+        crossfadeCoroutine = null;
     }
 }

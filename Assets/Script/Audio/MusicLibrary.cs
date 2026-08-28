@@ -12,25 +12,9 @@ public class MusicLibrary : MonoBehaviour
 {
     public MusicTrack[] tracks;
 
-    public AudioClip GetClipFromScene(string sceneName)
-    {
-        if (tracks == null || string.IsNullOrEmpty(sceneName)) return null;
-
-        foreach (var track in tracks)
-        {
-            if (!string.IsNullOrEmpty(track.sceneName) && track.sceneName == sceneName)
-            {
-                return track.clip;
-            }
-        }
-
-        // Fallback: periksa juga jika sceneName cocok dengan trackName
-        return GetClipFromName(sceneName);
-    }
-
     public AudioClip GetClipFromName(string trackName)
     {
-        if (tracks == null || string.IsNullOrEmpty(trackName)) return null;
+        if (tracks == null) return null;
 
         foreach (var track in tracks)
         {
@@ -38,7 +22,30 @@ public class MusicLibrary : MonoBehaviour
             {
                 return track.clip;
             }
+            if (!string.IsNullOrEmpty(track.sceneName) && track.sceneName == trackName)
+            {
+                return track.clip;
+            }
+        }
+        return null;
+    }
+
+    public AudioClip GetClipFromSceneName(string sceneName)
+    {
+        if (tracks == null) return null;
+
+        foreach (var track in tracks)
+        {
+            if (!string.IsNullOrEmpty(track.sceneName) && track.sceneName == sceneName)
+            {
+                return track.clip;
+            }
+            if (!string.IsNullOrEmpty(track.trackName) && track.trackName == sceneName)
+            {
+                return track.clip;
+            }
         }
         return null;
     }
 }
+ 

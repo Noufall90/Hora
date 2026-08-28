@@ -48,8 +48,27 @@ public class Audio : MonoBehaviour
         if (PlayerPrefs.HasKey("SFXVolume"))
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
 
-        // Terapkan juga ke audio mixer
-        UpdateMusicVolume(musicSlider.value);
-        UpdateSoundVolume(sfxSlider.value);
+        if (musicSlider != null)
+            UpdateMusicVolume(musicSlider.value);
+        if (sfxSlider != null)
+            UpdateSoundVolume(sfxSlider.value);
+    }
+
+    public void RestoreDefault()
+    {
+        float defaultVolume = 0f;
+
+        if (musicSlider != null)
+            musicSlider.value = defaultVolume;
+
+        if (sfxSlider != null)
+            sfxSlider.value = defaultVolume;
+
+        UpdateMusicVolume(defaultVolume);
+        UpdateSoundVolume(defaultVolume);
+
+        PlayerPrefs.SetFloat("MusicVolume", defaultVolume);
+        PlayerPrefs.SetFloat("SFXVolume", defaultVolume);
+        PlayerPrefs.Save();
     }
 }

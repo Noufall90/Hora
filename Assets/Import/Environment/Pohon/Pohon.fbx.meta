@@ -3,12 +3,7 @@ guid: 357ef90b5c1f0224d9850dfe0deac656
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pohon
-    second: {fileID: 2100000, guid: 2086276444200f74080c5644999df0d3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -18,6 +18,8 @@ public class SoundManager : MonoBehaviour
         else
         {
             Instance = this;
+            
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
     }

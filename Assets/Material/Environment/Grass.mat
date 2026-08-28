@@ -141,8 +141,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Gradient_Color_Bottom: {r: 0.77393246, g: 1, b: 0.25943398, a: 0}
-    - _Gradient_Color_Top: {r: 0.33490568, g: 1, b: 0.34454474, a: 0}
+    - _Gradient_Color_Bottom: {r: 0.6185332, g: 1, b: 0.48584908, a: 1}
+    - _Gradient_Color_Top: {r: 0.4082287, g: 0.9056604, b: 0.31185475, a: 0}
     - _Moss_Color: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WindMovement: {r: 6, g: 0, b: 0, a: 0}
