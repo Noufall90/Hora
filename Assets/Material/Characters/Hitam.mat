@@ -7,15 +7,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass 1
-  m_Shader: {fileID: -6465566751694194690, guid: b42fe67b52652b8408657abeb3b18a65,
+  m_Name: Hitam
+  m_Shader: {fileID: -6465566751694194690, guid: db458797d6c1b6541a86777641d783b0,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -25,6 +25,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Base_Texture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -52,15 +56,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Main_Texture:
-        m_Texture: {fileID: 2800000, guid: aa40423b42d139741bf5bdfb9e183de3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Moss_Texture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -90,9 +86,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.5
+    - _ADDITIONAL_LIGHT_SHADOWS: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _Ambient_Light_Strength: 0.4
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -102,52 +99,39 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _Dissolve: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Gradient_Fallout: 0.26
-    - _Gradient_Midpoint: 0.41
-    - _Main_Textire_Triplanar_Blend: 0.5
-    - _Main_Texuter_Scale: 0.541
+    - _MAIN_LIGHT_SHADOWS: 0
+    - _MAIN_LIGHT_SHADOWS_CASCADE: 0
     - _Metallic: 0
-    - _Moss_End_Y: 0
-    - _Moss_Intensity: 0
-    - _Moss_Scale: 0
-    - _Moss_Start_Y: 0
-    - _Moss_Texture_Black_Mask: 0
-    - _Moss_Triplanar_Blend: 0
+    - _Noise_Scale: 50
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 0.05
-    - _Smoothnes: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.5
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Wind_Density: 2
-    - _Wind_Strenght: 0.3
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Base_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Cutoff_Thresholds: {r: -0.05, g: 0.05, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Gradient_Color_Bottom: {r: 1, g: 0.6966693, b: 0.3537736, a: 1}
-    - _Gradient_Color_Top: {r: 1, g: 0.8518007, b: 0, a: 0}
-    - _Moss_Color: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WindMovement: {r: 6, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2628876204911485039
+--- !u!114 &754692085696175444
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

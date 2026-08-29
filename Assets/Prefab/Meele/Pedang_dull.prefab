@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1557322493595255943}
   - component: {fileID: 3636744416920105037}
   - component: {fileID: 7704695500675873076}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Pedang_dull
   m_TagString: Player
   m_Icon: {fileID: 0}
