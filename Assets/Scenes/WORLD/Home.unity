@@ -6222,6 +6222,7 @@ Transform:
   - {fileID: 843412570}
   - {fileID: 1162808908}
   - {fileID: 1113874285}
+  - {fileID: 1155336960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228614141
@@ -29962,11 +29963,11 @@ GameObject:
   - component: {fileID: 1155336958}
   - component: {fileID: 1155336957}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &1155336957
 MeshCollider:
@@ -30049,11 +30050,11 @@ Transform:
   m_GameObject: {fileID: 1155336956}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071031, y: -0, z: -0, w: 0.7071106}
-  m_LocalPosition: {x: -26.77, y: 7.15, z: 19.617}
+  m_LocalPosition: {x: -26.37, y: 6.65, z: 19.82}
   m_LocalScale: {x: 0.45199, y: 0.45199, z: 0.45199}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 221652403}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1159043318
 GameObject:
@@ -57047,4 +57048,3 @@ SceneRoots:
   - {fileID: 1988104824}
   - {fileID: 97039885}
   - {fileID: 1148138479}
-  - {fileID: 1155336960}
