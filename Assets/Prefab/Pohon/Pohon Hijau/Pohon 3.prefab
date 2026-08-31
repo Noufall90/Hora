@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9011162140432694871}
-  - component: {fileID: 3313226589086291850}
-  - component: {fileID: 4898911116568342874}
-  - component: {fileID: 4458551725975417003}
+  - component: {fileID: 4436504330158842905}
   m_Layer: 0
   m_Name: Pohon 3
   m_TagString: Untagged
@@ -27,28 +25,82 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4248527752115724037}
   serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2235148571520471389}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &4436504330158842905
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248527752115724037}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.28366423, y: 3.5954058, z: 0.21029997}
+  m_Size: 7.1458507
+  m_FadeMode: 1
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.07122657
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7542134885354034694}
+  m_Enabled: 1
+--- !u!1 &8110829829142383554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2235148571520471389}
+  - component: {fileID: 1914406795102137565}
+  - component: {fileID: 7542134885354034694}
+  - component: {fileID: 8190933942165184297}
+  m_Layer: 0
+  m_Name: Pohon 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2235148571520471389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110829829142383554}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.000000081460335, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 9011162140432694871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3313226589086291850
+--- !u!33 &1914406795102137565
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248527752115724037}
+  m_GameObject: {fileID: 8110829829142383554}
   m_Mesh: {fileID: -8172680918820081068, guid: 357ef90b5c1f0224d9850dfe0deac656, type: 3}
---- !u!23 &4898911116568342874
+--- !u!23 &7542134885354034694
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248527752115724037}
+  m_GameObject: {fileID: 8110829829142383554}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,13 +136,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4458551725975417003
+--- !u!64 &8190933942165184297
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248527752115724037}
+  m_GameObject: {fileID: 8110829829142383554}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

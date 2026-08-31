@@ -108,8 +108,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Gradient_Fallout: 0.17
-    - _Gradient_Midpoint: 0.38
+    - _Gradient_Fallout: 0.3
+    - _Gradient_Midpoint: 0.43
     - _Main_Textire_Triplanar_Blend: 0.5
     - _Main_Texuter_Scale: 0.541
     - _Metallic: 0
@@ -141,7 +141,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Gradient_Color_Bottom: {r: 0.4451635, g: 0.6226415, b: 0.25258097, a: 1}
+    - _Gradient_Color_Bottom: {r: 0.38927504, g: 0.6037736, b: 0.1509434, a: 1}
     - _Gradient_Color_Top: {r: 0.51766646, g: 0.79622644, b: 0.22084016, a: 0}
     - _Moss_Color: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

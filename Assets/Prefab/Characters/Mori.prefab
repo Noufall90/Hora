@@ -120,6 +120,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e56432a6236bf824283f4b2bed219439, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 9f4b836efea8f1342a8e3c02157c5260,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8045375200778113196, guid: 9f4b836efea8f1342a8e3c02157c5260,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
