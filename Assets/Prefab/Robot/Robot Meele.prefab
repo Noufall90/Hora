@@ -524,13 +524,19 @@ MonoBehaviour:
   rotationSpeed: 50
   patrolRange: 20
   patrolCentrePoint: {fileID: 0}
-  detectRange: 4
-  attackRange: 4
+  detectRange: 3
+  attackRange: 2
   meeleRange: 0
   fieldOfView: 140
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 375
+  enableKnockback: 1
+  requiredComboHits: 3
+  comboResetTime: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.3
+  enableComboCameraShake: 1
   showDebugGizmos: 1
   animator: {fileID: 1209212030727342842}
   damage: 10
@@ -598,8 +604,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.179161, y: 3.2120187, z: 3.9172544}
-  m_Center: {x: -0.0957284, y: 1.1060094, z: 2.0576954}
+  m_Size: {x: 4.179161, y: 3.2120187, z: 3.2126503}
+  m_Center: {x: -0.095728435, y: 1.1060095, z: 1.7053933}
 --- !u!1 &2373476866826438194
 GameObject:
   m_ObjectHideFlags: 0
