@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using EasyTransition;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Scene")]
     [SerializeField] private string mainMenuScene = "MainMenu";
+
+    [Header("Transition Settings")]
+    [SerializeField] private TransitionSettings transition;
+    [SerializeField] private float startDelay = 0.5f;
 
     private bool isPaused;
 
@@ -51,9 +56,17 @@ public class PauseMenu : MonoBehaviour
         Pause.ForceResume();
         UIHandler.CloseWindow(pausePanel);
 
-        if (SceneLoader.Instance != null)
+        if (TransitionManager.Instance() != null && transition != null)
+        {
+            TransitionManager.Instance().Transition(mainMenuScene, transition, startDelay);
+        }
+        else if (SceneLoader.Instance != null)
+        {
             SceneLoader.Instance.LoadScene(mainMenuScene);
-        else
+        }
+        else if (!string.IsNullOrEmpty(mainMenuScene))
+        {
             SceneManager.LoadScene(mainMenuScene);
+        }
     }
 }

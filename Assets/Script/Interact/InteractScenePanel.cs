@@ -7,8 +7,12 @@ public class InteractScenePanel : MonoBehaviour
     [SerializeField] private GameObject panelMapScene;
 
     public TransitionSettings transition;
-    public float startDelay = 1f;
+    public float startDelay = 0.5f;
     public string sceneName;
+
+    [Header("Spawn Settings")]
+    [Tooltip("ID spawn point di scene tujuan (contoh: SpawnID2). Player akan spawn di PointLocation dengan ID ini.")]
+    [SerializeField] private string targetSpawnID;
 
     private bool playerInRange = false;
     private bool isOpen = false;
@@ -38,7 +42,6 @@ public class InteractScenePanel : MonoBehaviour
         {
             playerInRange = true;
             if (quadObject != null) quadObject.SetActive(true);
-            if (panelMapScene != null) panelMapScene.SetActive(true);
         }
     }
 
@@ -48,7 +51,6 @@ public class InteractScenePanel : MonoBehaviour
         {
             playerInRange = false;
             if (quadObject != null) quadObject.SetActive(false);
-            if (panelMapScene != null) panelMapScene.SetActive(false);
         }
     }
 
@@ -66,6 +68,15 @@ public class InteractScenePanel : MonoBehaviour
 
     public void LoadedScene()
     {
-        TransitionManager.Instance().Transition(sceneName, transition, startDelay);
+        PointLocation.SetSpawnTarget(targetSpawnID, UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+        if (TransitionManager.Instance() != null && transition != null)
+        {
+            TransitionManager.Instance().Transition(sceneName, transition, startDelay);
+        }
+        else if (!string.IsNullOrEmpty(sceneName))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
     }
 }

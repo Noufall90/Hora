@@ -26,6 +26,11 @@ namespace Enemy
         {
             FindCamera();
 
+            if (enemyHealth == null)
+            {
+                enemyHealth = GetComponent<EnemyHealth>() ?? GetComponentInParent<EnemyHealth>() ?? GetComponentInChildren<EnemyHealth>();
+            }
+
             if (enemyHealth != null)
             {
                 enemyHealth.OnDamageTaken += HandleDamageTaken;

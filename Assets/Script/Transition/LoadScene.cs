@@ -12,7 +12,14 @@ namespace EasyTransition
 
         public void LoadedScene()
         {
-            TransitionManager.Instance().Transition(sceneName, transition, startDelay);
+            if (TransitionManager.Instance() != null && transition != null)
+            {
+                TransitionManager.Instance().Transition(sceneName, transition, startDelay);
+            }
+            else if (!string.IsNullOrEmpty(sceneName))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            }
         }   
     }
 }

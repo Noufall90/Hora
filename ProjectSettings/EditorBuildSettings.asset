@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/WORLD/Home.unity
+    path: Assets/Scenes/Gameplay/Home.unity
     guid: a9626731e03bd03409bf2f3da37df651
   - enabled: 1
     path: Assets/Scenes/Gameplay/MainMenu.unity
     guid: 29fec1e5a96253d4ab729601809cbb59
   - enabled: 1
-    path: Assets/Scenes/WORLD/PortalMap.unity
+    path: Assets/Scenes/Gameplay/PortalMap.unity
     guid: e3e8e9296510819458555831cc29b0bf
   m_configObjects: {}
