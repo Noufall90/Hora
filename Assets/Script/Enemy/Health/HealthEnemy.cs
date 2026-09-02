@@ -13,6 +13,14 @@ namespace Enemy
         [SerializeField] private float dissolveDuration = 2f;
         private static readonly int DissolvePropertyHash = Shader.PropertyToID("_Dissolve");
 
+        [Header("Death Slowmotion Settings")]
+        [SerializeField] private bool enableDeathSlowMotion = true;
+        [SerializeField] private float slowMotionTimeScale = 0.5f;
+        [SerializeField] private float slowMotionDuration = 1f;
+
+        private static Coroutine activeSlowMotionCoroutine;
+        private static EnemyHealth slowMotionHost;
+
         private bool isDead = false;
 
         protected override void OnEnable()
@@ -20,6 +28,20 @@ namespace Enemy
             base.OnEnable();
             isDead = false;
             ResetDissolveValue();
+        }
+
+        private void OnDisable()
+        {
+            if (slowMotionHost == this)
+            {
+                if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
+                {
+                    Time.timeScale = 1f;
+                    Time.fixedDeltaTime = 0.02f;
+                }
+                activeSlowMotionCoroutine = null;
+                slowMotionHost = null;
+            }
         }
 
         public override void TakeDamage(int amount)
@@ -43,7 +65,40 @@ namespace Enemy
 
             StopEnemy();
 
+            if (enableDeathSlowMotion)
+            {
+                TriggerSlowMotion();
+            }
+
             StartCoroutine(AnimateDeathDissolve());
+        }
+
+        private void TriggerSlowMotion()
+        {
+            if (activeSlowMotionCoroutine != null && slowMotionHost != null)
+            {
+                slowMotionHost.StopCoroutine(activeSlowMotionCoroutine);
+            }
+
+            slowMotionHost = this;
+            activeSlowMotionCoroutine = StartCoroutine(SlowMotionRoutine());
+        }
+
+        private IEnumerator SlowMotionRoutine()
+        {
+            Time.timeScale = slowMotionTimeScale;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+            yield return new WaitForSecondsRealtime(slowMotionDuration);
+
+            if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
+            {
+                Time.timeScale = 1f;
+                Time.fixedDeltaTime = 0.02f;
+            }
+
+            activeSlowMotionCoroutine = null;
+            slowMotionHost = null;
         }
 
         private void StopEnemy()

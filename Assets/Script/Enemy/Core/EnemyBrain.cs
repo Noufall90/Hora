@@ -161,18 +161,26 @@ namespace Enemy
 
             if (enableKnockback)
             {
-                currentComboHits++;
-                comboResetTimer = comboResetTime;
-
-                if (currentComboHits >= requiredComboHits)
+                bool isDeathHit = health != null && health.CurrentHealth <= 0;
+                if (isDeathHit)
                 {
-                    currentComboHits = 0;
-                    ApplyKnockback();
+                    ApplyKnockback(2f);
+                }
+                else
+                {
+                    currentComboHits++;
+                    comboResetTimer = comboResetTime;
+
+                    if (currentComboHits >= requiredComboHits)
+                    {
+                        currentComboHits = 0;
+                        ApplyKnockback(1f);
+                    }
                 }
             }
         }
 
-        protected virtual void ApplyKnockback()
+        public virtual void ApplyKnockback(float forceMultiplier = 1f)
         {
             if (isKnockedBack) return;
 
@@ -195,10 +203,10 @@ namespace Enemy
             }
 
             knockbackDir.Normalize();
-            StartCoroutine(KnockbackRoutine(knockbackDir));
+            StartCoroutine(KnockbackRoutine(knockbackDir, forceMultiplier));
         }
 
-        protected virtual IEnumerator KnockbackRoutine(Vector3 direction)
+        protected virtual IEnumerator KnockbackRoutine(Vector3 direction, float forceMultiplier = 1f)
         {
             isKnockedBack = true;
             float elapsed = 0f;
@@ -209,10 +217,12 @@ namespace Enemy
                 anim.SetTrigger("Hit");
             }
 
+            float targetForce = knockbackForce * forceMultiplier;
+
             while (elapsed < knockbackDuration)
             {
                 elapsed += Time.deltaTime;
-                float currentForce = Mathf.Lerp(knockbackForce, 0f, elapsed / knockbackDuration);
+                float currentForce = Mathf.Lerp(targetForce, 0f, elapsed / knockbackDuration);
                 Vector3 moveStep = direction * currentForce * Time.deltaTime;
 
                 if (HasActiveNavMeshAgent)

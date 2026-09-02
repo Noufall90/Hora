@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e846de2cc020a1b409f0f071c92b80d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 4
   rotationSpeed: 50
   patrolRange: 30
   patrolCentrePoint: {fileID: 0}
@@ -678,6 +678,7 @@ MonoBehaviour:
   comboResetTime: 1.5
   knockbackForce: 10
   knockbackDuration: 0.3
+  enableComboCameraShake: 1
   showDebugGizmos: 1
   animator: {fileID: 7201969637409931330}
   damage: 20

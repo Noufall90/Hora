@@ -22,14 +22,14 @@ namespace Enemy
         public Transform ThrowPosition => throwPosition;
         public GameObject GranadePrefab => granadePrefab;
 
-        protected override IEnumerator KnockbackRoutine(Vector3 direction)
+        protected override IEnumerator KnockbackRoutine(Vector3 direction, float forceMultiplier = 1f)
         {
             if (trajectoryLine != null)
             {
                 trajectoryLine.enabled = false;
             }
 
-            return base.KnockbackRoutine(direction);
+            return base.KnockbackRoutine(direction, forceMultiplier);
         }
 
         public void ThrowGranade()
