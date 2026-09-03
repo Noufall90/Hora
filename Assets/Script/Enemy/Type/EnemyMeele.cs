@@ -11,9 +11,7 @@ namespace Enemy
         [SerializeField] private float damageInterval = 2.0f;
         [SerializeField] private BoxCollider damageCollider;
 
-        private Health playerHealthInBox;
         private float nextDamageTime;
-        private HashSet<Collider> playerCollidersInBox = new HashSet<Collider>();
         private procedural_animation.EnemyProceduralAnimator proceduralAnimator;
 
         protected override void Start()
@@ -62,49 +60,43 @@ namespace Enemy
 
             if (isKnockedBack) return;
 
-            // Check if player is inside damageCollider
-            if (CheckPlayerInDamageCollider())
+            // Check if player is strictly inside damageCollider
+            Health playerHealth = GetPlayerInDamageCollider();
+            if (playerHealth != null && playerHealth.CurrentHealth > 0)
             {
                 if (Time.time >= nextDamageTime)
                 {
-                    playerHealthInBox.TakeDamage(damage);
+                    playerHealth.TakeDamage(damage);
                     nextDamageTime = Time.time + damageInterval;
                 }
             }
         }
 
-        private bool CheckPlayerInDamageCollider()
+        private Health GetPlayerInDamageCollider()
         {
-            playerCollidersInBox.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy);
-
-            if (playerCollidersInBox.Count > 0)
+            if (damageCollider == null || !damageCollider.enabled || !damageCollider.gameObject.activeInHierarchy)
             {
-                if (playerHealthInBox != null && playerHealthInBox.CurrentHealth > 0)
-                    return true;
+                return null;
             }
 
-            if (damageCollider != null)
+            Vector3 center = damageCollider.transform.TransformPoint(damageCollider.center);
+            Vector3 halfExtents = Vector3.Scale(damageCollider.size, damageCollider.transform.lossyScale) * 0.5f;
+            halfExtents = new Vector3(Mathf.Abs(halfExtents.x), Mathf.Abs(halfExtents.y), Mathf.Abs(halfExtents.z));
+
+            Collider[] hits = Physics.OverlapBox(center, halfExtents, damageCollider.transform.rotation, ~0, QueryTriggerInteraction.Collide);
+
+            foreach (var hit in hits)
             {
-                Vector3 center = damageCollider.transform.TransformPoint(damageCollider.center);
-                Vector3 halfExtents = Vector3.Scale(damageCollider.size, damageCollider.transform.lossyScale) * 0.5f;
-                Collider[] hits = Physics.OverlapBox(center, halfExtents, damageCollider.transform.rotation);
+                if (hit == null) continue;
+                if (hit.transform == transform || hit.transform.IsChildOf(transform)) continue;
 
-                foreach (var hit in hits)
+                if (IsPlayerCollider(hit, out Health health))
                 {
-                    if (hit == null) continue;
-                    if (hit.transform == transform || hit.transform.IsChildOf(transform)) continue;
-
-                    if (IsPlayerCollider(hit, out Health health))
-                    {
-                        playerCollidersInBox.Add(hit);
-                        playerHealthInBox = health;
-                        return true;
-                    }
+                    return health;
                 }
             }
 
-            playerHealthInBox = null;
-            return false;
+            return null;
         }
 
         private bool IsPlayerCollider(Collider col, out Health health)
@@ -120,45 +112,21 @@ namespace Enemy
                     return true;
                 }
             }
-            else
-            {
-                health = col.GetComponent<Health>() ?? col.GetComponentInParent<Health>();
-                if (health != null && !(health is EnemyHealth))
-                {
-                    return true;
-                }
-            }
 
             return false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnDrawGizmosSelected()
         {
-            if (IsPlayerCollider(other, out Health health))
+            if (damageCollider != null)
             {
-                playerCollidersInBox.Add(other);
-                playerHealthInBox = health;
-
-                if (Time.time >= nextDamageTime && !isKnockedBack)
-                {
-                    playerHealthInBox.TakeDamage(damage);
-                    nextDamageTime = Time.time + damageInterval;
-                }
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (playerCollidersInBox.Contains(other))
-            {
-                playerCollidersInBox.Remove(other);
-            }
-
-            playerCollidersInBox.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy);
-
-            if (playerCollidersInBox.Count == 0)
-            {
-                playerHealthInBox = null;
+                Gizmos.color = Color.red;
+                Gizmos.matrix = Matrix4x4.TRS(
+                    damageCollider.transform.TransformPoint(damageCollider.center),
+                    damageCollider.transform.rotation,
+                    Vector3.Scale(damageCollider.size, damageCollider.transform.lossyScale)
+                );
+                Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
             }
         }
     }

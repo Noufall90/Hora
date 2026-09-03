@@ -504,6 +504,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 130
+  damageParticle: {fileID: 7184656119700989858, guid: 4014f90a5ddab9d48ab73274c405923e,
+    type: 3}
+  damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  damageFlashDuration: 0.1
   coinValue: 45
   enemyRenderers:
   - {fileID: 4479439168631723510}
