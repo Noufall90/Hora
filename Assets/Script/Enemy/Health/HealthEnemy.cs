@@ -150,7 +150,6 @@ namespace Enemy
             }
             else
             {
-                // Jika damageParticle merupakan Prefab asset
                 Vector3 spawnPos = transform.position + Vector3.up * 1f;
                 if (enemyRenderers != null && enemyRenderers.Length > 0 && enemyRenderers[0] != null)
                 {
@@ -169,7 +168,6 @@ namespace Enemy
                         ps.Play(true);
                     }
                 }
-
                 Destroy(spawned, 2f);
             }
         }

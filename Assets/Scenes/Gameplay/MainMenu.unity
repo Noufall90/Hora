@@ -1169,8 +1169,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1843404401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.52, y: 0}
-  m_AnchorMax: {x: 0.52, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.35999966}
   m_SizeDelta: {x: 20, y: 2.1421}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2217,9 +2217,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1716857035}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 0
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: -38.4
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2227,6 +2227,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Audio, Assembly-CSharp
         m_MethodName: UpdateSoundVolume
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 544461363}
+        m_TargetAssemblyTypeName: Audio, Assembly-CSharp
+        m_MethodName: SaveVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2852,6 +2864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544461362}
   - component: {fileID: 544461363}
+  - component: {fileID: 544461364}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -2899,7 +2912,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 77b0bfb0ee465bc45aa5f31c1579fb01, type: 2}
   musicSlider: {fileID: 2089590678}
-  sfxSlider: {fileID: 0}
+  sfxSlider: {fileID: 442967643}
+  defaultMusicVolume: 0
+  defaultSfxVolume: 0
+--- !u!114 &544461364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544461361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69c74981faa8a74ebb46e455289d890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneVolume: {fileID: 2054065771}
+  brightnessSlider: {fileID: 897291347}
+  minExposure: -1
+  maxExposure: 1
+  defaultBrightness: 0.5
 --- !u!1 &558386594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3583,7 +3615,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 164.1}
-  m_SizeDelta: {x: 121.2628, y: 47.8005}
+  m_SizeDelta: {x: 139.8345, y: 47.8005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &761322181
 MonoBehaviour:
@@ -3605,7 +3637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SFX
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de6460e15ad6a764387ca9c189528fb8, type: 2}
   m_sharedMaterial: {fileID: -6174039350631047516, guid: de6460e15ad6a764387ca9c189528fb8,
@@ -3924,13 +3956,37 @@ MonoBehaviour:
   m_FillRect: {fileID: 1636192100}
   m_HandleRect: {fileID: 286967285}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: -1
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: -38.4
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 544461364}
+        m_TargetAssemblyTypeName: BrightnessSystem, Assembly-CSharp
+        m_MethodName: SetBrightnessSlider
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 544461364}
+        m_TargetAssemblyTypeName: BrightnessSystem, Assembly-CSharp
+        m_MethodName: SaveBrightness
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &906195216
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,8 +4018,8 @@ RectTransform:
   - {fileID: 60817249}
   - {fileID: 1078189070}
   - {fileID: 1601536433}
-  - {fileID: 1326853336}
   - {fileID: 911023295}
+  - {fileID: 1326853336}
   m_Father: {fileID: 1630893930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4055,7 +4111,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1630893931}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: OpenHelp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6271,25 +6327,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 544461363}
+        m_TargetAssemblyTypeName: Audio, Assembly-CSharp
+        m_MethodName: RestoreDefault
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 544461364}
+        m_TargetAssemblyTypeName: BrightnessSystem, Assembly-CSharp
+        m_MethodName: RestoreDefault
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7215,7 +7271,7 @@ GameObject:
   - component: {fileID: 1601536435}
   - component: {fileID: 1601536434}
   m_Layer: 5
-  m_Name: About
+  m_Name: Pengaturan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7284,7 +7340,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1601536435}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1630893931}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: OpenSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1601536435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7548,7 +7616,7 @@ MonoBehaviour:
   startDelay: 0.5
   targetSpawnID: HomePointMain
   settingsMenu: {fileID: 544461361}
-  aboutMenu: {fileID: 1378505558}
+  helpMenu: {fileID: 1378505558}
 --- !u!1 &1636192099
 GameObject:
   m_ObjectHideFlags: 0
@@ -7582,7 +7650,7 @@ RectTransform:
   m_Father: {fileID: 536297921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.52, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8582,7 +8650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music
+  m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de6460e15ad6a764387ca9c189528fb8, type: 2}
   m_sharedMaterial: {fileID: -6174039350631047516, guid: de6460e15ad6a764387ca9c189528fb8,
@@ -9799,9 +9867,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1513625115}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 0
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: -38.4
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -9809,6 +9877,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Audio, Assembly-CSharp
         m_MethodName: UpdateMusicVolume
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 544461363}
+        m_TargetAssemblyTypeName: Audio, Assembly-CSharp
+        m_MethodName: SaveVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

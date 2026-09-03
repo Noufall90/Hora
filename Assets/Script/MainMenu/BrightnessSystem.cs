@@ -1,76 +1,94 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class BrightnessSystem : MonoBehaviour
 {
-    private static BrightnessSystem instance;
-    public static BrightnessSystem Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindFirstObjectByType<BrightnessSystem>();
-                if (instance == null)
-                {
-                    GameObject go = new GameObject("BrightnessSystem");
-                    instance = go.AddComponent<BrightnessSystem>();
-                }
-            }
-            return instance;
-        }
-    }
-
     private const string BrightnessKey = "BrightnessValue";
 
-    [Header("Brightness Range")]
-    [Tooltip("Minimum exposure value (slider at 0.0).")]
-    [SerializeField] private float minExposure = -1f;
+    [Header("Volume Reference")]
+    public Volume sceneVolume;
 
-    [Tooltip("Maximum exposure value (slider at 1.0).")]
+    [Header("UI Reference (Optional)")]
+    public Slider brightnessSlider;
+
+    [Header("Brightness Range")]
+    [SerializeField] private float minExposure = -1f;
     [SerializeField] private float maxExposure = 1f;
+
+    [Header("Default Settings")]
+    [SerializeField] private float defaultBrightness = 0.5f;
 
     private ColorAdjustments activeColorAdjustments;
     private Volume currentActiveVolume;
     private float baselineExposure;
 
-
     public float CurrentBrightness { get; private set; }
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        transform.SetParent(null);
-        DontDestroyOnLoad(gameObject);
-
-        CurrentBrightness = PlayerPrefs.GetFloat(BrightnessKey, 0.5f);
+        LoadBrightness();
     }
 
     private void OnEnable()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        InitSliderListener();
     }
 
     private void OnDisable()
     {
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        RemoveSliderListener();
     }
 
     private void Start()
     {
-        AutoFindAndRegisterVolume();
+        if (sceneVolume != null && sceneVolume.profile != null)
+        {
+            RegisterVolume(sceneVolume);
+        }
+        else
+        {
+            AutoFindAndRegisterVolume();
+        }
+
+        InitSliderListener();
     }
 
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
-        AutoFindAndRegisterVolume();
+        if (sceneVolume != null && sceneVolume.profile != null)
+        {
+            RegisterVolume(sceneVolume);
+        }
+        else
+        {
+            AutoFindAndRegisterVolume();
+        }
+
+        InitSliderListener();
+    }
+
+    private void InitSliderListener()
+    {
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.minValue = 0f;
+            brightnessSlider.maxValue = 1f;
+            brightnessSlider.SetValueWithoutNotify(CurrentBrightness);
+            brightnessSlider.onValueChanged.RemoveListener(SetBrightnessSlider);
+            brightnessSlider.onValueChanged.AddListener(SetBrightnessSlider);
+        }
+    }
+
+    private void RemoveSliderListener()
+    {
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.onValueChanged.RemoveListener(SetBrightnessSlider);
+        }
     }
 
     public void AutoFindAndRegisterVolume()
@@ -97,58 +115,99 @@ public class BrightnessSystem : MonoBehaviour
         }
     }
 
-    public void RegisterVolume(Volume sceneVolume)
+    public void RegisterVolume(Volume targetVolume)
     {
-        if (sceneVolume == null || sceneVolume.profile == null)
+        if (targetVolume == null || targetVolume.profile == null)
         {
             return;
         }
 
-        currentActiveVolume = sceneVolume;
+        currentActiveVolume = targetVolume;
 
-        VolumeProfile runtimeProfile = Instantiate(sceneVolume.profile);
-        sceneVolume.profile = runtimeProfile;
+        VolumeProfile runtimeProfile = Instantiate(targetVolume.profile);
+        targetVolume.profile = runtimeProfile;
+
         if (!runtimeProfile.TryGet(out activeColorAdjustments))
         {
             activeColorAdjustments = runtimeProfile.Add<ColorAdjustments>(true);
         }
 
-        baselineExposure = activeColorAdjustments.postExposure.value;   // this my code, im trying to fix shit about brightness
-
+        baselineExposure = activeColorAdjustments.postExposure.value;
         activeColorAdjustments.postExposure.overrideState = true;
         ApplyBrightness(CurrentBrightness);
-        
-        Debug.Log($"[BrightnessSystem] Registered volume: {sceneVolume.name}, Current Brightness: {CurrentBrightness}");
+
+        Debug.Log($"[BrightnessSystem] Registered volume: {targetVolume.name}, Current Brightness: {CurrentBrightness}");
     }
 
-    public void UnregisterVolume(Volume sceneVolume)
+    public void UnregisterVolume(Volume targetVolume)
     {
-        if (currentActiveVolume == sceneVolume)
+        if (currentActiveVolume == targetVolume)
         {
             currentActiveVolume = null;
             activeColorAdjustments = null;
         }
     }
 
-    public void SetBrightness(float value)
+    public void SetBrightnessSlider(float value)
     {
         CurrentBrightness = value;
-        PlayerPrefs.SetFloat(BrightnessKey, value);
-        PlayerPrefs.Save();
+        SaveBrightness();
+
+        if (brightnessSlider != null && !Mathf.Approximately(brightnessSlider.value, value))
+        {
+            brightnessSlider.SetValueWithoutNotify(value);
+        }
 
         if (activeColorAdjustments == null)
         {
-            AutoFindAndRegisterVolume();
+            if (sceneVolume != null && sceneVolume.profile != null)
+            {
+                RegisterVolume(sceneVolume);
+            }
+            else
+            {
+                AutoFindAndRegisterVolume();
+            }
         }
 
         ApplyBrightness(value);
+    }
+
+    public void SaveBrightness()
+    {
+        PlayerPrefs.SetFloat(BrightnessKey, CurrentBrightness);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadBrightness()
+    {
+        CurrentBrightness = PlayerPrefs.GetFloat(BrightnessKey, defaultBrightness);
+
+        if (brightnessSlider != null)
+        {
+            brightnessSlider.SetValueWithoutNotify(CurrentBrightness);
+        }
+
+        ApplyBrightness(CurrentBrightness);
+    }
+
+    public void RestoreDefault()
+    {
+        SetBrightnessSlider(defaultBrightness);
     }
 
     private void ApplyBrightness(float value)
     {
         if (activeColorAdjustments == null)
         {
-            AutoFindAndRegisterVolume();
+            if (sceneVolume != null && sceneVolume.profile != null)
+            {
+                RegisterVolume(sceneVolume);
+            }
+            else
+            {
+                AutoFindAndRegisterVolume();
+            }
         }
 
         if (activeColorAdjustments == null)

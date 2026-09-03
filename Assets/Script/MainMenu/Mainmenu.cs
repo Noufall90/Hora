@@ -11,12 +11,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private float startDelay = 0.5f;
 
     [Header("Spawn Settings")]
-    [Tooltip("ID PointLocation tempat player spawn di scene utama (contoh: SpawnHome).")]
     [SerializeField] private string targetSpawnID;
 
     [Header("References")]
     [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject aboutMenu;
+    [SerializeField] private GameObject helpMenu;
 
     public void NewGame()
     {
@@ -56,9 +55,9 @@ public class MainMenu : MonoBehaviour
         if (settingsMenu != null) settingsMenu.SetActive(true);
     }
 
-    public void OpenAbout()
+    public void OpenHelp()
     {
-        if (aboutMenu != null) aboutMenu.SetActive(true);
+        if (helpMenu != null) helpMenu.SetActive(true);
     }
 
     public void CloseSettings()
@@ -66,9 +65,9 @@ public class MainMenu : MonoBehaviour
         if (settingsMenu != null) settingsMenu.SetActive(false);
     }
 
-    public void CloseAbout()
+    public void CloseHelp()
     {
-        if (aboutMenu != null) aboutMenu.SetActive(false);
+        if (helpMenu != null) helpMenu.SetActive(false);
     }
 
     public void ExitGame()

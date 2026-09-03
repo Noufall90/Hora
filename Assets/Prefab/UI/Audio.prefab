@@ -322,9 +322,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tracks:
-  - sceneName: 
-    trackName: 
-    clip: {fileID: 0}
+  - sceneNames:
+    - MainMenu
+    clip: {fileID: 8300000, guid: d958239eeee37d64996c35d490a3d8ed, type: 3}
+  - sceneNames:
+    - Home
+    clip: {fileID: 8300000, guid: 96b7d83898a7946418a4050c95a49c27, type: 3}
+  - sceneNames:
+    - PortalMap
+    clip: {fileID: 8300000, guid: dece985ce47432b4c8e29c39773fb5b1, type: 3}
+  - sceneNames:
+    - Potion
+    clip: {fileID: 8300000, guid: fd75c881edb05554b851fb92ff148cd5, type: 3}
+  - sceneNames:
+    - Action Escuri 1
+    - Action Escuri 2
+    - Bos Escuri
+    clip: {fileID: 8300000, guid: 4eca96da19f538c45b0b2a9f05c92917, type: 3}
+  - sceneNames:
+    - Action Solis 1
+    - Action Solis 2
+    - Action Solis 3
+    - Boss Solis
+    clip: {fileID: 8300000, guid: 4cee93c95741d754c8f59b91a0e94dab, type: 3}
+  - sceneNames:
+    - Action Aeris 1
+    - Action Aeris 2
+    - Action Aeris 3
+    - Action Aeris 4
+    - Boss Aeris
+    clip: {fileID: 8300000, guid: 2bb647eeb45c8b3499b0fb635bf44238, type: 3}
 --- !u!114 &2106282349542699508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,5 +379,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - groupID: 
+  - groupIDs: []
     clips: []

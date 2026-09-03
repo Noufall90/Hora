@@ -3,8 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public struct MusicTrack
 {
-    public string sceneName;
-    public string trackName;
+    public string[] sceneNames;
     public AudioClip clip;
 }
 
@@ -12,22 +11,9 @@ public class MusicLibrary : MonoBehaviour
 {
     public MusicTrack[] tracks;
 
-    public AudioClip GetClipFromName(string trackName)
+    public AudioClip GetClipFromName(string name)
     {
-        if (tracks == null) return null;
-
-        foreach (var track in tracks)
-        {
-            if (!string.IsNullOrEmpty(track.trackName) && track.trackName == trackName)
-            {
-                return track.clip;
-            }
-            if (!string.IsNullOrEmpty(track.sceneName) && track.sceneName == trackName)
-            {
-                return track.clip;
-            }
-        }
-        return null;
+        return GetClipFromSceneName(name);
     }
 
     public AudioClip GetClipFromSceneName(string sceneName)
@@ -36,16 +22,16 @@ public class MusicLibrary : MonoBehaviour
 
         foreach (var track in tracks)
         {
-            if (!string.IsNullOrEmpty(track.sceneName) && track.sceneName == sceneName)
+            if (track.sceneNames == null) continue;
+
+            foreach (var name in track.sceneNames)
             {
-                return track.clip;
-            }
-            if (!string.IsNullOrEmpty(track.trackName) && track.trackName == sceneName)
-            {
-                return track.clip;
+                if (!string.IsNullOrEmpty(name) && name == sceneName)
+                {
+                    return track.clip;
+                }
             }
         }
         return null;
     }
 }
- 
