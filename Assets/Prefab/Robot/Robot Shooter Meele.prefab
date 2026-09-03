@@ -771,9 +771,9 @@ MonoBehaviour:
   - {fileID: 7490234028270878947}
   - {fileID: 249050234224529760}
   - {fileID: 2206917533096024391}
-  _stepSize: 2
+  _stepSize: 1
   _stepHeight: 0.5
-  _smoothness: 2
+  _smoothness: 1
   _raycastRange: 1
   _feetOffset: 0.05
   _stepLeadMultiplier: 5

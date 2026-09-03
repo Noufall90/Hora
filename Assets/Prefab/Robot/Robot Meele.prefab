@@ -463,9 +463,9 @@ MonoBehaviour:
   - {fileID: 6269492209608051597}
   - {fileID: 828812283075888540}
   - {fileID: 4186699194059226001}
-  _stepSize: 2
+  _stepSize: 1
   _stepHeight: 0.5
-  _smoothness: 2
+  _smoothness: 1
   _raycastRange: 1
   _feetOffset: 0.05
   _stepLeadMultiplier: 5
@@ -508,6 +508,9 @@ MonoBehaviour:
   enemyRenderers:
   - {fileID: 4479439168631723510}
   dissolveDuration: 1
+  enableDeathSlowMotion: 1
+  slowMotionTimeScale: 0.5
+  slowMotionDuration: 1
 --- !u!114 &4011391679212764226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261223aee923cca4f871f5410de6488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 3
   rotationSpeed: 50
   patrolRange: 20
   patrolCentrePoint: {fileID: 0}
@@ -575,7 +578,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1213f15386c0a6a439068a56ed7a8747, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

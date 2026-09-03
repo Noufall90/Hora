@@ -566,9 +566,9 @@ MonoBehaviour:
   - {fileID: 4220716582057830520}
   - {fileID: 6835085330662151477}
   - {fileID: 9089081922589597783}
-  _stepSize: 1.2
+  _stepSize: 1
   _stepHeight: 0.5
-  _smoothness: 2
+  _smoothness: 1
   _raycastRange: 1
   _feetOffset: 0.05
   _stepLeadMultiplier: 5
@@ -1571,8 +1571,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.9782913, z: 2.0799654}
-  m_Center: {x: 0, y: 1.1468858, z: 0.07440994}
+  m_Size: {x: 1, y: 3.4496605, z: 2.0799654}
+  m_Center: {x: 0, y: 1.8825699, z: 0.07440994}
 --- !u!137 &3695755957420205838 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -8017449571587430431, guid: dd0c0cde9de59e344a52abed73ae8b8d,

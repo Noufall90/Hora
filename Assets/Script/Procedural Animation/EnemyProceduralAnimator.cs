@@ -10,6 +10,7 @@ namespace procedural_animation
             public Transform IKTarget;
             public Vector3 defaultPosition;
             public Vector3 lastPosition;
+            public Vector3 currentStepPosition;
             public bool moving;
         }
 
@@ -41,6 +42,7 @@ namespace procedural_animation
         private int _nLimbs;
         private ProceduralLimb[] _limbs;
         private Vector3 _lastBodyPosition;
+        private Vector3 _rawVelocity;
         private Vector3 _velocity;
         private bool _allLimbsResting;
         private Transform _currentTarget;
@@ -68,19 +70,27 @@ namespace procedural_animation
         protected override void Initialize()
         {
             _brain = GetComponentInParent<Enemy.EnemyBrain>() ?? GetComponent<Enemy.EnemyBrain>();
-            _nLimbs = _limbTargets.Length;
+            _nLimbs = _limbTargets != null ? _limbTargets.Length : 0;
             _limbs = new ProceduralLimb[_nLimbs];
 
             for (int i = 0; i < _nLimbs; i++)
             {
                 Transform t = _limbTargets[i];
+                if (t == null) continue;
+
+                Vector3 initialPos = t.position;
+                Vector3 groundedPos = _RaycastToGround(initialPos, transform.up) + (transform.up * _feetOffset);
+
                 _limbs[i] = new ProceduralLimb()
                 {
                     IKTarget = t,
-                    defaultPosition = transform.InverseTransformPoint(t.position),
-                    lastPosition = t.position,
+                    defaultPosition = transform.InverseTransformPoint(initialPos),
+                    lastPosition = groundedPos,
+                    currentStepPosition = groundedPos,
                     moving = false
                 };
+
+                t.position = groundedPos;
             }
 
             if (_gaitPairings == null || _gaitPairings.Length != _nLimbs)
@@ -89,48 +99,53 @@ namespace procedural_animation
             }
 
             _lastBodyPosition = transform.position;
+            _rawVelocity = Vector3.zero;
+            _velocity = Vector3.zero;
             _allLimbsResting = true;
         }
 
         protected override void Tick()
         {
-            _velocity = transform.position - _lastBodyPosition;
+            float dt = Time.fixedDeltaTime;
+            if (dt <= 0.0001f) dt = 0.02f;
 
-            bool isBodyMovingOrRotating = _velocity.magnitude > 0.001f;
-
-            // Cek apakah ada kaki yang terlalu jauh karena rotasi badan
-            if (!isBodyMovingOrRotating)
+            if (_brain != null && _brain.HasActiveNavMeshAgent && _brain.Agent.velocity.sqrMagnitude > 0.001f)
             {
-                for (int i = 0; i < _nLimbs; i++)
+                _rawVelocity = _brain.Agent.velocity;
+            }
+            else
+            {
+                _rawVelocity = (transform.position - _lastBodyPosition) / dt;
+            }
+
+            // Smooth velocity dengan low-pass filter untuk menghilangkan spike framerate
+            _velocity = Vector3.Lerp(_velocity, _rawVelocity, 1f - Mathf.Exp(-15f * dt));
+            _lastBodyPosition = transform.position;
+
+            float speed = _velocity.magnitude;
+            bool isBodyMoving = speed > 0.05f;
+
+            // Cek apakah ada kaki yang terlalu jauh karena rotasi badan atau posisi tertinggal
+            bool needsStepDueToDistance = false;
+            for (int i = 0; i < _nLimbs; i++)
+            {
+                if (_limbs[i] == null || _limbs[i].moving) continue;
+
+                Vector3 desiredPosition = transform.TransformPoint(_limbs[i].defaultPosition);
+                if (Vector3.Distance(desiredPosition, _limbs[i].lastPosition) > _stepSize)
                 {
-                    if (!_limbs[i].moving)
-                    {
-                        Vector3 desiredPosition = transform.TransformPoint(_limbs[i].defaultPosition);
-                        if (Vector3.Distance(desiredPosition, _limbs[i].lastPosition) > _stepSize)
-                        {
-                            isBodyMovingOrRotating = true;
-                            break;
-                        }
-                    }
+                    needsStepDueToDistance = true;
+                    break;
                 }
             }
 
-            if (isBodyMovingOrRotating)
+            if (isBodyMoving || needsStepDueToDistance)
             {
                 _HandleMovement();
             }
             else if (!_allLimbsResting)
             {
                 _BackToRestPosition();
-            }
-
-            // Kunci posisi kaki yang diam agar tidak bergeser mengikuti badan
-            for (int i = 0; i < _nLimbs; i++)
-            {
-                if (!_limbs[i].moving)
-                {
-                    _limbs[i].IKTarget.position = _limbs[i].lastPosition;
-                }
             }
 
             _CheckLineOfSight();
@@ -187,6 +202,26 @@ namespace procedural_animation
             }
         }
 
+        protected virtual void LateUpdate()
+        {
+            if (_limbs == null) return;
+
+            // Kunci posisi kaki di LateUpdate agar tidak bergeser mengikuti pergerakan transform di Update
+            for (int i = 0; i < _nLimbs; i++)
+            {
+                if (_limbs[i] == null || _limbs[i].IKTarget == null) continue;
+
+                if (_limbs[i].moving)
+                {
+                    _limbs[i].IKTarget.position = _limbs[i].currentStepPosition;
+                }
+                else
+                {
+                    _limbs[i].IKTarget.position = _limbs[i].lastPosition;
+                }
+            }
+        }
+
         private void _CheckLineOfSight()
         {
             Transform target = null;
@@ -232,21 +267,33 @@ namespace procedural_animation
 
         private void _HandleMovement()
         {
-            _lastBodyPosition = transform.position;
-
             float greatestDistance = _stepSize;
             int limbToMove = -1;
 
+            // Perhitungan lead time foot prediction berbasis detik yang independen dari framerate
+            float leadTime = Mathf.Max(0.02f, _stepLeadMultiplier * 0.03f);
+            Vector3 lead = _velocity * leadTime;
+
+            // Batasi jarak lead agar kaki tidak terlempar terlalu jauh saat terjadi lonjakan kecepatan sesaat
+            float maxLead = _stepSize * 0.75f;
+            if (lead.sqrMagnitude > maxLead * maxLead)
+            {
+                lead = lead.normalized * maxLead;
+            }
+
             for (int i = 0; i < _nLimbs; i++)
             {
-                if (_limbs[i].moving) continue;
+                if (_limbs[i] == null || _limbs[i].moving) continue;
 
-                int partnerIndex = _gaitPairings[i];
-                if (partnerIndex < _nLimbs && _limbs[partnerIndex].moving) continue;
+                int partnerIndex = (_gaitPairings != null && i < _gaitPairings.Length) ? _gaitPairings[i] : -1;
+                if (partnerIndex >= 0 && partnerIndex < _nLimbs && _limbs[partnerIndex] != null && _limbs[partnerIndex].moving)
+                {
+                    continue;
+                }
 
                 Vector3 desiredPosition = transform.TransformPoint(_limbs[i].defaultPosition);
-                Vector3 predictedPos = desiredPosition + (_velocity * _stepLeadMultiplier);
-                float dist = (predictedPos - _limbs[i].lastPosition).magnitude;
+                Vector3 predictedPos = desiredPosition + lead;
+                float dist = Vector3.Distance(predictedPos, _limbs[i].lastPosition);
 
                 if (dist > greatestDistance)
                 {
@@ -255,12 +302,10 @@ namespace procedural_animation
                 }
             }
 
-            // Pinning posisi dipindah ke Tick() agar selalu dieksekusi
-
             if (limbToMove != -1)
             {
                 Vector3 baseTarget = transform.TransformPoint(_limbs[limbToMove].defaultPosition);
-                Vector3 targetPoint = baseTarget + (_velocity * _stepLeadMultiplier);
+                Vector3 targetPoint = baseTarget + lead;
 
                 targetPoint = _RaycastToGround(targetPoint, transform.up);
                 targetPoint += transform.up * _feetOffset;
@@ -272,14 +317,24 @@ namespace procedural_animation
 
         private void _BackToRestPosition()
         {
+            // Ambang batas aman untuk menghindari getaran mikro saat diam
+            float restThreshold = Mathf.Max(0.15f, _stepSize * 0.2f);
+
             for (int i = 0; i < _nLimbs; i++)
             {
-                if (_limbs[i].moving) continue;
+                if (_limbs[i] == null || _limbs[i].moving) continue;
 
-                Vector3 targetPoint = _RaycastToGround(transform.TransformPoint(_limbs[i].defaultPosition), transform.up) + transform.up * _feetOffset;
-                float dist = (targetPoint - _limbs[i].lastPosition).magnitude;
+                int partnerIndex = (_gaitPairings != null && i < _gaitPairings.Length) ? _gaitPairings[i] : -1;
+                if (partnerIndex >= 0 && partnerIndex < _nLimbs && _limbs[partnerIndex] != null && _limbs[partnerIndex].moving)
+                {
+                    continue;
+                }
 
-                if (dist > 0.005f)
+                Vector3 desiredRestWorld = transform.TransformPoint(_limbs[i].defaultPosition);
+                Vector3 targetPoint = _RaycastToGround(desiredRestWorld, transform.up) + (transform.up * _feetOffset);
+                float dist = Vector3.Distance(targetPoint, _limbs[i].lastPosition);
+
+                if (dist > restThreshold)
                 {
                     StartCoroutine(_Stepping(i, targetPoint));
                     return;
@@ -290,33 +345,90 @@ namespace procedural_animation
 
         private Vector3 _RaycastToGround(Vector3 pos, Vector3 up)
         {
-            Vector3 point = pos;
-            Vector3 rayOrigin = pos + (_raycastRange * up);
+            LayerMask mask = _groundLayerMask.value != 0 ? _groundLayerMask : Physics.DefaultRaycastLayers;
+
+            float upOffset = Mathf.Max(_raycastRange * 2f, 2f);
+            float totalDistance = upOffset + Mathf.Max(_raycastRange * 2f, 2.5f);
+
+            Vector3 rayOrigin = pos + (up * upOffset);
             Vector3 rayDirection = -up;
 
-            Ray ray = new Ray(rayOrigin, rayDirection);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, 2f * _raycastRange, _groundLayerMask))
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, totalDistance, mask))
             {
-                point = hit.point;
+                return hit.point;
             }
-            return point;
+
+            // Fallback: Vertical raycast dari ketinggian badan jika raycast sudut utama meleset
+            Vector3 fallbackOrigin = new Vector3(pos.x, transform.position.y + 1f, pos.z);
+            if (Physics.Raycast(fallbackOrigin, Vector3.down, out RaycastHit fallbackHit, 6f, mask))
+            {
+                return fallbackHit.point;
+            }
+
+            return pos;
         }
 
-        private IEnumerator _Stepping(int limbIdx, Vector3 targetPosition)
+        private IEnumerator _Stepping(int limbIdx, Vector3 initialTargetPosition)
         {
             _limbs[limbIdx].moving = true;
             Vector3 startPosition = _limbs[limbIdx].lastPosition;
 
-            for (int i = 1; i <= _smoothness; i++)
+            // Durasi langkah mulus berbasis waktu nyata (detik)
+            float stepDuration = Mathf.Clamp(_smoothness * 0.04f + 0.06f, 0.12f, 0.25f);
+            float speed = _velocity.magnitude;
+            if (speed > 2f)
             {
-                float t = i / (_smoothness + 1f);
-                _limbs[limbIdx].IKTarget.position = Vector3.Lerp(startPosition, targetPosition, t) + transform.up * Mathf.Sin(t * Mathf.PI) * _stepHeight;
-                yield return new WaitForFixedUpdate();
+                stepDuration = Mathf.Max(0.10f, stepDuration * (2f / speed));
             }
 
-            _limbs[limbIdx].IKTarget.position = targetPosition;
-            _limbs[limbIdx].lastPosition = targetPosition;
+            float elapsed = 0f;
+            Vector3 currentLandingPos = initialTargetPosition;
+
+            while (elapsed < stepDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / stepDuration);
+                float smoothT = Mathf.SmoothStep(0f, 1f, t);
+
+                // Tracking target dinamis selama kaki melayang agar mendarat di depan badan yang sedang bergerak maju
+                float leadTime = Mathf.Max(0.02f, _stepLeadMultiplier * 0.03f);
+                Vector3 dynamicLead = _velocity * leadTime;
+                float maxLead = _stepSize * 0.75f;
+                if (dynamicLead.sqrMagnitude > maxLead * maxLead)
+                {
+                    dynamicLead = dynamicLead.normalized * maxLead;
+                }
+
+                Vector3 dynamicDesired = transform.TransformPoint(_limbs[limbIdx].defaultPosition) + dynamicLead;
+                Vector3 dynamicGround = _RaycastToGround(dynamicDesired, transform.up) + (transform.up * _feetOffset);
+
+                currentLandingPos = Vector3.Lerp(initialTargetPosition, dynamicGround, smoothT);
+
+                Vector3 horizontalPos = Vector3.Lerp(startPosition, currentLandingPos, smoothT);
+                Vector3 arcOffset = transform.up * (Mathf.Sin(t * Mathf.PI) * _stepHeight);
+
+                Vector3 stepPos = horizontalPos + arcOffset;
+                _limbs[limbIdx].currentStepPosition = stepPos;
+                _limbs[limbIdx].IKTarget.position = stepPos;
+
+                yield return null;
+            }
+
+            // Pendaratan akhir
+            float finalLeadTime = Mathf.Max(0.02f, _stepLeadMultiplier * 0.03f);
+            Vector3 finalLead = _velocity * finalLeadTime;
+            float finalMaxLead = _stepSize * 0.75f;
+            if (finalLead.sqrMagnitude > finalMaxLead * finalMaxLead)
+            {
+                finalLead = finalLead.normalized * finalMaxLead;
+            }
+
+            Vector3 finalDesired = transform.TransformPoint(_limbs[limbIdx].defaultPosition) + finalLead;
+            Vector3 finalGroundPos = _RaycastToGround(finalDesired, transform.up) + (transform.up * _feetOffset);
+
+            _limbs[limbIdx].IKTarget.position = finalGroundPos;
+            _limbs[limbIdx].lastPosition = finalGroundPos;
+            _limbs[limbIdx].currentStepPosition = finalGroundPos;
             _limbs[limbIdx].moving = false;
         }
 
