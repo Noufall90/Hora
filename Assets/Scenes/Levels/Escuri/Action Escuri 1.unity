@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 268458450}
   - component: {fileID: 268458449}
   - component: {fileID: 268458451}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube Full (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1974,11 +1974,11 @@ Transform:
   m_GameObject: {fileID: 673382267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.599999, y: 2, z: -16.59}
+  m_LocalPosition: {x: 10.15, y: -1, z: 15.700001}
   m_LocalScale: {x: 15, y: 1, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 543450652296728862}
+  m_Father: {fileID: 1257451501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &673382269
 MeshRenderer:
@@ -3427,6 +3427,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1406133354}
+  - {fileID: 1948204118}
+  - {fileID: 673382268}
+  - {fileID: 1688561911}
   - {fileID: 543450652296728862}
   - {fileID: 1143945621}
   - {fileID: 6510706378498911153}
@@ -4343,11 +4346,11 @@ Transform:
   m_GameObject: {fileID: 1688561907}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.52000004, y: 0, z: -32.33}
+  m_LocalPosition: {x: 0.029999971, y: -3, z: -0.040000916}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 543450652296728862}
+  m_Father: {fileID: 1257451501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1688561912
 MeshCollider:
@@ -4937,11 +4940,11 @@ Transform:
   m_GameObject: {fileID: 1948204114}
   serializedVersion: 2
   m_LocalRotation: {x: -0.65610623, y: -0.2636753, z: -0.2636753, w: 0.65610623}
-  m_LocalPosition: {x: 12.23, y: 4.19, z: -1.9300003}
-  m_LocalScale: {x: 100, y: 100, z: 100.000046}
+  m_LocalPosition: {x: 12.78, y: 1.19, z: 30.36}
+  m_LocalScale: {x: 100, y: 100, z: 100.00005}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 543450652296728862}
+  m_Father: {fileID: 1257451501}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -43.788}
 --- !u!1 &1983074973
 GameObject:
@@ -5235,9 +5238,6 @@ Transform:
   - {fileID: 2541634614758898732}
   - {fileID: 5907495945749819122}
   - {fileID: 1976499938228410463}
-  - {fileID: 1688561911}
-  - {fileID: 673382268}
-  - {fileID: 1948204118}
   m_Father: {fileID: 1257451501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &611612996354982792
@@ -5341,6 +5341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450652296728862}
+  - component: {fileID: 919132148310051749}
   m_Layer: 0
   m_Name: Batu Hill
   m_TagString: Untagged
@@ -5348,6 +5349,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148310051749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148310051748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.26666668
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 4462a20210973b34e9cc514e36e1c31f, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &943902176718107230
 GameObject:
   m_ObjectHideFlags: 0
@@ -5623,7 +5655,7 @@ GameObject:
   - component: {fileID: 7898252854246762068}
   - component: {fileID: 894233564181134726}
   - component: {fileID: 7898252854246762069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5982,7 +6014,7 @@ GameObject:
   - component: {fileID: 7562782460287957484}
   - component: {fileID: 1463307606169276591}
   - component: {fileID: 7562782460287957485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube hole middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6383,7 +6415,7 @@ GameObject:
   - component: {fileID: 868067808373649600}
   - component: {fileID: 7919803180811043815}
   - component: {fileID: 7919803180811043816}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6678,7 +6710,7 @@ GameObject:
   - component: {fileID: 7042515205659556950}
   - component: {fileID: 5172543496583811667}
   - component: {fileID: 7055864474181507072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube Full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
