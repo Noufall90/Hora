@@ -5,8 +5,11 @@ using PlayerData;
 public class PointLocation : MonoBehaviour
 {
     [Header("Spawn Location Settings")]
-    [Tooltip("ID unik lokasi spawn ini (contoh: SpawnID1, SpawnID2, atau nama scene asal).")]
+    [Tooltip("ID unik lokasi spawn ini (contoh: SpawnID1, SpawnID2, HomePoint, atau nama scene asal).")]
     [SerializeField] private string spawnID;
+
+    [Tooltip("Tandai jika titik ini adalah lokasi spawn default ketika tidak ada target spawn yang diset.")]
+    [SerializeField] private bool isDefaultPoint = false;
 
     [Tooltip("GameObject Player yang akan dipindahkan ke titik ini (opsional). Jika kosong, akan mencari Player secara otomatis.")]
     [SerializeField] private GameObject player;
@@ -37,36 +40,61 @@ public class PointLocation : MonoBehaviour
 
     private void Start()
     {
-        if (!TryTeleportImmediate())
+        if (IsTargetLocation())
         {
-            StartCoroutine(TeleportPlayerDelayed());
+            if (!TryTeleportImmediate())
+            {
+                StartCoroutine(TeleportPlayerDelayed());
+            }
         }
+    }
+
+    private bool IsTargetLocation()
+    {
+        // 1. Jika NextSpawnID ada, hanya point dengan spawnID yang cocok yang boleh spawn
+        if (!string.IsNullOrEmpty(NextSpawnID))
+        {
+            return string.Equals(spawnID, NextSpawnID, System.StringComparison.OrdinalIgnoreCase);
+        }
+
+        // 2. Jika NextSpawnID kosong tetapi PreviousSceneName ada, cek apakah cocok dengan spawnID
+        if (!string.IsNullOrEmpty(PreviousSceneName))
+        {
+            if (string.Equals(spawnID, PreviousSceneName, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        // 3. Jika tidak ada target spawn sama sekali, gunakan point yang ditandai sebagai default
+        if (string.IsNullOrEmpty(NextSpawnID) && string.IsNullOrEmpty(PreviousSceneName))
+        {
+            return isDefaultPoint;
+        }
+
+        return false;
+    }
+
+    private GameObject GetTargetPlayer()
+    {
+        if (player != null) return player;
+
+        if (PlayerController.Instance != null)
+        {
+            return PlayerController.Instance.gameObject;
+        }
+
+        return GameObject.FindWithTag("Player");
     }
 
     private bool TryTeleportImmediate()
     {
-        bool isTargetBySpawnID = !string.IsNullOrEmpty(NextSpawnID) && 
-                                 string.Equals(spawnID, NextSpawnID, System.StringComparison.OrdinalIgnoreCase);
-
-        bool isTargetBySceneName = string.IsNullOrEmpty(NextSpawnID) && 
-                                   !string.IsNullOrEmpty(PreviousSceneName) && 
-                                   string.Equals(spawnID, PreviousSceneName, System.StringComparison.OrdinalIgnoreCase);
-
-        if (!isTargetBySpawnID && !isTargetBySceneName)
+        if (!IsTargetLocation())
         {
             return false;
         }
 
-        GameObject targetPlayer = player;
-        if (targetPlayer == null && PlayerController.Instance != null)
-        {
-            targetPlayer = PlayerController.Instance.gameObject;
-        }
-        if (targetPlayer == null)
-        {
-            targetPlayer = GameObject.FindWithTag("Player");
-        }
-
+        GameObject targetPlayer = GetTargetPlayer();
         if (targetPlayer != null)
         {
             Teleport(targetPlayer);
@@ -80,16 +108,12 @@ public class PointLocation : MonoBehaviour
     {
         yield return null;
 
-        GameObject targetPlayer = player;
-        if (targetPlayer == null && PlayerController.Instance != null)
+        if (!IsTargetLocation())
         {
-            targetPlayer = PlayerController.Instance.gameObject;
-        }
-        if (targetPlayer == null)
-        {
-            targetPlayer = GameObject.FindWithTag("Player");
+            yield break;
         }
 
+        GameObject targetPlayer = GetTargetPlayer();
         if (targetPlayer != null)
         {
             Teleport(targetPlayer);
@@ -122,12 +146,15 @@ public class PointLocation : MonoBehaviour
         }
 
         Debug.Log($"[PointLocation] Player '{targetPlayer.name}' successfully spawned at '{spawnID}' (Position: {transform.position})");
+        
+        // Reset target spawn setelah teleport berhasil agar tidak terpanggil ulang oleh point lain
         NextSpawnID = null;
+        PreviousSceneName = null;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
+        Gizmos.color = isDefaultPoint ? Color.green : Color.cyan;
         Gizmos.DrawWireSphere(transform.position, 0.5f);
         Gizmos.DrawRay(transform.position, transform.forward * 1.5f);
     }

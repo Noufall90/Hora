@@ -51,6 +51,10 @@ public class InteractScenePanel : MonoBehaviour
         {
             playerInRange = false;
             if (quadObject != null) quadObject.SetActive(false);
+            if (isOpen)
+            {
+                ClosePanel();
+            }
         }
     }
 
@@ -58,12 +62,18 @@ public class InteractScenePanel : MonoBehaviour
     {
         if (panelMapScene != null) panelMapScene.SetActive(true);
         isOpen = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ClosePanel()
     {
         if (panelMapScene != null) panelMapScene.SetActive(false);
         isOpen = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void LoadedScene()
@@ -77,6 +87,14 @@ public class InteractScenePanel : MonoBehaviour
         else if (!string.IsNullOrEmpty(sceneName))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (isOpen)
+        {
+            ClosePanel();
         }
     }
 }

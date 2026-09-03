@@ -332,12 +332,14 @@ MonoBehaviour:
     - PortalMap
     clip: {fileID: 8300000, guid: dece985ce47432b4c8e29c39773fb5b1, type: 3}
   - sceneNames:
-    - Potion
+    - PotionAeris
+    - PotionEscuri
+    - PotionSolis
     clip: {fileID: 8300000, guid: fd75c881edb05554b851fb92ff148cd5, type: 3}
   - sceneNames:
     - Action Escuri 1
     - Action Escuri 2
-    - Bos Escuri
+    - Boss Escuri
     clip: {fileID: 8300000, guid: 4eca96da19f538c45b0b2a9f05c92917, type: 3}
   - sceneNames:
     - Action Solis 1
