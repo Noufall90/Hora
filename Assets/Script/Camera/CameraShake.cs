@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CamerShake : MonoBehaviour
+public class CameraShake : MonoBehaviour
 {
-    public static CamerShake Instance { get; private set; }
+    public static CameraShake Instance { get; private set; }
 
     private CinemachineImpulseSource impulseSource;
 
@@ -24,7 +24,7 @@ public class CamerShake : MonoBehaviour
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
-    public void CameraShake()
+    public void CameraShaked()
     {
         if (impulseSource != null)
         {
@@ -32,7 +32,7 @@ public class CamerShake : MonoBehaviour
         }
     }
 
-    public void CameraShake(float force)
+    public void CameraShaked(float force)
     {
         if (impulseSource != null)
         {

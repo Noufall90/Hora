@@ -132,9 +132,9 @@ public class Missile : MonoBehaviour
             Destroy(effect, explosionEffectLifeTime);
         }
 
-        if (enableCameraShake && CamerShake.Instance != null)
+        if (enableCameraShake && CameraShake.Instance != null)
         {
-            CamerShake.Instance.CameraShake();
+            CameraShake.Instance.CameraShaked();
         }
 
         ApplyExplosionEffects();

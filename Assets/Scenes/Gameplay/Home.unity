@@ -56399,6 +56399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  damageParticle: {fileID: 0}
+  damageFlashDuration: 0.1
+  damageParticleDuration: 0.1
   coinValue: 0
   enemyRenderers: []
   dissolveDuration: 2

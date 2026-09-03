@@ -184,9 +184,9 @@ namespace Enemy
         {
             if (isKnockedBack) return;
 
-            if (enableComboCameraShake && CamerShake.Instance != null)
+            if (enableComboCameraShake && CameraShake.Instance != null)
             {
-                CamerShake.Instance.CameraShake();
+                CameraShake.Instance.CameraShaked();
             }
 
             Vector3 knockbackDir = Vector3.zero;

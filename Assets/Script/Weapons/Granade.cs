@@ -61,9 +61,9 @@ public class Granade : MonoBehaviour
             Destroy(effect, 3f);
         }
 
-        if (enableCameraShake && CamerShake.Instance != null)
+        if (enableCameraShake && CameraShake.Instance != null)
         {
-            CamerShake.Instance.CameraShake();
+            CameraShake.Instance.CameraShaked();
         }
 
         ApplyExplosionEffects();

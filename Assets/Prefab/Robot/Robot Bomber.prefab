@@ -607,6 +607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
+  damageParticle: {fileID: 7184656119700989858, guid: 4014f90a5ddab9d48ab73274c405923e,
+    type: 3}
+  damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  damageFlashDuration: 0.1
   coinValue: 60
   enemyRenderers:
   - {fileID: 3695755957420205838}
@@ -1010,7 +1014,7 @@ Transform:
   m_GameObject: {fileID: 6235150161260572977}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01003, z: -0.00405}
+  m_LocalPosition: {x: 0, y: 0.01151, z: -0.00607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1571,8 +1575,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.4496605, z: 2.0799654}
-  m_Center: {x: 0, y: 1.8825699, z: 0.07440994}
+  m_Size: {x: 1, y: 2.1238313, z: 2.0799654}
+  m_Center: {x: 0, y: 1.2196555, z: 0.07440994}
 --- !u!137 &3695755957420205838 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -8017449571587430431, guid: dd0c0cde9de59e344a52abed73ae8b8d,
