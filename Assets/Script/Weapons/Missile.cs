@@ -18,7 +18,6 @@ public class Missile : MonoBehaviour
     [SerializeField] private float explosionRadius = 5f;
     [SerializeField] private float upwardsModifier = 1f;
     [SerializeField] private int explosionDamage = 50;
-    [SerializeField] private bool enableCameraShake = true;
 
     [Header("Layers")]
     [SerializeField] private LayerMask targetLayer; // Target layers that trigger explosion on impact
@@ -132,16 +131,16 @@ public class Missile : MonoBehaviour
             Destroy(effect, explosionEffectLifeTime);
         }
 
-        if (enableCameraShake && CameraShake.Instance != null)
-        {
-            CameraShake.Instance.CameraShaked();
-        }
-
         ApplyExplosionEffects();
 
         if (trailRenderer != null)
         {
             trailRenderer.emitting = false;
+        }
+
+        if (CameraShake.Instance != null)
+        {
+            CameraShake.Instance.CameraShaked(5f, 1f);
         }
 
         Destroy(gameObject);

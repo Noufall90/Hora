@@ -13,7 +13,6 @@ public class Granade : MonoBehaviour
     [SerializeField] private float explosionRadius = 5f;
     [SerializeField] private float upwardsModifier = 1f;
     [SerializeField] private int explosionDamage = 50;
-    [SerializeField] private bool enableCameraShake = true;
     [Header("Layer")]
     [SerializeField] private LayerMask damageLayerMask; // Digunakan untuk mencari objek yang bisa terkena hit/damage.
     [SerializeField] private LayerMask physicsLayerMask; // Digunakan untuk mencari objek yang bisa terkena efek physics (terlempar).
@@ -60,13 +59,14 @@ public class Granade : MonoBehaviour
             GameObject effect = Instantiate(explosionEffectPrefab, transform.position + explosionParticleOffset, Quaternion.identity);
             Destroy(effect, 3f);
         }
+        
+        ApplyExplosionEffects();
 
-        if (enableCameraShake && CameraShake.Instance != null)
+        if (CameraShake.Instance != null)
         {
-            CameraShake.Instance.CameraShaked();
+            CameraShake.Instance.CameraShaked(5f, 1f);
         }
 
-        ApplyExplosionEffects();
         Destroy(gameObject);
     }
 

@@ -15,6 +15,10 @@ namespace PlayerData
         [SerializeField] private float slashVFXDelay = 0.05f;
         public List<GameObject> slashes = new List<GameObject>();
 
+        [Header("Hit Stop / Freeze Settings")]
+        [SerializeField] private float meleeHitFreezeDuration = 0.1f;
+        private Coroutine _freezeCoroutine;
+
         [Header("Barang Dissolve")]
         [SerializeField] private GameObject dissolvePedang;
         [SerializeField] private GameObject dissolvePistol;
@@ -151,6 +155,11 @@ namespace PlayerData
             _isAttacking = true;
             _comboStep = step;
             _hasQueuedAttack = false;
+
+            if (CameraShake.Instance != null)
+            {
+                CameraShake.Instance.CameraShaked(5f, 0.1f);
+            }
 
             GameObject activeMelee = GetActiveMeleeObject();
             TriggerDissolveIn(activeMelee);
@@ -435,6 +444,30 @@ namespace PlayerData
             _comboResetCoroutine = null;
         }
 
+        public void FreezeTime(float duration = -1f)
+        {
+            float freezeDur = duration >= 0f ? duration : meleeHitFreezeDuration;
+            if (freezeDur <= 0f) return;
+
+            if (_freezeCoroutine != null)
+            {
+                StopCoroutine(_freezeCoroutine);
+            }
+            _freezeCoroutine = StartCoroutine(FreezeTimeRoutine(freezeDur));
+        }
+
+        private IEnumerator FreezeTimeRoutine(float duration)
+        {
+            Time.timeScale = 0f;
+            yield return new WaitForSecondsRealtime(duration);
+
+            if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
+            {
+                Time.timeScale = 1f;
+            }
+            _freezeCoroutine = null;
+        }
+
         private void TriggerDissolveIn(GameObject targetWeapon = null)
         {
             GameObject activeMelee = GetActiveMeleeObject();
@@ -586,6 +619,11 @@ namespace PlayerData
         #region Slash VFX
         public void TriggerSlashAttack()
         {
+            if (CameraShake.Instance != null)
+            {
+                CameraShake.Instance.CameraShaked(5f, 0.1f);
+            }
+
             if (_slashCoroutine != null)
             {
                 StopCoroutine(_slashCoroutine);

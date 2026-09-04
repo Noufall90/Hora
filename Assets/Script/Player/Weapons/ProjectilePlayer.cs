@@ -106,6 +106,11 @@ namespace PlayerWeapons
                 {
                     int damage = GetDamage();
                     health.TakeDamage(damage);
+
+                    if (CameraShake.Instance != null)
+                    {
+                        CameraShake.Instance.CameraShaked(5f, 0.1f);
+                    }
                 }
             }
 

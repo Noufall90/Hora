@@ -29,7 +29,6 @@ namespace Enemy
         [SerializeField] protected float comboResetTime = 1.5f;
         [SerializeField] protected float knockbackForce = 15f;
         [SerializeField] protected float knockbackDuration = 0.3f;
-        [SerializeField] protected bool enableComboCameraShake = true;
 
         [Header("Debug")]
         [SerializeField] protected bool showDebugGizmos = true;
@@ -164,6 +163,10 @@ namespace Enemy
                 bool isDeathHit = health != null && health.CurrentHealth <= 0;
                 if (isDeathHit)
                 {
+                    if (CameraShake.Instance != null)
+                    {
+                        CameraShake.Instance.CameraShaked(5f, 1f);
+                    }
                     ApplyKnockback(2f);
                 }
                 else
@@ -183,11 +186,6 @@ namespace Enemy
         public virtual void ApplyKnockback(float forceMultiplier = 1f)
         {
             if (isKnockedBack) return;
-
-            if (enableComboCameraShake && CameraShake.Instance != null)
-            {
-                CameraShake.Instance.CameraShaked();
-            }
 
             Vector3 knockbackDir = Vector3.zero;
             if (playerTarget != null)
