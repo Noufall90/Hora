@@ -474,7 +474,7 @@ MonoBehaviour:
   _lookSpeed: 5
   _scanSpeed: 2
   _scanAngle: 50
-  _viewDistance: 20
+  _viewDistance: 17
   _fovAngle: 140
   _playerLayer:
     serializedVersion: 2
@@ -543,7 +543,6 @@ MonoBehaviour:
   comboResetTime: 1.5
   knockbackForce: 15
   knockbackDuration: 0.3
-  enableComboCameraShake: 1
   showDebugGizmos: 1
   animator: {fileID: 1209212030727342842}
   damage: 10

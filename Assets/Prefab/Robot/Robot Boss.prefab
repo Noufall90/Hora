@@ -628,7 +628,7 @@ MonoBehaviour:
   _lookSpeed: 5
   _scanSpeed: 2
   _scanAngle: 50
-  _viewDistance: 30
+  _viewDistance: 25
   _fovAngle: 140
   _playerLayer:
     serializedVersion: 2
@@ -646,6 +646,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
+  damageParticle: {fileID: 0}
+  damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  damageFlashDuration: 0.1
   coinValue: 200
   enemyRenderers:
   - {fileID: 5002320513415058835}
@@ -669,7 +672,7 @@ MonoBehaviour:
   rotationSpeed: 50
   patrolRange: 30
   patrolCentrePoint: {fileID: 0}
-  detectRange: 30
+  detectRange: 25
   attackRange: 20
   meeleRange: 4
   fieldOfView: 140
@@ -681,8 +684,7 @@ MonoBehaviour:
   comboResetTime: 1.5
   knockbackForce: 10
   knockbackDuration: 0.3
-  enableComboCameraShake: 1
-  showDebugGizmos: 1
+  showDebugGizmos: 0
   animator: {fileID: 7201969637409931330}
   damage: 20
   damageInterval: 3
