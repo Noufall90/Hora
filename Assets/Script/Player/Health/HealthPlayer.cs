@@ -162,6 +162,8 @@ namespace PlayerData
 
         protected override void Die()
         {
+            InvokeOnDeath();
+
             if (_animator != null)
             {
                 _animator.SetTrigger(IsDeathHash);

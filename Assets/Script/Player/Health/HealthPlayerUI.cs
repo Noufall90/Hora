@@ -1,6 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+using TMPro;
+using UnityEngine.SceneManagement;
+using EasyTransition;
 
 namespace PlayerData
 {
@@ -9,27 +12,71 @@ namespace PlayerData
         [Header("References")]
         [SerializeField] private PlayerHealth playerHealth;
 
+        [Header("Death Panel Settings")]
+        [SerializeField] private GameObject deathPanel;
+        [SerializeField] private TMP_Text coinText;
+        [SerializeField] private float deathPanelDelay = 1.5f;
+
+        [Header("Transition Settings")]
+        public TransitionSettings transition;
+        [SerializeField] private float startDelay = 0.5f;
+        [SerializeField] private string sceneName = "Home";
+        [SerializeField] private string targetSpawnID;
+
         [Header("UI Elements")]
         [SerializeField] private Image healthBar;
         [SerializeField] private Image shieldBar;
+
+        private Coroutine _deathPanelCoroutine;
+        private bool _isDeathHandled = false;
 
         private void Awake()
         {
             if (playerHealth == null)
             {
-                playerHealth = FindObjectOfType<PlayerHealth>();
+                playerHealth = FindFirstObjectByType<PlayerHealth>() ?? FindObjectOfType<PlayerHealth>();
+            }
+
+            if (deathPanel != null)
+            {
+                deathPanel.SetActive(false);
+            }
+        }
+
+        private void Start()
+        {
+            if (deathPanel != null)
+            {
+                deathPanel.SetActive(false);
+            }
+
+            if (playerHealth != null)
+            {
+                UpdateHealthUI(playerHealth.CurrentHealth, playerHealth.MaxHealth);
+                UpdateShieldUI(playerHealth.CurrentShield, playerHealth.MaxShield);
             }
         }
 
         private void OnEnable()
         {
+            _isDeathHandled = false;
+
+            if (deathPanel != null)
+            {
+                deathPanel.SetActive(false);
+            }
+
             if (playerHealth != null)
             {
                 playerHealth.OnHealthChanged += UpdateHealthUI;
                 playerHealth.OnShieldChanged += UpdateShieldUI;
+                playerHealth.OnDeath += HandlePlayerDeath;
 
-                UpdateHealthUI(playerHealth.CurrentHealth, playerHealth.MaxHealth);
-                UpdateShieldUI(playerHealth.CurrentShield, playerHealth.MaxShield);
+                if (playerHealth.MaxHealth > 0)
+                {
+                    UpdateHealthUI(playerHealth.CurrentHealth, playerHealth.MaxHealth);
+                    UpdateShieldUI(playerHealth.CurrentShield, playerHealth.MaxShield);
+                }
             }
         }
 
@@ -39,6 +86,13 @@ namespace PlayerData
             {
                 playerHealth.OnHealthChanged -= UpdateHealthUI;
                 playerHealth.OnShieldChanged -= UpdateShieldUI;
+                playerHealth.OnDeath -= HandlePlayerDeath;
+            }
+
+            if (_deathPanelCoroutine != null)
+            {
+                StopCoroutine(_deathPanelCoroutine);
+                _deathPanelCoroutine = null;
             }
         }
 
@@ -46,7 +100,7 @@ namespace PlayerData
         {
             if (playerHealth == null) return;
 
-            // Testing Health (J = -10 HP (Direct), K = +10 HP)
+            // Testing Health (K = -10 HP (Direct), L = +10 HP)
             if (Input.GetKeyDown(KeyCode.K))
             {
                 playerHealth.TakeDirectHealthDamage(10);
@@ -82,5 +136,57 @@ namespace PlayerData
                 shieldBar.fillAmount = currentShield / maxShield;
             }
         }
-}
+
+        private void HandlePlayerDeath()
+        {
+            if (_isDeathHandled) return;
+            _isDeathHandled = true;
+
+            if (_deathPanelCoroutine != null)
+            {
+                StopCoroutine(_deathPanelCoroutine);
+            }
+            _deathPanelCoroutine = StartCoroutine(ShowDeathPanelRoutine());
+        }
+
+        private IEnumerator ShowDeathPanelRoutine()
+        {
+            if (deathPanelDelay > 0f)
+            {
+                yield return new WaitForSecondsRealtime(deathPanelDelay);
+            }
+
+            if (deathPanel != null)
+            {
+                deathPanel.SetActive(true);
+            }
+
+            if (coinText != null)
+            {
+                int currentCoin = CoinCounter.Instance != null ? CoinCounter.Instance.Coin : 0;
+                coinText.text = currentCoin.ToString();
+            }
+
+            _deathPanelCoroutine = null;
+        }
+
+        public void HomeButton()
+        {
+            Time.timeScale = 1f;
+
+            if (!string.IsNullOrEmpty(targetSpawnID))
+            {
+                PointLocation.SetSpawnTarget(targetSpawnID, SceneManager.GetActiveScene().name);
+            }
+
+            if (TransitionManager.Instance() != null && transition != null)
+            {
+                TransitionManager.Instance().Transition(sceneName, transition, startDelay);
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+        }
+    }
 }

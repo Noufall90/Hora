@@ -577,7 +577,7 @@ MonoBehaviour:
   _lookSpeed: 5
   _scanSpeed: 2
   _scanAngle: 50
-  _viewDistance: 25
+  _viewDistance: 18
   _fovAngle: 140
   _playerLayer:
     serializedVersion: 2
@@ -634,8 +634,8 @@ MonoBehaviour:
   rotationSpeed: 50
   patrolRange: 20
   patrolCentrePoint: {fileID: 0}
-  detectRange: 25
-  attackRange: 23
+  detectRange: 18
+  attackRange: 16
   meeleRange: 0
   fieldOfView: 140
   obstacleLayer:
@@ -646,7 +646,6 @@ MonoBehaviour:
   comboResetTime: 1.5
   knockbackForce: 10
   knockbackDuration: 0.3
-  enableComboCameraShake: 1
   showDebugGizmos: 1
   fireRate: 2
   granadePrefab: {fileID: 2547927897477736483, guid: 0308f5d676870014ead4a52452b4c09a,

@@ -29,6 +29,11 @@ public abstract class Health : MonoBehaviour
             Die();
     }
 
+    protected void InvokeOnDeath()
+    {
+        OnDeath?.Invoke();
+    }
+
     protected virtual void Die()
     {
         OnDeath?.Invoke();

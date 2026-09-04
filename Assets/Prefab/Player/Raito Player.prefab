@@ -2690,7 +2690,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8372886814511024612}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8670895156862639812}
+        m_TargetAssemblyTypeName: PlayerData.HealthPlayerUI, Assembly-CSharp
+        m_MethodName: HomeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2942878164855536108
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,7 +4180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4008993487766158108}
   - component: {fileID: 1217155607101458323}
-  - component: {fileID: 4993501893178223355}
   m_Layer: 3
   m_Name: UI Components
   m_TagString: Untagged
@@ -4203,21 +4214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc0e89ae6f65e946919faa229001fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4993501893178223355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4754603047447570876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24951b24bddfde4458e923562d200685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 2595215899787916529}
-  healthBar: {fileID: 1517910038888360472}
-  shieldBar: {fileID: 3426827426535748054}
 --- !u!1 &4935271641525050895
 GameObject:
   m_ObjectHideFlags: 0
@@ -6315,6 +6311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8898213917966208173}
+  - component: {fileID: 8670895156862639812}
   m_Layer: 3
   m_Name: Health
   m_TagString: Untagged
@@ -6344,6 +6341,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8670895156862639812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237749983465801166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24951b24bddfde4458e923562d200685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 2595215899787916529}
+  deathPanel: {fileID: 7321846451111641837}
+  coinText: {fileID: 6895712424392297973}
+  deathPanelDelay: 1.5
+  transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
+  startDelay: 0.5
+  sceneName: Home
+  targetSpawnID: HomePoint
+  healthBar: {fileID: 1517910038888360472}
+  shieldBar: {fileID: 3426827426535748054}
 --- !u!1 &8245918261908892980
 GameObject:
   m_ObjectHideFlags: 0
