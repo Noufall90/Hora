@@ -383,6 +383,11 @@ namespace PlayerWeapons
                 targetHealth.TakeDamage((int)_currentMeleeDamage);
                 Debug.Log("Melee attack hit " + targetHealth.gameObject.name + " causing " + _currentMeleeDamage + " damage");
 
+                if (CameraShake.Instance != null)
+                {
+                    CameraShake.Instance.CameraShaked(5f, 0.1f);
+                }
+
                 if (PlayerData.PlayerAnimAttack.Instance != null)
                 {
                     PlayerData.PlayerAnimAttack.Instance.FreezeTime(0.1f);

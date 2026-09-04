@@ -47,10 +47,24 @@ namespace PlayerData
 
         private bool _isAttacking;
         private bool _isShooting;
+        private bool _canUseWeapons = true;
         private Transform _currentTargetEnemy;
 
         private Dictionary<GameObject, Coroutine> _activeDissolveCoroutines = new Dictionary<GameObject, Coroutine>();
         private Dictionary<GameObject, float> _currentDissolveValues = new Dictionary<GameObject, float>();
+
+        public bool CanUseWeapons
+        {
+            get => _canUseWeapons;
+            set
+            {
+                _canUseWeapons = value;
+                if (!_canUseWeapons)
+                {
+                    CancelAttackAndShoot();
+                }
+            }
+        }
 
         public bool IsAttacking => _isAttacking;
         public bool IsShooting => _isShooting;
@@ -133,6 +147,7 @@ namespace PlayerData
 
         public void HandleAttack()
         {
+            if (!_canUseWeapons) return;
             if (_animator == null) return;
             if (_playerController != null && _playerController.IsRolling) return;
 
@@ -155,11 +170,6 @@ namespace PlayerData
             _isAttacking = true;
             _comboStep = step;
             _hasQueuedAttack = false;
-
-            if (CameraShake.Instance != null)
-            {
-                CameraShake.Instance.CameraShaked(5f, 0.1f);
-            }
 
             GameObject activeMelee = GetActiveMeleeObject();
             TriggerDissolveIn(activeMelee);
@@ -219,6 +229,7 @@ namespace PlayerData
 
         public void HandleShoot()
         {
+            if (!_canUseWeapons) return;
             if (_animator == null) return;
             if (_playerController != null && _playerController.IsRolling) return;
 
@@ -619,11 +630,6 @@ namespace PlayerData
         #region Slash VFX
         public void TriggerSlashAttack()
         {
-            if (CameraShake.Instance != null)
-            {
-                CameraShake.Instance.CameraShaked(5f, 0.1f);
-            }
-
             if (_slashCoroutine != null)
             {
                 StopCoroutine(_slashCoroutine);

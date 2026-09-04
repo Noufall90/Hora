@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using PlayerWeapons;
 
@@ -14,6 +15,25 @@ public class BuyPistol : MonoBehaviour
 {
     [Header("List Item Pistol")]
     public BuyPistolData[] buyPistolItems;
+
+    [Header("Notification UI")]
+    [SerializeField] private GameObject notifTerbeli;
+    [SerializeField] private GameObject notifKoinTidakCukup;
+    [SerializeField] private float notifDuration = 2f;
+
+    private Coroutine _notifCoroutine;
+
+    private void Start()
+    {
+        if (notifTerbeli != null)
+        {
+            notifTerbeli.SetActive(false);
+        }
+        if (notifKoinTidakCukup != null)
+        {
+            notifKoinTidakCukup.SetActive(false);
+        }
+    }
 
     public void Buy(int index)
     {
@@ -33,8 +53,15 @@ public class BuyPistol : MonoBehaviour
         {
             if (!CoinCounter.Instance.DecreaseCoin(itemData.price))
             {
+                ShowNotification(notifKoinTidakCukup);
                 return;
             }
+        }
+        else
+        {
+            Debug.LogWarning("[BuyPistol] CoinCounter.Instance tidak ditemukan di Scene!");
+            ShowNotification(notifKoinTidakCukup);
+            return;
         }
 
         if (itemData.item == null)
@@ -53,14 +80,58 @@ public class BuyPistol : MonoBehaviour
             Debug.Log($"[BuyPistol] Berhasil membeli {itemData.item.itemName} dan ditambahkan ke Inventory!");
         }
 
+        ShowNotification(notifTerbeli);
+
         if (itemData.buyButtonItem != null)
         {
-            Destroy(itemData.buyButtonItem);
+            if (itemData.buyButtonItem == gameObject)
+            {
+                var btn = GetComponent<UnityEngine.UI.Button>();
+                if (btn != null) btn.interactable = false;
+                Destroy(itemData.buyButtonItem, notifDuration + 0.1f);
+            }
+            else
+            {
+                Destroy(itemData.buyButtonItem);
+            }
         }
     }
 
     public void Buy()
     {
         Buy(0);
+    }
+
+    private void ShowNotification(GameObject notifObj)
+    {
+        if (notifObj == null) return;
+
+        if (_notifCoroutine != null)
+        {
+            StopCoroutine(_notifCoroutine);
+        }
+
+        if (notifTerbeli != null) notifTerbeli.SetActive(false);
+        if (notifKoinTidakCukup != null) notifKoinTidakCukup.SetActive(false);
+
+        if (gameObject.activeInHierarchy)
+        {
+            _notifCoroutine = StartCoroutine(NotificationRoutine(notifObj));
+        }
+        else if (CoinCounter.Instance != null && CoinCounter.Instance.gameObject.activeInHierarchy)
+        {
+            CoinCounter.Instance.StartCoroutine(NotificationRoutine(notifObj));
+        }
+    }
+
+    private IEnumerator NotificationRoutine(GameObject notifObj)
+    {
+        notifObj.SetActive(true);
+        yield return new WaitForSecondsRealtime(notifDuration);
+        if (notifObj != null)
+        {
+            notifObj.SetActive(false);
+        }
+        _notifCoroutine = null;
     }
 }
