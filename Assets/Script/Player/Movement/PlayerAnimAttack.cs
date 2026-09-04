@@ -11,6 +11,10 @@ namespace PlayerData
         [SerializeField] private float slashDuration = 0.4f;
         [SerializeField] private float shootDelay = 0.3f;
 
+        [Header("Slash VFX")]
+        [SerializeField] private float slashVFXDelay = 0.05f;
+        public List<GameObject> slashes = new List<GameObject>();
+
         [Header("Barang Dissolve")]
         [SerializeField] private GameObject dissolvePedang;
         [SerializeField] private GameObject dissolvePistol;
@@ -33,6 +37,7 @@ namespace PlayerData
         private Coroutine _attackResetCoroutine;
         private Coroutine _shootResetCoroutine;
         private Coroutine _comboResetCoroutine;
+        private Coroutine _slashCoroutine;
         private int _comboStep = 0;
         private bool _hasQueuedAttack = false;
 
@@ -86,6 +91,7 @@ namespace PlayerData
                 _animator.SetBool(PlayerController.IsIdleBoolHash, true);
             }
 
+            DisableSlashes();
             InitializeDissolveObjects();
         }
 
@@ -167,6 +173,20 @@ namespace PlayerData
                 else if (step == 3)
                 {
                     _animator.SetTrigger(PlayerController.AttackTriggerHash3);
+                }
+            }
+
+            // Trigger Slash VFX
+            if (slashes != null && slashes.Count > 0)
+            {
+                int slashIndex = step - 1;
+                if (slashIndex >= 0 && slashIndex < slashes.Count)
+                {
+                    TriggerSlash(slashIndex);
+                }
+                else
+                {
+                    TriggerSlash(0);
                 }
             }
 
@@ -301,6 +321,13 @@ namespace PlayerData
             _comboStep = 0;
             _hasQueuedAttack = false;
 
+            DisableSlashes();
+            if (_slashCoroutine != null)
+            {
+                StopCoroutine(_slashCoroutine);
+                _slashCoroutine = null;
+            }
+
             GameObject activeMelee = GetActiveMeleeObject();
 
             WeaponsActions wa = weaponsActions != null ? weaponsActions : WeaponsActions.Instance;
@@ -342,6 +369,13 @@ namespace PlayerData
             _hasQueuedAttack = false;
             _comboStep = 0;
             _currentTargetEnemy = null;
+
+            DisableSlashes();
+            if (_slashCoroutine != null)
+            {
+                StopCoroutine(_slashCoroutine);
+                _slashCoroutine = null;
+            }
 
             if (_animator != null)
             {
@@ -548,5 +582,70 @@ namespace PlayerData
                 }
             }
         }
+
+        #region Slash VFX
+        public void TriggerSlashAttack()
+        {
+            if (_slashCoroutine != null)
+            {
+                StopCoroutine(_slashCoroutine);
+            }
+            _slashCoroutine = StartCoroutine(SlashAttack());
+        }
+
+        public void TriggerSlash(int index)
+        {
+            if (_slashCoroutine != null)
+            {
+                StopCoroutine(_slashCoroutine);
+            }
+            _slashCoroutine = StartCoroutine(PlaySingleSlash(index));
+        }
+
+        public IEnumerator SlashAttack()
+        {
+            if (slashes == null || slashes.Count == 0) yield break;
+
+            for (int i = 0; i < slashes.Count; i++)
+            {
+                if (slashes[i] == null) continue;
+                yield return new WaitForSeconds(slashVFXDelay);
+                DisableSlashes();
+                slashes[i].SetActive(true);
+            }
+
+            yield return new WaitForSeconds(1f);
+            DisableSlashes();
+        }
+
+        private IEnumerator PlaySingleSlash(int index)
+        {
+            if (slashes == null || index < 0 || index >= slashes.Count) yield break;
+            GameObject slashObj = slashes[index];
+            if (slashObj == null) yield break;
+
+            DisableSlashes();
+            if (slashVFXDelay > 0f)
+            {
+                yield return new WaitForSeconds(slashVFXDelay);
+            }
+            if (slashObj != null)
+            {
+                slashObj.SetActive(true);
+            }
+        }
+
+        public void DisableSlashes()
+        {
+            if (slashes == null) return;
+            for (int i = 0; i < slashes.Count; i++)
+            {
+                if (slashes[i] != null)
+                {
+                    slashes[i].SetActive(false);
+                }
+            }
+        }
+        #endregion
     }
 }
