@@ -114,6 +114,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 498
+        width: 475
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51be393ffee17a147aaabcfa19e0389c
+      internalID: -720002084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notifikasi beli-pulau_1
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 415
         width: 475
         height: 61
@@ -124,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 315b16c071b1c5d49bda6e3a290bb90a
-      internalID: -459373929
+      spriteID: 0b5c55811725c0d4c800bd3d9e5060da
+      internalID: -933712156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notifikasi beli-pulau_1
+      name: Notifikasi beli-pulau_2
       rect:
         serializedVersion: 2
         x: 0
@@ -145,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35aa847d6012e3c479ca806a48aa03fe
-      internalID: 319312230
+      spriteID: a7500bd8f7d33bc4aa91cca75d18cc92
+      internalID: -69023566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notifikasi beli-pulau_2
+      name: Notifikasi beli-pulau_3
       rect:
         serializedVersion: 2
         x: 0
@@ -166,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6eeaa78148d2564baf17366b777acb2
-      internalID: 1839041766
+      spriteID: 80f5ff427fbe390458b820d7e4bd5b05
+      internalID: 1681531984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notifikasi beli-pulau_3
+      name: Notifikasi beli-pulau_4
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9fdbfc5f4b0ed141990da327fdf36f5
-      internalID: -591731037
+      spriteID: 23d071b90251dce41b72363daa292b10
+      internalID: 1347657949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notifikasi beli-pulau_4
+      name: Notifikasi beli-pulau_5
       rect:
         serializedVersion: 2
         x: 0
@@ -208,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66926bd370217b845b12ec35cd9a037e
-      internalID: 2069181308
+      spriteID: 187c8a5c13e4e2c40836bf9f14f67381
+      internalID: 508474717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notifikasi beli-pulau_5
+      name: Notifikasi beli-pulau_6
       rect:
         serializedVersion: 2
         x: 0
@@ -229,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4755547601ba55c43bd86694fe51d339
-      internalID: 1056098436
+      spriteID: e3869a25a83f2294ebfd5aa9d548333a
+      internalID: -646249145
       vertices: []
       indices: 
       edges: []
@@ -238,7 +259,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1e0b3ca06d0702f42b1f6219eeb7e144
+    spriteID: 04991e3af7c3a5f47a5a27c9edbfa2d5
     internalID: 0
     vertices: []
     indices: 
@@ -246,12 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Notifikasi beli-pulau_0: -459373929
-      Notifikasi beli-pulau_1: 319312230
-      Notifikasi beli-pulau_2: 1839041766
-      Notifikasi beli-pulau_3: -591731037
-      Notifikasi beli-pulau_4: 2069181308
-      Notifikasi beli-pulau_5: 1056098436
+      Notifikasi beli-pulau_0: -720002084
+      Notifikasi beli-pulau_1: -933712156
+      Notifikasi beli-pulau_2: -69023566
+      Notifikasi beli-pulau_3: 1681531984
+      Notifikasi beli-pulau_4: 1347657949
+      Notifikasi beli-pulau_5: 508474717
+      Notifikasi beli-pulau_6: -646249145
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,7 +11,6 @@ public class InteractScenePanel : MonoBehaviour
     public string sceneName;
 
     [Header("Spawn Settings")]
-    [Tooltip("ID spawn point di scene tujuan (contoh: SpawnID2). Player akan spawn di PointLocation dengan ID ini.")]
     [SerializeField] private string targetSpawnID;
 
     private bool playerInRange = false;

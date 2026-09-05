@@ -10,12 +10,16 @@ public class SceneVerfied : MonoBehaviour
 
     [Header("Verification Settings")]
     [SerializeField] private string levelKey = "Escuri_Completed";
+    [Tooltip("Jika true, level akan diverifikasi otomatis saat scene start. Jika false, verifikasi menunggu dipanggil oleh Spawner/Event.")]
+    [SerializeField] private bool verifyOnStart = false;
 
     [Header("Target Interact Scene")]
     [SerializeField] private InteractScene interactScene;
+    [SerializeField] private InteractScenePanel interactScenePanel;
 
     public string LevelKey => levelKey;
     public InteractScene InteractSceneRef => interactScene;
+    public InteractScenePanel InteractScenePanelRef => interactScenePanel;
 
     private void Awake()
     {
@@ -27,12 +31,10 @@ public class SceneVerfied : MonoBehaviour
 
     private void Start()
     {
-        VerifyLevel();
-    }
-
-    private void OnEnable()
-    {
-        VerifyLevel();
+        if (verifyOnStart)
+        {
+            VerifyLevel();
+        }
     }
 
     public void VerifyLevel()
@@ -42,6 +44,13 @@ public class SceneVerfied : MonoBehaviour
         if (interactScene != null)
         {
             interactScene.gameObject.SetActive(true);
+            interactScene.enabled = true;
+        }
+
+        if (interactScenePanel != null)
+        {
+            interactScenePanel.gameObject.SetActive(true);
+            interactScenePanel.enabled = true;
         }
 
         Debug.Log($"[SceneVerfied] Level '{levelKey}' berhasil diverifikasi dan disimpan ke PlayerPrefs.");
@@ -54,6 +63,10 @@ public class SceneVerfied : MonoBehaviour
         if (interactScene != null)
         {
             interactScene.LoadedScene();
+        }
+        else if (interactScenePanel != null)
+        {
+            interactScenePanel.LoadedScene();
         }
     }
 
@@ -109,6 +122,3 @@ public class SceneVerfied : MonoBehaviour
         Debug.Log($"[SceneVerfied] Progress level '{levelKey}' berhasil di-reset.");
     }
 }
-
-
-
