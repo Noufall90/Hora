@@ -23442,9 +23442,8 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1876177235}
   colArea: {fileID: 111826079}
   colTrigger: {fileID: 945259643}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 531671176}
   typingSpeed: 0.01
-  animator: {fileID: 531671176}
   isDialogueActive: 0
 --- !u!4 &945259641
 Transform:
@@ -23473,7 +23472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eab16e64bc4034ebaa82ca92c01217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: c094045b18bba144d839ea80db0a3ae0, type: 2}
+  dialogue: {fileID: 11400000, guid: de1d94f9522fbbf4aae72ca0e5ec3eea, type: 2}
   quadObject: {fileID: 2045470133}
 --- !u!65 &945259643
 BoxCollider:
@@ -43881,7 +43880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eab16e64bc4034ebaa82ca92c01217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 92e5693b19565b4418724fe36f5d4519, type: 2}
+  dialogue: {fileID: 11400000, guid: 1091c07897da4d043a695dde46883ef1, type: 2}
   quadObject: {fileID: 2045470133}
 --- !u!114 &1684429464
 MonoBehaviour:
@@ -43903,9 +43902,8 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1876177235}
   colArea: {fileID: 111826079}
   colTrigger: {fileID: 1684429465}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 531671176}
   typingSpeed: 0.01
-  animator: {fileID: 531671176}
   isDialogueActive: 0
 --- !u!65 &1684429465
 BoxCollider:

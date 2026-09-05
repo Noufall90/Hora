@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Dialog Yaku
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  m_Script: {fileID: 11500000, guid: f4cfa6f5644827746b64656f946f5c30, type: 3}
+  m_Name: Yaku
+  m_EditorClassIdentifier: 
   dialogueLines:
   - character:
       name: Raito
@@ -21,7 +21,7 @@ MonoBehaviour:
     line: Hah? Raito?!
   - character:
       name: Yaku
-    line: Wah, benar-benar kamu! Gimana kabarmu, sobat?
+    line: Wah, benar-benar kamu! Gimana kabarmu, sobat?Hah? Raito?!
   - character:
       name: Raito
     line: Aku baik-baik saja. Kamu sendiri?
@@ -54,14 +54,13 @@ MonoBehaviour:
     line: Jangan-jangan... kamu jadi petualang karena masih ingin mencari ayahmu?
   - character:
       name: Raito
-    line: ......
+    line: .......
   - character:
       name: Yaku
-    line: Aku sudah menduganya.
-  - character:
-      name: Yaku
-    line: Selama tiga tahun ini aku juga sempat mencari informasi tentangnya. Tapi
-      sampai sekarang, aku belum menemukan apa pun.
+    line: 'Aku sudah menduganya.
+
+      Selama tiga tahun ini aku juga sempat mencari
+      informasi tentangnya. Tapi sampai sekarang, aku belum menemukan apa pun.'
   - character:
       name: Raito
     line: Jadi... masih tidak ada kabar?
@@ -74,10 +73,10 @@ MonoBehaviour:
       sudah tidak ada.
   - character:
       name: Raito
-    line: Tidak!
+    line: Tidak!!
   - character:
       name: Yaku
-    line: Raito...
+    line: Raito....
   - character:
       name: Raito
     line: Aku belum menemukan bukti kalau dia sudah meninggal.
@@ -93,22 +92,22 @@ MonoBehaviour:
     line: Sepertinya kamu masih sama seperti dulu...
   - character:
       name: Yaku
-    line: Selalu keras kepala kalau sudah menyangkut ayahmu
+    line: Selalu keras kepala kalau sudah menyangkut ayahmu.
+  - character:
+      name: Raito
+    line: Memang
   - character:
       name: Yaku
-    line: Yah... mau bagaimana lagi
+    line: Yah... mau bagaimana lagi.
   - character:
       name: Yaku
-    line: Kalau kamu butuh bantuan, datang saja ke sini. Aku akan bantu sebisaku
+    line: Kalau kamu butuh bantuan, datang saja ke sini. Aku akan bantu sebisaku.
   - character:
       name: Yaku
     line: Aku juga tidak sendirian. Ada Ana yang membantuku menjaga toko
   - character:
-      name: Yaku
-    line: Dia ada di disana. Coba sapa dia dulu
-  - character:
       name: Raito
     line: Baiklah. Terima kasih, Yaku.
   - character:
-      name: Yaku
-    line: Sama-sama, Selamat datang kembali di Pulau Petualang.
+      name: Raito
+    line: Sama-sama. Selamat datang kembali di Pulau Petualang.

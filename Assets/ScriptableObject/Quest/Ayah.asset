@@ -9,25 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Dialgo Ayah
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  m_Script: {fileID: 11500000, guid: f4cfa6f5644827746b64656f946f5c30, type: 3}
+  m_Name: Ayah
+  m_EditorClassIdentifier: 
   dialogueLines:
   - character:
       name: Raito
     line: ...Ayah?
   - character:
       name: Ayah
-    line: Raito....
+    line: Raito...
   - character:
       name: Raito
     line: Benarkah... itu Ayah?
   - character:
       name: Ayah
-    line: Iya, Raito. Ini Ayah.
+    line: Iya, Raito. Ini Ayah
   - character:
       name: Raito
-    line: Aku... akhirnya menemukan Ayah.
+    line: Aku... akhirnya menemukan Ayah
   - character:
       name: Ayah
     line: Maaf karena membuatmu menunggu selama ini.
@@ -36,33 +36,37 @@ MonoBehaviour:
     line: Selama ini Ayah ada di sini?
   - character:
       name: Ayah
-    line: Iya. Setelah kejadian portal itu, Ayah terjebak di dunia ini.
-  - character:
-      name: Ayah
-    line: Ayah sudah mencoba kembali berkali-kali, tapi portalnya selalu berubah
-      dan tidak bisa membawaku pulang.
+    line: 'Iya. Setelah kejadian portal itu, Ayah terjebak di area ini.
+
+      Ayah
+      sudah mencoba kembali berkali-kali, tapi portalnya selalu berubah dan tidak
+      bisa membawaku pulang.
+
+'
   - character:
       name: Raito
     line: Kenapa Ayah tidak pernah memberi kabar?
   - character:
       name: Ayah
-    line: Ayah tidak bisa.
-  - character:
-      name: Ayah
-    line: Setiap kali mencoba mendekati portal, robot-robot itu selalu menyerang.
-      Ayah hanya bisa bertahan dan mencari cara untuk membuka jalan pulang.
+    line: 'Ayah tidak bisa.
+
+      Setiap kali mencoba mendekati portal, robot-robot
+      itu selalu menyerang. Ayah hanya bisa bertahan dan mencari cara untuk membuka
+      jalan pulang.'
   - character:
       name: Raito
     line: Jadi selama ini Ayah masih berusaha pulang?
   - character:
       name: Ayah
-    line: Tentu saja. Ayah tidak pernah berhenti memikirkanmu.
+    line: 'Tentu saja.
+
+      Ayah tidak pernah berhenti memikirkanmu.'
   - character:
       name: Raito
-    line: Aku juga tidak pernah berhenti mencari Ayah.
-  - character:
-      name: Raito
-    line: Makanya aku menjadi petualang.
+    line: 'Aku juga tidak pernah berhenti mencari Ayah.
+
+      Makanya aku menjadi
+      petualang.'
   - character:
       name: Ayah
     line: Ayah tahu.
@@ -71,14 +75,19 @@ MonoBehaviour:
     line: Bagaimana Ayah bisa tahu?
   - character:
       name: Ayah
-    line: Karena akhirnya kamu datang ke sini. Dan Ayah bangga melihatmu bisa sampai
-      sejauh ini.
+    line: 'Karena akhirnya kamu datang ke sini.
+
+      Dan Ayah bangga melihatmu
+      bisa sampai sejauh ini.'
   - character:
       name: Raito
-    line: ...Terima kasih, Yah.
+    line: ...Terima kasih, Yah
   - character:
       name: Ayah
     line: Tapi perjalananmu belum selesai.
+  - character:
+      name: Raito
+    line: Maksud Ayah?
   - character:
       name: Ayah
     line: Portal di belakangmu adalah satu-satunya jalan yang bisa membawamu kembali.
@@ -89,6 +98,9 @@ MonoBehaviour:
       name: Ayah
     line: Ayah akan menyusul.
   - character:
+      name: Raito
+    line: Kapan?
+  - character:
       name: Ayah
     line: Begitu Ayah menyelesaikan satu hal di sini.
   - character:
@@ -96,13 +108,13 @@ MonoBehaviour:
     line: Kalau begitu, aku tunggu di rumah.
   - character:
       name: Ayah
-    line: Pergilah, Raito.
-  - character:
-      name: Ayah
-    line: Dan terima kasih karena tidak pernah menyerah mencari Ayah.
+    line: 'Pergilah, Raito...
+
+      Dan terima kasih karena tidak pernah menyerah
+      mencari Ayah.'
   - character:
       name: Ayah
     line: Sampai jumpa di rumah.
   - character:
       name: Raito
-    line: Sampai jumpa, Yah.
+    line: Sampai jumpa Yah

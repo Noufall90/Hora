@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Dialog Kawa
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  m_Script: {fileID: 11500000, guid: f4cfa6f5644827746b64656f946f5c30, type: 3}
+  m_Name: Kawa
+  m_EditorClassIdentifier: 
   dialogueLines:
   - character:
       name: Raito
@@ -20,16 +20,15 @@ MonoBehaviour:
       name: Raito
     line: Ha... halo?
   - character:
-      name: ???
-    line: Halo, Raito. Selamat datang.
+      name: Kawa
+    line: Halo, Raito. Selamat datang
   - character:
       name: Raito
-    line: Hah?!
+    line: 'Hah?!
+
+      Kamu tahu namaku? Siapa kamu?'
   - character:
-      name: Raito
-    line: Kamu tahu namaku? Siapa kamu?
-  - character:
-      name: ???
+      name: Kawa
     line: Tenang. Kamu tidak perlu takut.
   - character:
       name: Kawa
@@ -57,11 +56,8 @@ MonoBehaviour:
     line: Apa?! Kapan? Di mana dia sekarang?
   - character:
       name: Kawa
-    line: Dia pernah membantuku melawan robot-robot yang ada di portal ini.
-  - character:
-      name: Kawa
-    line: Terakhir kali aku melihatnya, dia masih bertarung dan mencoba bertahan
-      hidup.
+    line: Dia pernah membantuku melawan robot-robot yang ada di portal ini. Terakhir
+      kali aku melihatnya, dia masih bertarung dan mencoba bertahan hidup.
   - character:
       name: Raito
     line: Berarti dia masih hidup?!
@@ -73,11 +69,10 @@ MonoBehaviour:
     line: Aku harus menemuinya. Di mana dia sekarang?
   - character:
       name: Kawa
-    line: Aku tidak tahu pasti
-  - character:
-      name: Kawa
-    line: Dia berada jauh di dalam jalur portal ini. Kondisinya juga tidak baik.
-      Dia terluka dan terus bertahan dari serangan robot.
+    line: 'Aku tidak tahu pasti.
+
+      Dia berada jauh di dalam jalur portal ini.
+      Kondisinya juga tidak baik. Dia terluka dan terus bertahan dari serangan robot.'
   - character:
       name: Raito
     line: Kalau begitu tunjukkan jalannya!
@@ -87,25 +82,26 @@ MonoBehaviour:
       kekuatanmu sendiri.
   - character:
       name: Raito
-    line: Kekuatan sendiri?
-  - character:
-      name: Raito
-    line: Aku bahkan belum pernah melawan robot-robot itu. Bagaimana aku bisa bertarung
-      melawan mereka?
+    line: Kekuatan sendiri? Aku bahkan belum pernah melawan robot-robot itu. Bagaimana
+      aku bisa bertarung melawan mereka?
   - character:
       name: Kawa
-    line: Kamu akan mengetahuinya setelah memulainya
+    line: 'Kamu akan mengetahuinya setelah memulainya.
+
+      Portal ini memiliki
+      tiga jalur.'
   - character:
       name: Kawa
-    line: Portal ini memiliki tiga jalur.
+    line: 'Pertama, Escuri, portal berwarna biru.
+
+      Di sana kamu akan menghadapi
+      musuh pertama. Jika berhasil melewatinya, kamu bisa melanjutkan ke jalur berikutnya.'
   - character:
       name: Kawa
-    line: Pertama, Escuri, portal berwarna biru. Di sana kamu akan menghadapi musuh
-      pertama. Jika berhasil melewatinya, kamu bisa melanjutkan ke jalur berikutnya
-  - character:
-      name: Kawa
-    line: Setelah itu ada Solis, portal berwarna kuning. Dan yang terakhir adalah
-      Aeris, portal berwarna ungu.
+    line: 'Setelah itu ada Solis, portal berwarna kuning.
+
+      Dan yang terakhir
+      adalah Aeris, portal berwarna ungu.'
   - character:
       name: Raito
     line: Jadi aku harus melewati semuanya untuk menemukan ayahku?
@@ -126,13 +122,8 @@ MonoBehaviour:
     line: Kenapa?
   - character:
       name: Kawa
-    line: Itu bukan sesuatu yang bisa kujelaskan sekarang.
-  - character:
-      name: Raito
-    line: ...Kamu memang aneh
-  - character:
-      name: Kawa
-    line: Maaf, tapi aku tidak bisa ikut membantumu.
+    line: Itu bukan sesuatu yang bisa kujelaskan sekarang. Maaf, tapi aku tidak bisa
+      ikut membantumu.
   - character:
       name: Raito
     line: Baiklah. Aku akan mencari ayahku sendiri.

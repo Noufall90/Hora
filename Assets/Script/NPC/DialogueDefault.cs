@@ -23,13 +23,9 @@ public class DialogueDefault : MonoBehaviour
     [SerializeField] private GameObject colArea;
     [SerializeField] private Collider colTrigger;
 
-    [Header("Player Dialogue Animation")]
-    [SerializeField] private Animator playerAnimator;
-
     [Header("Dialogue Settings")]
+    [SerializeField] private Animator playerAnimator;
     [SerializeField] private float typingSpeed = 0.2f;
-
-    [SerializeField] private Animator animator;
 
     private Queue<DialogueLine> lines;
     private bool isTyping;
@@ -71,11 +67,6 @@ public class DialogueDefault : MonoBehaviour
         if (dialogueTrigger == null)
         {
             dialogueTrigger = GetComponent<DialogueTrigger>();
-
-            if (dialogueTrigger == null)
-            {
-                dialogueTrigger = DialogueTrigger.Instance;
-            }
         }
     }
 
@@ -89,11 +80,6 @@ public class DialogueDefault : MonoBehaviour
         if (dialogueTrigger == null)
         {
             dialogueTrigger = GetComponent<DialogueTrigger>();
-
-            if (dialogueTrigger == null)
-            {
-                dialogueTrigger = DialogueTrigger.Instance;
-            }
         }
 
         if (dialoguePanel != null)
@@ -127,7 +113,7 @@ public class DialogueDefault : MonoBehaviour
         {
             Dialogue targetDialogue =
                 dialogueTrigger != null
-                    ? dialogueTrigger.dialogue
+                    ? dialogueTrigger.DialogueData
                     : null;
 
             if (targetDialogue != null)
@@ -161,7 +147,7 @@ public class DialogueDefault : MonoBehaviour
     {
         if (dialogue == null && dialogueTrigger != null)
         {
-            dialogue = dialogueTrigger.dialogue;
+            dialogue = dialogueTrigger.DialogueData;
         }
 
         if (dialogue == null ||
@@ -190,11 +176,6 @@ public class DialogueDefault : MonoBehaviour
         if (colArea != null)
         {
             colArea.SetActive(true);
-        }
-
-        if (animator != null)
-        {
-            animator.Play("show");
         }
 
         lines.Clear();
@@ -308,11 +289,6 @@ public class DialogueDefault : MonoBehaviour
         if (PlayerAnimAttack.Instance != null)
         {
             PlayerAnimAttack.Instance.CanUseWeapons = true;
-        }
-
-        if (animator != null)
-        {
-            animator.Play("hide");
         }
 
         if (dialoguePanel != null)

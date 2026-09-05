@@ -1,45 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public class DialogueCharacter
-{
-    public string name;
-}
-
-[System.Serializable]
-public class DialogueLine
-{
-    public DialogueCharacter character;
-    [TextArea(3, 10)]
-    public string line;
-}
-
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue/Dialogue Data")]
-public class Dialogue : ScriptableObject
-{
-    public List<DialogueLine> dialogueLines = new List<DialogueLine>();
-}
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public static DialogueTrigger Instance;
-
-    [Header("Dialogue ScriptableObject")]
-    public Dialogue dialogue;
+    [Header("Dialogue Data")]
+    [SerializeField] private Dialogue dialogue;
 
     [Header("Interaction")]
     [SerializeField] private GameObject quadObject;
 
-    private bool playerInRange = false;
+    private bool playerInRange;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
+    public Dialogue DialogueData => dialogue;
 
     private void Start()
     {
@@ -51,26 +22,33 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (!playerInRange)
         {
-            bool isAnyDialogueActive =
-                (DialogueManager.Instance != null &&
-                 DialogueManager.Instance.isDialogueActive) ||
+            return;
+        }
 
-                (DialogueDefault.Instance != null &&
-                 DialogueDefault.Instance.isDialogueActive);
-
-            if (!isAnyDialogueActive)
-            {
-                TriggerDialogue();
-            }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TryStartDialogue();
         }
     }
 
-    public void TriggerDialogue()
+    private void TryStartDialogue()
     {
         if (dialogue == null)
+        {
+            Debug.LogWarning(
+                $"Dialogue belum diisi pada {gameObject.name}",
+                gameObject
+            );
+
             return;
+        }
+
+        if (IsDialogueActive())
+        {
+            return;
+        }
 
         if (quadObject != null)
         {
@@ -80,51 +58,53 @@ public class DialogueTrigger : MonoBehaviour
         if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.StartDialogue(dialogue);
+            return;
         }
-        else if (DialogueDefault.Instance != null)
+
+        if (DialogueDefault.Instance != null)
         {
             DialogueDefault.Instance.StartDialogue(dialogue);
         }
     }
 
-    public void DisplayNextDialogueLine()
+    private bool IsDialogueActive()
     {
         if (DialogueManager.Instance != null &&
             DialogueManager.Instance.isDialogueActive)
         {
-            DialogueManager.Instance.DisplayNextDialogueLine();
+            return true;
         }
-        else if (DialogueDefault.Instance != null &&
-                 DialogueDefault.Instance.isDialogueActive)
+
+        if (DialogueDefault.Instance != null &&
+            DialogueDefault.Instance.isDialogueActive)
         {
-            DialogueDefault.Instance.DisplayNextDialogueLine();
+            return true;
         }
+
+        return false;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!collision.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
+        {
             return;
+        }
 
         playerInRange = true;
 
-        bool isAnyDialogueActive =
-            (DialogueManager.Instance != null &&
-             DialogueManager.Instance.isDialogueActive) ||
-
-            (DialogueDefault.Instance != null &&
-             DialogueDefault.Instance.isDialogueActive);
-
-        if (quadObject != null && !isAnyDialogueActive)
+        if (!IsDialogueActive() && quadObject != null)
         {
             quadObject.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (!collision.CompareTag("Player"))
+        if (!other.CompareTag("Player"))
+        {
             return;
+        }
 
         playerInRange = false;
 
@@ -134,11 +114,19 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void DisplayNextDialogueLine()
     {
-        if (Instance == this)
+        if (DialogueManager.Instance != null &&
+            DialogueManager.Instance.isDialogueActive)
         {
-            Instance = null;
+            DialogueManager.Instance.DisplayNextDialogueLine();
+            return;
+        }
+
+        if (DialogueDefault.Instance != null &&
+            DialogueDefault.Instance.isDialogueActive)
+        {
+            DialogueDefault.Instance.DisplayNextDialogueLine();
         }
     }
 }

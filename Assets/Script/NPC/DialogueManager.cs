@@ -23,13 +23,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject colArea;
     [SerializeField] private Collider colTrigger;
 
-    [Header("Player Dialogue Animation")]
-    [SerializeField] private Animator playerAnimator;
-
     [Header("Dialogue Settings")]
+    [SerializeField] private Animator playerAnimator;
     [SerializeField] private float typingSpeed = 0.2f;
-
-    [SerializeField] private Animator animator;
 
     private Queue<DialogueLine> lines;
     private bool isTyping;
@@ -57,11 +53,6 @@ public class DialogueManager : MonoBehaviour
         if (dialogueTrigger == null)
         {
             dialogueTrigger = GetComponent<DialogueTrigger>();
-
-            if (dialogueTrigger == null)
-            {
-                dialogueTrigger = DialogueTrigger.Instance;
-            }
         }
 
         if (dialogueDefault == null)
@@ -99,7 +90,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogue == null && dialogueTrigger != null)
         {
-            dialogue = dialogueTrigger.dialogue;
+            dialogue = dialogueTrigger.DialogueData;
         }
 
         if (dialogue == null ||
@@ -128,11 +119,6 @@ public class DialogueManager : MonoBehaviour
         if (colArea != null)
         {
             colArea.SetActive(true);
-        }
-
-        if (animator != null)
-        {
-            animator.Play("show");
         }
 
         lines.Clear();
@@ -246,11 +232,6 @@ public class DialogueManager : MonoBehaviour
         if (PlayerAnimAttack.Instance != null)
         {
             PlayerAnimAttack.Instance.CanUseWeapons = true;
-        }
-
-        if (animator != null)
-        {
-            animator.Play("hide");
         }
 
         if (dialoguePanel != null)
