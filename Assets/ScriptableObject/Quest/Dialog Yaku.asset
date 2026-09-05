@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Dialog Yaku
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueLines:
+  - character:
+      name: Raito
+    line: Yo, Yaku! Lama nggak ketemu.
+  - character:
+      name: Yaku
+    line: Hah? Raito?!
+  - character:
+      name: Yaku
+    line: Wah, benar-benar kamu! Gimana kabarmu, sobat?
+  - character:
+      name: Raito
+    line: Aku baik-baik saja. Kamu sendiri?
+  - character:
+      name: Yaku
+    line: Seperti yang kamu lihat. Masih sibuk jualan ramuan.
+  - character:
+      name: Raito
+    line: Hehe, ternyata kamu masih di sini.
+  - character:
+      name: Yaku
+    line: Ya iyalah. Sudah sekitar tiga tahun sejak terakhir kita ketemu, kan?
+  - character:
+      name: Raito
+    line: Iya. Waktu itu aku langsung pergi ke akademi di pulau seberang.
+  - character:
+      name: Yaku
+    line: Oh iya, kamu memang bilang mau masuk akademi petualang.
+  - character:
+      name: Raito
+    line: Dan akhirnya selesai juga. Aku sudah mendapatkan medali kelulusan.
+  - character:
+      name: Yaku
+    line: Wah, selamat! Akhirnya resmi jadi petualang juga, ya.
+  - character:
+      name: Raito
+    line: Iya. Setelah semua latihan itu, akhirnya aku bisa mulai perjalanan.
+  - character:
+      name: Yaku
+    line: Jangan-jangan... kamu jadi petualang karena masih ingin mencari ayahmu?
+  - character:
+      name: Raito
+    line: ......
+  - character:
+      name: Yaku
+    line: Aku sudah menduganya.
+  - character:
+      name: Yaku
+    line: Selama tiga tahun ini aku juga sempat mencari informasi tentangnya. Tapi
+      sampai sekarang, aku belum menemukan apa pun.
+  - character:
+      name: Raito
+    line: Jadi... masih tidak ada kabar?
+  - character:
+      name: Yaku
+    line: Belum
+  - character:
+      name: Yaku
+    line: Raito, sudah tiga tahun. Mungkin... kamu harus menerima kalau dia memang
+      sudah tidak ada.
+  - character:
+      name: Raito
+    line: Tidak!
+  - character:
+      name: Yaku
+    line: Raito...
+  - character:
+      name: Raito
+    line: Aku belum menemukan bukti kalau dia sudah meninggal.
+  - character:
+      name: Raito
+    line: Selama masih ada kemungkinan dia hidup, aku akan terus mencarinya.
+  - character:
+      name: Raito
+    line: Aku akan pergi ke portal itu dan mencari tahu apa yang sebenarnya terjadi
+      padanya.
+  - character:
+      name: Yaku
+    line: Sepertinya kamu masih sama seperti dulu...
+  - character:
+      name: Yaku
+    line: Selalu keras kepala kalau sudah menyangkut ayahmu
+  - character:
+      name: Yaku
+    line: Yah... mau bagaimana lagi
+  - character:
+      name: Yaku
+    line: Kalau kamu butuh bantuan, datang saja ke sini. Aku akan bantu sebisaku
+  - character:
+      name: Yaku
+    line: Aku juga tidak sendirian. Ada Ana yang membantuku menjaga toko
+  - character:
+      name: Yaku
+    line: Dia ada di disana. Coba sapa dia dulu
+  - character:
+      name: Raito
+    line: Baiklah. Terima kasih, Yaku.
+  - character:
+      name: Yaku
+    line: Sama-sama, Selamat datang kembali di Pulau Petualang.

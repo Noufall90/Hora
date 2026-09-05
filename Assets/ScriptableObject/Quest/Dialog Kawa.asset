@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Dialog Kawa
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueLines:
+  - character:
+      name: Raito
+    line: Hah... di mana aku?
+  - character:
+      name: Raito
+    line: Ha... halo?
+  - character:
+      name: ???
+    line: Halo, Raito. Selamat datang.
+  - character:
+      name: Raito
+    line: Hah?!
+  - character:
+      name: Raito
+    line: Kamu tahu namaku? Siapa kamu?
+  - character:
+      name: ???
+    line: Tenang. Kamu tidak perlu takut.
+  - character:
+      name: Kawa
+    line: Namaku Kawa. Aku penjaga portal di tempat ini.
+  - character:
+      name: Raito
+    line: Penjaga portal?
+  - character:
+      name: Kawa
+    line: Iya. Dan aku tahu alasan kamu datang ke sini.
+  - character:
+      name: Raito
+    line: ...Kamu tahu tentang ayahku?
+  - character:
+      name: Kawa
+    line: Kamu datang untuk mencarinya, bukan?
+  - character:
+      name: Raito
+    line: Iya! Kamu tahu di mana dia?!
+  - character:
+      name: Kawa
+    line: Aku pernah bertemu dengannya.
+  - character:
+      name: Raito
+    line: Apa?! Kapan? Di mana dia sekarang?
+  - character:
+      name: Kawa
+    line: Dia pernah membantuku melawan robot-robot yang ada di portal ini.
+  - character:
+      name: Kawa
+    line: Terakhir kali aku melihatnya, dia masih bertarung dan mencoba bertahan
+      hidup.
+  - character:
+      name: Raito
+    line: Berarti dia masih hidup?!
+  - character:
+      name: Kawa
+    line: Setidaknya... saat terakhir aku melihatnya, iya
+  - character:
+      name: Raito
+    line: Aku harus menemuinya. Di mana dia sekarang?
+  - character:
+      name: Kawa
+    line: Aku tidak tahu pasti
+  - character:
+      name: Kawa
+    line: Dia berada jauh di dalam jalur portal ini. Kondisinya juga tidak baik.
+      Dia terluka dan terus bertahan dari serangan robot.
+  - character:
+      name: Raito
+    line: Kalau begitu tunjukkan jalannya!
+  - character:
+      name: Kawa
+    line: Aku bisa menunjukkan jalan. Tapi untuk sampai ke sana, kamu harus mengandalkan
+      kekuatanmu sendiri.
+  - character:
+      name: Raito
+    line: Kekuatan sendiri?
+  - character:
+      name: Raito
+    line: Aku bahkan belum pernah melawan robot-robot itu. Bagaimana aku bisa bertarung
+      melawan mereka?
+  - character:
+      name: Kawa
+    line: Kamu akan mengetahuinya setelah memulainya
+  - character:
+      name: Kawa
+    line: Portal ini memiliki tiga jalur.
+  - character:
+      name: Kawa
+    line: Pertama, Escuri, portal berwarna biru. Di sana kamu akan menghadapi musuh
+      pertama. Jika berhasil melewatinya, kamu bisa melanjutkan ke jalur berikutnya
+  - character:
+      name: Kawa
+    line: Setelah itu ada Solis, portal berwarna kuning. Dan yang terakhir adalah
+      Aeris, portal berwarna ungu.
+  - character:
+      name: Raito
+    line: Jadi aku harus melewati semuanya untuk menemukan ayahku?
+  - character:
+      name: Kawa
+    line: Benar.
+  - character:
+      name: Raito
+    line: Baik. Kalau begitu aku akan mulai dari Escuri.
+  - character:
+      name: Kawa
+    line: Berhati-hatilah, Raito.
+  - character:
+      name: Kawa
+    line: Selama kamu mengikuti jalurnya, kamu tidak akan mati di tempat ini.
+  - character:
+      name: Raito
+    line: Kenapa?
+  - character:
+      name: Kawa
+    line: Itu bukan sesuatu yang bisa kujelaskan sekarang.
+  - character:
+      name: Raito
+    line: ...Kamu memang aneh
+  - character:
+      name: Kawa
+    line: Maaf, tapi aku tidak bisa ikut membantumu.
+  - character:
+      name: Raito
+    line: Baiklah. Aku akan mencari ayahku sendiri.
+  - character:
+      name: Kawa
+    line: Semoga kamu menemukan jawaban yang kamu cari.

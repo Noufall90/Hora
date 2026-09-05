@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Dialog Kawa Default
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueLines:
+  - character:
+      name: Kawa
+    line: Raito, kalau kamu ingin menemukan ayahmu, teruslah mengikuti jalur portal.
+  - character:
+      name: Kawa
+    line: Mulailah dari Escuri, portal berwarna biru. Jangan mencoba melewati jalur
+      sebelum kamu siap.
+  - character:
+      name: Kawa
+    line: Setelah Escuri, kamu akan menemukan Solis, portal berwarna kuning.
+  - character:
+      name: Kawa
+    line: Dan di ujung perjalananmu ada Aeris, portal berwarna ungu.
+  - character:
+      name: Kawa
+    line: Semakin jauh kamu masuk, semakin kuat musuh yang akan kamu hadapi
+  - character:
+      name: Kawa
+    line: Pastikan senjata dan perlengkapanmu sudah siap sebelum melanjutkan perjalanan.
+  - character:
+      name: Kawa
+    line: Resin yang kamu dapat dari robot bisa menjadi sesuatu yang penting. Jangan
+      sia-siakan.
+  - character:
+      name: Kawa
+    line: Aku tidak bisa ikut bersamamu, Raito. Tapi selama kamu masih berada di
+      jalur portal, aku akan mengawasimu.

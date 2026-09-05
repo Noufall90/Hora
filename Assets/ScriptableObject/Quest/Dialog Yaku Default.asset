@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Dialog Yaku Default
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueLines:
+  - character:
+      name: Yaku
+    line: Kalau kamu butuh ramuan, ada yang menjualnya di desa. Ada ramuan untuk
+      memulihkan darah dan ada juga yang bisa memberimu perlindungan.
+  - character:
+      name: Yaku
+    line: Kalau mau perlengkapan untuk bertarung, coba cari penjual senjata di desa.
+      Ada pedang dan senjata jarak jauh yang bisa kamu gunakan.
+  - character:
+      name: Yaku
+    line: Raito, kalau kamu sudah siap, coba pergi ke portal di bukit sebelah desa.
+  - character:
+      name: Yaku
+    line: Jangan terlalu terburu-buru masuk portal. Pastikan perlengkapanmu sudah
+      siap.
+  - character:
+      name: Yaku
+    line: Kalau sudah punya cukup coin, sebaiknya gunakan untuk meningkatkan perlengkapanmu.
+  - character:
+      name: Yaku
+    line: Hati-hati kalau pergi ke portal. Aku tidak tahu apa yang akan kamu temui
+      di sana.

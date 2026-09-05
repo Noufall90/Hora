@@ -5,13 +5,13 @@ using UnityEngine;
 using TMPro;
 using PlayerData;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueDefault : MonoBehaviour
 {
-    public static DialogueManager Instance;
+    public static DialogueDefault Instance;
 
     [Header("Reference")]
+    [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private DialogueTrigger dialogueTrigger;
-    [SerializeField] private DialogueDefault dialogueDefault;
 
     [Header("UI Component")]
     [SerializeField] private Button nextButton;
@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool isDialogueActive = false;
 
+    private bool playerInRange = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -54,6 +56,18 @@ public class DialogueManager : MonoBehaviour
 
         lines = new Queue<DialogueLine>();
 
+        if (dialogueManager == null)
+        {
+            dialogueManager = DialogueManager.Instance;
+        }
+
+        if (dialogueManager != null &&
+            dialogueManager.gameObject != gameObject)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (dialogueTrigger == null)
         {
             dialogueTrigger = GetComponent<DialogueTrigger>();
@@ -63,25 +77,23 @@ public class DialogueManager : MonoBehaviour
                 dialogueTrigger = DialogueTrigger.Instance;
             }
         }
-
-        if (dialogueDefault == null)
-        {
-            dialogueDefault = DialogueDefault.Instance;
-        }
-
-        if (dialogueDefault != null &&
-            dialogueDefault.gameObject != gameObject)
-        {
-            dialogueDefault.gameObject.SetActive(false);
-        }
     }
 
     private void Start()
     {
-        if (nextButton != null)
+        if (dialogueManager == null)
         {
-            nextButton.onClick.RemoveListener(DisplayNextDialogueLine);
-            nextButton.onClick.AddListener(DisplayNextDialogueLine);
+            dialogueManager = DialogueManager.Instance;
+        }
+
+        if (dialogueTrigger == null)
+        {
+            dialogueTrigger = GetComponent<DialogueTrigger>();
+
+            if (dialogueTrigger == null)
+            {
+                dialogueTrigger = DialogueTrigger.Instance;
+            }
         }
 
         if (dialoguePanel != null)
@@ -93,6 +105,56 @@ public class DialogueManager : MonoBehaviour
         {
             colArea.SetActive(false);
         }
+
+        if (nextButton != null)
+        {
+            nextButton.onClick.RemoveListener(DisplayNextDialogueLine);
+            nextButton.onClick.AddListener(DisplayNextDialogueLine);
+        }
+    }
+
+    private void Update()
+    {
+        if (DialogueManager.Instance != null &&
+            DialogueManager.Instance.isDialogueActive)
+        {
+            return;
+        }
+
+        if (playerInRange &&
+            Input.GetKeyDown(KeyCode.E) &&
+            !isDialogueActive)
+        {
+            Dialogue targetDialogue =
+                dialogueTrigger != null
+                    ? dialogueTrigger.dialogue
+                    : null;
+
+            if (targetDialogue != null)
+            {
+                StartDialogue(targetDialogue);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        playerInRange = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        playerInRange = false;
     }
 
     public void StartDialogue(Dialogue dialogue = null)
@@ -262,30 +324,6 @@ public class DialogueManager : MonoBehaviour
         {
             colArea.SetActive(false);
         }
-
-        if (dialogueDefault == null)
-        {
-            dialogueDefault = DialogueDefault.Instance;
-        }
-
-        if (dialogueDefault != null &&
-            dialogueDefault.gameObject != gameObject)
-        {
-            dialogueDefault.gameObject.SetActive(true);
-        }
-
-        if (colTrigger != null &&
-            colTrigger.gameObject != gameObject)
-        {
-            Destroy(colTrigger.gameObject);
-        }
-
-        if (Instance == this)
-        {
-            Instance = null;
-        }
-
-        Destroy(gameObject);
     }
 
     private void OnDestroy()
