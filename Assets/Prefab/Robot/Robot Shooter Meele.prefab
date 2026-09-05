@@ -764,7 +764,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  _showDebugRays: 1
+  _showDebugRays: 0
   _debugDuration: 1
   _limbTargets:
   - {fileID: 1116468337661153017}
@@ -838,7 +838,7 @@ MonoBehaviour:
   comboResetTime: 1.5
   knockbackForce: 15
   knockbackDuration: 0.3
-  showDebugGizmos: 1
+  showDebugGizmos: 0
   animator: {fileID: 697649358185245359}
   damage: 10
   damageInterval: 2

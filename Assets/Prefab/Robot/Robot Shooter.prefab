@@ -980,7 +980,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  _showDebugRays: 1
+  _showDebugRays: 0
   _debugDuration: 1
   _limbTargets:
   - {fileID: 4028286936877779408}
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   comboResetTime: 1.5
   knockbackForce: 10
   knockbackDuration: 0.3
-  showDebugGizmos: 1
+  showDebugGizmos: 0
   fireRate: 2
   firePoint: {fileID: 8485715130071705421}
   firePoint2: {fileID: 281374779829589224}
