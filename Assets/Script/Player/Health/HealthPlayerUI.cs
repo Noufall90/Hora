@@ -158,7 +158,8 @@ namespace PlayerData
 
             if (deathPanel != null)
             {
-                deathPanel.SetActive(true);
+                // Menggunakan UIHandler agar kursor otomatis unlocked & visible
+                UIHandler.OpenWindow(deathPanel, closeOthers: true);
             }
 
             if (coinText != null)
@@ -169,7 +170,7 @@ namespace PlayerData
 
             _deathPanelCoroutine = null;
         }
-
+        
         public void HomeButton()
         {
             Time.timeScale = 1f;

@@ -639,15 +639,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5b3fdd292814438bb2f329121741a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcId: 
   dialogueTrigger: {fileID: 52068330}
   dialogueDefault: {fileID: 0}
-  nextButton: {fileID: 0}
-  characterName: {fileID: 0}
-  dialogueArea: {fileID: 0}
-  dialoguePanel: {fileID: 0}
+  nextButton: {fileID: 379388446}
+  characterName: {fileID: 238775836}
+  dialogueArea: {fileID: 1821532682}
+  dialoguePanel: {fileID: 2066769029}
   colArea: {fileID: 378780829}
   colTrigger: {fileID: 52068329}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 1569328429}
   typingSpeed: 0.01
   isDialogueActive: 0
 --- !u!1 &55463922
@@ -4169,6 +4170,7 @@ Transform:
   - {fileID: 55463923}
   - {fileID: 1645173098}
   - {fileID: 1355435988}
+  - {fileID: 799124299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &720732204
@@ -4323,7 +4325,7 @@ PrefabInstance:
     - target: {fileID: 8015839055364301462, guid: 34cd13289e0f26f4395ec0b7dedc6e5e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.38
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 8015839055364301462, guid: 34cd13289e0f26f4395ec0b7dedc6e5e,
         type: 3}
@@ -4333,7 +4335,7 @@ PrefabInstance:
     - target: {fileID: 8015839055364301462, guid: 34cd13289e0f26f4395ec0b7dedc6e5e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.21
+      value: 47.61
       objectReference: {fileID: 0}
     - target: {fileID: 8015839055364301462, guid: 34cd13289e0f26f4395ec0b7dedc6e5e,
         type: 3}
@@ -4552,6 +4554,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787636749}
   m_Mesh: {fileID: 6163357941915963767, guid: 594f61f02f86bde43a234291c9b19fbf, type: 3}
+--- !u!1 &799124298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799124299}
+  - component: {fileID: 799124300}
+  m_Layer: 0
+  m_Name: SaveData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &799124299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799124298}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 719451764}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799124300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799124298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f007111e74eec5444aa3b61fd7144c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &800970104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6714,8 +6760,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1248991032}
   - {fileID: 2066769030}
+  - {fileID: 1248991032}
   - {fileID: 1787984537}
   m_Father: {fileID: 390062541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6785,7 +6831,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &1242458063
 GameObject:
@@ -8054,6 +8100,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 274719497784234796, guid: 84b570d8290a4b340bd6b0613154ca62,
     type: 3}
   m_PrefabInstance: {fileID: 1569173285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1569328429 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1270855672119813771, guid: 34cd13289e0f26f4395ec0b7dedc6e5e,
+    type: 3}
+  m_PrefabInstance: {fileID: 765623193}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1611727309
 GameObject:

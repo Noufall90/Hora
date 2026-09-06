@@ -1,8 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 using EasyTransition;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Menu Buttons")]
+    [SerializeField] private Button continueButton;
+    [SerializeField] private Button newGameButton;
+
     [Header("Scene Settings")]
     [SerializeField] private string gameScene = "GameScene";
 
@@ -13,68 +20,205 @@ public class MainMenu : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private string targetSpawnID;
 
-    [Header("References")]
+    [Header("Confirmation & Sub-Menus")]
+    [SerializeField] private GameObject confirmNewGamePanel;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject helpMenu;
 
+    private string SavePath
+    {
+        get
+        {
+            return Path.Combine(
+                Application.persistentDataPath,
+                "hora_save.json"
+            );
+        }
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        if (confirmNewGamePanel != null)
+            confirmNewGamePanel.SetActive(false);
+
+        RefreshMenuUI();
+    }
+
+    public void RefreshMenuUI()
+    {
+        bool hasSave = HasSave();
+
+        if (continueButton != null)
+            continueButton.interactable = hasSave;
+    }
+
+    private bool HasSave()
+    {
+        if (SaveDataJson.Instance != null)
+            return SaveDataJson.Instance.HasSaveFile;
+
+        return File.Exists(SavePath);
+    }
+
     public void NewGame()
     {
-        PointLocation.SetSpawnTarget(targetSpawnID, UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+        if (HasSave())
+        {
+            if (confirmNewGamePanel != null)
+            {
+                confirmNewGamePanel.SetActive(true);
+            }
+
+            return;
+        }
+        ExecuteNewGame();
+    }
+
+    public void ExecuteNewGame()
+    {
+        if (confirmNewGamePanel != null)
+            confirmNewGamePanel.SetActive(false);
+
+        if (SaveDataJson.Instance != null)
+        {
+            SaveDataJson.Instance.ResetData();
+        }
+        else
+        {
+            if (File.Exists(SavePath))
+            {
+                try
+                {
+                    File.Delete(SavePath);
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogError(
+                        $"[MainMenu] Gagal menghapus save: {ex.Message}"
+                    );
+                }
+            }
+        }
+
+        PointLocation.SetSpawnTarget(
+            targetSpawnID,
+            SceneManager.GetActiveScene().name
+        );
+
         LoadGameScene();
     }
 
-    public void Play()
+    public void CancelNewGame()
     {
-        NewGame();
+        Debug.Log("[MainMenu] New Game dibatalkan.");
+
+        if (confirmNewGamePanel != null)
+            confirmNewGamePanel.SetActive(false);
     }
 
     public void Continue()
     {
-        PointLocation.SetSpawnTarget(targetSpawnID, UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        Debug.Log("[MainMenu] Continue ditekan.");
+
+        if (SaveDataJson.Instance == null)
+        {
+            Debug.LogError("[MainMenu] SaveDataJson.Instance tidak ditemukan!");
+            return;
+        }
+
+        if (!SaveDataJson.Instance.HasSaveFile)
+        {
+            Debug.LogWarning("[MainMenu] Tidak ada save file.");
+            return;
+        }
+
+        SaveDataJson.Instance.LoadGame();
+
+        PointLocation.SetSpawnTarget(
+            targetSpawnID,
+            SceneManager.GetActiveScene().name
+        );
+
         LoadGameScene();
     }
 
     private void LoadGameScene()
     {
-        if (TransitionManager.Instance() != null && transition != null)
+        Debug.Log($"[MainMenu] Loading scene: {gameScene}");
+
+        if (TransitionManager.Instance() != null &&
+            transition != null)
         {
-            TransitionManager.Instance().Transition(gameScene, transition, startDelay);
+            TransitionManager.Instance().Transition(
+                gameScene,
+                transition,
+                startDelay
+            );
+
+            return;
         }
-        else if (SceneLoader.Instance != null)
+
+        if (SceneLoader.Instance != null)
         {
             SceneLoader.Instance.LoadScene(gameScene);
+            return;
         }
-        else if (!string.IsNullOrEmpty(gameScene))
+
+        if (!string.IsNullOrEmpty(gameScene))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(gameScene);
+            SceneManager.LoadScene(gameScene);
+            return;
         }
+
+        Debug.LogError("[MainMenu] Nama GameScene kosong!");
     }
 
     public void OpenSettings()
     {
-        if (settingsMenu != null) settingsMenu.SetActive(true);
-    }
-
-    public void OpenHelp()
-    {
-        if (helpMenu != null) helpMenu.SetActive(true);
+        if (settingsMenu != null)
+            settingsMenu.SetActive(true);
     }
 
     public void CloseSettings()
     {
-        if (settingsMenu != null) settingsMenu.SetActive(false);
+        if (settingsMenu != null)
+            settingsMenu.SetActive(false);
+    }
+
+    public void OpenHelp()
+    {
+        if (helpMenu != null)
+            helpMenu.SetActive(true);
     }
 
     public void CloseHelp()
     {
-        if (helpMenu != null) helpMenu.SetActive(false);
+        if (helpMenu != null)
+            helpMenu.SetActive(false);
+    }
+
+    public void OpenNewGamePanel()
+    {
+        if (confirmNewGamePanel != null)
+            confirmNewGamePanel.SetActive(true);
+    }
+
+    public void CloseNewGamePanel()
+    {
+        if (confirmNewGamePanel != null)
+            confirmNewGamePanel.SetActive(false);
     }
 
     public void ExitGame()
     {
         Application.Quit();
+
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; 
+        UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
 }

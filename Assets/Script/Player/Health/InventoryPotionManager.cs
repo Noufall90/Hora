@@ -57,7 +57,59 @@ public class InventoryPotionManager : MonoBehaviour
     private void Start()
     {
         SetupUseButton();
+
+        // Load potion dari save data jika tersedia
+        if (SaveDataJson.Instance != null && SaveDataJson.Instance.HasSaveFile)
+        {
+            ApplyFromSave();
+        }
+        else
+        {
+            ListPotions();
+        }
     }
+
+    // ── Save / Load Integration ───────────────────────────
+
+    public void ApplyFromSave()
+    {
+        if (SaveDataJson.Instance == null || SaveDataJson.Instance.Data == null) return;
+
+        GameSaveData data = SaveDataJson.Instance.Data;
+        potionItems.Clear();
+
+        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("Potions");
+
+        foreach (PotionSaveEntry entry in data.potionInventory)
+        {
+            PotionItem found = FindPotionByName(allPotions, entry.potionName);
+            if (found != null)
+            {
+                for (int i = 0; i < entry.count; i++)
+                {
+                    potionItems.Add(found);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[InventoryPotionManager] PotionItem '{entry.potionName}' tidak ditemukan di Resources/Potions/");
+            }
+        }
+
+        ListPotions();
+    }
+
+    private static PotionItem FindPotionByName(PotionItem[] array, string assetName)
+    {
+        if (array == null || string.IsNullOrEmpty(assetName)) return null;
+        foreach (PotionItem p in array)
+        {
+            if (p != null && p.name == assetName) return p;
+        }
+        return null;
+    }
+
+    // ── UI Setup ──────────────────────────────────────────
 
     private void SetupUseButton()
     {
@@ -72,13 +124,21 @@ public class InventoryPotionManager : MonoBehaviour
         }
     }
 
+    // ── Public API ────────────────────────────────────────
+
     public void Add(PotionItem potion)
     {
         if (potion != null)
         {
             potionItems.Add(potion);
-            Debug.Log($"[InventoryPotionManager] Potion '{potion.itemName}' ditambahkan ke list! Total potion: {potionItems.Count}");
+            Debug.Log($"[InventoryPotionManager] Potion '{potion.itemName}' ditambahkan. Total: {potionItems.Count}");
             ListPotions();
+
+            // Auto-save setelah potion ditambahkan
+            if (SaveDataJson.Instance != null)
+            {
+                SaveDataJson.Instance.SaveGame();
+            }
         }
     }
 
@@ -143,6 +203,12 @@ public class InventoryPotionManager : MonoBehaviour
         }
 
         ListPotions();
+
+        // Auto-save setelah potion digunakan
+        if (SaveDataJson.Instance != null)
+        {
+            SaveDataJson.Instance.SaveGame();
+        }
     }
 
     public void ListPotions()
@@ -173,16 +239,10 @@ public class InventoryPotionManager : MonoBehaviour
             GameObject obj = Instantiate(potionInventoryItem, potionContent);
 
             PotionItemController controller = obj.GetComponent<PotionItemController>();
-            if (controller != null)
-            {
-                controller.potionItem = potion;
-            }
+            if (controller != null) controller.potionItem = potion;
 
             InventoryPotionItemManager slotManager = obj.GetComponent<InventoryPotionItemManager>();
-            if (slotManager != null)
-            {
-                slotManager.Setup(potion, potionCounts[potion]);
-            }
+            if (slotManager != null) slotManager.Setup(potion, potionCounts[potion]);
         }
     }
 }

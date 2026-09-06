@@ -3359,8 +3359,8 @@ MonoBehaviour:
   _animator: {fileID: 8357384012088919201}
   shieldVisual: {fileID: 8857258956309261747}
   sheildPower: 100
-  sheildPowerRegenRate: 0.5
-  shieldRegenDelay: 4
+  sheildPowerRegenRate: 1
+  shieldRegenDelay: 2
   playerRenderers:
   - {fileID: 1068535271888249357}
   - {fileID: 6613361013219670510}

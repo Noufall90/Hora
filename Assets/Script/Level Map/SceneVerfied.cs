@@ -10,7 +10,6 @@ public class SceneVerfied : MonoBehaviour
 
     [Header("Verification Settings")]
     [SerializeField] private string levelKey = "Escuri_Completed";
-    [Tooltip("Jika true, level akan diverifikasi otomatis saat scene start. Jika false, verifikasi menunggu dipanggil oleh Spawner/Event.")]
     [SerializeField] private bool verifyOnStart = false;
 
     [Header("Target Interact Scene")]

@@ -19,6 +19,9 @@ public class SceneLocked : MonoBehaviour
 
     private Coroutine notifCoroutine;
 
+    /// <summary>Akses ke verificationKey dari luar (dipakai SaveDataJson).</summary>
+    public string VerificationKey => verificationKey;
+
     public InteractScenePanel InteractScenePanelRef => interactScenePanel;
 
     private void Start()
@@ -50,21 +53,27 @@ public class SceneLocked : MonoBehaviour
 
     public void CheckAndApplyLevelState()
     {
-        bool isUnlocked = SceneVerfied.IsVerified(verificationKey);
+        bool isUnlocked = false;
 
-        // Pastikan level/portal tetap aktif di scene agar collider dan visualnya tetap bisa disentuh player
+        if (SaveDataJson.Instance != null && SaveDataJson.Instance.HasSaveFile)
+        {
+            isUnlocked = SaveDataJson.Instance.IsLevelUnlocked(verificationKey);
+        }
+        else
+        {
+            isUnlocked = SceneVerfied.IsVerified(verificationKey);
+        }
+
         if (level != null)
         {
             level.SetActive(true);
         }
 
-        // Kunci atau buka interaksi map panel
         if (interactScenePanel != null)
         {
             interactScenePanel.enabled = isUnlocked;
         }
 
-        // Tampilkan notifikasi jika map baru terbuka
         if (isUnlocked && SceneVerfied.HasPendingNotification(verificationKey))
         {
             SceneVerfied.ClearNotification(verificationKey);
@@ -73,29 +82,38 @@ public class SceneLocked : MonoBehaviour
         }
     }
 
+    public void UnlockLevel(bool autoSave = true)
+    {
+        SceneVerfied.SetVerified(verificationKey, true, true);
+        CheckAndApplyLevelState();
+
+        if (autoSave && SaveDataJson.Instance != null)
+        {
+            SaveDataJson.Instance.SaveGame();
+        }
+
+        Debug.Log($"[SceneLocked] Level '{verificationKey}' berhasil dibuka dan disimpan.");
+    }
+
     private IEnumerator PassNotificationSequence()
     {
         yield return new WaitForSecondsRealtime(NOTIF_START_DELAY);
         ShowPassPanel();
-
         yield return new WaitForSecondsRealtime(PASS_PANEL_DURATION);
         ClosePassPanel();
     }
 
-    // Dipanggil ketika player masuk ke collider portal (baik langsung maupun via relay)
     public void OnPortalTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            bool isUnlocked = SceneVerfied.IsVerified(verificationKey);
-            if (!isUnlocked)
+            if (!SceneVerfied.IsVerified(verificationKey))
             {
                 ShowLockedPanel();
             }
         }
     }
 
-    // Dipanggil ketika player keluar dari collider portal (baik langsung maupun via relay)
     public void OnPortalTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -104,61 +122,44 @@ public class SceneLocked : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        OnPortalTriggerEnter(other);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        OnPortalTriggerExit(other);
-    }
+    private void OnTriggerEnter(Collider other) => OnPortalTriggerEnter(other);
+    private void OnTriggerExit(Collider other) => OnPortalTriggerExit(other);
 
     public bool TryAccessLevel()
     {
-        bool isUnlocked = SceneVerfied.IsVerified(verificationKey);
-
-        if (isUnlocked)
+        if (SceneVerfied.IsVerified(verificationKey))
         {
             return true;
         }
-        else
-        {
-            ShowLockedPanel();
-            return false;
-        }
+
+        ShowLockedPanel();
+        return false;
     }
 
     public void ShowLockedPanel()
     {
-        if (lockedPanel == null) return;
-        lockedPanel.SetActive(true);
+        if (lockedPanel != null) lockedPanel.SetActive(true);
     }
 
     public void CloseLockedPanel()
     {
-        if (lockedPanel == null) return;
-        lockedPanel.SetActive(false);
+        if (lockedPanel != null) lockedPanel.SetActive(false);
     }
 
     public void ShowPassPanel()
     {
-        if (passPanel == null) return;
-        passPanel.SetActive(true);
+        if (passPanel != null) passPanel.SetActive(true);
     }
 
     public void ClosePassPanel()
     {
-        if (passPanel == null) return;
-        passPanel.SetActive(false);
+        if (passPanel != null) passPanel.SetActive(false);
     }
 
     [ContextMenu("Debug - Simulasikan Map Terbuka (Unlocked)")]
     private void DebugSimulateUnlocked()
     {
-        SceneVerfied.SetVerified(verificationKey, true, true);
-        CheckAndApplyLevelState();
-        Debug.Log($"[SceneLocked] Level '{verificationKey}' berhasil di-set ke Unlocked.");
+        UnlockLevel(true);
     }
 
     [ContextMenu("Debug - Reset Status Terkunci")]
@@ -166,7 +167,8 @@ public class SceneLocked : MonoBehaviour
     {
         SceneVerfied.ResetVerification(verificationKey);
         CheckAndApplyLevelState();
-        Debug.Log($"[SceneLocked] Level '{verificationKey}' berhasil di-reset ke Locked.");
+        if (SaveDataJson.Instance != null) SaveDataJson.Instance.SaveGame();
+        Debug.Log($"[SceneLocked] Level '{verificationKey}' di-reset ke Locked.");
     }
 }
 
@@ -177,25 +179,15 @@ public class SceneLockedRelay : MonoBehaviour
 {
     private SceneLocked sceneLocked;
 
-    public void Init(SceneLocked manager)
-    {
-        sceneLocked = manager;
-    }
+    public void Init(SceneLocked manager) => sceneLocked = manager;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (sceneLocked != null)
-        {
-            sceneLocked.OnPortalTriggerEnter(other);
-        }
+        if (sceneLocked != null) sceneLocked.OnPortalTriggerEnter(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (sceneLocked != null)
-        {
-            sceneLocked.OnPortalTriggerExit(other);
-        }
+        if (sceneLocked != null) sceneLocked.OnPortalTriggerExit(other);
     }
 }
-

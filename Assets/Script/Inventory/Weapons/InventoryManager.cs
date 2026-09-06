@@ -26,11 +26,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    [Header("Inventory UI Content")]
     public Transform ItemContent;
     public GameObject InventoryItem;
     public List<Item> items = new List<Item>();
 
-    [Header("Desc Item")]
+    [Header("Desc Item UI")]
     public TMP_Text itemName;
     public TMP_Text itemDescription;
     public TMP_Text itemStats;
@@ -58,7 +59,78 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         SetupEquipButton();
+
+        // Load item & weapon dari save file jika ada
+        if (SaveDataJson.Instance != null && SaveDataJson.Instance.HasSaveFile)
+        {
+            ApplyFromSave();
+        }
+        else
+        {
+            ListItems();
+        }
     }
+
+    // ── Save / Load Integration ───────────────────────────
+
+    public void ApplyFromSave()
+    {
+        if (SaveDataJson.Instance == null || SaveDataJson.Instance.Data == null) return;
+
+        GameSaveData data = SaveDataJson.Instance.Data;
+        items.Clear();
+        equippedMeleeItem = null;
+        equippedPistolItem = null;
+
+        Item[] allItems = Resources.LoadAll<Item>("Items");
+
+        foreach (string savedName in data.inventoryItemNames)
+        {
+            Item found = FindSO(allItems, savedName);
+            if (found != null)
+            {
+                items.Add(found);
+            }
+            else
+            {
+                Debug.LogWarning($"[InventoryManager] Item '{savedName}' tidak ditemukan di Resources/Items/");
+            }
+        }
+
+        if (!string.IsNullOrEmpty(data.equippedMeleeName))
+        {
+            Item meleeItem = FindSO(allItems, data.equippedMeleeName);
+            equippedMeleeItem = meleeItem;
+            if (meleeItem != null && PlayerWeapons.WeaponsManager.Instance != null)
+            {
+                PlayerWeapons.WeaponsManager.Instance.EquipMelee(meleeItem.indexWeapons);
+            }
+        }
+
+        if (!string.IsNullOrEmpty(data.equippedPistolName))
+        {
+            Item pistolItem = FindSO(allItems, data.equippedPistolName);
+            equippedPistolItem = pistolItem;
+            if (pistolItem != null && PlayerWeapons.WeaponsManager.Instance != null)
+            {
+                PlayerWeapons.WeaponsManager.Instance.EquipPistol(pistolItem.indexWeapons);
+            }
+        }
+
+        ListItems();
+    }
+
+    private static Item FindSO(Item[] array, string assetName)
+    {
+        if (array == null || string.IsNullOrEmpty(assetName)) return null;
+        foreach (Item item in array)
+        {
+            if (item != null && item.name == assetName) return item;
+        }
+        return null;
+    }
+
+    // ── UI Setup ──────────────────────────────────────────
 
     private void SetupEquipButton()
     {
@@ -74,10 +146,6 @@ public class InventoryManager : MonoBehaviour
             {
                 Debug.LogWarning("[InventoryManager] GameObject 'equipButton' tidak memiliki komponen UI Button!");
             }
-        }
-        else
-        {
-            Debug.LogWarning("[InventoryManager] Field 'equipButton' belum di-assign di Unity Inspector!");
         }
     }
 
@@ -99,7 +167,6 @@ public class InventoryManager : MonoBehaviour
 
     public void EquipSelectedItem()
     {
-        Debug.Log("[InventoryManager] Tombol Equip Ditekan!");
         if (selectedItem == null)
         {
             Debug.LogWarning("[InventoryManager] Tidak ada item yang dipilih untuk di-equip!");
@@ -118,7 +185,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     Debug.LogWarning("[InventoryManager] PlayerWeapons.WeaponsManager.Instance tidak ditemukan di Scene!");
                 }
-                Debug.Log($"[InventoryManager] Berhasil Equip Melee: {selectedItem.itemName} (Index Weapons: {selectedItem.indexWeapons})");
+                Debug.Log($"[InventoryManager] Berhasil Equip Melee: {selectedItem.itemName} (Index: {selectedItem.indexWeapons})");
                 break;
 
             case ItemType.Pistol:
@@ -131,12 +198,18 @@ public class InventoryManager : MonoBehaviour
                 {
                     Debug.LogWarning("[InventoryManager] PlayerWeapons.WeaponsManager.Instance tidak ditemukan di Scene!");
                 }
-                Debug.Log($"[InventoryManager] Berhasil Equip Pistol: {selectedItem.itemName} (Index Weapons: {selectedItem.indexWeapons})");
+                Debug.Log($"[InventoryManager] Berhasil Equip Pistol: {selectedItem.itemName} (Index: {selectedItem.indexWeapons})");
                 break;
         }
 
         RefreshEquipIcons();
         UpdateEquipButtonText();
+
+        // Auto-save status equipment
+        if (SaveDataJson.Instance != null)
+        {
+            SaveDataJson.Instance.SaveGame();
+        }
     }
 
     public void RefreshEquipIcons()
@@ -183,22 +256,18 @@ public class InventoryManager : MonoBehaviour
             items.Add(item);
             Debug.Log($"[InventoryManager] Item '{item.itemName}' ditambahkan ke list! Total item: {items.Count}");
             ListItems();
+
+            // Auto-save item baru
+            if (SaveDataJson.Instance != null)
+            {
+                SaveDataJson.Instance.SaveGame();
+            }
         }
     }
 
     public void ListItems()
     {
-        if (ItemContent == null)
-        {
-            Debug.LogWarning("[InventoryManager] ItemContent Transform belum di-assign di Unity Inspector!");
-            return;
-        }
-
-        if (InventoryItem == null)
-        {
-            Debug.LogWarning("[InventoryManager] InventoryItem Prefab belum di-assign di Unity Inspector!");
-            return;
-        }
+        if (ItemContent == null || InventoryItem == null) return;
 
         foreach (Transform child in ItemContent)
         {
@@ -210,7 +279,7 @@ public class InventoryManager : MonoBehaviour
             if (item == null) continue;
 
             GameObject obj = Instantiate(InventoryItem, ItemContent);
-            
+
             Transform iconTransform = obj.transform.Find("ItemIcon");
             if (iconTransform != null)
             {

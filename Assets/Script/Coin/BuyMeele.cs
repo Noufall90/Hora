@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using PlayerWeapons;
 
 [System.Serializable]
@@ -25,29 +26,68 @@ public class BuyMeele : MonoBehaviour
 
     private void Start()
     {
-        if (notifTerbeli != null)
+        if (notifTerbeli != null) notifTerbeli.SetActive(false);
+        if (notifKoinTidakCukup != null) notifKoinTidakCukup.SetActive(false);
+
+        CheckPurchasedState();
+    }
+
+    /// <summary>
+    /// Memeriksa apakah senjata melee sudah dibeli sebelumnya dari SaveDataJson.
+    /// Jika sudah terbeli, tombol pembelian akan dinonaktifkan / disembunyikan.
+    /// </summary>
+    public void CheckPurchasedState()
+    {
+        if (buyMeeleItems == null || buyMeeleItems.Length == 0) return;
+
+        for (int i = 0; i < buyMeeleItems.Length; i++)
         {
-            notifTerbeli.SetActive(false);
-        }
-        if (notifKoinTidakCukup != null)
-        {
-            notifKoinTidakCukup.SetActive(false);
+            BuyMeeleData itemData = buyMeeleItems[i];
+            if (itemData.item == null) continue;
+
+            bool isOwned = false;
+
+            // Cek di SaveDataJson
+            if (SaveDataJson.Instance != null && SaveDataJson.Instance.HasSaveFile)
+            {
+                if (SaveDataJson.Instance.IsMeleePurchased(itemData.item.name) ||
+                    SaveDataJson.Instance.Data.inventoryItemNames.Contains(itemData.item.name))
+                {
+                    isOwned = true;
+                }
+            }
+
+            // Cek di active InventoryManager
+            if (!isOwned && InventoryManager.Instance != null && InventoryManager.Instance.items.Contains(itemData.item))
+            {
+                isOwned = true;
+            }
+
+            if (isOwned && itemData.buyButtonItem != null)
+            {
+                itemData.buyButtonItem.SetActive(false);
+            }
         }
     }
 
     public void Buy(int index)
     {
-        if (buyMeeleItems == null || buyMeeleItems.Length == 0)
-        {
-            return;
-        }
-
-        if (index < 0 || index >= buyMeeleItems.Length)
-        {
-            return;
-        }
+        if (buyMeeleItems == null || buyMeeleItems.Length == 0) return;
+        if (index < 0 || index >= buyMeeleItems.Length) return;
 
         BuyMeeleData itemData = buyMeeleItems[index];
+
+        // Validasi apakah sudah dimiliki
+        if (itemData.item != null)
+        {
+            if (SaveDataJson.Instance != null && (SaveDataJson.Instance.IsMeleePurchased(itemData.item.name) ||
+                SaveDataJson.Instance.Data.inventoryItemNames.Contains(itemData.item.name)))
+            {
+                Debug.LogWarning($"[BuyMeele] {itemData.item.itemName} sudah dimiliki!");
+                if (itemData.buyButtonItem != null) itemData.buyButtonItem.SetActive(false);
+                return;
+            }
+        }
 
         if (CoinCounter.Instance != null)
         {
@@ -80,19 +120,30 @@ public class BuyMeele : MonoBehaviour
             Debug.Log($"[BuyMeele] Berhasil membeli {itemData.item.itemName} dan ditambahkan ke Inventory!");
         }
 
+        // Catat pembelian di SaveDataJson
+        if (SaveDataJson.Instance != null && itemData.item != null)
+        {
+            if (!SaveDataJson.Instance.Data.purchasedMeleeNames.Contains(itemData.item.name))
+            {
+                SaveDataJson.Instance.Data.purchasedMeleeNames.Add(itemData.item.name);
+            }
+            SaveDataJson.Instance.SaveGame();
+        }
+
         ShowNotification(notifTerbeli);
 
         if (itemData.buyButtonItem != null)
         {
             if (itemData.buyButtonItem == gameObject)
             {
-                var btn = GetComponent<UnityEngine.UI.Button>();
+                var btn = GetComponent<Button>();
                 if (btn != null) btn.interactable = false;
                 Destroy(itemData.buyButtonItem, notifDuration + 0.1f);
             }
             else
             {
-                Destroy(itemData.buyButtonItem);
+                itemData.buyButtonItem.SetActive(false);
+                Destroy(itemData.buyButtonItem, 0.2f);
             }
         }
     }

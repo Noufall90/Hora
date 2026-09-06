@@ -1,17 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class CoinCounter : MonoBehaviour
 {
     public static CoinCounter Instance { get; private set; }
+
+    [Header("UI References")]
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private GameObject panelCoin;
     [SerializeField] private TextMeshProUGUI coinNambah;
+
+    [Header("Coin Data")]
     [SerializeField] private int coin;
-    
-    void Awake()
+
+    private Coroutine coinNambahCoroutine;
+
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -23,37 +28,34 @@ public class CoinCounter : MonoBehaviour
         }
     }
 
-    private Coroutine coinNambahCoroutine;
-
     private void Start()
     {
-        if (coinText != null)
+        // Load data koin dari SaveDataJson jika file save ada
+        if (SaveDataJson.Instance != null && SaveDataJson.Instance.HasSaveFile)
         {
-            coinText.text = coin.ToString();
+            coin = SaveDataJson.Instance.Data.totalCoin;
         }
 
-        if (panelCoin != null)
-        {
-            panelCoin.SetActive(false);
-        }
-        if (coinNambah != null)
-        {
-            coinNambah.gameObject.SetActive(false);
-        }
+        RefreshUI();
+
+        if (panelCoin != null) panelCoin.SetActive(false);
+        if (coinNambah != null) coinNambah.gameObject.SetActive(false);
     }
-    
+
+    // ── Property ──────────────────────────────────────────
+
     public int Coin
     {
         get => coin;
         set
         {
             coin = value;
-            if (coinText != null)
-            {
-                coinText.text = coin.ToString();
-            }
+            RefreshUI();
+            SyncAndSave(); // Pastikan tersimpan setiap kali Coin diubah
         }
     }
+
+    // ── Public API ────────────────────────────────────────
 
     public void SetCoin(int amount)
     {
@@ -63,16 +65,16 @@ public class CoinCounter : MonoBehaviour
     public void IncreaseCoin(int v)
     {
         coin += v;
-        if (coinText != null)
-        {
-            coinText.text = coin.ToString();
-        }
+        RefreshUI();
 
         if (coinNambahCoroutine != null)
         {
             StopCoroutine(coinNambahCoroutine);
         }
         coinNambahCoroutine = StartCoroutine(ShowCoinNambahRoutine(v));
+
+        // Sync data ke SaveDataJson lalu Auto-save
+        SyncAndSave();
     }
 
     public bool DecreaseCoin(int v)
@@ -80,15 +82,36 @@ public class CoinCounter : MonoBehaviour
         if (coin >= v)
         {
             coin -= v;
-            if (coinText != null)
-            {
-                coinText.text = coin.ToString();
-            }
-            Debug.Log($"[CoinCounter] Berhasil mengurangi {v} koin. Sisa koin: {coin}");
+            RefreshUI();
+            Debug.Log($"[CoinCounter] Berhasil mengurangi {v} koin. Sisa: {coin}");
+
+            // Sync data ke SaveDataJson lalu Auto-save
+            SyncAndSave();
             return true;
         }
-        Debug.LogWarning($"[CoinCounter] Koin tidak cukup! Koin saat ini: {coin}, dibutuhkan: {v}");
+
+        Debug.LogWarning($"[CoinCounter] Koin tidak cukup! Saat ini: {coin}, dibutuhkan: {v}");
         return false;
+    }
+
+    // ── Private Helpers ────────────────────────────────────
+
+    private void SyncAndSave()
+    {
+        if (SaveDataJson.Instance != null)
+        {
+            // PENTING: Update struct/class Data di SaveDataJson terlebih dahulu
+            SaveDataJson.Instance.Data.totalCoin = coin;
+            SaveDataJson.Instance.SaveGame();
+        }
+    }
+
+    private void RefreshUI()
+    {
+        if (coinText != null)
+        {
+            coinText.text = coin.ToString();
+        }
     }
 
     private IEnumerator ShowCoinNambahRoutine(int addedAmount)

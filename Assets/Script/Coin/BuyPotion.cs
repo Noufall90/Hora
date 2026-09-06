@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct BuyPotionData
@@ -24,27 +25,39 @@ public class BuyPotion : MonoBehaviour
 
     private void Start()
     {
-        if (notifTerbeli != null)
+        if (notifTerbeli != null) notifTerbeli.SetActive(false);
+        if (notifKoinTidakCukup != null) notifKoinTidakCukup.SetActive(false);
+
+        CheckPurchasedState();
+    }
+
+    /// <summary>
+    /// Memeriksa status pembelian potion untuk item one-time buy jika destroyButtonOnBuy = true.
+    /// </summary>
+    public void CheckPurchasedState()
+    {
+        if (buyPotionItems == null || buyPotionItems.Length == 0) return;
+
+        for (int i = 0; i < buyPotionItems.Length; i++)
         {
-            notifTerbeli.SetActive(false);
-        }
-        if (notifKoinTidakCukup != null)
-        {
-            notifKoinTidakCukup.SetActive(false);
+            BuyPotionData data = buyPotionItems[i];
+            if (data.destroyButtonOnBuy && data.potionItem != null)
+            {
+                if (SaveDataJson.Instance != null && SaveDataJson.Instance.HasSaveFile)
+                {
+                    if (SaveDataJson.Instance.IsPotionPurchased(data.potionItem.name) && data.buyButtonItem != null)
+                    {
+                        data.buyButtonItem.SetActive(false);
+                    }
+                }
+            }
         }
     }
 
     public void Buy(int index)
     {
-        if (buyPotionItems == null || buyPotionItems.Length == 0)
-        {
-            return;
-        }
-
-        if (index < 0 || index >= buyPotionItems.Length)
-        {
-            return;
-        }
+        if (buyPotionItems == null || buyPotionItems.Length == 0) return;
+        if (index < 0 || index >= buyPotionItems.Length) return;
 
         BuyPotionData data = buyPotionItems[index];
 
@@ -80,19 +93,30 @@ public class BuyPotion : MonoBehaviour
             }
         }
 
+        // Catat ke SaveDataJson
+        if (SaveDataJson.Instance != null && data.potionItem != null)
+        {
+            if (!SaveDataJson.Instance.Data.purchasedPotionNames.Contains(data.potionItem.name))
+            {
+                SaveDataJson.Instance.Data.purchasedPotionNames.Add(data.potionItem.name);
+            }
+            SaveDataJson.Instance.SaveGame();
+        }
+
         ShowNotification(notifTerbeli);
 
         if (data.destroyButtonOnBuy && data.buyButtonItem != null)
         {
             if (data.buyButtonItem == gameObject)
             {
-                var btn = GetComponent<UnityEngine.UI.Button>();
+                var btn = GetComponent<Button>();
                 if (btn != null) btn.interactable = false;
                 Destroy(data.buyButtonItem, notifDuration + 0.1f);
             }
             else
             {
-                Destroy(data.buyButtonItem);
+                data.buyButtonItem.SetActive(false);
+                Destroy(data.buyButtonItem, 0.2f);
             }
         }
     }

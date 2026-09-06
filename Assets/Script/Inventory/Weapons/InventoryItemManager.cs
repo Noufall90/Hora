@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Mengatur UI slot item pada inventory weapons/items.
+/// Terintegrasi dengan InventoryManager dan SaveDataJson.
+/// </summary>
 public class InventoryItemManager : MonoBehaviour
 {
+    [Header("Item Slot Data")]
     public Item item;
     public Image equipIcon;
 
@@ -13,6 +18,7 @@ public class InventoryItemManager : MonoBehaviour
         itemButton = GetComponent<Button>();
         if (itemButton != null)
         {
+            itemButton.onClick.RemoveListener(OnItemClicked);
             itemButton.onClick.AddListener(OnItemClicked);
         }
     }

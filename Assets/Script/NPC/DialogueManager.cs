@@ -9,6 +9,9 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
+    [Header("NPC / Dialogue Identification")]
+    [SerializeField] private string npcId = "";
+
     [Header("Reference")]
     [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueDefault dialogueDefault;
@@ -25,7 +28,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue Settings")]
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private float typingSpeed = 0.2f;
+    [SerializeField] private float typingSpeed = 0.04f;
 
     private Queue<DialogueLine> lines;
     private bool isTyping;
@@ -35,6 +38,8 @@ public class DialogueManager : MonoBehaviour
     private bool previousCursorVisible;
 
     public bool isDialogueActive = false;
+
+    public string NpcId => !string.IsNullOrEmpty(npcId) ? npcId : gameObject.name;
 
     private void Awake()
     {
@@ -60,10 +65,21 @@ public class DialogueManager : MonoBehaviour
             dialogueDefault = DialogueDefault.Instance;
         }
 
-        if (dialogueDefault != null &&
-            dialogueDefault.gameObject != gameObject)
+        if (dialogueDefault != null && dialogueDefault.gameObject != gameObject)
         {
             dialogueDefault.gameObject.SetActive(false);
+        }
+
+        if (string.IsNullOrEmpty(npcId))
+        {
+            if (dialogueTrigger != null && dialogueTrigger.DialogueData != null)
+            {
+                npcId = dialogueTrigger.DialogueData.name;
+            }
+            else
+            {
+                npcId = gameObject.name;
+            }
         }
     }
 
@@ -86,16 +102,19 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue dialogue = null)
+    public void StartDialogue(Dialogue dialogue = null, string customNpcId = null)
     {
+        if (!string.IsNullOrEmpty(customNpcId))
+        {
+            npcId = customNpcId;
+        }
+
         if (dialogue == null && dialogueTrigger != null)
         {
             dialogue = dialogueTrigger.DialogueData;
         }
 
-        if (dialogue == null ||
-            dialogue.dialogueLines == null ||
-            dialogue.dialogueLines.Count == 0)
+        if (dialogue == null || dialogue.dialogueLines == null || dialogue.dialogueLines.Count == 0)
         {
             return;
         }
@@ -244,19 +263,29 @@ public class DialogueManager : MonoBehaviour
             colArea.SetActive(false);
         }
 
+        // Simpan status percakapan NPC ke SaveDataJson
+        string completedId = NpcId;
+        if (!string.IsNullOrEmpty(completedId))
+        {
+            DialogueSaveRegistry.MarkCompleted(completedId);
+            if (SaveDataJson.Instance != null)
+            {
+                SaveDataJson.Instance.MarkDialogueCompleted(completedId);
+            }
+            Debug.Log($"[DialogueManager] Dialog NPC '{completedId}' ditandai selesai dan disimpan.");
+        }
+
         if (dialogueDefault == null)
         {
             dialogueDefault = DialogueDefault.Instance;
         }
 
-        if (dialogueDefault != null &&
-            dialogueDefault.gameObject != gameObject)
+        if (dialogueDefault != null && dialogueDefault.gameObject != gameObject)
         {
             dialogueDefault.gameObject.SetActive(true);
         }
 
-        if (colTrigger != null &&
-            colTrigger.gameObject != gameObject)
+        if (colTrigger != null && colTrigger.gameObject != gameObject)
         {
             Destroy(colTrigger.gameObject);
         }
