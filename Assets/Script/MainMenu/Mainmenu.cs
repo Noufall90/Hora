@@ -97,9 +97,7 @@ public class MainMenu : MonoBehaviour
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogError(
-                        $"[MainMenu] Gagal menghapus save: {ex.Message}"
-                    );
+                    Debug.LogError($"[MainMenu] Gagal menghapus save: {ex.Message}");
                 }
             }
         }
