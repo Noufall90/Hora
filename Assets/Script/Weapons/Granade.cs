@@ -54,6 +54,10 @@ public class Granade : MonoBehaviour
 
     private void Explode()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Bomb_Explosion");
+        }
         if (explosionEffectPrefab != null)
         {
             GameObject effect = Instantiate(explosionEffectPrefab, transform.position + explosionParticleOffset, Quaternion.identity);

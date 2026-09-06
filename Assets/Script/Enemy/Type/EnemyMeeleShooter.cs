@@ -54,8 +54,12 @@ namespace Enemy
 
             if (animator != null)
             {
-                animator.SetTrigger("Attack");
                 animator.SetBool("Attack", true);
+            }
+
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Sword");
             }
 
             if (proceduralAnimator != null)
@@ -80,6 +84,11 @@ namespace Enemy
         public void ShootAttack()
         {
             if (isKnockedBack) return;
+
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Shoot");
+            }
 
             if (proceduralAnimator != null && playerTarget != null)
             {

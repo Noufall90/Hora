@@ -218,6 +218,11 @@ namespace PlayerData
                     RotateTowardsEnemy(meleeTarget);
                 }
                 wa.StartMeleeAttack();
+
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlaySound2D("Sword");
+                }
             }
 
             if (_attackResetCoroutine != null)
@@ -281,6 +286,11 @@ namespace PlayerData
             else if (WeaponsActions.Instance != null)
             {
                 WeaponsActions.Instance.Shoot(targetEnemy);
+            }
+
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Shoot");
             }
         }
 
@@ -484,7 +494,6 @@ namespace PlayerData
             GameObject activeMelee = GetActiveMeleeObject();
             GameObject activePistol = GetActivePistolObject();
 
-            // Sembunyikan senjata lawan secara langsung agar tidak pernah muncul bersamaan
             if (targetWeapon == activeMelee || targetWeapon == dissolvePedang)
             {
                 ForceHideWeapon(activePistol);

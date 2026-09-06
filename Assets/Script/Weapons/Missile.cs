@@ -122,6 +122,10 @@ public class Missile : MonoBehaviour
     {
         if (hasExploded) return;
         hasExploded = true;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Bomb_Explosion");
+        }
 
         CancelInvoke(nameof(Explode));
 

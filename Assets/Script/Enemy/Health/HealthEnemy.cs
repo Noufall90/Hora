@@ -64,6 +64,10 @@ namespace Enemy
 
         public override void TakeDamage(int amount)
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Robot_Hit");
+            }
             if (isDead || currentHealth <= 0) return;
 
             base.TakeDamage(amount);
@@ -174,6 +178,10 @@ namespace Enemy
 
         protected override void Die()
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Death_Robot");
+            }
             if (isDead) return;
             isDead = true;
 

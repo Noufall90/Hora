@@ -689,7 +689,7 @@ MonoBehaviour:
   damage: 20
   damageInterval: 3
   damageCollider: {fileID: 6221580175061572822}
-  fireRate: 3
+  fireRate: 5
   firePoint: {fileID: 2424316724092791045}
   firePoint2: {fileID: 0}
   bulletPrefab: {fileID: 764366124265718752, guid: 8e0dce56862bdcf42a0553480df2e23d,

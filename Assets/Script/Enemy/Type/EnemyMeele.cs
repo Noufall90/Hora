@@ -31,8 +31,12 @@ namespace Enemy
 
             if (animator != null)
             {
-                animator.SetTrigger("Attack");
                 animator.SetBool("Attack", true);
+            }
+
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Sword");
             }
 
             if (proceduralAnimator != null)
@@ -116,8 +120,9 @@ namespace Enemy
             return false;
         }
 
-        private void OnDrawGizmosSelected()
+        protected override void OnDrawGizmosSelected()
         {
+            base.OnDrawGizmosSelected();
             if (damageCollider != null)
             {
                 Gizmos.color = Color.red;

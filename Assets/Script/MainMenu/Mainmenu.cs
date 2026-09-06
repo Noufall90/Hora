@@ -65,6 +65,10 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
 
         if (HasSave())
         {
@@ -120,7 +124,10 @@ public class MainMenu : MonoBehaviour
 
     public void Continue()
     {
-        Debug.Log("[MainMenu] Continue ditekan.");
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
 
         if (SaveDataJson.Instance == null)
         {
@@ -171,48 +178,74 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(gameScene);
             return;
         }
-
-        Debug.LogError("[MainMenu] Nama GameScene kosong!");
     }
 
     public void OpenSettings()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (settingsMenu != null)
             settingsMenu.SetActive(true);
     }
 
     public void CloseSettings()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (settingsMenu != null)
             settingsMenu.SetActive(false);
     }
 
     public void OpenHelp()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (helpMenu != null)
             helpMenu.SetActive(true);
     }
 
     public void CloseHelp()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (helpMenu != null)
             helpMenu.SetActive(false);
     }
 
     public void OpenNewGamePanel()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (confirmNewGamePanel != null)
             confirmNewGamePanel.SetActive(true);
     }
 
     public void CloseNewGamePanel()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (confirmNewGamePanel != null)
             confirmNewGamePanel.SetActive(false);
     }
 
     public void ExitGame()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         Application.Quit();
 
 #if UNITY_EDITOR

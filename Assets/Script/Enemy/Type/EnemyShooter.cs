@@ -47,14 +47,17 @@ namespace Enemy
         private IEnumerator ShootSequence()
         {
             Shoot(firePoint);
-
             yield return new WaitForSeconds(fireRate * 0.5f);
-
             Shoot(firePoint2);
         }
 
         private void Shoot(Transform point)
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Shoot");
+            }
+            
             if (bulletPrefab == null || point == null || target == null)
                 return;
 

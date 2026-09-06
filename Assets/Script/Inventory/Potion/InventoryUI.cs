@@ -21,6 +21,10 @@ public class InventoryUI : MonoBehaviour
 
     public void InventoryOpen()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (inventoryPanel == null) return;
 
         UIHandler.OpenWindow(inventoryPanel);
@@ -33,6 +37,10 @@ public class InventoryUI : MonoBehaviour
 
     public void InventoryClose()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (inventoryPanel == null) return;
 
         UIHandler.CloseWindow(inventoryPanel);

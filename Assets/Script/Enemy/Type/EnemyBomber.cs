@@ -36,6 +36,10 @@ namespace Enemy
         {
             if (isKnockedBack || granadePrefab == null || throwPosition == null || PlayerTarget == null) return;
             StartCoroutine(AimAndThrowRoutine());
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySound2D("Bomb_Launch");
+            }
         }
 
         private IEnumerator AimAndThrowRoutine()
@@ -43,12 +47,10 @@ namespace Enemy
             Vector3 originPos = throwPosition.position;
             Vector3 targetPos = PlayerTarget.position;
             
-            // Kalkulasi waktu tempuh berdasarkan jarak dan throwForce
             Vector3 distanceXZ = new Vector3(targetPos.x - originPos.x, 0f, targetPos.z - originPos.z);
             float distance = distanceXZ.magnitude;
             float timeToTarget = Mathf.Clamp(distance / throwForce, 0.5f, 3f); 
             
-            // Hitung velocity awal
             Vector3 velocity = CalculateVelocityToTarget(originPos, targetPos, timeToTarget);
 
             if (trajectoryLine != null)
@@ -57,7 +59,6 @@ namespace Enemy
                 DrawTrajectory(originPos, velocity);
             }
 
-            // Waktu delay membidik
             yield return new WaitForSeconds(1f);
 
             if (trajectoryLine != null)

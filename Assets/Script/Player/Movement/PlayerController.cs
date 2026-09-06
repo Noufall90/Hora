@@ -9,7 +9,6 @@ namespace PlayerData
     public class PlayerController : MonoBehaviour
     {
         public static PlayerController Instance { get; private set; }
-
         [Header("Components")]
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private Animator _animator;
@@ -23,6 +22,10 @@ namespace PlayerData
         public float rollSpeed = 8f;
         public float rollDuration = 0.5f;
 
+        [Header("Footstep")]
+        [SerializeField] private float walkFootstepInterval = 0.5f;
+        [SerializeField] private float runFootstepInterval = 0.25f;
+
         private float runAcceleration = 50f;
         private float drag = 20f;
         private float rotationSpeed = 15f;
@@ -35,6 +38,8 @@ namespace PlayerData
 
         private PlayerLocomotionInput _playerLocomotionInput;
         private Vector3 _currentVelocity;
+
+        private float _footstepTimer;
 
         public bool IsRolling => _isRolling;
 
@@ -64,6 +69,7 @@ namespace PlayerData
             HandleMovement();
             HandleInputAttack(); // Memeriksa input serangan & shooting
             UpdateAnimator();
+            HandleFootstep();
         }
 
         private void HandleInputAttack()
@@ -71,15 +77,14 @@ namespace PlayerData
             if (_playerAnimAttack == null) return;
             if (_isRolling) return;
 
-            // Attack / Slash Input (Left Click Mouse)
             bool isAttackPressed = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
 
             if (isAttackPressed)
             {
                 _playerAnimAttack.HandleAttack();
+                
             }
 
-            // Shoot Input (Right Click Mouse)
             bool isShootPressed = Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame;
 
             if (isShootPressed)
@@ -100,7 +105,6 @@ namespace PlayerData
 
         private void HandleMovement()
         {
-            // 1. Handling Gravitasi Dasar
             bool isGrounded = _characterController.isGrounded;
             if (isGrounded && _verticalVelocity < 0)
             {
@@ -108,7 +112,6 @@ namespace PlayerData
             }
             _verticalVelocity += gravity * Time.deltaTime;
 
-            // 2. Hitung arah pergerakan horizontal (menggunakan Camera.main)
             Transform camTransform = Camera.main != null ? Camera.main.transform : null;
             Vector3 cameraForwardXZ = camTransform != null ? new Vector3(camTransform.forward.x, 0f, camTransform.forward.z).normalized : Vector3.forward;
             Vector3 cameraRightXZ = camTransform != null ? new Vector3(camTransform.right.x, 0f, camTransform.right.z).normalized : Vector3.right;
@@ -116,28 +119,26 @@ namespace PlayerData
             Vector3 inputDirection = cameraRightXZ * _playerLocomotionInput.MovementInput.x + 
                                      cameraForwardXZ * _playerLocomotionInput.MovementInput.y;
 
-            // 3. Handling Roll / Dodge Input (Tombol Space)
             if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !_isRolling)
             {
                 StartRoll(inputDirection);
             }
 
-            // Jika sedang rolling, pindahkan karakter maju ke depan sesuai _rollDirection & rollSpeed
             if (_isRolling)
             {
+                _footstepTimer = 0f;
+
                 Vector3 rollMove = _rollDirection * rollSpeed;
                 rollMove.y = _verticalVelocity;
                 _characterController.Move(rollMove * Time.deltaTime);
                 return;
             }
 
-            // 4. Pengecekan input lari (Shift) - Tidak bisa lari saat sedang Attack / Slash, Shoot, atau Roll
             bool canSprint = _playerAnimAttack == null || (!_playerAnimAttack.IsAttackingOrShooting && !_isRolling);
             bool isSprinting = canSprint && Keyboard.current != null && 
                                (Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed);
             float targetSpeed = (isSprinting && inputDirection.sqrMagnitude > 0.01f) ? runSpeed : walkSpeed;
 
-            // 5. Akselerasi & Drag Horizontal
             Vector3 movementDelta = inputDirection * runAcceleration * Time.deltaTime;
             _currentVelocity += movementDelta;
 
@@ -148,7 +149,6 @@ namespace PlayerData
 
             _currentVelocity = Vector3.ClampMagnitude(_currentVelocity, targetSpeed);
 
-            // 6. Rotasi Karakter (Jangan timpa arah rotasi jika sedang shooting/lock-on target)
             if (inputDirection.sqrMagnitude > 0.01f && (_playerAnimAttack == null || !_playerAnimAttack.IsShooting))
             {
                 Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
@@ -164,13 +164,13 @@ namespace PlayerData
         private void StartRoll(Vector3 inputDirection)
         {
             _isRolling = true;
+            _footstepTimer = 0f;
 
             if (_playerAnimAttack != null)
             {
                 _playerAnimAttack.CancelAttackAndShoot();
             }
 
-            // Menentukan arah roll: jika ada input pergerakan, roll ke arah input; jika tidak, roll ke depan karakter
             if (inputDirection.sqrMagnitude > 0.01f)
             {
                 _rollDirection = inputDirection.normalized;
@@ -198,6 +198,7 @@ namespace PlayerData
         public void OnRollComplete()
         {
             _isRolling = false;
+            _footstepTimer = 0f;
 
             if (_rollCoroutine != null)
             {
@@ -219,6 +220,55 @@ namespace PlayerData
         {
             yield return new WaitForSeconds(delay);
             OnRollComplete();
+        }
+
+        private void HandleFootstep()
+        {
+            if (_characterController == null) return;
+
+            if (!_characterController.isGrounded)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            if (_isRolling)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            if (_playerAnimAttack != null && _playerAnimAttack.IsAttackingOrShooting)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            bool isMoving = _currentVelocity.sqrMagnitude > 0.1f;
+
+            if (!isMoving)
+            {
+                _footstepTimer = 0f;
+                return;
+            }
+
+            bool canSprint = _playerAnimAttack == null || (!_playerAnimAttack.IsAttackingOrShooting && !_isRolling);
+            bool isSprinting = canSprint && Keyboard.current != null && 
+                               (Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed);
+
+            float footstepInterval = isSprinting ? runFootstepInterval : walkFootstepInterval;
+
+            _footstepTimer += Time.deltaTime;
+
+            if (_footstepTimer >= footstepInterval)
+            {
+                _footstepTimer = 0f;
+
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlaySound2D("Footstep");
+                }
+            }
         }
 
         private void UpdateAnimator()

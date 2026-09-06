@@ -34,6 +34,10 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenPause()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (pausePanel == null) return;
 
         isPaused = true;
@@ -43,6 +47,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (pausePanel == null) return;
 
         isPaused = false;
@@ -52,6 +60,11 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToMainMenu()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
+
         isPaused = false;
         Pause.ForceResume();
         UIHandler.CloseWindow(pausePanel);

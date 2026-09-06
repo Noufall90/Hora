@@ -381,5 +381,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - groupIDs: []
-    clips: []
+  - groupIDs:
+    - Button
+    clips:
+    - {fileID: 8300000, guid: 5cde76a0f3bafcd4498e03d01de9ef99, type: 3}
+  - groupIDs:
+    - Sword
+    clips:
+    - {fileID: 8300000, guid: 9be9e731e047adb449371ac439eb8c18, type: 3}
+    - {fileID: 8300000, guid: c3beb45c7c67a534fbce28c99b88ba24, type: 3}
+    - {fileID: 8300000, guid: 09e989d99241a1e44b9debcbe9f175b9, type: 3}
+  - groupIDs:
+    - Shoot
+    clips:
+    - {fileID: 8300000, guid: 4cc115b30fbf7864186b51f3896ed91a, type: 3}
+  - groupIDs:
+    - Footstep
+    clips:
+    - {fileID: 8300000, guid: 99d29f77366e9dc46bf819f221e64503, type: 3}
+  - groupIDs:
+    - Sheild_Damage
+    clips:
+    - {fileID: 8300000, guid: 8192eb424f6e2664e9c927dde64d8326, type: 3}
+  - groupIDs:
+    - Bomb_Launch
+    clips:
+    - {fileID: 8300000, guid: 9619aa65567f1c147a58f705b8c858cd, type: 3}
+  - groupIDs:
+    - Bomb_Explosion
+    clips:
+    - {fileID: 8300000, guid: 9ce04b247c04681469e96ce1199a6a59, type: 3}
+  - groupIDs:
+    - Robot_Hit
+    clips:
+    - {fileID: 8300000, guid: e811ce0c685de2449862b86b0144c2f7, type: 3}
+  - groupIDs:
+    - Death_Robot
+    clips:
+    - {fileID: 8300000, guid: 8bc6498f1a1b49e4fbd6b3552f952da0, type: 3}

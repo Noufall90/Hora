@@ -86,7 +86,7 @@ namespace PlayerData
         {
             if (currentHealth <= 0) return;
 
-            _regenTimer = 0f; // Reset delay regen setiap kali terkena damage
+            _regenTimer = 0f;
 
             float remainingDamage = amount;
 
@@ -102,6 +102,11 @@ namespace PlayerData
                     remainingDamage -= _currentShieldPower;
                     _currentShieldPower = 0f;
                     OnShieldBroken?.Invoke();
+                }
+
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlaySound2D("Sheild_Damage");
                 }
 
                 UpdateShieldVisual();

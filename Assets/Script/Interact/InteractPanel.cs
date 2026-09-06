@@ -48,6 +48,10 @@ public class InteractPanel : MonoBehaviour
 
     public void OpenPanel()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (openPanel == null) return;
 
         isOpen = true;
@@ -56,6 +60,10 @@ public class InteractPanel : MonoBehaviour
 
     public void ClosePanel()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
         if (openPanel == null) return;
 
         isOpen = false;
