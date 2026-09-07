@@ -346,17 +346,36 @@ namespace PlayerWeapons
         {
             if (!_isMeleeAttacking) return;
 
-            Transform checkOrigin = meleeCollider != null ? meleeCollider.transform : transform;
-            Vector3 center = checkOrigin.position + checkOrigin.forward * 1.0f + Vector3.up * 0.5f;
-
-            int enemyLayerMask = LayerMask.GetMask("Enemy");
-            Collider[] overlaps = enemyLayerMask != 0 
-                ? Physics.OverlapSphere(center, 2.0f, enemyLayerMask) 
-                : Physics.OverlapSphere(center, 2.0f);
-
-            foreach (var col in overlaps)
+            if (meleeCollider is BoxCollider box)
             {
-                ProcessMeleeHit(col);
+                Vector3 center = box.transform.TransformPoint(box.center);
+                Vector3 halfExtents = Vector3.Scale(box.size, box.transform.lossyScale) * 0.5f;
+                Quaternion orientation = box.transform.rotation;
+
+                int enemyLayerMask = LayerMask.GetMask("Enemy");
+                Collider[] overlaps = enemyLayerMask != 0 
+                    ? Physics.OverlapBox(center, halfExtents, orientation, enemyLayerMask) 
+                    : Physics.OverlapBox(center, halfExtents, orientation);
+
+                foreach (var col in overlaps)
+                {
+                    ProcessMeleeHit(col);
+                }
+            }
+            else
+            {
+                Vector3 center = meleeCollider != null ? meleeCollider.bounds.center : transform.position + transform.forward;
+                float radius = meleeCollider != null ? meleeCollider.bounds.extents.magnitude * 0.5f : 1.0f;
+
+                int enemyLayerMask = LayerMask.GetMask("Enemy");
+                Collider[] overlaps = enemyLayerMask != 0 
+                    ? Physics.OverlapSphere(center, radius, enemyLayerMask) 
+                    : Physics.OverlapSphere(center, radius);
+
+                foreach (var col in overlaps)
+                {
+                    ProcessMeleeHit(col);
+                }
             }
         }
 

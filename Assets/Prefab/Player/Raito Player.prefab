@@ -936,7 +936,7 @@ MonoBehaviour:
   autoAimFov: 70
   autoAimMaxDistance: 18
   enableMeleeAutoAim: 1
-  meleeAutoAimFov: 120
+  meleeAutoAimFov: 140
   meleeAutoAimMaxDistance: 3
   weaponsManager: {fileID: 6629220465977109419}
 --- !u!65 &1943724071381680637
