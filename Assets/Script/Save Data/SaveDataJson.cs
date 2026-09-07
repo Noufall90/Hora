@@ -339,11 +339,12 @@ public class SaveDataJson : MonoBehaviour
         InventoryManager.Instance.equippedMeleeItem = null;
         InventoryManager.Instance.equippedPistolItem = null;
 
-        Item[] meleeItems = Resources.LoadAll<Item>("ScriptableObject/Meele");
-        Item[] pistolItems = Resources.LoadAll<Item>("ScriptableObject/Pistol");
-        Item[] allItems = new Item[meleeItems.Length + pistolItems.Length];
-        meleeItems.CopyTo(allItems, 0);
-        pistolItems.CopyTo(allItems, meleeItems.Length);
+        Item[] allItems = InventoryManager.Instance.AllItems;
+        if (allItems == null || allItems.Length == 0)
+        {
+            Debug.LogError("[SaveDataJson] Item Database belum di-assign di Inspector!");
+            return;
+        }
 
         foreach (string savedName in Data.inventoryItemNames)
         {
@@ -354,7 +355,7 @@ public class SaveDataJson : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"[SaveDataJson] Item '{savedName}' tidak ditemukan di Resources/Items/");
+                Debug.LogWarning($"[SaveDataJson] Item '{savedName}' tidak ditemukan di Item Database.");
             }
         }
 
@@ -386,7 +387,13 @@ public class SaveDataJson : MonoBehaviour
         if (InventoryPotionManager.Instance == null || Data == null) return;
 
         InventoryPotionManager.Instance.potionItems.Clear();
-        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("ScriptableObject/Potion");
+
+        PotionItem[] allPotions = InventoryPotionManager.Instance.AllPotions;
+        if (allPotions == null || allPotions.Length == 0)
+        {
+            Debug.LogError("[SaveDataJson] Potion Database belum di-assign di Inspector!");
+            return;
+        }
 
         foreach (PotionSaveEntry entry in Data.potionInventory)
         {
@@ -400,7 +407,7 @@ public class SaveDataJson : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"[SaveDataJson] PotionItem '{entry.potionName}' tidak ditemukan di Resources/Potions/");
+                Debug.LogWarning($"[SaveDataJson] PotionItem '{entry.potionName}' tidak ditemukan di Potion Database.");
             }
         }
 

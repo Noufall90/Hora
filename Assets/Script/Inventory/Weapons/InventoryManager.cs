@@ -31,6 +31,10 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryItem;
     public List<Item> items = new List<Item>();
 
+    [Header("Item Database")]
+    [SerializeField] private Item[] itemDatabase;
+    public Item[] AllItems => itemDatabase;
+
     [Header("Desc Item UI")]
     public TMP_Text itemName;
     public TMP_Text itemDescription;
@@ -82,11 +86,12 @@ public class InventoryManager : MonoBehaviour
         equippedMeleeItem = null;
         equippedPistolItem = null;
 
-        Item[] meleeItems = Resources.LoadAll<Item>("ScriptableObject/Meele");
-        Item[] pistolItems = Resources.LoadAll<Item>("ScriptableObject/Pistol");
-        Item[] allItems = new Item[meleeItems.Length + pistolItems.Length];
-        meleeItems.CopyTo(allItems, 0);
-        pistolItems.CopyTo(allItems, meleeItems.Length);
+        Item[] allItems = itemDatabase;
+        if (allItems == null || allItems.Length == 0)
+        {
+            Debug.LogError("[InventoryManager] Item Database belum di-assign di Inspector!");
+            return;
+        }
 
         foreach (string savedName in data.inventoryItemNames)
         {
@@ -97,7 +102,7 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"[InventoryManager] Item '{savedName}' tidak ditemukan di Resources/Items/");
+                Debug.LogWarning($"[InventoryManager] Item '{savedName}' tidak ditemukan di Item Database.");
             }
         }
 

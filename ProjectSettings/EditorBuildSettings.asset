@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay/MainMenu.unity
     guid: 29fec1e5a96253d4ab729601809cbb59
   - enabled: 1
+    path: Assets/Scenes/Gameplay/Opening.unity
+    guid: fa4ceacf25dd5ca44944f1024b45503a
+  - enabled: 1
     path: Assets/Scenes/Gameplay/Home.unity
     guid: a9626731e03bd03409bf2f3da37df651
   - enabled: 1
@@ -59,4 +62,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Aeris/Boss Aeris.unity
     guid: f859579919439724b8174b409f06df9b
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Credit.unity
+    guid: c2be1bc6ef6f49141962790004aac32d
   m_configObjects: {}

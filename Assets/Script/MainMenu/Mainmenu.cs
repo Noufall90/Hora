@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button newGameButton;
 
     [Header("Scene Settings")]
-    [SerializeField] private string gameScene = "GameScene";
+    [SerializeField] private string gameScene = "CutScene";
 
     [Header("Transition Settings")]
     [SerializeField] private TransitionSettings transition;
@@ -114,11 +114,6 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        PointLocation.SetSpawnTarget(
-            targetSpawnID,
-            SceneManager.GetActiveScene().name
-        );
-
         LoadGameScene();
     }
 
@@ -159,7 +154,7 @@ public class MainMenu : MonoBehaviour
             SceneManager.GetActiveScene().name
         );
 
-        LoadGameScene();
+        LoadHomeScene();
     }
 
     private void LoadGameScene()
@@ -174,6 +169,7 @@ public class MainMenu : MonoBehaviour
                 transition,
                 startDelay
             );
+
             return;
         }
 
@@ -189,7 +185,32 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        Debug.LogError("[MainMenu] Game Scene belum diisi!");
+        Debug.LogError("[MainMenu] CutScene belum diisi!");
+    }
+
+    private void LoadHomeScene()
+    {
+        if (isLoading) return;
+        isLoading = true;
+
+        if (transition != null && TransitionManager.Instance() != null)
+        {
+            TransitionManager.Instance().Transition(
+                "Home",
+                transition,
+                startDelay
+            );
+
+            return;
+        }
+
+        if (SceneLoader.Instance != null)
+        {
+            SceneLoader.Instance.LoadScene("Home");
+            return;
+        }
+
+        SceneManager.LoadScene("Home");
     }
 
     public void OpenSettings()

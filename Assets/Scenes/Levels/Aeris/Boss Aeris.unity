@@ -5313,7 +5313,7 @@ MonoBehaviour:
   quadObject: {fileID: 1611727309}
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 0.5
-  sceneName: PortalMap
+  sceneName: Credit
   targetSpawnID: 
 --- !u!1 &969485377
 GameObject:

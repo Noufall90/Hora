@@ -248,6 +248,33 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 3183374de76a570409e66b17b762b4d4, type: 2}
   - {fileID: 11400000, guid: 76764b16e77105248b29123fdd7891dc, type: 2}
+  itemDatabase:
+  - {fileID: 11400000, guid: 1f1bb9bde610ad14e908be1f1ffc3cb8, type: 2}
+  - {fileID: 11400000, guid: 8d3d88c3d595aa64aa0f00f7c8b29f21, type: 2}
+  - {fileID: 11400000, guid: 126dc01b877b14848b82bc3cb07580c4, type: 2}
+  - {fileID: 11400000, guid: 3183374de76a570409e66b17b762b4d4, type: 2}
+  - {fileID: 11400000, guid: 8ea3c080848b5bc40b0b6cd71846f397, type: 2}
+  - {fileID: 11400000, guid: 467fbad9af3e0d7489be41cc17f646d3, type: 2}
+  - {fileID: 11400000, guid: a57025e3f94a78849a45816c709cd13d, type: 2}
+  - {fileID: 11400000, guid: 52593dea60709de419343dacb38e000c, type: 2}
+  - {fileID: 11400000, guid: ce311147d42b7294d9d4e4f5e57a527a, type: 2}
+  - {fileID: 11400000, guid: a514b6167102b4843b0a3a69ce0a5d00, type: 2}
+  - {fileID: 11400000, guid: 449a0d5b969e0ae4b80eea2d679fff7c, type: 2}
+  - {fileID: 11400000, guid: df1ff952919e1e049b4cf2f5d98dede2, type: 2}
+  - {fileID: 11400000, guid: 83cb17b8360b9664f9b3ac22d2856e23, type: 2}
+  - {fileID: 11400000, guid: e23262332f6369645b95086102bb280f, type: 2}
+  - {fileID: 11400000, guid: 5226bed53f032e94a9e1fe8e65a145a5, type: 2}
+  - {fileID: 11400000, guid: 06feeb59a8ba8da4198fd51c5e4eeb6e, type: 2}
+  - {fileID: 11400000, guid: 76764b16e77105248b29123fdd7891dc, type: 2}
+  - {fileID: 11400000, guid: 3a260e459db11fa4eaee3c6d5d2e0287, type: 2}
+  - {fileID: 11400000, guid: 3dd968dd50e0c4342905028d05648722, type: 2}
+  - {fileID: 11400000, guid: ad17ca1372714cc47bd3c8a8b299d225, type: 2}
+  - {fileID: 11400000, guid: 148226cc3ec830b4fbc459c905a1d50f, type: 2}
+  - {fileID: 11400000, guid: 7d66ca4213080304482b4d439e592be1, type: 2}
+  - {fileID: 11400000, guid: b69bb80d3c943f240b7b8b75ae5817d9, type: 2}
+  - {fileID: 11400000, guid: 42d0760d70f4677469efe3f02075752b, type: 2}
+  - {fileID: 11400000, guid: dee05e1cafaf3b04b87bc41b926e51c5, type: 2}
+  - {fileID: 11400000, guid: 2f90ca0cce561c243bf1105e5b4af5e0, type: 2}
   itemName: {fileID: 8360186284828109828}
   itemDescription: {fileID: 6021465493896768931}
   itemStats: {fileID: 5214058514864244274}
@@ -3392,6 +3419,8 @@ MonoBehaviour:
   runSpeed: 4
   rollSpeed: 6
   rollDuration: 0.5
+  walkFootstepInterval: 0.5
+  runFootstepInterval: 0.25
 --- !u!114 &7025965451290780903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7272,6 +7301,11 @@ MonoBehaviour:
   potionInventoryItem: {fileID: 5266528622500433944, guid: f702230ff90345f4492aefdb22a43d29,
     type: 3}
   potionItems: []
+  potionDatabase:
+  - {fileID: 11400000, guid: f0a5145d5a3297a47b151562e08b1046, type: 2}
+  - {fileID: 11400000, guid: 9ac40548eecd89848a2e99eff7818544, type: 2}
+  - {fileID: 11400000, guid: 7b1f06f02719c12458fe981eff8a4018, type: 2}
+  - {fileID: 11400000, guid: d34ab58d82aa27e469242534badc6467, type: 2}
   potionName: {fileID: 8360186284828109828}
   potionDescription: {fileID: 6021465493896768931}
   potionStats: {fileID: 5214058514864244274}

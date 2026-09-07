@@ -31,6 +31,10 @@ public class InventoryPotionManager : MonoBehaviour
     public GameObject potionInventoryItem;
     public List<PotionItem> potionItems = new List<PotionItem>();
 
+    [Header("Potion Database")]
+    [SerializeField] private PotionItem[] potionDatabase;
+    public PotionItem[] AllPotions => potionDatabase;
+
     [Header("Potion Desc UI")]
     public TMP_Text potionName;
     public TMP_Text potionDescription;
@@ -78,7 +82,12 @@ public class InventoryPotionManager : MonoBehaviour
         GameSaveData data = SaveDataJson.Instance.Data;
         potionItems.Clear();
 
-        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("ScriptableObject/Potion");
+        PotionItem[] allPotions = potionDatabase;
+        if (allPotions == null || allPotions.Length == 0)
+        {
+            Debug.LogError("[InventoryPotionManager] Potion Database belum di-assign di Inspector!");
+            return;
+        }
 
         foreach (PotionSaveEntry entry in data.potionInventory)
         {
@@ -92,7 +101,7 @@ public class InventoryPotionManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"[InventoryPotionManager] PotionItem '{entry.potionName}' tidak ditemukan di Resources/Potions/");
+                Debug.LogWarning($"[InventoryPotionManager] PotionItem '{entry.potionName}' tidak ditemukan di Potion Database.");
             }
         }
 

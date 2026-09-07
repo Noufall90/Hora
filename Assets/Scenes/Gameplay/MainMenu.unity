@@ -7995,8 +7995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   continueButton: {fileID: 60817250}
-  newGameButton: {fileID: 1078189071}
-  gameScene: Home
+  newGameButton: {fileID: 2090095085}
+  gameScene: Opening
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 0.5
   targetSpawnID: HomePointMain
