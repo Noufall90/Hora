@@ -38,6 +38,28 @@ public class DialogueDefault : MonoBehaviour
 
     private bool playerInRange = false;
 
+    private void OnEnable()
+    {
+        playerInRange = false;
+
+        if (colTrigger != null && colTrigger.enabled)
+        {
+            Collider[] overlaps = Physics.OverlapBox(
+                colTrigger.bounds.center,
+                colTrigger.bounds.extents
+            );
+
+            foreach (var col in overlaps)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    playerInRange = true;
+                    break;
+                }
+            }
+        }
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -107,14 +129,9 @@ public class DialogueDefault : MonoBehaviour
             return;
         }
 
-        if (playerInRange &&
-            Input.GetKeyDown(KeyCode.E) &&
-            !isDialogueActive)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isDialogueActive)
         {
-            Dialogue targetDialogue =
-                dialogueTrigger != null
-                    ? dialogueTrigger.DialogueData
-                    : null;
+            Dialogue targetDialogue = dialogueTrigger != null ? dialogueTrigger.DialogueData : null;
 
             if (targetDialogue != null)
             {
@@ -150,9 +167,7 @@ public class DialogueDefault : MonoBehaviour
             dialogue = dialogueTrigger.DialogueData;
         }
 
-        if (dialogue == null ||
-            dialogue.dialogueLines == null ||
-            dialogue.dialogueLines.Count == 0)
+        if (dialogue == null || dialogue.dialogueLines == null || dialogue.dialogueLines.Count == 0)
         {
             return;
         }
@@ -262,7 +277,6 @@ public class DialogueDefault : MonoBehaviour
 
         if (playerAnimator != null)
         {
-            playerAnimator.SetBool("Idle", true);
             playerAnimator.SetTrigger("IsTalking");
         }
     }
@@ -271,7 +285,7 @@ public class DialogueDefault : MonoBehaviour
     {
         if (playerAnimator != null)
         {
-            playerAnimator.SetBool("Idle", false);
+            playerAnimator.SetBool("IsIdle", true);
         }
 
         Cursor.lockState = previousCursorLockState;

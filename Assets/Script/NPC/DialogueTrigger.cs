@@ -55,7 +55,7 @@ public class DialogueTrigger : MonoBehaviour
             quadObject.SetActive(false);
         }
 
-        if (DialogueManager.Instance != null)
+        if (DialogueManager.Instance != null && DialogueManager.Instance.gameObject.activeInHierarchy)
         {
             DialogueManager.Instance.StartDialogue(dialogue);
             return;
@@ -70,6 +70,7 @@ public class DialogueTrigger : MonoBehaviour
     private bool IsDialogueActive()
     {
         if (DialogueManager.Instance != null &&
+            DialogueManager.Instance.gameObject.activeInHierarchy &&
             DialogueManager.Instance.isDialogueActive)
         {
             return true;
@@ -117,6 +118,7 @@ public class DialogueTrigger : MonoBehaviour
     public void DisplayNextDialogueLine()
     {
         if (DialogueManager.Instance != null &&
+            DialogueManager.Instance.gameObject.activeInHierarchy &&
             DialogueManager.Instance.isDialogueActive)
         {
             DialogueManager.Instance.DisplayNextDialogueLine();

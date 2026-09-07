@@ -15267,6 +15267,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 1.2153645
       objectReference: {fileID: 0}
+    - target: {fileID: 5966081097738493504, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
+        type: 3}
+      propertyPath: headWeight
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7711720561629468175, guid: 97e09ba3c5995cd4bad43a7a0f024d13,
         type: 3}
       propertyPath: m_Name
@@ -24133,7 +24138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &945259640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44878,7 +44883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5b3fdd292814438bb2f329121741a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcId: 
   dialogueTrigger: {fileID: 1684429463}
   dialogueDefault: {fileID: 945259640}
   nextButton: {fileID: 1069800355}

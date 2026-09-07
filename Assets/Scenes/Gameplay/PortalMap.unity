@@ -940,8 +940,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
-  headWeight: 1
-  bodyWeight: 0.5
+  headWeight: 0.2
+  bodyWeight: 0.1
   smoothSpeed: 3
 --- !u!65 &119538575
 BoxCollider:
@@ -12176,7 +12176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1838627404
 Transform:
   m_ObjectHideFlags: 0
@@ -12699,7 +12699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5b3fdd292814438bb2f329121741a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcId: 
   dialogueTrigger: {fileID: 1995296614}
   dialogueDefault: {fileID: 1838627407}
   nextButton: {fileID: 2042990683}
