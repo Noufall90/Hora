@@ -1804,7 +1804,7 @@ MonoBehaviour:
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 0.5
   sceneName: PortalMap
-  targetSpawnID: 
+  targetSpawnID: PortalPoint
 --- !u!1 &525764326
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,7 +4190,7 @@ Transform:
   m_GameObject: {fileID: 1085403088}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 29.7, y: 0.01, z: -3.64}
+  m_LocalPosition: {x: 29.7, y: 0.01, z: -3.29}
   m_LocalScale: {x: 45.351105, y: 45.351105, z: 45.351105}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4738,13 +4738,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203544114}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.58560735, y: -0.39631334, z: -0.3963132, w: 0.5856071}
-  m_LocalPosition: {x: 37.05, y: -0.46, z: 5.64}
+  m_LocalRotation: {x: -0.46307975, y: -0.53437567, z: -0.53437555, w: 0.46307954}
+  m_LocalPosition: {x: 37, y: -0.46, z: 5.435}
   m_LocalScale: {x: 45.351105, y: 45.351105, z: 45.351105}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1160260903}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -68.177}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -98.177}
 --- !u!64 &1203544116
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7635,7 +7635,7 @@ Transform:
   m_GameObject: {fileID: 2031730601}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 31.88, y: 0.03, z: -3.41}
+  m_LocalPosition: {x: 31.88, y: 0.03, z: -2.95}
   m_LocalScale: {x: 45.351105, y: 45.351105, z: 45.351105}
   m_ConstrainProportionsScale: 0
   m_Children: []

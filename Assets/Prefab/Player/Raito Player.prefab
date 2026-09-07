@@ -958,8 +958,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 4, z: 3.41178}
-  m_Center: {x: 0, y: 1.5355258, z: 1.6520878}
+  m_Size: {x: 2.5, y: 4, z: 2.464922}
+  m_Center: {x: 0, y: 1.5355258, z: 1.1786587}
 --- !u!1 &551749906767912689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4693,7 +4693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 6314290399832118579}
-  InteractRange: 1.5
+  InteractRange: 1.3
 --- !u!1 &6427735325714513757
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,24 @@ public class SceneVerfied : MonoBehaviour
     {
         SetVerified(levelKey, true, true);
 
+        if (SaveDataJson.Instance != null)
+        {
+            LevelSaveEntry existing = SaveDataJson.Instance.Data.levelStates.Find(x => x.key == levelKey);
+            if (existing != null)
+            {
+                existing.isUnlocked = true;
+            }
+            else
+            {
+                SaveDataJson.Instance.Data.levelStates.Add(new LevelSaveEntry
+                {
+                    key = levelKey,
+                    isUnlocked = true
+                });
+            }
+            SaveDataJson.Instance.SaveGame();
+        }
+
         if (interactScene != null)
         {
             interactScene.gameObject.SetActive(true);
@@ -52,7 +70,7 @@ public class SceneVerfied : MonoBehaviour
             interactScenePanel.enabled = true;
         }
 
-        Debug.Log($"[SceneVerfied] Level '{levelKey}' berhasil diverifikasi dan disimpan ke PlayerPrefs.");
+        Debug.Log($"[SceneVerfied] Level '{levelKey}' berhasil diverifikasi dan disimpan ke PlayerPrefs & SaveData.");
     }
 
     public void VerifyAndLoadScene()

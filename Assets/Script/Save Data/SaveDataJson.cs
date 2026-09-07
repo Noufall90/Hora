@@ -45,6 +45,9 @@ public class GameSaveData
 
     public string lastSavedScene;
     public string saveTimestamp;
+
+    public int playerHealth;
+    public int playerMaxHealth;
 }
 
 public static class DialogueSaveRegistry
@@ -115,6 +118,7 @@ public class SaveDataJson : MonoBehaviour
         CollectBuyPotionData();
         CollectLevelData();
         CollectDialogueData();
+        CollectHealthData();
 
         Data.lastSavedScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         Data.saveTimestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -123,7 +127,6 @@ public class SaveDataJson : MonoBehaviour
         {
             string json = JsonUtility.ToJson(Data, true);
             File.WriteAllText(SavePath, json);
-            Debug.Log($"[SaveDataJson] Game berhasil disimpan ke: {SavePath}");
         }
         catch (Exception ex)
         {
@@ -261,6 +264,15 @@ public class SaveDataJson : MonoBehaviour
         }
     }
 
+    private void CollectHealthData()
+    {
+        if (PlayerData.PlayerHealth.Instance != null)
+        {
+            Data.playerHealth = PlayerData.PlayerHealth.Instance.CurrentHealth;
+            Data.playerMaxHealth = PlayerData.PlayerHealth.Instance.MaxHealth;
+        }
+    }
+
     // ─────────────────────────────────────────────────────────────────────────
     //  LOAD SYSTEM
     // ─────────────────────────────────────────────────────────────────────────
@@ -269,7 +281,6 @@ public class SaveDataJson : MonoBehaviour
     {
         if (!HasSaveFile)
         {
-            Debug.LogWarning("[SaveDataJson] File save tidak ditemukan. Menggunakan data default.");
             Data = new GameSaveData();
             return;
         }
@@ -281,7 +292,6 @@ public class SaveDataJson : MonoBehaviour
 
             if (Data == null)
             {
-                Debug.LogError("[SaveDataJson] Gagal parse JSON. Membuat data baru.");
                 Data = new GameSaveData();
                 return;
             }
@@ -320,7 +330,7 @@ public class SaveDataJson : MonoBehaviour
         ApplyInventoryData();
         ApplyPotionInventoryData();
         ApplyLevelData();
-        Debug.Log("[SaveDataJson] Data save berhasil diterapkan ke scene.");
+        ApplyHealthData();
     }
 
     private void ApplyCoinData()
@@ -425,6 +435,23 @@ public class SaveDataJson : MonoBehaviour
             {
                 sl.CheckAndApplyLevelState();
             }
+        }
+    }
+
+    private void ApplyHealthData()
+    {
+        if (PlayerData.PlayerHealth.Instance == null || Data == null) return;
+
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (currentScene == "Home" || currentScene == "PortalMap")
+        {
+            PlayerData.PlayerHealth.Instance.ResetToFull();
+            return;
+        }
+
+        if (Data.playerHealth > 0 && Data.playerMaxHealth > 0)
+        {
+            PlayerData.PlayerHealth.Instance.SetHealth(Data.playerHealth, Data.playerMaxHealth);
         }
     }
 

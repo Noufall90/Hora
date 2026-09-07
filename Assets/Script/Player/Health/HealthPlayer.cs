@@ -5,12 +5,17 @@ namespace PlayerData
 {
     public class PlayerHealth : Health
     {
+        public static PlayerHealth Instance { get; private set; }
+
         [Header("Shield Settings")]
         [SerializeField] private Animator _animator;
         [SerializeField] private GameObject shieldVisual;
         [SerializeField] private float sheildPower = 100f;
         [SerializeField] private float sheildPowerRegenRate = 20f;
         [SerializeField] private float shieldRegenDelay = 3f;
+        private const string HealthKey = "PlayerHealth";
+        private const string MaxHealthKey = "PlayerMaxHealth";
+        private static bool hasPersistentHealth;
 
         private float _currentShieldPower;
         private float _regenTimer;
@@ -25,15 +30,68 @@ namespace PlayerData
         public float MaxShield => sheildPower;
         public bool IsShieldActive => _currentShieldPower > 0;
 
+        private bool _hasLoadedHealth = false;
+
         protected override void OnEnable()
         {
-            base.OnEnable();
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+
+            if (hasPersistentHealth)
+            {
+                maxHealth = PlayerPrefs.GetInt(MaxHealthKey, maxHealth);
+                currentHealth = PlayerPrefs.GetInt(HealthKey, maxHealth);
+                _hasLoadedHealth = true;
+            }
+            else
+            {
+                currentHealth = maxHealth;
+            }
+
             _currentShieldPower = sheildPower;
             _regenTimer = shieldRegenDelay;
+
             ResetDissolveValue();
             UpdateShieldVisual();
+
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
             OnShieldChanged?.Invoke(_currentShieldPower, sheildPower);
+        }
+
+        public void SaveHealth()
+        {
+            PlayerPrefs.SetInt(HealthKey, currentHealth);
+            PlayerPrefs.SetInt(MaxHealthKey, maxHealth);
+            PlayerPrefs.Save();
+
+            hasPersistentHealth = true;
+        }
+
+        public void SetHealth(int health, int max)
+        {
+            maxHealth = max;
+            currentHealth = Mathf.Clamp(health, 0, maxHealth);
+            _hasLoadedHealth = true;
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        }
+
+        public void ResetToFull()
+        {
+            currentHealth = maxHealth;
+            _hasLoadedHealth = false;
+
+            hasPersistentHealth = true;
+
+            PlayerPrefs.SetInt(HealthKey, maxHealth);
+            PlayerPrefs.SetInt(MaxHealthKey, maxHealth);
+            PlayerPrefs.Save();
+
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
 
         private void ResetDissolveValue()
@@ -118,6 +176,8 @@ namespace PlayerData
                 base.TakeDamage((int)remainingDamage);
                 OnHealthChanged?.Invoke(currentHealth, maxHealth);
             }
+
+            SaveHealth();
         }
 
         public void TakeDirectHealthDamage(int amount)
@@ -126,14 +186,18 @@ namespace PlayerData
 
             base.TakeDamage(amount);
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
-        }
 
+            SaveHealth();
+        }
         public void Heal(int amount)
         {
             if (currentHealth <= 0) return;
 
             currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+            SaveHealth();
         }
 
         public void AddShield(float amount)
@@ -224,6 +288,14 @@ namespace PlayerData
             }
 
             base.Die();
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
         }
     }
 }

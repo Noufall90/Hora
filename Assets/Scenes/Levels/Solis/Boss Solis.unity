@@ -548,7 +548,7 @@ MonoBehaviour:
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 0.5
   sceneName: PortalMap
-  targetSpawnID: 
+  targetSpawnID: PortalPoint
 --- !u!1 &158461847
 GameObject:
   m_ObjectHideFlags: 0
