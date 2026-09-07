@@ -28,6 +28,7 @@ public class DialogueSaveEntry
 public class GameSaveData
 {
     public int totalCoin;
+    public bool tutorialCompleted;
 
     public List<string> inventoryItemNames = new List<string>();
     public string equippedMeleeName;
@@ -338,7 +339,11 @@ public class SaveDataJson : MonoBehaviour
         InventoryManager.Instance.equippedMeleeItem = null;
         InventoryManager.Instance.equippedPistolItem = null;
 
-        Item[] allItems = Resources.LoadAll<Item>("Items");
+        Item[] meleeItems = Resources.LoadAll<Item>("ScriptableObject/Meele");
+        Item[] pistolItems = Resources.LoadAll<Item>("ScriptableObject/Pistol");
+        Item[] allItems = new Item[meleeItems.Length + pistolItems.Length];
+        meleeItems.CopyTo(allItems, 0);
+        pistolItems.CopyTo(allItems, meleeItems.Length);
 
         foreach (string savedName in Data.inventoryItemNames)
         {
@@ -381,7 +386,7 @@ public class SaveDataJson : MonoBehaviour
         if (InventoryPotionManager.Instance == null || Data == null) return;
 
         InventoryPotionManager.Instance.potionItems.Clear();
-        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("Potions");
+        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("ScriptableObject/Potion");
 
         foreach (PotionSaveEntry entry in Data.potionInventory)
         {
@@ -458,6 +463,18 @@ public class SaveDataJson : MonoBehaviour
         SaveGame();
     }
 
+    public bool IsTutorialCompleted()
+    {
+        return Data != null && Data.tutorialCompleted;
+    }
+
+    public void MarkTutorialCompleted()
+    {
+        if (Data == null) Data = new GameSaveData();
+        Data.tutorialCompleted = true;
+        SaveGame();
+    }
+
     public void ResetData()
     {
         if (File.Exists(SavePath))
@@ -476,10 +493,9 @@ public class SaveDataJson : MonoBehaviour
         if (array == null || string.IsNullOrEmpty(assetName)) return null;
         foreach (T obj in array)
         {
-            if (obj != null && obj.name == assetName)
-            {
-                return obj;
-            }
+            if (obj == null) continue;
+            if (obj.name == assetName) return obj;
+            if (obj is Item item && item.itemName == assetName) return obj;
         }
         return null;
     }

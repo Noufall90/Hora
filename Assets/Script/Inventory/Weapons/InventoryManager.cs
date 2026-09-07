@@ -82,7 +82,11 @@ public class InventoryManager : MonoBehaviour
         equippedMeleeItem = null;
         equippedPistolItem = null;
 
-        Item[] allItems = Resources.LoadAll<Item>("Items");
+        Item[] meleeItems = Resources.LoadAll<Item>("ScriptableObject/Meele");
+        Item[] pistolItems = Resources.LoadAll<Item>("ScriptableObject/Pistol");
+        Item[] allItems = new Item[meleeItems.Length + pistolItems.Length];
+        meleeItems.CopyTo(allItems, 0);
+        pistolItems.CopyTo(allItems, meleeItems.Length);
 
         foreach (string savedName in data.inventoryItemNames)
         {
@@ -125,7 +129,8 @@ public class InventoryManager : MonoBehaviour
         if (array == null || string.IsNullOrEmpty(assetName)) return null;
         foreach (Item item in array)
         {
-            if (item != null && item.name == assetName) return item;
+            if (item != null && (item.name == assetName || item.itemName == assetName))
+                return item;
         }
         return null;
     }
@@ -257,12 +262,23 @@ public class InventoryManager : MonoBehaviour
             Debug.Log($"[InventoryManager] Item '{item.itemName}' ditambahkan ke list! Total item: {items.Count}");
             ListItems();
 
-            // Auto-save item baru
             if (SaveDataJson.Instance != null)
             {
                 SaveDataJson.Instance.SaveGame();
             }
         }
+    }
+
+    public void OpenInventory(GameObject inventoryPanel)
+    {
+        UIHandler.OpenWindow(inventoryPanel, false);
+    }
+
+    public void CloseInventory(GameObject inventoryPanel)
+    {
+        if (!inventoryPanel.activeSelf) return;
+
+        UIHandler.CloseWindow(inventoryPanel);
     }
 
     public void ListItems()

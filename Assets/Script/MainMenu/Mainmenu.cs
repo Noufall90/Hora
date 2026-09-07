@@ -25,6 +25,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject helpMenu;
 
+    private bool isLoading;
+
     private string SavePath
     {
         get
@@ -79,11 +81,17 @@ public class MainMenu : MonoBehaviour
 
             return;
         }
+
         ExecuteNewGame();
     }
 
     public void ExecuteNewGame()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
+
         if (confirmNewGamePanel != null)
             confirmNewGamePanel.SetActive(false);
 
@@ -116,7 +124,10 @@ public class MainMenu : MonoBehaviour
 
     public void CancelNewGame()
     {
-        Debug.Log("[MainMenu] New Game dibatalkan.");
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySound2D("Button");
+        }
 
         if (confirmNewGamePanel != null)
             confirmNewGamePanel.SetActive(false);
@@ -153,17 +164,16 @@ public class MainMenu : MonoBehaviour
 
     private void LoadGameScene()
     {
-        Debug.Log($"[MainMenu] Loading scene: {gameScene}");
+        if (isLoading) return;
+        isLoading = true;
 
-        if (TransitionManager.Instance() != null &&
-            transition != null)
+        if (transition != null && TransitionManager.Instance() != null)
         {
             TransitionManager.Instance().Transition(
                 gameScene,
                 transition,
                 startDelay
             );
-
             return;
         }
 
@@ -178,6 +188,8 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(gameScene);
             return;
         }
+
+        Debug.LogError("[MainMenu] Game Scene belum diisi!");
     }
 
     public void OpenSettings()
@@ -186,6 +198,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         if (settingsMenu != null)
             settingsMenu.SetActive(true);
     }
@@ -196,6 +209,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         if (settingsMenu != null)
             settingsMenu.SetActive(false);
     }
@@ -206,6 +220,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         if (helpMenu != null)
             helpMenu.SetActive(true);
     }
@@ -216,6 +231,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         if (helpMenu != null)
             helpMenu.SetActive(false);
     }
@@ -226,6 +242,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         if (confirmNewGamePanel != null)
             confirmNewGamePanel.SetActive(true);
     }
@@ -236,6 +253,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         if (confirmNewGamePanel != null)
             confirmNewGamePanel.SetActive(false);
     }
@@ -246,6 +264,7 @@ public class MainMenu : MonoBehaviour
         {
             SoundManager.Instance.PlaySound2D("Button");
         }
+
         Application.Quit();
 
 #if UNITY_EDITOR

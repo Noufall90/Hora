@@ -78,7 +78,7 @@ public class InventoryPotionManager : MonoBehaviour
         GameSaveData data = SaveDataJson.Instance.Data;
         potionItems.Clear();
 
-        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("Potions");
+        PotionItem[] allPotions = Resources.LoadAll<PotionItem>("ScriptableObject/Potion");
 
         foreach (PotionSaveEntry entry in data.potionInventory)
         {
