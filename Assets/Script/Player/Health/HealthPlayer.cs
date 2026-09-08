@@ -204,12 +204,13 @@ namespace PlayerData
         {
             if (amount < 0f)
             {
-                _regenTimer = 0f; // Reset delay regen jika shield dikurangi
+                _regenTimer = 0f;
             }
 
             _currentShieldPower = Mathf.Clamp(_currentShieldPower + amount, 0f, sheildPower);
             UpdateShieldVisual();
             OnShieldChanged?.Invoke(_currentShieldPower, sheildPower);
+            SaveHealth();
         }
 
         private void UpdateShieldVisual()
