@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
-  speed: 30
+  speed: 15
   lifeTime: 1
 --- !u!96 &1702438826596192077
 TrailRenderer:
