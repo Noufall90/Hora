@@ -47,6 +47,8 @@ public class InventoryManager : MonoBehaviour
     public Item equippedMeleeItem;
     public Item equippedPistolItem;
 
+    public bool IsInitialized { get; private set; }
+
     private void Awake()
     {
         if (instance == null)
@@ -73,6 +75,8 @@ public class InventoryManager : MonoBehaviour
         {
             ListItems();
         }
+
+        IsInitialized = true;
     }
 
     // ── Save / Load Integration ───────────────────────────

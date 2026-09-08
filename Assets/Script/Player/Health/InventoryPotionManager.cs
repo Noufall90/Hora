@@ -45,6 +45,8 @@ public class InventoryPotionManager : MonoBehaviour
     public PotionItem selectedPotion;
     public InventoryPotionItemManager selectedSlot;
 
+    public bool IsInitialized { get; private set; }
+
     private void Awake()
     {
         if (instance == null)
@@ -71,6 +73,8 @@ public class InventoryPotionManager : MonoBehaviour
         {
             ListPotions();
         }
+
+        IsInitialized = true;
     }
 
     // ── Save / Load Integration ───────────────────────────

@@ -145,7 +145,7 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectInventoryData()
     {
-        if (InventoryManager.Instance == null) return;
+        if (InventoryManager.Instance == null || !InventoryManager.Instance.IsInitialized) return;
 
         Data.inventoryItemNames.Clear();
         foreach (Item item in InventoryManager.Instance.items)
@@ -167,7 +167,7 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectPotionInventoryData()
     {
-        if (InventoryPotionManager.Instance == null) return;
+        if (InventoryPotionManager.Instance == null || !InventoryPotionManager.Instance.IsInitialized) return;
 
         Dictionary<string, int> counts = new Dictionary<string, int>();
         foreach (PotionItem p in InventoryPotionManager.Instance.potionItems)
@@ -186,7 +186,7 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectBuyMeeleData()
     {
-        if (InventoryManager.Instance == null) return;
+        if (InventoryManager.Instance == null || !InventoryManager.Instance.IsInitialized) return;
 
         foreach (Item item in InventoryManager.Instance.items)
         {
@@ -202,7 +202,7 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectBuyPistolData()
     {
-        if (InventoryManager.Instance == null) return;
+        if (InventoryManager.Instance == null || !InventoryManager.Instance.IsInitialized) return;
 
         foreach (Item item in InventoryManager.Instance.items)
         {
