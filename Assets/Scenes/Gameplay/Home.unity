@@ -5810,7 +5810,7 @@ MonoBehaviour:
   prevButton: {fileID: 124889012}
   useTimer: 1
   isLimitedSwipe: 1
-  autoMoveTime: 5
+  autoMoveTime: 10
   currentIndex: 0
   swipeThreshold: 50
   contentArea: {fileID: 1903591655}
