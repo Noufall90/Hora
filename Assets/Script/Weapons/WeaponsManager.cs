@@ -64,7 +64,7 @@ namespace PlayerWeapons
             return meeleItem;
         }
 
-        public void EquipPistol(int index, bool forceShow = true)
+        public void EquipPistol(int index, bool forceShow = false)
         {
             PistolItem provider = GetPistolProvider();
             if (provider == null || provider.Count == 0)
@@ -118,7 +118,7 @@ namespace PlayerWeapons
             }
         }
 
-        public void EquipMelee(int index, bool forceShow = true)
+        public void EquipMelee(int index, bool forceShow = false)
         {
             MeeleItem provider = GetMeleeProvider();
             if (provider == null || provider.Count == 0)

@@ -212,7 +212,7 @@ namespace Enemy
             Animator anim = GetComponentInChildren<Animator>() ?? GetComponent<Animator>();
             if (anim != null)
             {
-                anim.SetTrigger("Hit");
+                anim.SetBool("Hit", false);
             }
 
             float targetForce = knockbackForce * forceMultiplier;
@@ -368,13 +368,11 @@ namespace Enemy
                 }
             }
 
-            // Garis tepi kiri dan kanan (sudah tergambar oleh loop di atas, tapi kita gambar ulang untuk kepastian)
             Vector3 leftDir = Quaternion.Euler(0f, -halfAngle * Mathf.Rad2Deg, 0f) * forward;
             Vector3 rightDir = Quaternion.Euler(0f, halfAngle * Mathf.Rad2Deg, 0f) * forward;
             Gizmos.DrawLine(position, position + leftDir * range);
             Gizmos.DrawLine(position, position + rightDir * range);
 
-            // Garis tengah (hijau) untuk referensi
             Gizmos.color = Color.green;
             Gizmos.DrawLine(position, position + forward * range);
         }

@@ -38,7 +38,7 @@ public class TutorialManager : MonoBehaviour
             PanelTutorial.SetActive(false);
             return;
         }
-
+        
         nextButton.onClick.AddListener(NextContent);
         prevButton.onClick.AddListener(PreviousContent);
 

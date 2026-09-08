@@ -145,7 +145,8 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectInventoryData()
     {
-        if (InventoryManager.Instance == null || !InventoryManager.Instance.IsInitialized) return;
+        if (InventoryManager.Instance == null) return;
+        InventoryManager.Instance.EnsureInitialized();
 
         Data.inventoryItemNames.Clear();
         foreach (Item item in InventoryManager.Instance.items)
@@ -167,7 +168,8 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectPotionInventoryData()
     {
-        if (InventoryPotionManager.Instance == null || !InventoryPotionManager.Instance.IsInitialized) return;
+        if (InventoryPotionManager.Instance == null) return;
+        InventoryPotionManager.Instance.EnsureInitialized();
 
         Dictionary<string, int> counts = new Dictionary<string, int>();
         foreach (PotionItem p in InventoryPotionManager.Instance.potionItems)
@@ -186,7 +188,8 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectBuyMeeleData()
     {
-        if (InventoryManager.Instance == null || !InventoryManager.Instance.IsInitialized) return;
+        if (InventoryManager.Instance == null) return;
+        InventoryManager.Instance.EnsureInitialized();
 
         foreach (Item item in InventoryManager.Instance.items)
         {
@@ -202,7 +205,8 @@ public class SaveDataJson : MonoBehaviour
 
     private void CollectBuyPistolData()
     {
-        if (InventoryManager.Instance == null || !InventoryManager.Instance.IsInitialized) return;
+        if (InventoryManager.Instance == null) return;
+        InventoryManager.Instance.EnsureInitialized();
 
         foreach (Item item in InventoryManager.Instance.items)
         {
@@ -530,6 +534,7 @@ public class SaveDataJson : MonoBehaviour
             if (obj == null) continue;
             if (obj.name == assetName) return obj;
             if (obj is Item item && item.itemName == assetName) return obj;
+            if (obj is PotionItem potion && potion.itemName == assetName) return obj;
         }
         return null;
     }

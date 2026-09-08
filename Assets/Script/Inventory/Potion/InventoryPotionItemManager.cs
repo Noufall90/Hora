@@ -15,6 +15,7 @@ public class InventoryPotionItemManager : MonoBehaviour
         itemButton = GetComponent<Button>();
         if (itemButton != null)
         {
+            itemButton.onClick.RemoveListener(OnPotionClicked);
             itemButton.onClick.AddListener(OnPotionClicked);
         }
     }

@@ -22,6 +22,12 @@ public class InventoryPotionManager : MonoBehaviour
                     }
                 }
             }
+
+            if (instance != null && !instance.IsInitialized)
+            {
+                instance.EnsureInitialized();
+            }
+
             return instance;
         }
     }
@@ -53,15 +59,26 @@ public class InventoryPotionManager : MonoBehaviour
         {
             instance = this;
         }
+
+        EnsureInitialized();
     }
 
     private void OnEnable()
     {
         SetupUseButton();
+        ListPotions();
     }
 
     private void Start()
     {
+        EnsureInitialized();
+        ListPotions();
+    }
+
+    public void EnsureInitialized()
+    {
+        if (IsInitialized) return;
+
         SetupUseButton();
 
         // Load potion dari save data jika tersedia
@@ -71,7 +88,7 @@ public class InventoryPotionManager : MonoBehaviour
         }
         else
         {
-            ListPotions();
+            // Jika baru New Game, biarkan potionItems apa adanya atau kosong
         }
 
         IsInitialized = true;
@@ -117,7 +134,7 @@ public class InventoryPotionManager : MonoBehaviour
         if (array == null || string.IsNullOrEmpty(assetName)) return null;
         foreach (PotionItem p in array)
         {
-            if (p != null && p.name == assetName) return p;
+            if (p != null && (p.name == assetName || p.itemName == assetName)) return p;
         }
         return null;
     }
@@ -143,6 +160,8 @@ public class InventoryPotionManager : MonoBehaviour
     {
         if (potion != null)
         {
+            EnsureInitialized();
+
             potionItems.Add(potion);
             Debug.Log($"[InventoryPotionManager] Potion '{potion.itemName}' ditambahkan. Total: {potionItems.Count}");
             ListPotions();
@@ -169,13 +188,34 @@ public class InventoryPotionManager : MonoBehaviour
         }
     }
 
+    private float _lastUseTime = 0f;
+
     public void UseSelectedPotion()
     {
+        // Cegah eksekusi ganda jika tombol ditekan / ter-trigger lebih dari sekali dalam satu frame
+        if (Time.unscaledTime - _lastUseTime < 0.25f)
+        {
+            return;
+        }
+
         if (selectedPotion == null)
         {
             Debug.LogWarning("[InventoryPotionManager] Tidak ada potion yang dipilih!");
             return;
         }
+
+        if (!potionItems.Contains(selectedPotion))
+        {
+            Debug.LogWarning($"[InventoryPotionManager] Potion '{selectedPotion.itemName}' tidak ada di inventory!");
+            selectedPotion = null;
+            selectedSlot = null;
+            if (potionName != null) potionName.text = "";
+            if (potionDescription != null) potionDescription.text = "";
+            if (potionStats != null) potionStats.text = "";
+            return;
+        }
+
+        _lastUseTime = Time.unscaledTime;
 
         PlayerData.PlayerHealth playerHealth = FindFirstObjectByType<PlayerData.PlayerHealth>();
         if (playerHealth == null)
@@ -203,8 +243,10 @@ public class InventoryPotionManager : MonoBehaviour
             Debug.LogWarning("[InventoryPotionManager] PlayerData.PlayerHealth tidak ditemukan di Scene!");
         }
 
+        // Hapus hanya 1 buah potion dari inventory
         potionItems.Remove(selectedPotion);
 
+        // Jika potion jenis ini sudah benar-benar habis di inventory
         if (!potionItems.Contains(selectedPotion))
         {
             selectedPotion = null;

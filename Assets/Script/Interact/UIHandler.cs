@@ -61,6 +61,7 @@ public static class UIHandler
             dialogueWindows.Add(dialoguePanel);
 
         dialoguePanel.SetActive(true);
+        UpdateUIState();
     }
 
     public static void CloseDialogue(GameObject dialoguePanel)
@@ -111,11 +112,21 @@ public static class UIHandler
         return activeWindows.Count > 0;
     }
 
-    private static void UpdateUIState()
+    public static void UpdateUIState()
     {
-        bool anyOpen = IsAnyWindowOpen();
+        bool anyWindow = IsAnyWindowOpen();
 
-        Time.timeScale = anyOpen ? 0f : 1f;
+        for (int i = dialogueWindows.Count - 1; i >= 0; i--)
+        {
+            if (dialogueWindows[i] == null || !dialogueWindows[i].activeSelf)
+            {
+                dialogueWindows.RemoveAt(i);
+            }
+        }
+        bool anyDialogue = dialogueWindows.Count > 0;
+        bool anyOpen = anyWindow || anyDialogue;
+
+        Time.timeScale = anyWindow ? 0f : 1f;
 
         Cursor.lockState = anyOpen ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = anyOpen;

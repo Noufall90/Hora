@@ -22,6 +22,12 @@ public class InventoryManager : MonoBehaviour
                     }
                 }
             }
+
+            if (instance != null && !instance.IsInitialized)
+            {
+                instance.EnsureInitialized();
+            }
+
             return instance;
         }
     }
@@ -55,15 +61,26 @@ public class InventoryManager : MonoBehaviour
         {
             instance = this;
         }
+
+        EnsureInitialized();
     }
 
     private void OnEnable()
     {
         SetupEquipButton();
+        ListItems();
     }
 
     private void Start()
     {
+        EnsureInitialized();
+        ListItems();
+    }
+
+    public void EnsureInitialized()
+    {
+        if (IsInitialized) return;
+
         SetupEquipButton();
 
         // Load item & weapon dari save file jika ada
@@ -73,10 +90,66 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            ListItems();
+            // Game baru: pastikan default weapons terpasang
+            SetupDefaultWeapons();
         }
 
         IsInitialized = true;
+    }
+
+    public void SetupDefaultWeapons()
+    {
+        Item[] allItems = itemDatabase;
+
+        // Jika items di inspector kosong, coba cari Dull Blade & Dull Pistol dari database
+        if (items.Count == 0 && allItems != null && allItems.Length > 0)
+        {
+            Item defaultMelee = FindSO(allItems, "Dull Blade");
+            if (defaultMelee == null)
+            {
+                foreach (var it in allItems)
+                {
+                    if (it != null && it.itemType == ItemType.Melee) { defaultMelee = it; break; }
+                }
+            }
+
+            Item defaultPistol = FindSO(allItems, "Dull Pistol");
+            if (defaultPistol == null)
+            {
+                foreach (var it in allItems)
+                {
+                    if (it != null && it.itemType == ItemType.Pistol) { defaultPistol = it; break; }
+                }
+            }
+
+            if (defaultMelee != null && !items.Contains(defaultMelee)) items.Add(defaultMelee);
+            if (defaultPistol != null && !items.Contains(defaultPistol)) items.Add(defaultPistol);
+        }
+
+        // Pastikan default equip terpasang jika belum
+        if (equippedMeleeItem == null)
+        {
+            foreach (var it in items)
+            {
+                if (it != null && it.itemType == ItemType.Melee)
+                {
+                    equippedMeleeItem = it;
+                    break;
+                }
+            }
+        }
+
+        if (equippedPistolItem == null)
+        {
+            foreach (var it in items)
+            {
+                if (it != null && it.itemType == ItemType.Pistol)
+                {
+                    equippedPistolItem = it;
+                    break;
+                }
+            }
+        }
     }
 
     // ── Save / Load Integration ───────────────────────────
@@ -267,8 +340,14 @@ public class InventoryManager : MonoBehaviour
     {
         if (item != null)
         {
-            items.Add(item);
-            Debug.Log($"[InventoryManager] Item '{item.itemName}' ditambahkan ke list! Total item: {items.Count}");
+            EnsureInitialized();
+
+            if (!items.Contains(item))
+            {
+                items.Add(item);
+                Debug.Log($"[InventoryManager] Item '{item.itemName}' ditambahkan ke list! Total item: {items.Count}");
+            }
+
             ListItems();
 
             if (SaveDataJson.Instance != null)

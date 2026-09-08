@@ -36,13 +36,25 @@ public class DialogueManager : MonoBehaviour
 
     public bool isDialogueActive = false;
 
+    public string DialogueId
+    {
+        get
+        {
+            if (transform.parent != null)
+            {
+                return transform.parent.name + "_" + gameObject.name;
+            }
+            return gameObject.name;
+        }
+    }
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -60,14 +72,13 @@ public class DialogueManager : MonoBehaviour
             dialogueDefault = DialogueDefault.Instance;
         }
 
-        if (dialogueDefault != null && dialogueDefault.gameObject != gameObject)
-        {
-            dialogueDefault.gameObject.SetActive(false);
-        }
+        CheckDialogueState();
     }
 
     private void Start()
     {
+        CheckDialogueState();
+
         if (nextButton != null)
         {
             nextButton.onClick.RemoveListener(DisplayNextDialogueLine);
@@ -82,6 +93,67 @@ public class DialogueManager : MonoBehaviour
         if (colArea != null)
         {
             colArea.SetActive(false);
+        }
+    }
+
+    public void CheckDialogueState()
+    {
+        string id1 = DialogueId;
+        string id2 = gameObject.name;
+
+        bool isCompleted = false;
+        if (SaveDataJson.Instance != null)
+        {
+            isCompleted = SaveDataJson.Instance.IsDialogueCompleted(id1) || SaveDataJson.Instance.IsDialogueCompleted(id2);
+        }
+        else
+        {
+            isCompleted = DialogueSaveRegistry.IsCompleted(id1) || DialogueSaveRegistry.IsCompleted(id2);
+        }
+
+        if (isCompleted)
+        {
+            if (dialogueDefault == null)
+            {
+                dialogueDefault = DialogueDefault.Instance;
+            }
+
+            if (dialogueDefault != null)
+            {
+                dialogueDefault.gameObject.SetActive(true);
+            }
+
+            gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            if (dialogueDefault == null)
+            {
+                dialogueDefault = DialogueDefault.Instance;
+            }
+
+            if (dialogueDefault != null && dialogueDefault.gameObject != gameObject)
+            {
+                dialogueDefault.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (isDialogueActive)
+        {
+            if (Cursor.lockState != CursorLockMode.None || !Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                DisplayNextDialogueLine();
+            }
         }
     }
 
@@ -240,16 +312,16 @@ public class DialogueManager : MonoBehaviour
             colArea.SetActive(false);
         }
 
-        string completedId = gameObject.name;
+        string id1 = DialogueId;
+        string id2 = gameObject.name;
 
-        if (!string.IsNullOrEmpty(completedId))
+        DialogueSaveRegistry.MarkCompleted(id1);
+        DialogueSaveRegistry.MarkCompleted(id2);
+
+        if (SaveDataJson.Instance != null)
         {
-            DialogueSaveRegistry.MarkCompleted(completedId);
-
-            if (SaveDataJson.Instance != null)
-            {
-                SaveDataJson.Instance.MarkDialogueCompleted(completedId);
-            }
+            SaveDataJson.Instance.MarkDialogueCompleted(id1);
+            SaveDataJson.Instance.MarkDialogueCompleted(id2);
         }
 
         if (dialogueDefault == null)

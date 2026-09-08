@@ -129,6 +129,21 @@ public class DialogueDefault : MonoBehaviour
             return;
         }
 
+        if (isDialogueActive)
+        {
+            if (Cursor.lockState != CursorLockMode.None || !Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                DisplayNextDialogueLine();
+            }
+            return;
+        }
+
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isDialogueActive)
         {
             Dialogue targetDialogue = dialogueTrigger != null ? dialogueTrigger.DialogueData : null;

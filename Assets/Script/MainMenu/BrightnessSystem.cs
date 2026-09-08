@@ -135,8 +135,6 @@ public class BrightnessSystem : MonoBehaviour
         baselineExposure = activeColorAdjustments.postExposure.value;
         activeColorAdjustments.postExposure.overrideState = true;
         ApplyBrightness(CurrentBrightness);
-
-        Debug.Log($"[BrightnessSystem] Registered volume: {targetVolume.name}, Current Brightness: {CurrentBrightness}");
     }
 
     public void UnregisterVolume(Volume targetVolume)
@@ -212,7 +210,6 @@ public class BrightnessSystem : MonoBehaviour
 
         if (activeColorAdjustments == null)
         {
-            Debug.LogWarning("[BrightnessSystem] Cannot apply brightness - no active Global Volume with ColorAdjustments found in scene!");
             return;
         }
 
