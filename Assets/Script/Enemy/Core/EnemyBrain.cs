@@ -2,12 +2,24 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using HFSM.Core;
+using FSM.Core;
+using FSM.States;
 
 namespace Enemy
 {
+    [System.Serializable]
+    public enum StateType
+    {
+        HierarchicalStateMachine,
+        FiniteStateMachine
+    }
+
     [RequireComponent(typeof(EnemyHealth))]
     public abstract class EnemyBrain : MonoBehaviour
     {
+        [Header("Enemy State Type")]
+        [SerializeField] protected StateType stateType = StateType.HierarchicalStateMachine;
+
         [Header("Base Movement Settings")]
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected float rotationSpeed = 50f;
@@ -33,8 +45,9 @@ namespace Enemy
         [Header("Debug")]
         [SerializeField] protected bool showDebugGizmos = true;
 
-        [Header("HFSM Logic")]
+        [Header("State Machines")]
         protected HierarchicalStateMachine hfsm;
+        protected FiniteStateMachine fsm;
 
         protected NavMeshAgent agent;
         protected Transform playerTarget;
@@ -45,6 +58,7 @@ namespace Enemy
         protected float comboResetTimer = 0f;
         protected bool isKnockedBack = false;
 
+        public StateType CurrentStateType => stateType;
         public float MoveSpeed => moveSpeed;
         public float RotationSpeed => rotationSpeed;
         public float PatrolRange => patrolRange;
@@ -55,8 +69,13 @@ namespace Enemy
         public LayerMask ObstacleLayer => obstacleLayer;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
-        public State CurrentState => hfsm?.CurrentState;
-        public bool IsInvestigating => hfsm?.CurrentState is HFSM.Passive.InvestigateState;
+        public HierarchicalStateMachine HFSM => hfsm;
+        public FiniteStateMachine FSM => fsm;
+        public HFSM.Core.State CurrentHFSMState => hfsm?.CurrentState;
+        public FSM.Core.FSMState CurrentFSMState => fsm?.CurrentState;
+        public bool IsInvestigating => stateType == StateType.HierarchicalStateMachine
+            ? (hfsm?.CurrentState is HFSM.Passive.PassiveState passive && passive.CurrentSubState is HFSM.Passive.InvestigateState)
+            : (fsm?.CurrentState is FSMInvestigateState);
         public bool IsKnockedBack => isKnockedBack;
         public Vector3 LastKnownPlayerPosition
         {
@@ -115,8 +134,31 @@ namespace Enemy
                 health.OnDamageTaken += OnDamageTakenHandler;
             }
 
-            hfsm = new HierarchicalStateMachine();
-            hfsm.Initialize(new HFSM.Passive.IdleState(this, hfsm));
+            InitializeStateMachine();
+        }
+
+        public virtual void SwitchStateType(StateType newType)
+        {
+            if (stateType == newType && (hfsm != null || fsm != null)) return;
+
+            stateType = newType;
+            InitializeStateMachine();
+        }
+
+        protected virtual void InitializeStateMachine()
+        {
+            if (stateType == StateType.HierarchicalStateMachine)
+            {
+                fsm = null;
+                hfsm = new HierarchicalStateMachine();
+                hfsm.Initialize(new HFSM.Passive.PassiveState(this, hfsm));
+            }
+            else if (stateType == StateType.FiniteStateMachine)
+            {
+                hfsm = null;
+                fsm = new FiniteStateMachine();
+                fsm.Initialize(new FSMIdleState(this, fsm));
+            }
         }
 
         protected virtual void OnDestroy()
@@ -146,15 +188,40 @@ namespace Enemy
                 proceduralAnimator.SetLookTarget(playerTarget);
             }
 
-            if (hfsm != null && (hfsm.CurrentState is HFSM.Passive.IdleState || hfsm.CurrentState is HFSM.Passive.PatrolState))
+            if (stateType == StateType.HierarchicalStateMachine)
             {
-                if (IsPlayerDetected())
+                if (hfsm != null && hfsm.CurrentState is HFSM.Passive.PassiveState)
                 {
-                    hfsm.ChangeState(new HFSM.Combat.ChasingState(this, hfsm));
+                    if (IsPlayerDetected())
+                    {
+                        hfsm.ChangeState(new HFSM.Combat.CombatState(this, hfsm));
+                    }
+                    else
+                    {
+                        hfsm.ChangeState(new HFSM.Passive.PassiveState(this, hfsm, lastKnownPlayerPosition));
+                    }
                 }
-                else
+            }
+            else if (stateType == StateType.FiniteStateMachine)
+            {
+                if (fsm != null && (fsm.CurrentState is FSMIdleState || fsm.CurrentState is FSMPatrolState || fsm.CurrentState is FSMInvestigateState))
                 {
-                    hfsm.ChangeState(new HFSM.Passive.InvestigateState(this, hfsm, lastKnownPlayerPosition));
+                    if (IsPlayerDetected())
+                    {
+                        float effectiveAttackRange = attackRange > 0 ? attackRange : meeleRange;
+                        if (IsPlayerInDistance(effectiveAttackRange))
+                        {
+                            fsm.ChangeState(new FSMAttackState(this, fsm));
+                        }
+                        else
+                        {
+                            fsm.ChangeState(new FSMChaseState(this, fsm));
+                        }
+                    }
+                    else
+                    {
+                        fsm.ChangeState(new FSMInvestigateState(this, fsm, lastKnownPlayerPosition));
+                    }
                 }
             }
 
@@ -299,6 +366,12 @@ namespace Enemy
             return distance <= meeleRange && IsPlayerInViewCone(meeleRange);
         }
 
+        public bool IsPlayerInDistance(float range)
+        {
+            if (playerTarget == null) return false;
+            return Vector3.Distance(transform.position, playerTarget.position) <= range;
+        }
+
         protected virtual void Update()
         {
             if (HasActiveNavMeshAgent) agent.speed = moveSpeed;
@@ -312,12 +385,26 @@ namespace Enemy
                 }
             }
 
-            hfsm.Update();
+            if (stateType == StateType.HierarchicalStateMachine)
+            {
+                hfsm?.Update();
+            }
+            else if (stateType == StateType.FiniteStateMachine)
+            {
+                fsm?.Update();
+            }
         }
 
         protected virtual void FixedUpdate()
         {
-            hfsm?.FixedUpdate();
+            if (stateType == StateType.HierarchicalStateMachine)
+            {
+                hfsm?.FixedUpdate();
+            }
+            else if (stateType == StateType.FiniteStateMachine)
+            {
+                fsm?.FixedUpdate();
+            }
         }
 
         protected virtual void OnDrawGizmosSelected()

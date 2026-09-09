@@ -16,23 +16,26 @@ namespace HFSM.Combat
 
         public override void Enter()
         {
-            cooldownTimer = (bomberCapability?.FireRate ?? 2.0f) * 0.5f; 
+            base.Enter();
+            cooldownTimer = (bomberCapability?.FireRate ?? 2.0f) * 0.5f;
+            if (brain.HasActiveNavMeshAgent)
+            {
+                brain.Agent.isStopped = true;
+            }
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (!brain.IsPlayerDetected() || !IsPlayerInDistance(brain.AttackRange))
+            if (!IsPlayerInDistance(brain.AttackRange))
             {
                 if (brain.CanMove)
                 {
-                    stateMachine.ChangeState(new ChasingState(brain, stateMachine));
+                    ChangeSubState(new ChasingState(brain, stateMachine));
+                    return;
                 }
-                return;
             }
-
-            brain.RotateTowardsPlayer();
 
             cooldownTimer += Time.deltaTime;
             float currentFireRate = bomberCapability?.FireRate ?? 2.0f;

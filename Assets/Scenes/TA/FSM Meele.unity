@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: f7b23e137452bf24bbf42bfa1a61216b
-  m_OcclusionCullingData: {fileID: 36300000, guid: fd0c5a93dbd997c4aa015b2fc5ec3760,
+  m_SceneGUID: 4c6117530db96054c98711cd27ff46d1
+  m_OcclusionCullingData: {fileID: 36300000, guid: 0b269fab21a968a43be3103698e978af,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -4211,19 +4211,19 @@ MonoBehaviour:
   - currentWave: 0
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+    - enemyPrefab: {fileID: 2026242789895780203, guid: e6969f17653e0634db2b02d1e252e0e2,
         type: 3}
       enemyLocation: {fileID: 772936350}
   - currentWave: 1
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+    - enemyPrefab: {fileID: 2026242789895780203, guid: e6969f17653e0634db2b02d1e252e0e2,
         type: 3}
       enemyLocation: {fileID: 772936350}
   - currentWave: 2
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+    - enemyPrefab: {fileID: 2026242789895780203, guid: e6969f17653e0634db2b02d1e252e0e2,
         type: 3}
       enemyLocation: {fileID: 772936350}
   interactScene: {fileID: 0}

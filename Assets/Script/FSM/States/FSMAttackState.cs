@@ -1,16 +1,16 @@
-using HFSM.Core;
 using Enemy;
+using FSM.Core;
 using UnityEngine;
 
-namespace HFSM.Combat
+namespace FSM.States
 {
-    public class MeeleAttackState : EnemyBaseState
+    public class FSMAttackState : FSMState
     {
         private IMeele meeleCapability;
         private float attackCooldown;
         private float cooldownTimer;
 
-        public MeeleAttackState(EnemyBrain brain, HierarchicalStateMachine stateMachine, float attackCooldown = 1.5f) 
+        public FSMAttackState(EnemyBrain brain, FiniteStateMachine stateMachine, float attackCooldown = 1.5f) 
             : base(brain, stateMachine)
         {
             this.meeleCapability = brain as IMeele;
@@ -31,20 +31,28 @@ namespace HFSM.Combat
         {
             base.Update();
 
+            if (brain.PlayerTarget == null)
+            {
+                stateMachine.ChangeState(new FSMIdleState(brain, stateMachine));
+                return;
+            }
+
+            if (!brain.IsPlayerDetected())
+            {
+                stateMachine.ChangeState(new FSMInvestigateState(brain, stateMachine, brain.LastKnownPlayerPosition));
+                return;
+            }
+
+            brain.RotateTowardsPlayer();
+
             float effectiveAttackRange = brain.AttackRange > 0 ? brain.AttackRange : brain.MeeleRange;
             if (!IsPlayerInDistance(effectiveAttackRange))
             {
                 if (brain.CanMove)
                 {
-                    ChangeSubState(new ChasingState(brain, stateMachine));
+                    stateMachine.ChangeState(new FSMChaseState(brain, stateMachine));
                     return;
                 }
-            }
-
-            if (brain is EnemyMeeleShooter meeleShooterCheck && meeleShooterCheck.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Shooter)
-            {
-                ChangeSubState(new ShooterAttackState(brain, stateMachine));
-                return;
             }
 
             cooldownTimer += Time.deltaTime;

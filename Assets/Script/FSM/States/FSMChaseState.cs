@@ -1,12 +1,13 @@
-using HFSM.Core;
 using Enemy;
+using FSM.Core;
 using UnityEngine;
 
-namespace HFSM.Combat
+namespace FSM.States
 {
-    public class ChasingState : EnemyBaseState
+    public class FSMChaseState : FSMState
     {
-        public ChasingState(EnemyBrain brain, HierarchicalStateMachine stateMachine) : base(brain, stateMachine) { }
+        public FSMChaseState(EnemyBrain brain, FiniteStateMachine stateMachine) 
+            : base(brain, stateMachine) { }
 
         public override void Enter()
         {
@@ -23,7 +24,19 @@ namespace HFSM.Combat
         {
             base.Update();
 
-            if (brain.PlayerTarget == null) return;
+            if (brain.PlayerTarget == null)
+            {
+                stateMachine.ChangeState(new FSMIdleState(brain, stateMachine));
+                return;
+            }
+
+            if (!brain.IsPlayerDetected())
+            {
+                stateMachine.ChangeState(new FSMInvestigateState(brain, stateMachine, brain.LastKnownPlayerPosition));
+                return;
+            }
+
+            brain.RotateTowardsPlayer();
 
             if (brain.HasActiveNavMeshAgent)
             {
@@ -33,14 +46,7 @@ namespace HFSM.Combat
             float effectiveAttackRange = brain.AttackRange > 0 ? brain.AttackRange : brain.MeeleRange;
             if (!brain.CanMove || IsPlayerInDistance(effectiveAttackRange))
             {
-                if (parentState is CombatState combatSuperState)
-                {
-                    combatSuperState.SetAttackSubState();
-                }
-                else
-                {
-                    ChangeSubState(new MeeleAttackState(brain, stateMachine));
-                }
+                stateMachine.ChangeState(new FSMAttackState(brain, stateMachine));
             }
         }
 

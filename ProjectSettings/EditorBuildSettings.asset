@@ -65,4 +65,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gameplay/Credit.unity
     guid: c2be1bc6ef6f49141962790004aac32d
+  - enabled: 1
+    path: Assets/Scenes/TA/FSM Meele.unity
+    guid: 4c6117530db96054c98711cd27ff46d1
+  - enabled: 1
+    path: Assets/Scenes/TA/HFSM Meele.unity
+    guid: f7b23e137452bf24bbf42bfa1a61216b
   m_configObjects: {}

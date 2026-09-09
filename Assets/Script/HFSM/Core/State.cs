@@ -8,6 +8,9 @@ namespace HFSM.Core
         protected State parentState;
         protected State subState;
 
+        public State CurrentSubState => subState;
+        public State ParentState => parentState;
+
         public State(HierarchicalStateMachine stateMachine)
         {
             this.stateMachine = stateMachine;
@@ -18,12 +21,15 @@ namespace HFSM.Core
         public virtual void FixedUpdate() { subState?.FixedUpdate(); }
         public virtual void Exit() { subState?.Exit(); }
 
-        protected void SetSubState(State newSubState)
+        public void SetSubState(State newSubState)
         {
             subState?.Exit();
             subState = newSubState;
-            newSubState.parentState = this;
-            newSubState.Enter();
+            if (newSubState != null)
+            {
+                newSubState.parentState = this;
+                newSubState.Enter();
+            }
         }
     }
 }

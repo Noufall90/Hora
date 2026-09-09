@@ -14,8 +14,20 @@ namespace HFSM.Core
 
         protected bool IsPlayerInDistance(float range)
         {
-            if (brain.PlayerTarget == null) return false;
+            if (brain == null || brain.PlayerTarget == null) return false;
             return Vector3.Distance(brain.transform.position, brain.PlayerTarget.position) <= range;
+        }
+
+        public void ChangeSubState(State newSubState)
+        {
+            if (parentState != null)
+            {
+                parentState.SetSubState(newSubState);
+            }
+            else
+            {
+                SetSubState(newSubState);
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 99c9720ab356a0642a771bea13969a05
-  m_OcclusionCullingData: {fileID: 36300000, guid: 88f7fa4630c811e43b77a84c18e6b163,
+  m_SceneGUID: 6d2d441334c6c014fb181cdc204d596b
+  m_OcclusionCullingData: {fileID: 36300000, guid: 99d88527a6f47c2499894397f392c408,
     type: 2}
 --- !u!104 &2
 RenderSettings:
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.26666668
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c7738cebb2af35c41880bc3e718f0619, type: 2}
   m_BuildHeightMesh: 0

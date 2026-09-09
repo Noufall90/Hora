@@ -1,5 +1,4 @@
 using HFSM.Core;
-using HFSM.Combat;
 using Enemy;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +11,8 @@ namespace HFSM.Passive
 
         public override void Enter()
         {
+            base.Enter();
+
             if (!brain.CanMove) return;
 
             if (brain.HasActiveNavMeshAgent)
@@ -28,24 +29,20 @@ namespace HFSM.Passive
 
             if (!brain.CanMove)
             {
-                stateMachine.ChangeState(new IdleState(brain, stateMachine));
-                return;
-            }
-
-            if (brain.IsPlayerDetected())
-            {
-                stateMachine.ChangeState(new ChasingState(brain, stateMachine));
+                ChangeSubState(new IdleState(brain, stateMachine));
                 return;
             }
 
             if (brain.HasActiveNavMeshAgent && !brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
             {
-                stateMachine.ChangeState(new IdleState(brain, stateMachine));
+                ChangeSubState(new IdleState(brain, stateMachine));
             }
         }
 
         public override void Exit()
         {
+            base.Exit();
+
             if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.ResetPath();
@@ -58,9 +55,8 @@ namespace HFSM.Passive
 
             Vector3 centre = brain.PatrolCentrePoint.position;
             Vector3 randomPoint = centre + Random.insideUnitSphere * brain.PatrolRange;
-            NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
             {
                 brain.Agent.SetDestination(hit.position);
                 return true;

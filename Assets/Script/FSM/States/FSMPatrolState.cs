@@ -1,18 +1,19 @@
 using Enemy;
 using FSM.Core;
-using FSM.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace FSM.Passive
+namespace FSM.States
 {
-    public class FSMPatrol : FSMEnemyBaseState
+    public class FSMPatrolState : FSMState
     {
-        public FSMPatrol(EnemyBrain brain, FiniteStateMachine finiteStateMachine) 
-            : base(brain, finiteStateMachine) { }
+        public FSMPatrolState(EnemyBrain brain, FiniteStateMachine stateMachine) 
+            : base(brain, stateMachine) { }
 
         public override void Enter()
         {
+            base.Enter();
+
             if (!brain.CanMove) return;
 
             if (brain.HasActiveNavMeshAgent)
@@ -27,27 +28,36 @@ namespace FSM.Passive
         {
             base.Update();
 
-            if (!brain.CanMove)
+            if (brain.IsPlayerDetected())
             {
-                finiteStateMachine.ChangeState(new FSMIdleState(brain, finiteStateMachine));
+                float effectiveAttackRange = brain.AttackRange > 0 ? brain.AttackRange : brain.MeeleRange;
+                if (IsPlayerInDistance(effectiveAttackRange))
+                {
+                    stateMachine.ChangeState(new FSMAttackState(brain, stateMachine));
+                }
+                else
+                {
+                    stateMachine.ChangeState(new FSMChaseState(brain, stateMachine));
+                }
                 return;
             }
 
-            if (brain.IsPlayerDetected())
+            if (!brain.CanMove)
             {
-                finiteStateMachine.ChangeState(new FSMMeeleState(brain, finiteStateMachine));
+                stateMachine.ChangeState(new FSMIdleState(brain, stateMachine));
                 return;
             }
 
             if (brain.HasActiveNavMeshAgent && !brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
             {
-                finiteStateMachine.ChangeState(new FSMIdleState(brain, finiteStateMachine));
+                stateMachine.ChangeState(new FSMIdleState(brain, stateMachine));
             }
         }
 
         public override void Exit()
         {
             base.Exit();
+
             if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.ResetPath();

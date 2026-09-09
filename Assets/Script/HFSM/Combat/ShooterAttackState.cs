@@ -16,29 +16,32 @@ namespace HFSM.Combat
 
         public override void Enter()
         {
+            base.Enter();
             cooldownTimer = 0f;
+            if (brain.HasActiveNavMeshAgent)
+            {
+                brain.Agent.isStopped = true;
+            }
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (!brain.IsPlayerDetected() || !IsPlayerInDistance(brain.AttackRange))
+            if (!IsPlayerInDistance(brain.AttackRange))
             {
                 if (brain.CanMove)
                 {
-                    stateMachine.ChangeState(new ChasingState(brain, stateMachine));
+                    ChangeSubState(new ChasingState(brain, stateMachine));
+                    return;
                 }
-                return;
             }
 
             if (brain is EnemyMeeleShooter meeleShooterCheck && meeleShooterCheck.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Meele)
             {
-                stateMachine.ChangeState(new MeeleAttackState(brain, stateMachine));
+                ChangeSubState(new MeeleAttackState(brain, stateMachine));
                 return;
             }
-
-            brain.RotateTowardsPlayer();
 
             cooldownTimer += Time.deltaTime;
             if (shooterCapability != null && cooldownTimer >= shooterCapability.FireRate)

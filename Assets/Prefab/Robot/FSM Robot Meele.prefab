@@ -527,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261223aee923cca4f871f5410de6488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateType: 1
   moveSpeed: 3
   rotationSpeed: 50
   patrolRange: 20

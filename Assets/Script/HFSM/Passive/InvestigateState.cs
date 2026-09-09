@@ -1,5 +1,4 @@
 using HFSM.Core;
-using HFSM.Combat;
 using Enemy;
 using UnityEngine;
 
@@ -9,13 +8,16 @@ namespace HFSM.Passive
     {
         private Vector3 lastKnownPosition;
 
-        public InvestigateState(EnemyBrain brain, HierarchicalStateMachine stateMachine, Vector3 lastKnownPosition) : base(brain, stateMachine)
+        public InvestigateState(EnemyBrain brain, HierarchicalStateMachine stateMachine, Vector3 lastKnownPosition) 
+            : base(brain, stateMachine)
         {
             this.lastKnownPosition = lastKnownPosition;
         }
 
         public override void Enter()
         {
+            base.Enter();
+
             if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.isStopped = false;
@@ -28,17 +30,11 @@ namespace HFSM.Passive
         {
             base.Update();
 
-            if (brain.IsPlayerDetected())
-            {
-                stateMachine.ChangeState(new ChasingState(brain, stateMachine));
-                return;
-            }
-
             brain.RotateTowardsTarget(lastKnownPosition);
 
             if (!brain.CanMove)
             {
-                stateMachine.ChangeState(new IdleState(brain, stateMachine));
+                ChangeSubState(new IdleState(brain, stateMachine));
                 return;
             }
 
@@ -46,13 +42,15 @@ namespace HFSM.Passive
             {
                 if (!brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
                 {
-                    stateMachine.ChangeState(new IdleState(brain, stateMachine));
+                    ChangeSubState(new IdleState(brain, stateMachine));
                 }
             }
         }
 
         public override void Exit()
         {
+            base.Exit();
+
             if (brain.HasActiveNavMeshAgent)
             {
                 brain.Agent.ResetPath();

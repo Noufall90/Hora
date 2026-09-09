@@ -1,5 +1,4 @@
 using HFSM.Core;
-using HFSM.Combat;
 using Enemy;
 using UnityEngine;
 
@@ -8,12 +7,17 @@ namespace HFSM.Passive
     public class IdleState : EnemyBaseState
     {
         private float idleTimer;
-        private float idleDuration = 0.5f;
+        private float idleDuration;
 
-        public IdleState(EnemyBrain brain, HierarchicalStateMachine stateMachine) : base(brain, stateMachine) { }
+        public IdleState(EnemyBrain brain, HierarchicalStateMachine stateMachine, float idleDuration = 1.0f) 
+            : base(brain, stateMachine)
+        {
+            this.idleDuration = idleDuration;
+        }
 
         public override void Enter()
         {
+            base.Enter();
             idleTimer = 0f;
             if (brain.HasActiveNavMeshAgent)
             {
@@ -25,35 +29,12 @@ namespace HFSM.Passive
         {
             base.Update();
 
-            if (brain.IsPlayerDetected())
-            {
-                if (!brain.CanMove)
-                {
-                    if (brain is IShooter)
-                    {
-                        stateMachine.ChangeState(new ShooterAttackState(brain, stateMachine));
-                    }
-                    else if (brain is IMeele)
-                    {
-                        stateMachine.ChangeState(new MeeleAttackState(brain, stateMachine));
-                    }
-                    else if (brain is IBomber)
-                    {
-                        stateMachine.ChangeState(new BomberAttackState(brain, stateMachine));
-                    }
-                    return;
-                }
-
-                stateMachine.ChangeState(new ChasingState(brain, stateMachine));
-                return;
-            }
-
             if (!brain.CanMove) return;
 
             idleTimer += Time.deltaTime;
             if (idleTimer >= idleDuration)
             {
-                stateMachine.ChangeState(new PatrolState(brain, stateMachine));
+                ChangeSubState(new PatrolState(brain, stateMachine));
             }
         }
     }
