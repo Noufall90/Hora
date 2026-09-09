@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 802985668}
+      - m_Target: {fileID: 214054062}
         m_TargetAssemblyTypeName: InteractScenePanel, Assembly-CSharp
         m_MethodName: LoadedScene
         m_Mode: 1
@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 214054062}
+      - m_Target: {fileID: 802985668}
         m_TargetAssemblyTypeName: InteractScenePanel, Assembly-CSharp
         m_MethodName: LoadedScene
         m_Mode: 1
@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quadObject: {fileID: 804893708}
-  panelMapScene: {fileID: 820493139}
+  panelMapScene: {fileID: 1555515602}
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 1
   sceneName: Action Escuri 1
@@ -5446,7 +5446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quadObject: {fileID: 1644105485}
-  panelMapScene: {fileID: 1555515602}
+  panelMapScene: {fileID: 820493139}
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 1
   sceneName: Action Solis 1
@@ -9854,6 +9854,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2595215899787916529, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4,
+        type: 3}
+      propertyPath: shieldVisual
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3350145055255916198, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -10162,6 +10167,11 @@ PrefabInstance:
     - target: {fileID: 7056152357741028784, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857258956309261747, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9075192687920468350, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4,

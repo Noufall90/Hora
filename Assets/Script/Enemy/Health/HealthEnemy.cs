@@ -72,8 +72,6 @@ namespace Enemy
 
             base.TakeDamage(amount);
 
-            Debug.Log($"[EnemyHealth] {gameObject.name} took {amount} damage. Remaining Health: {currentHealth}/{maxHealth}");
-
             if (!isDead && currentHealth > 0)
             {
                 TriggerDamageFlash();

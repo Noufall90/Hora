@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   itemName: Potion Health
-  effectAmount: 10
+  effectAmount: 50
   descriptionItem: Ekstrak herbal merah pekat dalam botol kaca kecil. Aromanya menyengat
     namun efektif menutup luka gores dan meredakan rasa sakit seketika dalam pertempuran
     singkat.
-  statsItem: 'Menambah Darah  : 10'
+  statsItem: 'Menambah Darah  : 50'
   icon: {fileID: 21300000, guid: e80d07cf20b3e8648a56e65d9e7aca04, type: 3}

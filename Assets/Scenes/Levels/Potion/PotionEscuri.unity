@@ -673,7 +673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -4614,7 +4614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 20
+  m_text: 30
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -4886,7 +4886,7 @@ MonoBehaviour:
   buyPotionItems:
   - potionItem: {fileID: 11400000, guid: f0a5145d5a3297a47b151562e08b1046, type: 2}
     buyButtonItem: {fileID: 904566918}
-    price: 20
+    price: 30
     destroyButtonOnBuy: 0
   - potionItem: {fileID: 11400000, guid: 9ac40548eecd89848a2e99eff7818544, type: 2}
     buyButtonItem: {fileID: 1750730909}
@@ -5700,7 +5700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1028147388}
   m_Layer: 5
-  m_Name: Health 10
+  m_Name: Health 50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7575,7 +7575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 803794aa8e093d342b3d02b39ae03a1e, type: 2}
   m_sharedMaterial: {fileID: -3786588947953198582, guid: 803794aa8e093d342b3d02b39ae03a1e,
@@ -10071,7 +10071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674089322}
   m_Layer: 5
-  m_Name: Health 50
+  m_Name: Health 100
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

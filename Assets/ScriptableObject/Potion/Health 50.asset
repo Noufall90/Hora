@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   itemName: Potion Health
+  effectAmount: 100
   descriptionItem: Ramuan kental berkilau merah delima hasil penyulingan kristal
     vitalitas murni. Meminumnya mengalirkan kehangatan instan yang mampu menyambung
     kembali serat otot yang robek dan memulihkan separuh stamina tubuh dari ambang
     maut.
-  statsItem: 'Menambah Darah  : 50'
+  statsItem: 'Menambah Darah  : 100'
   icon: {fileID: 21300000, guid: e80d07cf20b3e8648a56e65d9e7aca04, type: 3}
