@@ -67,8 +67,38 @@ EditorBuildSettings:
     guid: c2be1bc6ef6f49141962790004aac32d
   - enabled: 1
     path: Assets/Scenes/TA/FSM Meele.unity
-    guid: 4c6117530db96054c98711cd27ff46d1
+    guid: f2259f34cfc8d2241931d1ce04c9f474
+  - enabled: 1
+    path: Assets/Scenes/TA/FSM Meele 10.unity
+    guid: 5227e50be0454c74d8b3f2bb63f2632a
+  - enabled: 1
+    path: Assets/Scenes/TA/FSM Meele 15.unity
+    guid: 902960cae1f12df478746c46062a9827
+  - enabled: 1
+    path: Assets/Scenes/TA/FSM Meele 20.unity
+    guid: 322f008a34b25884ba2d77274bc90901
   - enabled: 1
     path: Assets/Scenes/TA/HFSM Meele.unity
+    guid: 775202dda0f4d3d46a88ce37e27a5f56
+  - enabled: 1
+    path: Assets/Scenes/TA/HFSM Meele 10.unity
     guid: f7b23e137452bf24bbf42bfa1a61216b
+  - enabled: 1
+    path: Assets/Scenes/TA/HFSM Meele 15.unity
+    guid: f76f8f551ff6db242acea33c5279657b
+  - enabled: 1
+    path: Assets/Scenes/TA/HFSM Meele 20.unity
+    guid: eb11810afad894e4eb49ee9653a96c48
+  - enabled: 1
+    path: Assets/Scenes/TA/BT Meele.unity
+    guid: 30e3f949d39946f42a9399d46f6db794
+  - enabled: 1
+    path: Assets/Scenes/TA/BT Meele 10.unity
+    guid: 3c3738972e9f87e4cb14836b5615c59d
+  - enabled: 1
+    path: Assets/Scenes/TA/BT Meele 15.unity
+    guid: 97ee0750356c2a34abc900229ae804e8
+  - enabled: 1
+    path: Assets/Scenes/TA/BT Meele 20.unity
+    guid: 7ce77bd0ad1b5ce4682b28d5133d7438
   m_configObjects: {}

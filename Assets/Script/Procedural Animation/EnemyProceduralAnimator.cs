@@ -232,7 +232,8 @@ namespace procedural_animation
             else
             {
                 LayerMask searchMask = _playerLayer.value != 0 ? _playerLayer : Physics.DefaultRaycastLayers;
-                Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, _viewDistance, searchMask);
+                float searchDist = _brain != null ? _brain.DetectRange : _viewDistance;
+                Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, searchDist, searchMask);
                 if (targetsInRadius != null && targetsInRadius.Length > 0)
                 {
                     target = targetsInRadius[0].transform;
@@ -246,9 +247,12 @@ namespace procedural_animation
                 Vector3 dirToTarget = (targetEyePos - eyePos).normalized;
                 float dstToTarget = Vector3.Distance(eyePos, targetEyePos);
 
-                if (dstToTarget <= _viewDistance)
+                float viewDist = _brain != null ? _brain.DetectRange : _viewDistance;
+                float fov = _brain != null ? _brain.FieldOfView : _fovAngle;
+
+                if (dstToTarget <= viewDist)
                 {
-                    if (Vector3.Angle(transform.forward, dirToTarget) <= _fovAngle * 0.5f)
+                    if (Vector3.Angle(transform.forward, dirToTarget) <= fov * 0.5f)
                     {
                         LayerMask obsMask = ObstacleLayer;
                         if (obsMask.value == 0 || !Physics.Raycast(eyePos, dirToTarget, dstToTarget, obsMask))

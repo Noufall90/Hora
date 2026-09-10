@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using HFSM.Core;
 using FSM.Core;
 using FSM.States;
+using BT.Core;
 
 namespace Enemy
 {
@@ -11,7 +12,8 @@ namespace Enemy
     public enum StateType
     {
         HierarchicalStateMachine,
-        FiniteStateMachine
+        FiniteStateMachine,
+        BehaviourTree
     }
 
     [RequireComponent(typeof(EnemyHealth))]
@@ -45,9 +47,10 @@ namespace Enemy
         [Header("Debug")]
         [SerializeField] protected bool showDebugGizmos = true;
 
-        [Header("State Machines")]
+        [Header("State Machines & Behaviour Tree")]
         protected HierarchicalStateMachine hfsm;
         protected FiniteStateMachine fsm;
+        protected EnemyBT behaviourTree;
 
         protected NavMeshAgent agent;
         protected Transform playerTarget;
@@ -71,20 +74,26 @@ namespace Enemy
         public Transform PlayerTarget => playerTarget;
         public HierarchicalStateMachine HFSM => hfsm;
         public FiniteStateMachine FSM => fsm;
+        public EnemyBT BT => behaviourTree;
         public HFSM.Core.State CurrentHFSMState => hfsm?.CurrentState;
         public FSM.Core.FSMState CurrentFSMState => fsm?.CurrentState;
-        public bool IsInvestigating => stateType == StateType.HierarchicalStateMachine
-            ? (hfsm?.CurrentState is HFSM.Passive.PassiveState passive && passive.CurrentSubState is HFSM.Passive.InvestigateState)
-            : (fsm?.CurrentState is FSMInvestigateState);
-        public bool IsKnockedBack => isKnockedBack;
-        public Vector3 LastKnownPlayerPosition
+        public bool IsInvestigating
         {
             get
             {
-                if (lastKnownPlayerPosition == Vector3.zero && playerTarget != null)
-                    return playerTarget.position;
-                return lastKnownPlayerPosition;
+                if (stateType == StateType.HierarchicalStateMachine)
+                    return hfsm?.CurrentState is HFSM.Passive.PassiveState passive && passive.CurrentSubState is HFSM.Passive.InvestigateState;
+                if (stateType == StateType.FiniteStateMachine)
+                    return fsm?.CurrentState is FSMInvestigateState;
+                if (stateType == StateType.BehaviourTree)
+                    return behaviourTree != null && behaviourTree.IsInvestigating;
+                return false;
             }
+        }
+        public bool IsKnockedBack => isKnockedBack;
+        public Vector3 LastKnownPlayerPosition
+        {
+            get => lastKnownPlayerPosition;
             set => lastKnownPlayerPosition = value;
         }
         public bool HasActiveNavMeshAgent => agent != null && agent.enabled && agent.isOnNavMesh;
@@ -126,7 +135,7 @@ namespace Enemy
             if (player != null)
             {
                 playerTarget = player.transform;
-                lastKnownPlayerPosition = player.transform.position;
+                lastKnownPlayerPosition = Vector3.zero;
             }
 
             if (health != null)
@@ -139,7 +148,7 @@ namespace Enemy
 
         public virtual void SwitchStateType(StateType newType)
         {
-            if (stateType == newType && (hfsm != null || fsm != null)) return;
+            if (stateType == newType && (hfsm != null || fsm != null || behaviourTree != null)) return;
 
             stateType = newType;
             InitializeStateMachine();
@@ -150,14 +159,22 @@ namespace Enemy
             if (stateType == StateType.HierarchicalStateMachine)
             {
                 fsm = null;
+                behaviourTree = null;
                 hfsm = new HierarchicalStateMachine();
                 hfsm.Initialize(new HFSM.Passive.PassiveState(this, hfsm));
             }
             else if (stateType == StateType.FiniteStateMachine)
             {
                 hfsm = null;
+                behaviourTree = null;
                 fsm = new FiniteStateMachine();
                 fsm.Initialize(new FSMIdleState(this, fsm));
+            }
+            else if (stateType == StateType.BehaviourTree)
+            {
+                hfsm = null;
+                fsm = null;
+                behaviourTree = new EnemyBT(this);
             }
         }
 
@@ -222,6 +239,13 @@ namespace Enemy
                     {
                         fsm.ChangeState(new FSMInvestigateState(this, fsm, lastKnownPlayerPosition));
                     }
+                }
+            }
+            else if (stateType == StateType.BehaviourTree)
+            {
+                if (behaviourTree != null && !IsPlayerDetected())
+                {
+                    behaviourTree.SetInvestigateTarget(lastKnownPlayerPosition);
                 }
             }
 
@@ -307,18 +331,14 @@ namespace Enemy
 
         public bool IsPlayerDetected()
         {
-            var proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
-            bool detected = false;
-            if (proceduralAnimator != null)
-            {
-                detected = proceduralAnimator.PlayerDetected;
-            }
-            else if (playerTarget != null && Vector3.Distance(transform.position, playerTarget.position) <= detectRange)
-            {
-                detected = IsPlayerInViewCone(detectRange);
-            }
+            if (playerTarget == null) return false;
 
-            if (detected && playerTarget != null)
+            float distance = Vector3.Distance(transform.position, playerTarget.position);
+            if (distance > detectRange) return false;
+
+            bool detected = IsPlayerInViewCone(detectRange);
+
+            if (detected)
             {
                 lastKnownPlayerPosition = playerTarget.position;
             }
@@ -392,6 +412,10 @@ namespace Enemy
             else if (stateType == StateType.FiniteStateMachine)
             {
                 fsm?.Update();
+            }
+            else if (stateType == StateType.BehaviourTree)
+            {
+                behaviourTree?.UpdateTree();
             }
         }
 
