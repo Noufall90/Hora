@@ -56,6 +56,7 @@ namespace Enemy
         protected Transform playerTarget;
         protected EnemyHealth health;
         protected Vector3 lastKnownPlayerPosition;
+        protected procedural_animation.EnemyProceduralAnimator proceduralAnimator;
 
         protected int currentComboHits = 0;
         protected float comboResetTimer = 0f;
@@ -65,16 +66,17 @@ namespace Enemy
         public float MoveSpeed => moveSpeed;
         public float RotationSpeed => rotationSpeed;
         public float PatrolRange => patrolRange;
-        public float DetectRange => detectRange;
+        public float DetectRange => (proceduralAnimator != null) ? proceduralAnimator.ViewDistance : (detectRange > 0f ? detectRange : 15f);
         public float AttackRange => attackRange;
         public float MeeleRange => meeleRange;
-        public float FieldOfView => fieldOfView;
+        public float FieldOfView => (proceduralAnimator != null) ? proceduralAnimator.FovAngle : (fieldOfView > 0f ? fieldOfView : 120f);
         public LayerMask ObstacleLayer => obstacleLayer;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
         public HierarchicalStateMachine HFSM => hfsm;
         public FiniteStateMachine FSM => fsm;
         public EnemyBT BT => behaviourTree;
+        public procedural_animation.EnemyProceduralAnimator ProceduralAnimator => proceduralAnimator;
         public HFSM.Core.State CurrentHFSMState => hfsm?.CurrentState;
         public FSM.Core.FSMState CurrentFSMState => fsm?.CurrentState;
         public bool IsInvestigating
@@ -124,6 +126,7 @@ namespace Enemy
         {
             health = GetComponent<EnemyHealth>();
             agent  = GetComponent<NavMeshAgent>();
+            proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
         }
 
         protected virtual void Start()
@@ -331,12 +334,38 @@ namespace Enemy
 
         public bool IsPlayerDetected()
         {
-            if (playerTarget == null) return false;
+            if (playerTarget == null)
+            {
+                GameObject player = GameObject.FindWithTag("Player");
+                if (player != null)
+                {
+                    playerTarget = player.transform;
+                }
+                else
+                {
+                    return false;
+                }
+            }
 
-            float distance = Vector3.Distance(transform.position, playerTarget.position);
-            if (distance > detectRange) return false;
+            if (proceduralAnimator == null)
+            {
+                proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
+            }
 
-            bool detected = IsPlayerInViewCone(detectRange);
+            bool detected = false;
+            if (proceduralAnimator != null)
+            {
+                detected = proceduralAnimator.PlayerDetected;
+            }
+            else
+            {
+                float range = DetectRange;
+                float distance = Vector3.Distance(transform.position, playerTarget.position);
+                if (distance <= range)
+                {
+                    detected = IsPlayerInViewCone(range);
+                }
+            }
 
             if (detected)
             {
@@ -358,11 +387,9 @@ namespace Enemy
 
             if (distanceToPlayer > maxDistance) return false;
 
-            float dot = Vector3.Dot(transform.forward, directionToPlayer);
-            if (dot <= 0f) return false;
-
+            float fov = FieldOfView;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
-            if (angle > fieldOfView * 0.5f) return false;
+            if (angle > fov * 0.5f) return false;
 
             if (obstacleLayer.value != 0 && Physics.Raycast(eyePos, directionToPlayer, distanceToPlayer, obstacleLayer))
             {
@@ -435,8 +462,11 @@ namespace Enemy
         {
             if (!showDebugGizmos) return;
 
-            Gizmos.color = Color.yellow;
-            DrawViewCone(detectRange, Color.yellow);
+            if (proceduralAnimator == null)
+            {
+                Gizmos.color = Color.yellow;
+                DrawViewCone(DetectRange, Color.yellow);
+            }
             Gizmos.color = Color.red;
             DrawViewCone(attackRange, Color.red);
             if (meeleRange > 0f)

@@ -52,6 +52,8 @@ namespace procedural_animation
         private Enemy.EnemyBrain _brain;
 
         public bool PlayerDetected => _playerDetected;
+        public float ViewDistance => _viewDistance;
+        public float FovAngle => _fovAngle;
         public override bool IsMoving => !_allLimbsResting;
         public bool IsAttacking { get => _isAttacking; set => _isAttacking = value; }
 
@@ -232,8 +234,7 @@ namespace procedural_animation
             else
             {
                 LayerMask searchMask = _playerLayer.value != 0 ? _playerLayer : Physics.DefaultRaycastLayers;
-                float searchDist = _brain != null ? _brain.DetectRange : _viewDistance;
-                Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, searchDist, searchMask);
+                Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, _viewDistance, searchMask);
                 if (targetsInRadius != null && targetsInRadius.Length > 0)
                 {
                     target = targetsInRadius[0].transform;
@@ -247,12 +248,9 @@ namespace procedural_animation
                 Vector3 dirToTarget = (targetEyePos - eyePos).normalized;
                 float dstToTarget = Vector3.Distance(eyePos, targetEyePos);
 
-                float viewDist = _brain != null ? _brain.DetectRange : _viewDistance;
-                float fov = _brain != null ? _brain.FieldOfView : _fovAngle;
-
-                if (dstToTarget <= viewDist)
+                if (dstToTarget <= _viewDistance)
                 {
-                    if (Vector3.Angle(transform.forward, dirToTarget) <= fov * 0.5f)
+                    if (Vector3.Angle(transform.forward, dirToTarget) <= _fovAngle * 0.5f)
                     {
                         LayerMask obsMask = ObstacleLayer;
                         if (obsMask.value == 0 || !Physics.Raycast(eyePos, dirToTarget, dstToTarget, obsMask))

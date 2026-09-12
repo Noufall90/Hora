@@ -27,7 +27,6 @@ namespace Enemy
         private float nextDamageTime;
         private float nextFireTime;
         private MeeleShooterMode currentMode = MeeleShooterMode.Shooter;
-        private procedural_animation.EnemyProceduralAnimator proceduralAnimator;
 
         public MeeleShooterMode CurrentMode => currentMode;
         public float FireRate => fireRate;
@@ -38,7 +37,6 @@ namespace Enemy
         protected override void Start()
         {
             base.Start();
-            proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
 
             if (damageCollider != null)
             {

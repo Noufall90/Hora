@@ -12,12 +12,10 @@ namespace Enemy
         [SerializeField] private BoxCollider damageCollider;
 
         private float nextDamageTime;
-        private procedural_animation.EnemyProceduralAnimator proceduralAnimator;
 
         protected override void Start()
         {
             base.Start();
-            proceduralAnimator = GetComponentInChildren<procedural_animation.EnemyProceduralAnimator>() ?? GetComponent<procedural_animation.EnemyProceduralAnimator>();
 
             if (damageCollider != null)
             {
