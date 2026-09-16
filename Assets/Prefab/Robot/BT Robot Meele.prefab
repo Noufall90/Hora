@@ -534,7 +534,7 @@ MonoBehaviour:
   patrolCentrePoint: {fileID: 0}
   detectRange: 3
   attackRange: 2
-  meeleRange: 0
+  meeleRange: 2
   fieldOfView: 140
   obstacleLayer:
     serializedVersion: 2

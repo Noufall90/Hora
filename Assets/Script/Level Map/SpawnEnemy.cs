@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class EnemyWave
@@ -31,10 +32,16 @@ public class LevelSpawn
 
 public class SpawnEnemy : MonoBehaviour
 {
+    [Header("Wave Configuration")]
     [SerializeField] private LevelSpawn[] levelSpawns;
+
+    [Header("UI References")]
+    [SerializeField] private TMP_Text waveText;
+    [SerializeField] private GameObject levelPanelNotif;
+
+    [Header("Interactions")]
     [SerializeField] private InteractScene interactScene;
     [SerializeField] private InteractScenePanel interactScenePanel;
-    [SerializeField] private GameObject levelPanelNotif;
 
     private readonly List<GameObject> activeEnemies = new List<GameObject>();
     private Coroutine spawnCoroutine;
@@ -54,6 +61,9 @@ public class SpawnEnemy : MonoBehaviour
 
     private void Start()
     {
+        int totalWaves = levelSpawns != null ? levelSpawns.Length : 0;
+        UpdateWaveText(0, totalWaves);
+
         if (levelSpawns == null || levelSpawns.Length == 0)
         {
             SetInteractActive(true);
@@ -89,6 +99,8 @@ public class SpawnEnemy : MonoBehaviour
         isSpawning = true;
         SetInteractActive(false);
 
+        int totalWaves = levelSpawns != null ? levelSpawns.Length : 0;
+
         // Loop melalui setiap wave (Wave 0 -> Wave 1 -> dst.)
         for (int levelIndex = 0; levelIndex < levelSpawns.Length; levelIndex++)
         {
@@ -99,6 +111,7 @@ public class SpawnEnemy : MonoBehaviour
             }
 
             level.CurrentWave = levelIndex;
+            UpdateWaveText(levelIndex + 1, totalWaves);
             activeEnemies.Clear();
 
             // Spawn seluruh musuh yang ada di wave ini (1 EnemyWave = 1 Prefab + 1 Location)
@@ -198,6 +211,14 @@ public class SpawnEnemy : MonoBehaviour
         {
             interactScenePanel.gameObject.SetActive(isActive);
             interactScenePanel.enabled = isActive;
+        }
+    }
+
+    private void UpdateWaveText(int current, int total)
+    {
+        if (waveText != null)
+        {
+            waveText.text = $"{current}/{total}";
         }
     }
 }
