@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8046778536057265692}
   - component: {fileID: 1970856584694372527}
   - component: {fileID: 1963562759064381355}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Frost edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

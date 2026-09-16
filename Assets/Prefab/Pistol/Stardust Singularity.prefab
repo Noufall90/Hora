@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3053646520129386153}
   - component: {fileID: 5991907627925161094}
   - component: {fileID: 8301015588555153770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stardust Singularity
   m_TagString: Untagged
   m_Icon: {fileID: 0}

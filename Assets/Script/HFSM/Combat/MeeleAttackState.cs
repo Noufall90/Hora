@@ -36,14 +36,14 @@ namespace HFSM.Combat
             {
                 if (brain.CanMove)
                 {
-                    ChangeSubState(new ChasingState(brain, stateMachine));
+                    ChangeSubState(brain.HFSMChasingState ?? (State)new ChasingState(brain, stateMachine));
                     return;
                 }
             }
 
             if (brain is EnemyMeeleShooter meeleShooterCheck && meeleShooterCheck.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Shooter)
             {
-                ChangeSubState(new ShooterAttackState(brain, stateMachine));
+                ChangeSubState(brain.HFSMShooterAttackState ?? (State)new ShooterAttackState(brain, stateMachine));
                 return;
             }
 

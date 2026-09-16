@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6845204495741777115}
   - component: {fileID: 5271150312882903548}
   - component: {fileID: 4063561008887822699}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sun Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

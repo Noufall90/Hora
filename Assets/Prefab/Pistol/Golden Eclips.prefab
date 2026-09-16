@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2653237626270793199}
   - component: {fileID: 8140155692683461372}
   - component: {fileID: 1104297958302792909}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Golden Eclips
   m_TagString: Untagged
   m_Icon: {fileID: 0}

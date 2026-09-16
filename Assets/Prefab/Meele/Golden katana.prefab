@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3565482387331378436}
   - component: {fileID: 8876162968133492809}
   - component: {fileID: 4283013936757700971}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Golden katana
   m_TagString: Untagged
   m_Icon: {fileID: 0}

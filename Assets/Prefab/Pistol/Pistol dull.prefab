@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9100395712717284333}
   - component: {fileID: 6462646664695944999}
   - component: {fileID: 5471362223538836353}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol dull
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,9 +8,15 @@ namespace HFSM.Combat
     {
         public ChasingState(EnemyBrain brain, HierarchicalStateMachine stateMachine) : base(brain, stateMachine) { }
 
+        private float repathTimer;
+        private const float RepathInterval = 0.1f;
+        private Vector3 lastTargetPos = Vector3.positiveInfinity;
+
         public override void Enter()
         {
             base.Enter();
+            repathTimer = 0f;
+            lastTargetPos = Vector3.positiveInfinity;
 
             if (brain.HasActiveNavMeshAgent)
             {
@@ -25,9 +31,12 @@ namespace HFSM.Combat
 
             if (brain.PlayerTarget == null) return;
 
-            if (brain.HasActiveNavMeshAgent)
+            repathTimer += Time.deltaTime;
+            if (brain.HasActiveNavMeshAgent && (repathTimer >= RepathInterval || (brain.PlayerTarget.position - lastTargetPos).sqrMagnitude > 1.0f))
             {
-                brain.Agent.SetDestination(brain.PlayerTarget.position);
+                repathTimer = 0f;
+                lastTargetPos = brain.PlayerTarget.position;
+                brain.Agent.SetDestination(lastTargetPos);
             }
 
             float effectiveAttackRange = brain.AttackRange > 0 ? brain.AttackRange : brain.MeeleRange;
@@ -39,7 +48,7 @@ namespace HFSM.Combat
                 }
                 else
                 {
-                    ChangeSubState(new MeeleAttackState(brain, stateMachine));
+                    ChangeSubState(brain.HFSMMeeleAttackState ?? (State)new MeeleAttackState(brain, stateMachine));
                 }
             }
         }

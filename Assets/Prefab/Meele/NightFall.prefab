@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5911438821624927142}
   - component: {fileID: 9165629593730818160}
   - component: {fileID: 2654406608339002246}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NightFall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

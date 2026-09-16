@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5888866172035226566}
   - component: {fileID: 7155192553080311598}
   - component: {fileID: 7671430893266354924}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Green saber
   m_TagString: Untagged
   m_Icon: {fileID: 0}

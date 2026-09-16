@@ -20,13 +20,29 @@ namespace HFSM.Combat
         {
             if (brain.PlayerTarget == null)
             {
-                stateMachine.ChangeState(new PassiveState(brain, stateMachine));
+                if (brain.HFSMPassiveState != null)
+                {
+                    brain.HFSMPassiveState.SetInitialInvestigatePos(null);
+                    stateMachine.ChangeState(brain.HFSMPassiveState);
+                }
+                else
+                {
+                    stateMachine.ChangeState(new PassiveState(brain, stateMachine));
+                }
                 return;
             }
 
             if (!brain.IsPlayerDetected())
             {
-                stateMachine.ChangeState(new PassiveState(brain, stateMachine, brain.LastKnownPlayerPosition));
+                if (brain.HFSMPassiveState != null)
+                {
+                    brain.HFSMPassiveState.SetInitialInvestigatePos(brain.LastKnownPlayerPosition);
+                    stateMachine.ChangeState(brain.HFSMPassiveState);
+                }
+                else
+                {
+                    stateMachine.ChangeState(new PassiveState(brain, stateMachine, brain.LastKnownPlayerPosition));
+                }
                 return;
             }
 
@@ -46,7 +62,7 @@ namespace HFSM.Combat
             }
             else
             {
-                SetSubState(new ChasingState(brain, stateMachine));
+                SetSubState(brain.HFSMChasingState ?? (State)new ChasingState(brain, stateMachine));
             }
         }
 
@@ -56,28 +72,28 @@ namespace HFSM.Combat
             {
                 if (meeleShooter.CurrentMode == EnemyMeeleShooter.MeeleShooterMode.Meele)
                 {
-                    SetSubState(new MeeleAttackState(brain, stateMachine));
+                    SetSubState(brain.HFSMMeeleAttackState ?? (State)new MeeleAttackState(brain, stateMachine));
                 }
                 else
                 {
-                    SetSubState(new ShooterAttackState(brain, stateMachine));
+                    SetSubState(brain.HFSMShooterAttackState ?? (State)new ShooterAttackState(brain, stateMachine));
                 }
             }
             else if (brain is IMeele)
             {
-                SetSubState(new MeeleAttackState(brain, stateMachine));
+                SetSubState(brain.HFSMMeeleAttackState ?? (State)new MeeleAttackState(brain, stateMachine));
             }
             else if (brain is IShooter)
             {
-                SetSubState(new ShooterAttackState(brain, stateMachine));
+                SetSubState(brain.HFSMShooterAttackState ?? (State)new ShooterAttackState(brain, stateMachine));
             }
             else if (brain is IBomber)
             {
-                SetSubState(new BomberAttackState(brain, stateMachine));
+                SetSubState(brain.HFSMBomberAttackState ?? (State)new BomberAttackState(brain, stateMachine));
             }
             else
             {
-                SetSubState(new MeeleAttackState(brain, stateMachine));
+                SetSubState(brain.HFSMMeeleAttackState ?? (State)new MeeleAttackState(brain, stateMachine));
             }
         }
     }

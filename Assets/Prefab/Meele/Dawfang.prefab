@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2744630284836204126}
   - component: {fileID: 4451733813970605054}
   - component: {fileID: 7482002328902203475}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dawfang
   m_TagString: Untagged
   m_Icon: {fileID: 0}

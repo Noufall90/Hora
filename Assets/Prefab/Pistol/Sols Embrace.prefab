@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 573530485838802545}
   - component: {fileID: 5062784908022420569}
   - component: {fileID: 1374636831594142442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sols Embrace
   m_TagString: Untagged
   m_Icon: {fileID: 0}

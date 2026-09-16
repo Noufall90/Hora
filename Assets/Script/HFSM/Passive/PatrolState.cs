@@ -29,13 +29,13 @@ namespace HFSM.Passive
 
             if (!brain.CanMove)
             {
-                ChangeSubState(new IdleState(brain, stateMachine));
+                ChangeSubState(brain.HFSMIdleState ?? (State)new IdleState(brain, stateMachine));
                 return;
             }
 
             if (brain.HasActiveNavMeshAgent && !brain.Agent.pathPending && brain.Agent.remainingDistance <= brain.Agent.stoppingDistance)
             {
-                ChangeSubState(new IdleState(brain, stateMachine));
+                ChangeSubState(brain.HFSMIdleState ?? (State)new IdleState(brain, stateMachine));
             }
         }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9170370452131327380}
   - component: {fileID: 6118675218413140475}
   - component: {fileID: 1833027801920885943}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Glacier Spire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

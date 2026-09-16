@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7782897221212677680}
   - component: {fileID: 975217453878317800}
   - component: {fileID: 5886256342584487280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Steel Cutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

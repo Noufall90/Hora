@@ -23,6 +23,7 @@ namespace HFSM.Core
 
         public void SetSubState(State newSubState)
         {
+            if (subState == newSubState) return;
             subState?.Exit();
             subState = newSubState;
             if (newSubState != null)

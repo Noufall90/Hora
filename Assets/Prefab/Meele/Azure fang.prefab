@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2632481604168518183}
   - component: {fileID: 6380072808551493135}
   - component: {fileID: 2876057385518211642}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Azure fang
   m_TagString: Untagged
   m_Icon: {fileID: 0}

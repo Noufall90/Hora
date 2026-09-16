@@ -79,6 +79,17 @@ namespace Enemy
         public procedural_animation.EnemyProceduralAnimator ProceduralAnimator => proceduralAnimator;
         public HFSM.Core.State CurrentHFSMState => hfsm?.CurrentState;
         public FSM.Core.FSMState CurrentFSMState => fsm?.CurrentState;
+
+        // Cached HFSM states (0 GC runtime allocation on state switching)
+        public HFSM.Passive.PassiveState HFSMPassiveState { get; private set; }
+        public HFSM.Combat.CombatState HFSMCombatState { get; private set; }
+        public HFSM.Passive.IdleState HFSMIdleState { get; private set; }
+        public HFSM.Passive.PatrolState HFSMPatrolState { get; private set; }
+        public HFSM.Passive.InvestigateState HFSMInvestigateState { get; private set; }
+        public HFSM.Combat.ChasingState HFSMChasingState { get; private set; }
+        public HFSM.Combat.MeeleAttackState HFSMMeeleAttackState { get; private set; }
+        public HFSM.Combat.ShooterAttackState HFSMShooterAttackState { get; private set; }
+        public HFSM.Combat.BomberAttackState HFSMBomberAttackState { get; private set; }
         public bool IsInvestigating
         {
             get
@@ -164,7 +175,19 @@ namespace Enemy
                 fsm = null;
                 behaviourTree = null;
                 hfsm = new HierarchicalStateMachine();
-                hfsm.Initialize(new HFSM.Passive.PassiveState(this, hfsm));
+
+                // Pre-allocate cached states to eliminate GC allocations during runtime
+                HFSMPassiveState = new HFSM.Passive.PassiveState(this, hfsm);
+                HFSMCombatState = new HFSM.Combat.CombatState(this, hfsm);
+                HFSMIdleState = new HFSM.Passive.IdleState(this, hfsm);
+                HFSMPatrolState = new HFSM.Passive.PatrolState(this, hfsm);
+                HFSMInvestigateState = new HFSM.Passive.InvestigateState(this, hfsm, Vector3.zero);
+                HFSMChasingState = new HFSM.Combat.ChasingState(this, hfsm);
+                HFSMMeeleAttackState = new HFSM.Combat.MeeleAttackState(this, hfsm);
+                HFSMShooterAttackState = new HFSM.Combat.ShooterAttackState(this, hfsm);
+                HFSMBomberAttackState = new HFSM.Combat.BomberAttackState(this, hfsm);
+
+                hfsm.Initialize(HFSMPassiveState);
             }
             else if (stateType == StateType.FiniteStateMachine)
             {
@@ -214,11 +237,12 @@ namespace Enemy
                 {
                     if (IsPlayerDetected())
                     {
-                        hfsm.ChangeState(new HFSM.Combat.CombatState(this, hfsm));
+                        hfsm.ChangeState(HFSMCombatState);
                     }
                     else
                     {
-                        hfsm.ChangeState(new HFSM.Passive.PassiveState(this, hfsm, lastKnownPlayerPosition));
+                        HFSMPassiveState.SetInitialInvestigatePos(lastKnownPlayerPosition);
+                        hfsm.ChangeState(HFSMPassiveState);
                     }
                 }
             }
@@ -448,11 +472,7 @@ namespace Enemy
 
         protected virtual void FixedUpdate()
         {
-            if (stateType == StateType.HierarchicalStateMachine)
-            {
-                hfsm?.FixedUpdate();
-            }
-            else if (stateType == StateType.FiniteStateMachine)
+            if (stateType == StateType.FiniteStateMachine)
             {
                 fsm?.FixedUpdate();
             }

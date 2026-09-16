@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 946974617330813156}
   - component: {fileID: 5119873354193325556}
   - component: {fileID: 3628357159839625582}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shadow blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

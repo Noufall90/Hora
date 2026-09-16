@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3348989595193390435}
   - component: {fileID: 7698624300706516242}
   - component: {fileID: 4299401922292555412}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Violet Clamity
   m_TagString: Untagged
   m_Icon: {fileID: 0}

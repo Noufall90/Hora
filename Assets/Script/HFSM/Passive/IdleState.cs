@@ -34,7 +34,7 @@ namespace HFSM.Passive
             idleTimer += Time.deltaTime;
             if (idleTimer >= idleDuration)
             {
-                ChangeSubState(new PatrolState(brain, stateMachine));
+                ChangeSubState(brain.HFSMPatrolState ?? (State)new PatrolState(brain, stateMachine));
             }
         }
     }

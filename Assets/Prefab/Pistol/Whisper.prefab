@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5037789678270211986}
   - component: {fileID: 6513774710944973493}
   - component: {fileID: 829662355907751369}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Whisper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

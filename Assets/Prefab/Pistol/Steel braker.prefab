@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8426937475788115991}
   - component: {fileID: 9215342548710294794}
   - component: {fileID: 1239357834804207043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Steel braker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

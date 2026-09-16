@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5875554344455580913}
   - component: {fileID: 4985503078022194733}
   - component: {fileID: 5987603639290637369}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Void Needle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

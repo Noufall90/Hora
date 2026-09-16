@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8616449096332084648}
   - component: {fileID: 5528797741698337180}
   - component: {fileID: 2538548374792022041}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dawn Herald
   m_TagString: Untagged
   m_Icon: {fileID: 0}

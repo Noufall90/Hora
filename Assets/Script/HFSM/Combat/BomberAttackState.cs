@@ -32,7 +32,7 @@ namespace HFSM.Combat
             {
                 if (brain.CanMove)
                 {
-                    ChangeSubState(new ChasingState(brain, stateMachine));
+                    ChangeSubState(brain.HFSMChasingState ?? (State)new ChasingState(brain, stateMachine));
                     return;
                 }
             }

@@ -15,17 +15,31 @@ namespace HFSM.Passive
             this.initialInvestigatePos = initialInvestigatePos;
         }
 
+        public void SetInitialInvestigatePos(Vector3? pos)
+        {
+            this.initialInvestigatePos = pos;
+        }
+
         public override void Enter()
         {
             base.Enter();
 
             if (initialInvestigatePos.HasValue)
             {
-                SetSubState(new InvestigateState(brain, stateMachine, initialInvestigatePos.Value));
+                if (brain.HFSMInvestigateState != null)
+                {
+                    brain.HFSMInvestigateState.SetInvestigatePosition(initialInvestigatePos.Value);
+                    SetSubState(brain.HFSMInvestigateState);
+                }
+                else
+                {
+                    SetSubState(new InvestigateState(brain, stateMachine, initialInvestigatePos.Value));
+                }
+                initialInvestigatePos = null;
             }
             else
             {
-                SetSubState(new IdleState(brain, stateMachine));
+                SetSubState(brain.HFSMIdleState ?? (State)new IdleState(brain, stateMachine));
             }
         }
 
@@ -33,7 +47,7 @@ namespace HFSM.Passive
         {
             if (brain.IsPlayerDetected())
             {
-                stateMachine.ChangeState(new CombatState(brain, stateMachine));
+                stateMachine.ChangeState(brain.HFSMCombatState ?? (State)new CombatState(brain, stateMachine));
                 return;
             }
 
