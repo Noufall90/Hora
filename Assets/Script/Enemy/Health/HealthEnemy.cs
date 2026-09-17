@@ -21,14 +21,6 @@ namespace Enemy
         private static readonly int ColorPropertyHash = Shader.PropertyToID("_Color");
         private static readonly int BaseColorAltPropertyHash = Shader.PropertyToID("_Base_Color");
 
-        [Header("Death Slowmotion Settings")]
-        [SerializeField] private bool enableDeathSlowMotion = true;
-        [SerializeField] private float slowMotionTimeScale = 0.5f;
-        [SerializeField] private float slowMotionDuration = 1f;
-
-        private static Coroutine activeSlowMotionCoroutine;
-        private static EnemyHealth slowMotionHost;
-
         private Coroutine _damageFlashCoroutine;
         private bool isDead = false;
 
@@ -49,17 +41,6 @@ namespace Enemy
             }
 
             SetEnemyColor(Color.white);
-
-            if (slowMotionHost == this)
-            {
-                if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
-                {
-                    Time.timeScale = 1f;
-                    Time.fixedDeltaTime = 0.02f;
-                }
-                activeSlowMotionCoroutine = null;
-                slowMotionHost = null;
-            }
         }
 
         public override void TakeDamage(int amount)
@@ -183,6 +164,8 @@ namespace Enemy
             if (isDead) return;
             isDead = true;
 
+            InvokeOnDeath();
+
             if (_damageFlashCoroutine != null)
             {
                 StopCoroutine(_damageFlashCoroutine);
@@ -197,41 +180,7 @@ namespace Enemy
             }
 
             StopEnemy();
-
-            if (enableDeathSlowMotion)
-            {
-                TriggerSlowMotion();
-            }
-
             StartCoroutine(AnimateDeathDissolve());
-        }
-
-        private void TriggerSlowMotion()
-        {
-            if (activeSlowMotionCoroutine != null && slowMotionHost != null)
-            {
-                slowMotionHost.StopCoroutine(activeSlowMotionCoroutine);
-            }
-
-            slowMotionHost = this;
-            activeSlowMotionCoroutine = StartCoroutine(SlowMotionRoutine());
-        }
-
-        private IEnumerator SlowMotionRoutine()
-        {
-            Time.timeScale = slowMotionTimeScale;
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
-
-            yield return new WaitForSecondsRealtime(slowMotionDuration);
-
-            if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
-            {
-                Time.timeScale = 1f;
-                Time.fixedDeltaTime = 0.02f;
-            }
-
-            activeSlowMotionCoroutine = null;
-            slowMotionHost = null;
         }
 
         private void StopEnemy()

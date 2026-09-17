@@ -35,6 +35,12 @@ public class SpawnEnemy : MonoBehaviour
     [Header("Wave Configuration")]
     [SerializeField] private LevelSpawn[] levelSpawns;
 
+    [Header("Slow Motion Settings")]
+    [SerializeField] private bool enableWaveSlowMotion = true;
+    [SerializeField] private float slowMotionTimeScale = 0.2f;
+    [SerializeField] private float slowMotionDuration = 1f;
+    [SerializeField] private bool slowMotionOnlyFinalWave = true;
+
     [Header("UI References")]
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private GameObject levelPanelNotif;
@@ -45,17 +51,31 @@ public class SpawnEnemy : MonoBehaviour
 
     private readonly List<GameObject> activeEnemies = new List<GameObject>();
     private Coroutine spawnCoroutine;
+    private Coroutine slowMotionCoroutine;
     private bool isSpawning = false;
 
+    public static SpawnEnemy Instance { get; private set; }
+
     public bool IsSpawning => isSpawning;
+    public bool IsSlowMotionActive => slowMotionCoroutine != null;
+    public float SlowMotionTimeScale => slowMotionTimeScale;
 
     private void Awake()
     {
+        Instance = this;
         SetInteractActive(false);
 
         if (levelPanelNotif != null)
         {
             levelPanelNotif.SetActive(false);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
         }
     }
 
@@ -71,6 +91,16 @@ public class SpawnEnemy : MonoBehaviour
         }
 
         StartWaveSpawn();
+    }
+
+    private void OnDisable()
+    {
+        if (slowMotionCoroutine != null)
+        {
+            StopCoroutine(slowMotionCoroutine);
+            slowMotionCoroutine = null;
+            ResetTimeScale();
+        }
     }
 
     public void StartWaveSpawn()
@@ -89,6 +119,13 @@ public class SpawnEnemy : MonoBehaviour
         {
             StopCoroutine(spawnCoroutine);
             spawnCoroutine = null;
+        }
+
+        if (slowMotionCoroutine != null)
+        {
+            StopCoroutine(slowMotionCoroutine);
+            slowMotionCoroutine = null;
+            ResetTimeScale();
         }
 
         isSpawning = false;
@@ -114,20 +151,46 @@ public class SpawnEnemy : MonoBehaviour
             UpdateWaveText(levelIndex + 1, totalWaves);
             activeEnemies.Clear();
 
+            bool waveSlowMotionTriggered = false;
+            bool isFinalWave = (levelIndex == levelSpawns.Length - 1);
+
+            // Callback ketika salah satu musuh mati
+            System.Action onEnemyDefeated = () =>
+            {
+                if (!HasAliveEnemies() && enableWaveSlowMotion && !waveSlowMotionTriggered)
+                {
+                    if (!slowMotionOnlyFinalWave || isFinalWave)
+                    {
+                        waveSlowMotionTriggered = true;
+                        TriggerSlowMotion();
+                    }
+                }
+            };
+
             // Spawn seluruh musuh yang ada di wave ini (1 EnemyWave = 1 Prefab + 1 Location)
             for (int i = 0; i < level.EnemyWaves.Length; i++)
             {
                 EnemyWave enemyData = level.EnemyWaves[i];
                 if (enemyData != null && enemyData.EnemyPrefab != null)
                 {
-                    SpawnSingleEnemy(enemyData.EnemyPrefab, enemyData.EnemyLocation);
+                    SpawnSingleEnemy(enemyData.EnemyPrefab, enemyData.EnemyLocation, onEnemyDefeated);
                 }
             }
 
             // Tunggu hingga semua musuh di wave ini mati/hancur
             while (HasAliveEnemies())
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return null;
+            }
+
+            // Fallback jika belum tertrigger (misal musuh didestroy tanpa OnDeath)
+            if (enableWaveSlowMotion && !waveSlowMotionTriggered)
+            {
+                if (!slowMotionOnlyFinalWave || isFinalWave)
+                {
+                    waveSlowMotionTriggered = true;
+                    TriggerSlowMotion();
+                }
             }
 
             // Jeda delay sebelum lanjut ke wave berikutnya jika masih ada wave selanjutnya
@@ -141,7 +204,7 @@ public class SpawnEnemy : MonoBehaviour
         HandleAllWavesCleared();
     }
 
-    private void SpawnSingleEnemy(GameObject prefab, GameObject location)
+    private void SpawnSingleEnemy(GameObject prefab, GameObject location, System.Action onEnemyDied = null)
     {
         if (prefab == null) return;
 
@@ -162,8 +225,39 @@ public class SpawnEnemy : MonoBehaviour
                     {
                         activeEnemies.Remove(enemy);
                     }
+                    onEnemyDied?.Invoke();
                 };
             }
+        }
+    }
+
+    public void TriggerSlowMotion()
+    {
+        if (slowMotionCoroutine != null)
+        {
+            StopCoroutine(slowMotionCoroutine);
+        }
+
+        slowMotionCoroutine = StartCoroutine(SlowMotionRoutine());
+    }
+
+    private IEnumerator SlowMotionRoutine()
+    {
+        Time.timeScale = slowMotionTimeScale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        yield return new WaitForSecondsRealtime(slowMotionDuration);
+
+        ResetTimeScale();
+        slowMotionCoroutine = null;
+    }
+
+    private void ResetTimeScale()
+    {
+        if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
+        {
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 0.02f;
         }
     }
 

@@ -2940,6 +2940,10 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
       enemyLocation: {fileID: 1592213376}
+  enableWaveSlowMotion: 1
+  slowMotionTimeScale: 0.2
+  slowMotionDuration: 1
+  slowMotionOnlyFinalWave: 1
   waveText: {fileID: 1435592345}
   levelPanelNotif: {fileID: 1295470054}
   interactScene: {fileID: 0}

@@ -934,7 +934,7 @@ MonoBehaviour:
   meleeCollider: {fileID: 1943724071381680637}
   pistolBar: {fileID: 4414988292593202069}
   enableAutoAim: 1
-  autoAimFov: 70
+  autoAimFov: 100
   autoAimMaxDistance: 18
   enableMeleeAutoAim: 1
   meleeAutoAimFov: 140

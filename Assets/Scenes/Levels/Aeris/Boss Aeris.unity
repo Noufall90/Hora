@@ -6595,7 +6595,7 @@ MonoBehaviour:
   - currentWave: 0
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+    - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
         type: 3}
       enemyLocation: {fileID: 425472519}
     - enemyPrefab: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
@@ -6613,13 +6613,13 @@ MonoBehaviour:
   - currentWave: 1
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
+    - enemyPrefab: {fileID: 5270077083179405528, guid: 3226282302343864ab5b16167b3316cb,
         type: 3}
       enemyLocation: {fileID: 425472519}
     - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
         type: 3}
       enemyLocation: {fileID: 1734733938}
-    - enemyPrefab: {fileID: 5522867216187783748, guid: dbb3babd1d6656846aa76a074e66d405,
+    - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
         type: 3}
       enemyLocation: {fileID: 1205601539}
     - enemyPrefab: {fileID: 5522867216187783748, guid: dbb3babd1d6656846aa76a074e66d405,
@@ -6628,10 +6628,10 @@ MonoBehaviour:
   - currentWave: 2
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+    - enemyPrefab: {fileID: 5270077083179405528, guid: 3226282302343864ab5b16167b3316cb,
         type: 3}
       enemyLocation: {fileID: 425472519}
-    - enemyPrefab: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+    - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
         type: 3}
       enemyLocation: {fileID: 1734733938}
     - enemyPrefab: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
@@ -6649,10 +6649,10 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 5270077083179405528, guid: 3226282302343864ab5b16167b3316cb,
         type: 3}
       enemyLocation: {fileID: 1348685379}
-    - enemyPrefab: {fileID: 5522867216187783748, guid: dbb3babd1d6656846aa76a074e66d405,
+    - enemyPrefab: {fileID: 5270077083179405528, guid: 3226282302343864ab5b16167b3316cb,
         type: 3}
       enemyLocation: {fileID: 1734733938}
-    - enemyPrefab: {fileID: 5522867216187783748, guid: dbb3babd1d6656846aa76a074e66d405,
+    - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
         type: 3}
       enemyLocation: {fileID: 1205601539}
     - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,

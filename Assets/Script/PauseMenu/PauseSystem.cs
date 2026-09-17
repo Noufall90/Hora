@@ -97,6 +97,7 @@ public class PauseSystem : MonoBehaviour
 
     private IEnumerator TimeStopRoutine(float duration)
     {
+        float previousScale = Time.timeScale > 0f ? Time.timeScale : 1f;
         if (!IsPaused)
         {
             IsPaused = true;
@@ -107,7 +108,16 @@ public class PauseSystem : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
 
         IsPaused = false;
-        Time.timeScale = 1f;
+        if (SpawnEnemy.Instance != null && SpawnEnemy.Instance.IsSlowMotionActive)
+        {
+            Time.timeScale = SpawnEnemy.Instance.SlowMotionTimeScale;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+        else
+        {
+            Time.timeScale = previousScale;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
         OnResumed?.Invoke();
 
         timeStopCoroutine = null;

@@ -123,80 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &5844221
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &5844222 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 5844221}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &80536407
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +257,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80536407}
   m_CullTransparentMesh: 1
---- !u!1001 &158908294
+--- !u!1001 &164103204
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -342,12 +268,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (1)
+      value: Robot Meele (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.42
+      value: 14.27
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -357,7 +298,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.03
+      value: -14.86
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -399,11 +340,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &158908295 stripped
+--- !u!4 &164103205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 158908294}
+  m_PrefabInstance: {fileID: 164103204}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &206355412
 GameObject:
@@ -671,7 +612,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1001 &328191482
+--- !u!1001 &363964858
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -682,12 +623,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (6)
+      value: Robot Meele (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.66
+      value: 5.25
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -697,7 +653,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.29
+      value: -1.09
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -739,85 +695,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &328191483 stripped
+--- !u!4 &363964859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 328191482}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &355216053
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &355216054 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 355216053}
+  m_PrefabInstance: {fileID: 363964858}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
@@ -937,7 +819,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1001 &444357973
+--- !u!1001 &425865607
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -948,12 +830,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele
+      value: Robot Meele (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9
+      value: -15.96
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -963,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.1
+      value: 12.97
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1005,11 +902,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &444357974 stripped
+--- !u!4 &425865608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 444357973}
+  m_PrefabInstance: {fileID: 425865607}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &446022911
 PrefabInstance:
@@ -1085,7 +982,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 446022911}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &450754214
+--- !u!1001 &451870567
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1096,12 +993,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (5)
+      value: Robot Meele (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.36
+      value: 4.42
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1111,7 +1023,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.53
+      value: 13.9
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1153,85 +1065,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &450754215 stripped
+--- !u!4 &451870568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 450754214}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &476237093
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &476237094 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 476237093}
+  m_PrefabInstance: {fileID: 451870567}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &484552849
 GameObject:
@@ -1281,7 +1119,7 @@ MonoBehaviour:
   transition: {fileID: 11400000, guid: 9710edcf009d00943af961dd2a7ca7d3, type: 2}
   startDelay: 1
   sceneName: MainMenu
---- !u!1001 &486220976
+--- !u!1001 &519000705
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1292,12 +1130,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (16)
+      value: Robot Meele (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.43
+      value: -9.65
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1307,7 +1160,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.3
+      value: 13.73
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1349,13 +1202,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &486220977 stripped
+--- !u!4 &519000706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 486220976}
+  m_PrefabInstance: {fileID: 519000705}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &733521527
+--- !u!1001 &634709731
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1366,12 +1219,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (15)
+      value: Robot Meele
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.22
+      value: -3.78
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1381,7 +1249,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.71
+      value: 14.64
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1423,11 +1291,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &733521528 stripped
+--- !u!4 &634709732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 733521527}
+  m_PrefabInstance: {fileID: 634709731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &638177402
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &638177403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 638177402}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &750518274
 GameObject:
@@ -1601,80 +1558,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1001 &783791112
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &783791113 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 783791112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &804149398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1624,7 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8abd6a3e4456ce2459678828d36f8ca6, type: 2}
   m_BuildHeightMesh: 0
---- !u!1001 &1024603225
+--- !u!1001 &854727326
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1752,12 +1635,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (17)
+      value: Robot Meele (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.2
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1767,7 +1665,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.53
+      value: -3.62
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -1809,11 +1707,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1024603226 stripped
+--- !u!4 &854727327 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 1024603225}
+  m_PrefabInstance: {fileID: 854727326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1020251131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &1020251132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1020251131}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1032943019
 GameObject:
@@ -2261,39 +2248,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f2afebb4b1ba1408f7fd37f6a6d4d4, type: 3}
---- !u!1 &1126489243
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1126489244}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1126489244
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126489243}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 750518275}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1158253151
+--- !u!1001 &1085139142
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2304,12 +2259,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (9)
+      value: Robot Meele (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.85
+      value: 6.55
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -2319,7 +2289,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.14
+      value: -15.97
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -2361,11 +2331,310 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1158253152 stripped
+--- !u!4 &1085139143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 1158253151}
+  m_PrefabInstance: {fileID: 1085139142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1087961680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &1087961681 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1087961680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1089283920
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &1089283921 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1089283920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1126489243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126489244}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126489244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126489243}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 750518275}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1167434188
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &1167434189 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1167434188}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1185530786
 GameObject:
@@ -2740,7 +3009,7 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 0
   m_AffectedAgents: ffffffff
---- !u!1001 &1217020773
+--- !u!1001 &1293980058
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2751,12 +3020,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (2)
+      value: Robot Meele (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.88
+      value: 10.49
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -2766,7 +3050,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.91
+      value: -7.67
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -2808,11 +3092,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1217020774 stripped
+--- !u!4 &1293980059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 1217020773}
+  m_PrefabInstance: {fileID: 1293980058}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &1294416627
 Mesh:
@@ -2979,81 +3263,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1001 &1350801862
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1350801863 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1350801862}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1426947943
+--- !u!1001 &1316656056
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3068,8 +3278,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9
+      value: -1.68
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -3079,7 +3304,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.3
+      value: -16.83
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -3121,13 +3346,102 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1426947944 stripped
+--- !u!4 &1316656057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 1426947943}
+  m_PrefabInstance: {fileID: 1316656056}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1492113009
+--- !u!1001 &1480357768
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &1480357769 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1480357768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1511033766
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3142,8 +3456,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.2
+      value: -11.49
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -3153,7 +3482,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.1
+      value: -3.49
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -3195,85 +3524,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1492113010 stripped
+--- !u!4 &1511033767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 1492113009}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1515120329
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1515120330 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1515120329}
+  m_PrefabInstance: {fileID: 1511033766}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1579804864
 GameObject:
@@ -3381,80 +3636,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579804864}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1607845926
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (18)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1607845927 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1607845926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1608656435
 Mesh:
   m_ObjectHideFlags: 0
@@ -3620,7 +3801,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1001 &1698928635
+--- !u!1001 &1658600063
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3631,12 +3812,27 @@ PrefabInstance:
     - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_Name
-      value: Robot Meele (12)
+      value: Robot Meele (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 19.89
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -3646,7 +3842,7 @@ PrefabInstance:
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.3
+      value: -2.78
       objectReference: {fileID: 0}
     - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
         type: 3}
@@ -3688,11 +3884,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &1698928636 stripped
+--- !u!4 &1658600064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
     type: 3}
-  m_PrefabInstance: {fileID: 1698928635}
+  m_PrefabInstance: {fileID: 1658600063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1873353147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &1873353148 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1873353147}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1932999689
 GameObject:
@@ -3791,28 +4076,117 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 444357974}
-  - {fileID: 158908295}
-  - {fileID: 1217020774}
-  - {fileID: 5844222}
-  - {fileID: 783791113}
-  - {fileID: 450754215}
-  - {fileID: 328191483}
-  - {fileID: 1515120330}
-  - {fileID: 1350801863}
-  - {fileID: 1158253152}
-  - {fileID: 1492113010}
-  - {fileID: 476237094}
-  - {fileID: 1698928636}
-  - {fileID: 355216054}
-  - {fileID: 1426947944}
-  - {fileID: 733521528}
-  - {fileID: 486220977}
-  - {fileID: 1024603226}
-  - {fileID: 1607845927}
-  - {fileID: 2132348350}
+  - {fileID: 634709732}
+  - {fileID: 519000706}
+  - {fileID: 425865608}
+  - {fileID: 451870568}
+  - {fileID: 1480357769}
+  - {fileID: 1087961681}
+  - {fileID: 1658600064}
+  - {fileID: 1020251132}
+  - {fileID: 363964859}
+  - {fileID: 854727327}
+  - {fileID: 1511033767}
+  - {fileID: 1089283921}
+  - {fileID: 1873353148}
+  - {fileID: 638177403}
+  - {fileID: 1316656057}
+  - {fileID: 1085139143}
+  - {fileID: 164103205}
+  - {fileID: 1167434189}
+  - {fileID: 2001679058}
+  - {fileID: 1293980059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2001679057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1983489385}
+    m_Modifications:
+    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot Meele (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.59999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
+--- !u!4 &2001679058 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2001679057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2013149084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,80 +4269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTemplate: {fileID: 5276914992623515724, guid: 616d511151a6c554caddf1c754e4f91d,
     type: 3}
---- !u!1001 &2132348349
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1983489385}
-    m_Modifications:
-    - target: {fileID: 2026242789895780203, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_Name
-      value: Robot Meele (19)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c04e000e6704a714988aff45a301d7c7, type: 3}
---- !u!4 &2132348350 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5981425255106668268, guid: c04e000e6704a714988aff45a301d7c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 2132348349}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

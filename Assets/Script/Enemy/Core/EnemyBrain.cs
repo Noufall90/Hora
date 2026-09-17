@@ -328,10 +328,6 @@ namespace Enemy
             float elapsed = 0f;
 
             Animator anim = GetComponentInChildren<Animator>() ?? GetComponent<Animator>();
-            if (anim != null)
-            {
-                anim.SetBool("Hit", false);
-            }
 
             float targetForce = knockbackForce * forceMultiplier;
 

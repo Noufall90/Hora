@@ -789,7 +789,7 @@ MonoBehaviour:
   - currentWave: 2
     spawnDelayWave: 2
     enemyWaves:
-    - enemyPrefab: {fileID: 5522867216187783748, guid: dbb3babd1d6656846aa76a074e66d405,
+    - enemyPrefab: {fileID: 5270077083179405528, guid: 3226282302343864ab5b16167b3316cb,
         type: 3}
       enemyLocation: {fileID: 421063211}
     - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,

@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e846de2cc020a1b409f0f071c92b80d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateType: 0
   moveSpeed: 4
   rotationSpeed: 50
   patrolRange: 30
@@ -730,14 +731,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.179161, y: 3.2120187, z: 3.9172544}
-  m_Center: {x: -0.0957284, y: 1.1060094, z: 2.0576954}
+  m_Size: {x: 4.179161, y: 2.7608824, z: 3.9172542}
+  m_Center: {x: -0.095728464, y: 0.8804403, z: 2.0576954}
 --- !u!95 &7201969637409931330
 Animator:
   serializedVersion: 5
@@ -1121,7 +1122,7 @@ Transform:
   m_GameObject: {fileID: 7726638262992957029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00986, z: -0.0059}
+  m_LocalPosition: {x: 0, y: 0.00986, z: -0.00856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1494,14 +1495,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.7634243, z: 1.73}
-  m_Center: {x: -0, y: 1.3741225, z: -0}
+  m_Size: {x: 1, y: 1.7572128, z: 1.73}
+  m_Center: {x: -0, y: 1.3710184, z: -0}
 --- !u!4 &3858061209742894088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8414462214265893513, guid: 4a4f5a33a56ec2c42aab8c8e9882af7f,

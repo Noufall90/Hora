@@ -18,6 +18,7 @@ namespace PlayerData
         [Header("Hit Stop / Freeze Settings")]
         [SerializeField] private float meleeHitFreezeDuration = 0.1f;
         private Coroutine _freezeCoroutine;
+        private float _preFreezeTimeScale = 1f;
 
         [Header("Barang Dissolve")]
         [SerializeField] private GameObject dissolvePedang;
@@ -474,6 +475,11 @@ namespace PlayerData
             {
                 StopCoroutine(_freezeCoroutine);
             }
+            else
+            {
+                _preFreezeTimeScale = (Time.timeScale > 0f) ? Time.timeScale : 1f;
+            }
+
             _freezeCoroutine = StartCoroutine(FreezeTimeRoutine(freezeDur));
         }
 
@@ -484,7 +490,16 @@ namespace PlayerData
 
             if (PauseSystem.Instance == null || !PauseSystem.Instance.IsPaused)
             {
-                Time.timeScale = 1f;
+                if (SpawnEnemy.Instance != null && SpawnEnemy.Instance.IsSlowMotionActive)
+                {
+                    Time.timeScale = SpawnEnemy.Instance.SlowMotionTimeScale;
+                    Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                }
+                else
+                {
+                    Time.timeScale = _preFreezeTimeScale > 0f ? _preFreezeTimeScale : 1f;
+                    Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                }
             }
             _freezeCoroutine = null;
         }
