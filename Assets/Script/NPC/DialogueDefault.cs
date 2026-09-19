@@ -60,17 +60,11 @@ public class DialogueDefault : MonoBehaviour
         }
     }
 
+    private int startFrame;
+
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Instance = this;
 
         lines = new Queue<DialogueLine>();
 
@@ -80,7 +74,8 @@ public class DialogueDefault : MonoBehaviour
         }
 
         if (dialogueManager != null &&
-            dialogueManager.gameObject != gameObject)
+            dialogueManager.gameObject != gameObject &&
+            dialogueManager.gameObject.activeInHierarchy)
         {
             gameObject.SetActive(false);
             return;
@@ -124,6 +119,7 @@ public class DialogueDefault : MonoBehaviour
     private void Update()
     {
         if (DialogueManager.Instance != null &&
+            DialogueManager.Instance.gameObject.activeInHierarchy &&
             DialogueManager.Instance.isDialogueActive)
         {
             return;
@@ -137,20 +133,9 @@ public class DialogueDefault : MonoBehaviour
                 Cursor.visible = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && Time.frameCount > startFrame)
             {
                 DisplayNextDialogueLine();
-            }
-            return;
-        }
-
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isDialogueActive)
-        {
-            Dialogue targetDialogue = dialogueTrigger != null ? dialogueTrigger.DialogueData : null;
-
-            if (targetDialogue != null)
-            {
-                StartDialogue(targetDialogue);
             }
         }
     }
@@ -190,6 +175,7 @@ public class DialogueDefault : MonoBehaviour
         isDialogueActive = true;
         isTyping = false;
         currentSentence = "";
+        startFrame = Time.frameCount;
 
         StartPlayerTalking();
 
@@ -311,6 +297,8 @@ public class DialogueDefault : MonoBehaviour
     {
         isDialogueActive = false;
         isTyping = false;
+
+        DialogueTrigger.NotifyDialogueEnded();
 
         StopAllCoroutines();
         StopPlayerTalking();

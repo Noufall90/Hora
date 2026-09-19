@@ -28617,8 +28617,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1684429464}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+      - m_Target: {fileID: 1684429463}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
         m_MethodName: DisplayNextDialogueLine
         m_Mode: 1
         m_Arguments:
@@ -57274,9 +57274,6 @@ MonoBehaviour:
   coinValue: 0
   enemyRenderers: []
   dissolveDuration: 2
-  enableDeathSlowMotion: 1
-  slowMotionTimeScale: 0.5
-  slowMotionDuration: 1
   minHealthThreshold: 10
   autoResetDelay: 3
   damageText: {fileID: 150724950}

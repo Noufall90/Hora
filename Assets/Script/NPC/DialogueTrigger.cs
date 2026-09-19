@@ -12,6 +12,14 @@ public class DialogueTrigger : MonoBehaviour
 
     public Dialogue DialogueData => dialogue;
 
+    private static float s_lastDialogueEndTime = -1f;
+    private const float INTERACTION_COOLDOWN = 0.35f;
+
+    public static void NotifyDialogueEnded()
+    {
+        s_lastDialogueEndTime = Time.unscaledTime;
+    }
+
     private void Start()
     {
         if (quadObject != null)
@@ -25,6 +33,29 @@ public class DialogueTrigger : MonoBehaviour
         if (!playerInRange)
         {
             return;
+        }
+
+        if (IsDialogueActive())
+        {
+            if (quadObject != null && quadObject.activeSelf)
+            {
+                quadObject.SetActive(false);
+            }
+            return;
+        }
+
+        if (Time.unscaledTime - s_lastDialogueEndTime < INTERACTION_COOLDOWN)
+        {
+            if (quadObject != null && quadObject.activeSelf)
+            {
+                quadObject.SetActive(false);
+            }
+            return;
+        }
+
+        if (quadObject != null && !quadObject.activeSelf)
+        {
+            quadObject.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -50,9 +81,28 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
+        if (Time.unscaledTime - s_lastDialogueEndTime < INTERACTION_COOLDOWN)
+        {
+            return;
+        }
+
         if (quadObject != null)
         {
             quadObject.SetActive(false);
+        }
+
+        DialogueManager localManager = GetComponent<DialogueManager>();
+        if (localManager != null && localManager.gameObject.activeInHierarchy)
+        {
+            localManager.StartDialogue(dialogue);
+            return;
+        }
+
+        DialogueDefault localDefault = GetComponent<DialogueDefault>();
+        if (localDefault != null && localDefault.gameObject.activeInHierarchy)
+        {
+            localDefault.StartDialogue(dialogue);
+            return;
         }
 
         if (DialogueManager.Instance != null && DialogueManager.Instance.gameObject.activeInHierarchy)
@@ -61,7 +111,7 @@ public class DialogueTrigger : MonoBehaviour
             return;
         }
 
-        if (DialogueDefault.Instance != null)
+        if (DialogueDefault.Instance != null && DialogueDefault.Instance.gameObject.activeInHierarchy)
         {
             DialogueDefault.Instance.StartDialogue(dialogue);
         }
@@ -69,6 +119,18 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool IsDialogueActive()
     {
+        DialogueManager localManager = GetComponent<DialogueManager>();
+        if (localManager != null && localManager.gameObject.activeInHierarchy && localManager.isDialogueActive)
+        {
+            return true;
+        }
+
+        DialogueDefault localDefault = GetComponent<DialogueDefault>();
+        if (localDefault != null && localDefault.gameObject.activeInHierarchy && localDefault.isDialogueActive)
+        {
+            return true;
+        }
+
         if (DialogueManager.Instance != null &&
             DialogueManager.Instance.gameObject.activeInHierarchy &&
             DialogueManager.Instance.isDialogueActive)
@@ -77,6 +139,7 @@ public class DialogueTrigger : MonoBehaviour
         }
 
         if (DialogueDefault.Instance != null &&
+            DialogueDefault.Instance.gameObject.activeInHierarchy &&
             DialogueDefault.Instance.isDialogueActive)
         {
             return true;
@@ -94,7 +157,9 @@ public class DialogueTrigger : MonoBehaviour
 
         playerInRange = true;
 
-        if (!IsDialogueActive() && quadObject != null)
+        if (!IsDialogueActive() &&
+            Time.unscaledTime - s_lastDialogueEndTime >= INTERACTION_COOLDOWN &&
+            quadObject != null)
         {
             quadObject.SetActive(true);
         }
@@ -117,6 +182,20 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DisplayNextDialogueLine()
     {
+        DialogueManager localManager = GetComponent<DialogueManager>();
+        if (localManager != null && localManager.gameObject.activeInHierarchy && localManager.isDialogueActive)
+        {
+            localManager.DisplayNextDialogueLine();
+            return;
+        }
+
+        DialogueDefault localDefault = GetComponent<DialogueDefault>();
+        if (localDefault != null && localDefault.gameObject.activeInHierarchy && localDefault.isDialogueActive)
+        {
+            localDefault.DisplayNextDialogueLine();
+            return;
+        }
+
         if (DialogueManager.Instance != null &&
             DialogueManager.Instance.gameObject.activeInHierarchy &&
             DialogueManager.Instance.isDialogueActive)
@@ -126,6 +205,7 @@ public class DialogueTrigger : MonoBehaviour
         }
 
         if (DialogueDefault.Instance != null &&
+            DialogueDefault.Instance.gameObject.activeInHierarchy &&
             DialogueDefault.Instance.isDialogueActive)
         {
             DialogueDefault.Instance.DisplayNextDialogueLine();

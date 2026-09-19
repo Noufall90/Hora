@@ -704,7 +704,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 52068328}
-  - component: {fileID: 52068331}
+  - component: {fileID: 52068332}
   - component: {fileID: 52068330}
   - component: {fileID: 52068329}
   m_Layer: 0
@@ -764,7 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 169dcef09de4202489626ce477f9211e, type: 2}
   quadObject: {fileID: 909973817}
---- !u!114 &52068331
+--- !u!114 &52068332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -773,11 +773,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 52068327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d5b3fdd292814438bb2f329121741a, type: 3}
+  m_Script: {fileID: 11500000, guid: a61cfe6b19cebcb4bae1ab59cd24f1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 0}
   dialogueTrigger: {fileID: 52068330}
-  dialogueDefault: {fileID: 0}
   nextButton: {fileID: 379388446}
   characterName: {fileID: 238775836}
   dialogueArea: {fileID: 1821532682}
@@ -785,7 +785,7 @@ MonoBehaviour:
   colArea: {fileID: 378780829}
   colTrigger: {fileID: 52068329}
   playerAnimator: {fileID: 1569328429}
-  typingSpeed: 0.01
+  typingSpeed: 0.2
   isDialogueActive: 0
 --- !u!1 &55463922
 GameObject:
@@ -2465,8 +2465,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 52068331}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+      - m_Target: {fileID: 52068330}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
         m_MethodName: DisplayNextDialogueLine
         m_Mode: 1
         m_Arguments:

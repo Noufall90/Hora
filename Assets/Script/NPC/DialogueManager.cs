@@ -36,10 +36,17 @@ public class DialogueManager : MonoBehaviour
 
     public bool isDialogueActive = false;
 
+    private int startFrame;
+
     public string DialogueId
     {
         get
         {
+            if (dialogueTrigger != null && dialogueTrigger.DialogueData != null)
+            {
+                return dialogueTrigger.DialogueData.name;
+            }
+
             if (transform.parent != null)
             {
                 return transform.parent.name + "_" + gameObject.name;
@@ -50,15 +57,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Instance = this;
 
         lines = new Queue<DialogueLine>();
 
@@ -98,17 +97,16 @@ public class DialogueManager : MonoBehaviour
 
     public void CheckDialogueState()
     {
-        string id1 = DialogueId;
-        string id2 = gameObject.name;
+        string id = DialogueId;
 
         bool isCompleted = false;
         if (SaveDataJson.Instance != null)
         {
-            isCompleted = SaveDataJson.Instance.IsDialogueCompleted(id1) || SaveDataJson.Instance.IsDialogueCompleted(id2);
+            isCompleted = SaveDataJson.Instance.IsDialogueCompleted(id);
         }
         else
         {
-            isCompleted = DialogueSaveRegistry.IsCompleted(id1) || DialogueSaveRegistry.IsCompleted(id2);
+            isCompleted = DialogueSaveRegistry.IsCompleted(id);
         }
 
         if (isCompleted)
@@ -150,7 +148,7 @@ public class DialogueManager : MonoBehaviour
                 Cursor.visible = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && Time.frameCount > startFrame)
             {
                 DisplayNextDialogueLine();
             }
@@ -172,6 +170,7 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = true;
         isTyping = false;
         currentSentence = "";
+        startFrame = Time.frameCount;
 
         StartPlayerTalking();
 
@@ -294,6 +293,8 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         isTyping = false;
 
+        DialogueTrigger.NotifyDialogueEnded();
+
         StopAllCoroutines();
         StopPlayerTalking();
 
@@ -312,16 +313,13 @@ public class DialogueManager : MonoBehaviour
             colArea.SetActive(false);
         }
 
-        string id1 = DialogueId;
-        string id2 = gameObject.name;
+        string id = DialogueId;
 
-        DialogueSaveRegistry.MarkCompleted(id1);
-        DialogueSaveRegistry.MarkCompleted(id2);
+        DialogueSaveRegistry.MarkCompleted(id);
 
         if (SaveDataJson.Instance != null)
         {
-            SaveDataJson.Instance.MarkDialogueCompleted(id1);
-            SaveDataJson.Instance.MarkDialogueCompleted(id2);
+            SaveDataJson.Instance.MarkDialogueCompleted(id);
         }
 
         if (dialogueDefault == null)

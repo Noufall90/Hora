@@ -13263,7 +13263,7 @@ GameObject:
   - component: {fileID: 2042990681}
   - component: {fileID: 2042990683}
   m_Layer: 5
-  m_Name: Lanjut (1)
+  m_Name: Lanjut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13371,8 +13371,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1995296612}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+      - m_Target: {fileID: 1995296614}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
         m_MethodName: DisplayNextDialogueLine
         m_Mode: 1
         m_Arguments:
