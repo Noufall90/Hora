@@ -66,10 +66,10 @@ namespace Enemy
         public float MoveSpeed => moveSpeed;
         public float RotationSpeed => rotationSpeed;
         public float PatrolRange => patrolRange;
-        public float DetectRange => (proceduralAnimator != null) ? proceduralAnimator.ViewDistance : (detectRange > 0f ? detectRange : 15f);
+        public virtual float DetectRange => (proceduralAnimator != null) ? proceduralAnimator.ViewDistance : (detectRange > 0f ? detectRange : 15f);
         public float AttackRange => attackRange;
         public float MeeleRange => meeleRange;
-        public float FieldOfView => (proceduralAnimator != null) ? proceduralAnimator.FovAngle : (fieldOfView > 0f ? fieldOfView : 120f);
+        public virtual float FieldOfView => (proceduralAnimator != null) ? proceduralAnimator.FovAngle : (fieldOfView > 0f ? fieldOfView : 120f);
         public LayerMask ObstacleLayer => obstacleLayer;
         public NavMeshAgent Agent => agent;
         public Transform PlayerTarget => playerTarget;
@@ -352,7 +352,7 @@ namespace Enemy
             isKnockedBack = false;
         }
 
-        public bool IsPlayerDetected()
+        public virtual bool IsPlayerDetected()
         {
             if (playerTarget == null)
             {

@@ -101,4 +101,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TA/BT Meele 20.unity
     guid: 7ce77bd0ad1b5ce4682b28d5133d7438
+  - enabled: 1
+    path: Assets/Scenes/TA/Animasi.unity
+    guid: a22dfeaf94baf794abeb90e9ba7caf1f
   m_configObjects: {}

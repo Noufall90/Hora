@@ -1,17 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
+using EnemyAnimation;
 
 namespace Enemy
 {
     public class EnemyMeele : EnemyBrain, IMeele
     {
         [Header("Meele Settings")]
+        [SerializeField] private EnemyAnim enemyAnim;
         [SerializeField] private Animator animator;
         [SerializeField] private int damage = 10;
         [SerializeField] private float damageInterval = 2.0f;
         [SerializeField] private BoxCollider damageCollider;
 
         private float nextDamageTime;
+
+        public EnemyAnim EnemyAnim => enemyAnim;
+
+        public override float DetectRange => (enemyAnim != null) ? enemyAnim.ViewDistance : base.DetectRange;
+        public override float FieldOfView => (enemyAnim != null) ? enemyAnim.FovAngle : base.FieldOfView;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (enemyAnim == null)
+            {
+                enemyAnim = GetComponentInChildren<EnemyAnim>() ?? GetComponent<EnemyAnim>();
+            }
+
+            if (animator == null && enemyAnim != null)
+            {
+                animator = enemyAnim.Animator;
+            }
+        }
 
         protected override void Start()
         {
@@ -23,11 +45,30 @@ namespace Enemy
             }
         }
 
+        public override bool IsPlayerDetected()
+        {
+            if (enemyAnim != null)
+            {
+                bool detected = enemyAnim.PlayerDetected;
+                if (detected && PlayerTarget != null)
+                {
+                    LastKnownPlayerPosition = PlayerTarget.position;
+                }
+                return detected;
+            }
+
+            return base.IsPlayerDetected();
+        }
+
         public void MeeleAttack()
         {
             if (isKnockedBack) return;
 
-            if (animator != null)
+            if (enemyAnim != null)
+            {
+                enemyAnim.TriggerAttack();
+            }
+            else if (animator != null)
             {
                 animator.SetBool("Attack", true);
             }
@@ -45,7 +86,11 @@ namespace Enemy
 
         public void StopAttack()
         {
-            if (animator != null)
+            if (enemyAnim != null)
+            {
+                enemyAnim.StopAttack();
+            }
+            else if (animator != null)
             {
                 animator.SetBool("Attack", false);
             }
