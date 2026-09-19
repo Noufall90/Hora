@@ -723,7 +723,7 @@ Transform:
   m_GameObject: {fileID: 52068327}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000044703478, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.20391083, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eab16e64bc4034ebaa82ca92c01217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: f1b9c1b04f80fbd429aa00061d3af1a3, type: 2}
+  dialogue: {fileID: 11400000, guid: 169dcef09de4202489626ce477f9211e, type: 2}
   quadObject: {fileID: 909973817}
 --- !u!114 &52068331
 MonoBehaviour:
@@ -6661,6 +6661,10 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 5399323257696844442, guid: 98d4f959637184244af7decac36a5542,
         type: 3}
       enemyLocation: {fileID: 101648656}
+  enableWaveSlowMotion: 1
+  slowMotionTimeScale: 0.2
+  slowMotionDuration: 1
+  slowMotionOnlyFinalWave: 1
   waveText: {fileID: 20303859}
   levelPanelNotif: {fileID: 1248991031}
   interactScene: {fileID: 965864159}
