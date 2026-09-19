@@ -150,6 +150,16 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+
+        if (equippedMeleeItem != null && PlayerWeapons.WeaponsManager.Instance != null)
+        {
+            PlayerWeapons.WeaponsManager.Instance.EquipMelee(equippedMeleeItem.indexWeapons);
+        }
+
+        if (equippedPistolItem != null && PlayerWeapons.WeaponsManager.Instance != null)
+        {
+            PlayerWeapons.WeaponsManager.Instance.EquipPistol(equippedPistolItem.indexWeapons);
+        }
     }
 
     // ── Save / Load Integration ───────────────────────────
@@ -201,6 +211,12 @@ public class InventoryManager : MonoBehaviour
             {
                 PlayerWeapons.WeaponsManager.Instance.EquipPistol(pistolItem.indexWeapons);
             }
+        }
+
+        // Jika save data tidak memiliki data equipped item, pasang default weapons
+        if (equippedMeleeItem == null || equippedPistolItem == null)
+        {
+            SetupDefaultWeapons();
         }
 
         ListItems();

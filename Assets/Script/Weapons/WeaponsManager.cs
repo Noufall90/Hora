@@ -44,8 +44,15 @@ namespace PlayerWeapons
 
         private void Start()
         {
-            EquipPistol(activeShooterIndex, false);
-            EquipMelee(activeMeleeIndex, false);
+            if (InventoryManager.Instance != null)
+            {
+                InventoryManager.Instance.EnsureInitialized();
+            }
+            else
+            {
+                EquipPistol(activeShooterIndex, false);
+                EquipMelee(activeMeleeIndex, false);
+            }
         }
 
         private PistolItem GetPistolProvider()
