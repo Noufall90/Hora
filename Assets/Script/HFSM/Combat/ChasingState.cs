@@ -15,6 +15,7 @@ namespace HFSM.Combat
         public override void Enter()
         {
             base.Enter();
+            Debug.Log("NPC  Mengejar Player");
             repathTimer = 0f;
             lastTargetPos = Vector3.positiveInfinity;
 

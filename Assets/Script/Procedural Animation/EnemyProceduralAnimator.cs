@@ -272,11 +272,9 @@ namespace procedural_animation
             float greatestDistance = _stepSize;
             int limbToMove = -1;
 
-            // Perhitungan lead time foot prediction berbasis detik yang independen dari framerate
             float leadTime = Mathf.Max(0.02f, _stepLeadMultiplier * 0.03f);
             Vector3 lead = _velocity * leadTime;
 
-            // Batasi jarak lead agar kaki tidak terlempar terlalu jauh saat terjadi lonjakan kecepatan sesaat
             float maxLead = _stepSize * 0.75f;
             if (lead.sqrMagnitude > maxLead * maxLead)
             {
@@ -319,7 +317,6 @@ namespace procedural_animation
 
         private void _BackToRestPosition()
         {
-            // Ambang batas aman untuk menghindari getaran mikro saat diam
             float restThreshold = Mathf.Max(0.15f, _stepSize * 0.2f);
 
             for (int i = 0; i < _nLimbs; i++)

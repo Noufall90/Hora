@@ -99,7 +99,6 @@ public class Projectile : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(damage);
-                Debug.Log("Bullet hit " + other.name + " causing " + damage + " damage");
             }
         }
 

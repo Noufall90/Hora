@@ -17,6 +17,7 @@ namespace HFSM.Combat
         public override void Enter()
         {
             base.Enter();
+            Debug.Log("NPC  Menyerang Player");
             cooldownTimer = (bomberCapability?.FireRate ?? 2.0f) * 0.5f;
             if (brain.HasActiveNavMeshAgent)
             {

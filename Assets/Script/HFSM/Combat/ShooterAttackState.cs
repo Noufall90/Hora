@@ -17,6 +17,7 @@ namespace HFSM.Combat
         public override void Enter()
         {
             base.Enter();
+            Debug.Log("NPC  Menyerang Player");
             cooldownTimer = 0f;
             if (brain.HasActiveNavMeshAgent)
             {

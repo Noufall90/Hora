@@ -2820,7 +2820,7 @@ PrefabInstance:
     - target: {fileID: 1526967351966648122, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
       propertyPath: _scanAngle
-      value: 360
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2530113603668849240, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
