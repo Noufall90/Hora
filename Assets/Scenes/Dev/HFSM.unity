@@ -277,10 +277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caedfbf861352e34d95e29a96c3a7bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 0}
-  fireRate: 1.5
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
 --- !u!114 &641102562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,9 +289,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089434f24052414ca93a3ca44fcf4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 0}
+  stateType: 0
+  moveSpeed: 0
+  rotationSpeed: 50
+  patrolRange: 10
+  patrolCentrePoint: {fileID: 0}
+  detectRange: 0
+  attackRange: 0
+  meeleRange: 0
+  fieldOfView: 60
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enableKnockback: 1
+  requiredComboHits: 3
+  comboResetTime: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.3
+  showDebugGizmos: 1
   fireRate: 1.5
   firePoint: {fileID: 0}
+  firePoint2: {fileID: 0}
   bulletPrefab: {fileID: 0}
 --- !u!114 &641102563
 MonoBehaviour:
@@ -309,10 +323,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9262537ea69090f46a82cea42ba0e05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 0}
-  meeleAttackRange: 2
+  stateType: 0
+  moveSpeed: 0
+  rotationSpeed: 50
+  patrolRange: 10
+  patrolCentrePoint: {fileID: 0}
+  detectRange: 0
+  attackRange: 0
+  meeleRange: 0
+  fieldOfView: 60
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enableKnockback: 1
+  requiredComboHits: 3
+  comboResetTime: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.3
+  showDebugGizmos: 1
+  animator: {fileID: 0}
+  damage: 10
+  damageInterval: 2
+  damageCollider: {fileID: 0}
   fireRate: 2
   firePoint: {fileID: 0}
+  firePoint2: {fileID: 0}
   bulletPrefab: {fileID: 0}
 --- !u!114 &641102564
 MonoBehaviour:
@@ -326,8 +361,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261223aee923cca4f871f5410de6488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 0}
-  meeleAttackRange: 1.5
+  stateType: 0
+  moveSpeed: 0
+  rotationSpeed: 50
+  patrolRange: 10
+  patrolCentrePoint: {fileID: 0}
+  detectRange: 0
+  attackRange: 0
+  meeleRange: 0
+  fieldOfView: 60
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enableKnockback: 1
+  requiredComboHits: 3
+  comboResetTime: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.3
+  showDebugGizmos: 1
+  animator: {fileID: 0}
+  damage: 10
+  damageInterval: 2
+  damageCollider: {fileID: 0}
 --- !u!114 &641102565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,12 +395,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e846de2cc020a1b409f0f071c92b80d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 0}
-  meeleAttackRange: 4
+  stateType: 0
+  moveSpeed: 0
+  rotationSpeed: 50
+  patrolRange: 10
+  patrolCentrePoint: {fileID: 0}
+  detectRange: 0
+  attackRange: 0
+  meeleRange: 0
+  fieldOfView: 60
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enableKnockback: 1
+  requiredComboHits: 3
+  comboResetTime: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.3
+  showDebugGizmos: 1
+  animator: {fileID: 0}
+  damage: 10
+  damageInterval: 2
+  damageCollider: {fileID: 0}
   fireRate: 0.5
   firePoint: {fileID: 0}
+  firePoint2: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  explosionRadius: 8
 --- !u!114 &641102566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,8 +433,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b06dc12917d487438d49ea047c7059d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configData: {fileID: 0}
-  explosionRadius: 3
+  stateType: 0
+  moveSpeed: 0
+  rotationSpeed: 50
+  patrolRange: 10
+  patrolCentrePoint: {fileID: 0}
+  detectRange: 0
+  attackRange: 0
+  meeleRange: 0
+  fieldOfView: 60
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enableKnockback: 1
+  requiredComboHits: 3
+  comboResetTime: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.3
+  showDebugGizmos: 1
+  fireRate: 3
+  granadePrefab: {fileID: 0}
+  throwPosition: {fileID: 0}
+  throwForce: 10
+  maxForce: 0
+  trajectoryLine: {fileID: 0}
 --- !u!114 &641102567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +470,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  damageParticle: {fileID: 0}
+  damageFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  damageFlashDuration: 0.1
+  coinValue: 0
+  enemyRenderers: []
+  dissolveDuration: 2
 --- !u!1 &668717146
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &845536656
 Transform:
   m_ObjectHideFlags: 0
@@ -1022,6 +1125,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1254205540176517526, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619696394663347507, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7900282994099321564, guid: 56825e59dbd0a6e4f874a36f96ffb1c5,
         type: 3}
       propertyPath: m_Name
@@ -1078,7 +1191,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5027960020006822142, guid: 56825e59dbd0a6e4f874a36f96ffb1c5, type: 3}
+    - {fileID: 2773764221496747933, guid: 56825e59dbd0a6e4f874a36f96ffb1c5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56825e59dbd0a6e4f874a36f96ffb1c5, type: 3}

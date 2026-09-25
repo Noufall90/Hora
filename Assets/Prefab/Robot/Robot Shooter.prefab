@@ -1024,9 +1024,6 @@ MonoBehaviour:
   enemyRenderers:
   - {fileID: 5322364214662209884}
   dissolveDuration: 1
-  enableDeathSlowMotion: 1
-  slowMotionTimeScale: 0.5
-  slowMotionDuration: 1
 --- !u!114 &6477940304345368035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,6 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089434f24052414ca93a3ca44fcf4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateType: 0
   moveSpeed: 5
   rotationSpeed: 50
   patrolRange: 10
